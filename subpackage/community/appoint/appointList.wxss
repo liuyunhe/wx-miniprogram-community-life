@@ -1,0 +1,89 @@
+/* pages/community/appoint/appointList.wxss */
+/* pages/community/activity/signUp.wxss */
+.prompt-style{
+    text-align: center;
+    position: fixed;
+    top:10px;
+    left:25%;
+    right: 25%;
+  }
+  /*分割线样式*/
+  .divLine{
+    background: #E5E5E5 ;
+    /* margin-top: 30rpx; */
+    width: 608rpx;
+    height: 2rpx;
+  }
+  input{
+    display: inline-block;
+    position: absolute;
+    height:50rpx;
+    line-height: 106px;
+    top:0;
+    bottom: 0;
+    margin:auto 30rpx;
+    color:#999999;
+    font-size: 24rpx;
+    font-family:PingFang SC-Regular;
+  }
+  .contentArea{
+    /* width: 670rpx; */
+    /* height: 547rpx; */
+    border-radius: 10rpx;
+    margin-top: 30rpx;
+    margin-left: 40rpx;
+    margin-right: 40rpx;
+    /* padding-top: 24rpx; */
+    padding-left: 30rpx;
+    background-color: #FFFFFF;
+    box-shadow: 0rpx 4rpx 7rpx 0rpx rgba(0,0,0,0.09);
+    opacity: 1;
+    border: 2rpx solid rgba(0,0,0,0.09);
+  }
+  .contentItem{
+    position: relative;
+    height: 106rpx;
+    line-height: 106rpx;
+  }
+  .timeStyle{
+    margin-left: 30rpx;
+    margin-top: 10rpx;
+    color:#999999;
+    font-size: 28rpx;
+    font-family:PingFang SC-Regular;
+  }
+  .pickerParent{
+    /* background-color:rgb(230, 225, 225) ; */
+  }
+  .typeStyle{
+    display: inline-block;
+    position: absolute;
+    right: 30rpx;
+    color:#999999;
+  }
+  .pickerchildren{
+    display: inline-block;
+    position: absolute;
+    right: 30rpx;
+    color:#999999;
+    font-size: 28rpx;
+    font-family:PingFang SC-Regular;
+  }
+  .labelStyle{
+    display: inline-block;
+    margin-top: 0;
+  }
+  .signUpButton{
+    width: 670rpx;
+    text-align: center;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 6rpx;
+    position: fixed;
+    bottom: 100rpx;
+    margin: 0 40rpx;
+    color: #FFFFFF;
+    background-color: #3CD9BD;
+    font-family: PingFang SC-Semibold, PingFang SC;
+    font-size: 36rpx;
+  }

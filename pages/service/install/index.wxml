@@ -1,0 +1,28 @@
+<view class="base">
+  <view class="header rpx-30 flex align-center">
+    <image src="/state/images/serch.png"></image>
+    <input class="serch" type="text" value="{{inpValue}}" confirm-type="search" bindconfirm="search" placeholder="输入机构名称搜索"  bindinput="getValue"/>
+  </view>
+  <view class="mt-20 ">
+    <view wx:if="{{dataList.length>0}}">
+      <view class="list rpx-30 ptb-20 flex" wx:for="{{dataList}}" wx:key="index" bindtap="goDetail" data-serviceId="{{item.serviceId}}">
+        <image src="{{item.url}}"></image>
+        <view class="ml-20" style="flex: 1;">
+          <view class="fs-28 mb-10">{{item.serviceName}}</view>
+          <view class="fs-24">
+            <text>{{item.storeName}}</text>
+            <text>丨</text>
+            <text>{{item.merchantName}}</text>
+          </view>
+          <view class="money">
+            <text>￥{{item.unitPrice}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="noData" wx:else>
+      <image mode="widthFix" src="/state/images/noData.png"></image>
+      <view>暂无数据</view>
+    </view>
+  </view>
+</view>

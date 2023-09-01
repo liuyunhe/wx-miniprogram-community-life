@@ -1,0 +1,37 @@
+<view class="view-column">
+  <view class="view-block">
+    <view class="view-column view-center">
+      <image src="/state/images/success.png" mode="widthFix" class="icon_img" />
+      <text class="text-success">支付成功</text>
+      <text class="text-light">感谢您的购买，祝您生活愉快</text>
+      <image src="/state/images/success_line.png" mode="widthFix" class="img-line" />
+    </view>
+  </view>
+  <view class="view-content">
+    <view class="view-white">
+      <view class="view-ff">
+        <view class="view-order">
+          <view class="view-money">
+            <text>¥</text>
+            <text>{{details.realPrice/100}}</text>
+          </view>
+          <view class="view-line"></view>
+          <view class="view-row view-bottom">
+            <text style="color:#999;flex: 1;">订单编号：</text>
+            <text style="color:#333;">{{details.orderId}}</text>
+          </view>
+          <view class="view-row view-bottom">
+            <text style="color:#999;flex: 1;">下单时间：</text>
+            <text style="color:#333;">{{details.orderTime}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="view-column view-foot">
+      <view class="view-row" style="width: 82%;margin-top: 100rpx;">
+        <text class="clerk-list" bindtap="order">查看订单</text>
+        <text class="pay-list" bindtap="clerk">返回首页</text>
+      </view>
+    </view>
+  </view>
+</view>

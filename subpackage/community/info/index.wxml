@@ -1,0 +1,41 @@
+<view class="view-column">
+  <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; width: 750rpx;">
+    <view wx:if="{{communityList.length > 0}}">
+      <view class="view-list" wx:for="{{list}}" wx:key="index">
+        <view class="view-order">
+          <view  data-item="{{item}}">
+            <view class="order-row" bindtap="bindCommunity" data-community="{{item}}" style="display: flex;">
+              <text class="font-bold">社区名称：{{item.communityName}}</text>
+              <text style="margin: auto;margin-right: 10rpx;border-radius:10rpx;border-width: 2rpx;border-color: #35c0ae;color: #35c0ae;font-size: 30rpx;">{{isBindCommunity == true ?'切换社区':'去绑定'}}</text>
+            </view>
+            <view class="view-line"></view>
+            <view class="order-row" style="margin-top:15rpx;" catchtap="details">
+              <text>社区地址：</text>
+              <text class="text-flex">{{item.province}} {{item.city}} {{item.address}}</text>
+            </view>
+            <view class="order-row" style="margin-top:15rpx;" catchtap="details">
+              <text>联系电话：</text>
+              <text class="text-flex">{{item.telephoneNo}}</text>
+          
+            </view>
+
+            <view class="order-row" style="margin-top:15rpx;" catchtap="details">
+              <text>工作时间：</text>
+              <text class="text-flex">{{item.workTime}}</text>
+            </view>
+            <view class="order-row" style="margin-top:15rpx;" catchtap="details">
+              <text>备注：</text>
+              <text class="text-flex">{{item.appointOrgAddress}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
+    <view wx:if="{{ !isLoading && !communityList.length }}">
+      <view class="yoshop-notcont">
+        <text class="cont">亲，您还没有社区信息哦！</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

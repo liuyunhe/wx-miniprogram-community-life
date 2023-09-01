@@ -1,0 +1,82 @@
+<wxs module="filters" src="../../../utils/addmul.wxs"></wxs>
+<view class="base">
+  <view class="header">
+    <view class="view-good-img">
+      <swiper
+        class="good-img-swiper"
+        indicator-dots="true"
+        indicator-active-color="#FFFFFF"
+      >
+        <swiper-item wx:for="{{ imgNewsData }}" wx:key="index">
+          <image class="good-img" src="{{ item.url }}" mode="aspectFill"></image>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <view class="view-good-info">
+      <view class="headerText">
+        {{ goodsDetail.goodsName }}
+        <view class="xl">销量{{ goodsDetail.sales }}</view>
+      </view>
+      <view class="headerDerr">
+        <view class="line">
+          <view class="title">选择</view>
+          <view class="info">颜色/尺码</view>
+          <image
+            class="arrow"
+            src="../../../state/images/arrow-right.png"
+            mode="widthFix"
+            lazy-load="false"
+            binderror=""
+            bindload=""
+          ></image>
+          <view class="jump">推荐XXL码</view>
+        </view>
+        <view class="line">
+          <view class="title">发货</view>
+          <view class="info text-overflow" style="width: 570rpx">{{
+            goodsDetail.merchantName
+          }}</view>
+        </view>
+        <view class="line">
+          <view class="title">评价</view>
+          <view class="info">200+</view>
+          <image
+            class="arrow"
+            src="../../../state/images/arrow-right.png"
+            mode="widthFix"
+            lazy-load="false"
+            binderror=""
+            bindload=""
+          ></image>
+          <view
+            class="jump"
+            bindtap="goGoodComment"
+            data-id="{{ goodsDetail.goodsId }}"
+            >好评度98%</view
+          >
+        </view>
+      </view>
+    </view>
+
+    <view class="view-good-des">
+      <view class="title">· 详情信息 ·</view>
+      <view class="content rpx-20 ptb-20">
+        <view>
+          <rich-text nodes="{{ goodsDetail.goodsDesc }}"></rich-text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="foot flex rpx-40">
+    <view class="footLeft">
+      <text>价格：</text>
+      <text class="footmoney">￥</text>
+      <text class="head">{{ filters.toFixHead(goodsDetail.price) }}</text
+      ><text class="tail">.{{ filters.toFixTail(goodsDetail.price) }}</text>
+    </view>
+    <view class="btn-add-cart" bindtap="addToChart">加入购物车</view>
+    <view class="btn-place-orde" bindtap="goOrder">立即下单</view>
+  </view>
+</view>

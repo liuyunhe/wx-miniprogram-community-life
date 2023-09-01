@@ -1,0 +1,20 @@
+<view class="component" catchtouchmove="true" wx:if="{{showModalStatus}}">
+  <view class="bgc-000" bindtap="close"></view>
+  <view class="bgc-FFF " animation="{{animationData}}">
+    <view class="dialogTitle">
+      <view class="fs-32">请选择预约时间</view>
+    </view>
+    <view class="mt-20">
+      <view wx:for="{{fatherData}}" wx:key="index" class="dialogDay">
+        <view wx:if="{{item.avaliableNum>0}}" class=" bg-FAF6" bindtap="goOrder" data-value="{{item}}">
+          <text>{{item.startTime}}~{{item.endTime}}</text>
+          <text>(可预约{{item.avaliableNum}}人)</text>
+        </view>
+        <view wx:else class=" bg-F7F7 color-DDDD">
+          <text>{{item.startTime}}~{{item.endTime}}</text>
+          <text>(已约满)</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

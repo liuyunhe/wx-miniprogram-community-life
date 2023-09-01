@@ -1,0 +1,43 @@
+<scroll-view
+  scroll-x="true"
+  class="scroll-view-x"
+  style="padding-top: 10rpx"
+  scroll-with-animation="true"
+  scroll-left="0"
+  bindscroll="getleft"
+>
+  <!--内容区域-->
+  <view>
+    <view
+      class="navigator_second"
+      wx:for="{{ list }}"
+      wx:for-item="childItem"
+      bindtap="getProductList"
+      data-id="{{childItem.categoryId}}"
+    >
+      <image class="navigator_icon" src="{{childItem.categoryImage}}"></image>
+      <text class="navigator_text">{{childItem.categoryName}}</text>
+    </view>
+  </view>
+  <view>
+    <view
+      class="navigator_second"
+      wx:for="{{list}}"
+      wx:for-item="childItem"
+      data-id="{{childItem.categoryId}}"
+      bindtap="getProductList"
+    >
+      <image class="navigator_icon" src="{{childItem.categoryImage}}"></image>
+      <text class="navigator_text">{{childItem.categoryName}}</text>
+    </view>
+  </view>
+</scroll-view>
+<!--滚动条部分-->
+<view wx:if="{{slideShow}}" class="slide">
+  <view class="slide-bar">
+    <view
+      class="slide-show"
+      style="width:{{slideWidth}}rpx; margin-left:{{slideLeft<=1 ? 0 : slideLeft+'rpx'}};"
+    ></view>
+  </view>
+</view>

@@ -1,0 +1,42 @@
+<view class="shortcut">
+
+  <!-- 我家 -->
+  <form bindsubmit="_currentLocation" data-index="1" report-submit="true">
+    <button style="width: 76rpx;height: 76rpx;" formType="submit" data-index="0" class="nav-item btn-normal {{ isShow ? 'show_80' : (transparent ? '' : 'hide_80') }}">
+      <!-- <text class="iconfont icon-home"></text> -->
+      <image class="icon-img" mode="widthFix" src="/state/images/my_family.png"></image>
+    </button>
+  </form>
+
+  <!-- 公司 -->
+  <form bindsubmit="_currentLocation" data-index="2" report-submit="true">
+    <button style="width: 76rpx;height: 76rpx;" formType="submit" data-index="1" class="nav-item btn-normal {{ isShow ? 'show_60' : (transparent ? '' : 'hide_60') }}">
+      <!-- <text class="iconfont icon-cate"></text> -->
+      <image class="icon-img" mode="widthFix" src="/state/images/company.png"></image>
+    </button>
+  </form>
+
+  <!-- 父母家 -->
+  <form bindsubmit="_currentLocation" data-index="3" report-submit="true">
+    <button style="width: 76rpx;height: 76rpx;" formType="submit" data-index="2" class="nav-item btn-normal {{ isShow ? 'show_40' : (transparent ? '' : 'hide_40') }}">
+      <!-- <text class="iconfont icon-cart"></text> -->
+      <image class="icon-img" mode="widthFix" src="/state/images/parents_home.png"></image>
+    </button>
+  </form>
+
+  <!-- 位置 -->
+  <form bindsubmit="_currentLocation" data-index="4" report-submit="true">
+    <button style="width: 76rpx;height: 76rpx;" formType="submit" data-index="3" class="nav-item btn-normal {{ isShow ? 'show_20' : (transparent ? '' : 'hide_20') }}">
+      <!-- <text class="iconfont icon-profile"></text> -->
+      <image class="icon-img" mode="widthFix" src="/state/images/position.png"></image>
+    </button>
+  </form>
+
+  <!-- 显示隐藏开关 -->
+  <form bindsubmit="_onToggleShow" report-submit="true">
+    <button formType="submit" style="width: 76rpx;height: 76rpx;" class="nav-item nav-item__switch btn-normal {{ isShow ? 'shortcut_click_show' : '' }}">
+      <text class='iconfont icon-daohang'></text>
+    </button>
+  </form>
+
+</view>

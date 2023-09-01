@@ -1,0 +1,14 @@
+{
+  "overrides": [
+    {
+      "files": "*.wxml",
+      "options": { "parser": "html" }
+    },
+    {
+      "files": "*.wxss",
+      "options": { "parser": "css" }
+    }
+  ],
+  "trailingComma": "none",
+  "semi": false
+}

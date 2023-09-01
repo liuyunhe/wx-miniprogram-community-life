@@ -1,0 +1,57 @@
+<view class="view-column">
+  <view class="view-row">
+    <view class="view-shu"></view>
+    <view class="ml-10" style="font-weight: bold;font-size: 35rpx;margin-left:20rpx;">{{payName}}</view>
+  </view>
+  <view class="view-row">
+    <view class="flex-1">缴费单位</view>
+    <view style="color:#999;">{{orgItem.payUnit}}</view>
+  </view>
+  <view class="view-line"></view>
+  <view class="view-row">
+    <view class="flex-1">缴费户号</view>
+    <view style="color:#999;">{{orgItem.custChargeNo}}</view>
+  </view>
+  <view class="view-line"></view>
+  <view class="view-row">
+    <view class="flex-1">缴费户名</view>
+    <view style="color:#999;">{{custName}}</view>
+  </view>
+  <view class="view-line"></view>
+  <view class="view-row">
+    <view class="flex-1">客户标记</view>
+    <view class="view-row" wx:for="{{codeList}}" wx:key="index" wx:for-item="item">
+      <text bindtap="selectList" data-index="{{index}}" data-id="{{item.id}}" class="{{item.selected?'active-color':'text-btn'}}">{{item.name}}</text>
+    </view>
+  </view>
+</view>
+<!-- <view class="base">
+  <view class="bg-FFFF">
+    <view class="">
+      <view class="fs-28">{{payName}}</view>
+    </view>
+    <view class="foot">
+      <view class="flex align-center mb-20">
+        <view class="flex-1">缴费单位</view>
+        <view>{{orgItem.payUnit}}</view>
+      </view>
+      <view class="flex align-center mb-20">
+        <view class="flex-1">缴费户号</view>
+        <view>{{orgItem.custChargeNo}}</view>
+      </view>
+      <view class="flex align-center mb-20">
+        <view class="flex-1">缴费户名</view>
+        <view>{{custName}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="view-foot">
+    <view class="view-column" wx:for="{{codeList}}" wx:key="index" wx:for-item="item">
+      <view class="view-row view-center" style="margin-top:15rpx;">
+        <text class="{{item.selected?'active-color':''}}" style="flex: 1;">{{item.name}}</text>
+        <radio checked="{{item.selected}}" bindtap="selectList" data-index="{{index}}" data-id="{{item.id}}" style="transform:scale(0.8);" color="#26a886" />
+      </view>
+      <view class="view-line"></view>
+    </view>
+  </view>
+</view> -->

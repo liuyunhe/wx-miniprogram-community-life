@@ -1,0 +1,18 @@
+<view class='wx_dialog_container' hidden="{{!isShow}}">
+  <view class='wx-mask'></view>
+  <view class='wx-dialog'>
+    <view class='wx-dialog-title'>{{ title }}</view>
+    <textarea bindinput="areaInput" style="font-size: 26rpx;margin-bottom: 30rpx;" placeholder="请填写10字以上的问题描述，以便我们更好的帮您解决问题，提高产品质量。"></textarea>
+    <uploadImg id='uploadImg' imgNum='{{3}}' binditemChange="handleItemChange">
+    </uploadImg>
+    <view class="tab-bar">
+      <view class="view-flex" wx:for="{{itemTag}}" wx:for-item="item" wx:key="index">
+        <text class="text-tab {{item.checked ? 'text-color' : ''}}" bindtap="swichNav" data-id="{{item.id}}">{{item.name}}</text>
+      </view>
+    </view>
+    <view class='wx-dialog-footer'>
+      <view class='wx-dialog-btn' catchtap='_cancelEvent'>{{ cancelText }}</view>
+      <view class='wx-dialog-btn' catchtap='_confirmEvent'>{{ confirmText }}</view>
+    </view>
+  </view>
+</view>

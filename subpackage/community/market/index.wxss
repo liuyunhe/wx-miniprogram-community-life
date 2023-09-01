@@ -1,0 +1,448 @@
+.view-column {
+  display: flex;
+  flex-flow: column;
+  padding: 10rpx;
+}
+
+/* .view-order {
+  width: 96vw;
+  display: flex;
+  flex-flow: column;
+  margin-top: 15rpx;
+  background: #FFFFFF;
+  box-shadow: 0rpx 4rpx 9rpx 0rpx rgba(40, 17, 78, 0.04);
+  border-radius: 6rpx 6rpx 6rpx 6rpx;
+  opacity: 1;
+} */
+
+.view-order-item {
+  display: flex;
+  flex-flow: row;
+  height: 220rpx;
+}
+
+.img-class {
+  display: flex;
+  position: relative;
+  align-items: center;
+  /* height: 220rpx; */
+  margin-left: 10rpx;
+  margin-top: 16rpx;
+}
+/* 图片的阴影遮罩，使用时应将需要遮罩的图片的父容器设置为相对定位 */
+.maskImage{
+  background: rgba(70, 70, 70, 0.63);
+  position: absolute;
+  color:#FFFFFF;
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 200rpx;
+}
+.alternative{
+  background: rgba(70, 70, 70, 0.63);
+}
+.text-price {
+  display: flex;
+  flex-flow: column;
+  text-align: left;
+  margin-left: 20rpx;
+}
+
+.price-title {
+  color: #333333;
+  font-size: 30rpx;
+  font-family: PingFang SC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 33rpx;
+  margin-top: 24rpx;
+}
+
+.price-hint {
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  width: 270rpx;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  overflow-x: hidden;
+  color: #999999;
+  height: 34rpx;
+  line-height: 28rpx;
+  margin-top: 10rpx;
+}
+
+.price-bottom {
+  display: flex;
+  flex-flow: row;
+  text-align: left;
+  margin-left: 20rpx;
+  margin-bottom: 8rpx;
+  height: 50%;
+}
+
+.price-style {
+  font-size: 36rpx;
+  font-family: D-DIN-PRO-Medium, D-DIN-PRO;
+  font-weight: 500;
+  color: #FF580C;
+  line-height: 42rpx;
+  display: flex;
+  align-items: flex-end;
+
+}
+
+.view-style {
+  font-size: 26rpx;
+  font-family: D-DIN-PRO-Medium, D-DIN-PRO;
+  font-weight: 500;
+  color: #999999;
+  line-height: 42rpx;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* justify-content */
+
+.img-view-style {
+  font-size: 26rpx;
+  font-family: D-DIN-PRO-Medium, D-DIN-PRO;
+  font-weight: 500;
+  color: #999999;
+  line-height: 42rpx;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  text-align: end;
+  width: 100%;
+}
+
+.view-style {
+  font-size: 26rpx;
+  font-family: D-DIN-PRO-Medium, D-DIN-PRO;
+  font-weight: 500;
+  color: #999999;
+  line-height: 42rpx;
+  display: flex;
+  align-items: flex-end;
+}
+
+.marker-view {
+  width: 29.1rpx;
+  height: 18rpx;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10rpx;
+  margin-right: 20rpx;
+}
+
+.line-column {
+  display: flex;
+  align-items: center;
+  height: 130rpx;
+  opacity: 1;
+  /* border: 1rpx solid rgba(0, 0, 0, 0.12); */
+  background: rgba(0, 0, 0, 0.12);
+  width: 1rpx;
+  margin-left: 20rpx;
+  margin-top: 60rpx;
+
+
+}
+
+.dowm-img{
+  height: 50rpx;
+  width: 50rpx;
+}
+.down-text{
+  font-size: 24rpx;
+font-family: PingFang SC-Medium, PingFang SC;
+font-weight: 500;
+color: #333333;
+line-height: 28rpx;
+margin-top: 10rpx;
+}
+.details{
+  margin-right: 40rpx;
+  position: relative;
+}
+.dowm-class{
+  /* display: flex; */
+  position: absolute;
+  right: 78rpx;
+  /* flex-flow: column; */
+  text-align: left;
+  padding-left: 50rpx;
+  border-left: 1rpx solid #E0E0E0;
+  margin-top: 76rpx;
+  align-items: center;
+}
+
+.order-row {
+  display: flex;
+  flex-flow: row;
+  text-align: center;
+  align-items: center;
+  font-size: 30rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  margin-top: 25rpx;
+}
+
+.view-row {
+  display: flex;
+  flex-flow: row;
+  text-align: center;
+  height: 88rpx;
+}
+
+.view-row-nav {
+  display: flex;
+  flex-flow: row;
+  text-align: center;
+  height: 6rpx;
+}
+
+.text-tab {
+  flex: 1;
+  font-size: 32rpx;
+  color: #666;
+  flex-direction: column;
+}
+
+.text-tab-nav {
+  flex: 1;
+  color: #666;
+}
+
+
+
+.text-flex {
+  flex: 1;
+  text-align: right;
+}
+
+
+.text-pay {
+  color: #fff;
+  font-size: 30rpx;
+  background: #35c0ae;
+  border-radius: 30rpx;
+  padding: 10rpx 30rpx;
+  margin-left: 20rpx;
+}
+
+.font-bold {
+  font-weight: bold;
+  color: #333;
+}
+
+.view-list {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  width: 100vw;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.view-line {
+  width: 92%;
+  height: 1px;
+  background: #f8f8f8;
+  margin-top: 20rpx;
+  margin-left: 30rpx;
+}
+
+.yoshop-notcont {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 130rpx 100rpx;
+  box-sizing: border-box;
+}
+
+.cont {
+  font-size: 30rpx;
+  color: #666;
+  margin-top: 100rpx;
+}
+
+.no-more {
+  text-align: center;
+  color: #737373;
+  padding: 10px 0;
+  font-size: 30rpx;
+}
+
+
+
+.text-del {
+  /* flex:1; */
+  text-align: right;
+  color: red;
+  border-radius: 30rpx;
+  border: 1px solid red;
+  padding: 9rpx 30rpx;
+  font-size: 26rpx;
+  margin-left: 20rpx;
+}
+
+.view-mfn {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 100;
+  align-content: center;
+  flex-direction: row-reverse;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+  margin-bottom: 160rpx;
+}
+
+.text-mfn {
+  font-size: 25rpx;
+  text-align: center;
+  /* font-weight: bold; */
+  color: #fff;
+}
+
+.mfn-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 85rpx;
+  height: 85rpx;
+  /* background-color: #fe767a; */
+  background-color: #1DD394;
+  /* background: rgba(0, 0, 0, 0.4); */
+  text-align: center;
+  align-content: center;
+  justify-items: center;
+  border-radius: 50%;
+  align-items: center;
+  margin-right: 42rpx;
+}
+
+
+page {
+  background-color: #F5F5F5
+}
+
+.view-column {
+  display: flex;
+  flex-flow: column;
+  padding: 10rpx;
+}
+
+.view-order {
+  display: flex;
+  flex-flow: column;
+  margin-top: 15rpx;
+  width: 94vw;
+  background-color: #FFFFFF;
+  margin-right: 3vw;
+  box-shadow: 0rpx 4rpx 9rpx 0rpx rgba(40, 17, 78, 0.04);
+  border-radius: 6rpx 6rpx 6rpx 6rpx;
+  opacity: 1;
+}
+
+.order-row {
+  display: flex;
+  flex-flow: row;
+  text-align: center;
+  align-items: center;
+  font-size: 32rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  margin-top: 25rpx;
+  color: #999999;
+}
+
+.text-tab {
+  flex: 1;
+  font-size: 30rpx;
+  color: #666;
+}
+
+.text-active {
+  color: #3CDABB;
+  font-size: 32rpx;
+}
+
+.text-active-nav {
+  background: #3CDABB;
+  border-radius: 15rpx 15rpx 15rpx 15rpx;
+  color: #3CDABB;
+  font-size: 32rpx;
+  width: 90rpx;
+}
+
+.text-flex {
+  flex: 1;
+  text-align: right;
+}
+
+.text-cacel {
+  /* flex:1; */
+  text-align: right;
+  color: #35c0ae;
+  border-radius: 30rpx;
+  border: 1px solid #35c0ae;
+  padding: 9rpx 30rpx;
+  font-size: 30rpx;
+}
+
+.text-pay {
+  color: #fff;
+  font-size: 30rpx;
+  background: #35c0ae;
+  border-radius: 30rpx;
+  padding: 10rpx 30rpx;
+  margin-left: 20rpx;
+}
+
+.font-bold {
+  /* font-weight:bold; */
+  color: #333;
+  font-size: medium;
+}
+
+.view-list {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.view-line {
+  width: 92%;
+  height: 1px;
+  background: #f8f8f8;
+  margin-top: 20rpx;
+  margin-left: 30rpx;
+}
+
+.yoshop-notcont {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 130rpx 100rpx;
+  box-sizing: border-box;
+}
+
+.cont {
+  font-size: 30rpx;
+  color: #666;
+  margin-top: 100rpx;
+}
+
+.no-more {
+  text-align: center;
+  color: #737373;
+  padding: 10px 0;
+  font-size: 30rpx;
+}

@@ -1,0 +1,47 @@
+.top {
+  font-size: 26rpx;
+  color: #7B7B7B;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.input {
+  width: 100%;
+  height: 96rpx;
+  background: #ffffff;
+  font-size: 30rpx;
+  border: 1rpx solid #f7f7f7;
+  box-sizing: border-box;
+}
+.inputaddress{
+  height: 150rpx;
+  padding-top: 30rpx;
+}
+.color-258{
+  color: #26a886;
+  margin-right: 30rpx;
+}
+.inp {
+  height: 100%;
+}
+.inptext {
+  width: 500rpx;
+  height: 100rpx;
+}
+.foot {
+  width: 100%;
+  height: 120rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  /* background: #ffffff; */
+}
+.btn {
+  color: #ffffff;
+  background: #26a886;
+  font-size: 30rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+}

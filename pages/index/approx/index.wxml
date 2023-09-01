@@ -1,0 +1,40 @@
+<view class="base">
+  <!-- <view class="news">开放18天号源（18：00放出第十六天号源）</view> -->
+  <view class="date rpx-30">
+    <scroll-view scroll-x="true">
+      <view class="flex date-back">
+        <view class="dataName {{isCheck==item.appointDate? 'isCheck' :''}}" wx:for="{{dateList}}" wx:key="index" bindtap="changeData" data-appointDate="{{item.appointDate}}">
+          <view>{{item.week}}</view>
+          <view class="mt-10">
+            <text>{{item.month}}/</text>
+            <text class="font">{{item.day}}</text>
+          </view>
+          <view class="mt-20">{{avaliableNum==0?'已约满':'有号'}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="rpx-30 mt-30">
+    <view>
+      <!-- <view class="mb-20">上午号源8:00~11:00</view> -->
+      <view class="content rpx-20 ptb-20">
+        <view class="flex align-center mb-20">
+          <view class="flex-1" style="font-size: 34rpx;font-weight: bold;">{{assetName}}</view>
+          <view class="num" bindtap="goOrder">剩余：{{avaliableNum||0}}</view>
+        </view>
+        <view style="color:#666;">
+          {{assetContent}}
+        </view>
+      </view>
+      <view class="content rpx-20 ptb-20" style="margin-top:20rpx;">
+        <view class="addr_class" style="padding-bottom:20rpx; margin-left:20rpx;" bindtap="showAddr">
+          <image class="addr" mode="widthFix" src="/state/images/addr.png"></image>
+          <text style="flex:1; margin-top:10rpx;color:#3CDABB;">{{storeAddress}}</text>
+        </view>
+        <view class="addr_class" style="padding-bottom:20rpx; margin-left:20rpx;">联系电话：{{linkPhone}}</view>
+        <view class="addr_class" style="padding-bottom:20rpx; margin-left:20rpx;">营业时间：{{businessHours}}</view>
+      </view>
+    </view>
+  </view>
+  <wxDialog id="wxDialog" fatherData="{{dataList}}"></wxDialog>
+</view>

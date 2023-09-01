@@ -1,0 +1,42 @@
+<image class="img-title" src="/state/images/account_title.png" mode="widthFix"></image>
+<view>
+  <form bindsubmit="saveData">
+    <view class="view-column">
+      <view class="view-row">
+        <view>姓名：</view>
+        <input name="name" placeholder="请输入姓名" />
+      </view>
+      <view class="line"></view>
+      <view class="view-row">
+        <view>证件类型：</view>
+        <picker mode="selector" bindchange="bindPickerID" value="{{typeIndex}}" range="{{typeList}}" range-key="name">
+          <view class="text-right">
+            <input class="input-drug" value="{{typeName}}" placeholder="请选择" disabled="true"></input>
+          </view>
+        </picker>
+      </view>
+      <view class="line"></view>
+      <view class="view-row">
+        <view>证号号码：</view>
+        <input name="certNo" placeholder="请输入证号号码" />
+      </view>
+      <view class="line"></view>
+      <view class="view-row">
+        <view>银行卡号：</view>
+        <input name="accountNo" placeholder="请输入银行卡号" />
+      </view>
+      <view class="line"></view>
+      <view class="view-row">
+        <view>手机号：</view>
+        <input name="mobile" placeholder="请输入手机号" bindinput="changePhone" />
+      </view>
+      <view class="line"></view>
+      <view class="view-row">
+        <input name="verifyCode" placeholder="请输入验证码" style="flex:1;" />
+        <button style="width:35%;" class='btn' disabled='{{disabled}}' bindtap="getVerificationCode">{{time}}</button>
+      </view>
+    </view>
+    <!-- <view class="line"></view> -->
+    <button class="open" style="width:92%;margin-top: 50rpx;margin-bottom: 30rpx;" formType="submit">立即开通</button>
+  </form>
+</view>

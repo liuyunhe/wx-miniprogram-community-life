@@ -1,0 +1,67 @@
+page {
+  background: #f7f7f7;
+}
+
+.view-white {
+  background: #fff;
+  border-radius: 15rpx;
+  margin: 30rpx;
+  font-size: 30rpx;
+  padding: 20rpx;
+}
+
+.view-block {
+  background: #fff;
+  border-radius: 15rpx;
+  margin: 0rpx 30rpx;
+  font-size: 30rpx;
+  padding: 20rpx;
+}
+
+.text-balance {
+  font-size: 70rpx;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.pay-list {
+  color: #fff;
+  font-size: 34rpx;
+  background: #26a886;
+  border-radius: 8rpx;
+  padding: 20rpx 90rpx;
+  margin-top: 20rpx;
+  text-align: center;
+  width: 72%;
+  margin-bottom: 10rpx;
+}
+
+.view-list {
+  margin:20rpx;
+  font-size: 30rpx;
+}
+
+.cont {
+  font-size: 30rpx;
+  color: #666;
+}
+
+.no-more {
+  text-align: center;
+  color: #737373;
+  padding: 10px 0;
+  font-size: 30rpx;
+}
+
+.view-line {
+  /* width:92%; */
+  height: 1px;
+  background: #f8f8f8;
+  margin-top: 30rpx;
+}
+
+.text-back{
+  font-size: 28rpx;
+  color: #666;
+  margin-top:15rpx;
+}

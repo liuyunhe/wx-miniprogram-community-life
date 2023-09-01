@@ -1,0 +1,92 @@
+.header {
+  width: 100%;
+  /* height: 600rpx; */
+  background: #ffffff;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  padding-bottom: 50rpx;
+}
+
+.swiper {
+  width: 100%;
+  height: 750rpx;
+}
+
+.headerImg {
+  width: 100%;
+  height: 100%;
+}
+
+.headerText {
+  font-size: 30rpx;
+  font-weight: 700;
+  margin-top: 20rpx;
+}
+
+.headerDerr {
+  font-size: 26rpx;
+  margin: 10rpx 0rpx;
+}
+
+.intro {
+  font-size: 30rpx;
+  /* text-indent: 2em; */
+}
+
+.content {
+  margin-top: 20rpx;
+  background: #ffffff;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+
+
+.foot {
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: #ffffff;
+}
+
+.footLeft {
+  flex: 1;
+  height: 100%;
+  line-height: 100rpx;
+  font-size: 28rpx;
+}
+
+.footmoney {
+  font-size: 36rpx;
+  color: #FF580C;
+}
+
+.color-DC2 {
+  color: #FF580C;
+}
+
+.footRight {
+  line-height: 100rpx;
+  height: 100%;
+  flex: 0.6;
+  /* background: #26a886; */
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
+  text-align: center;
+  color: #ffffff;
+  font-size: 28rpx;
+}
+
+.address {
+  font-size: 30rpx;
+  margin-top: 20rpx;
+}
+
+.address image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.address .addimg {
+  width: 15rpx;
+  /* float: left; */
+}

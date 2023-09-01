@@ -1,0 +1,15 @@
+<view class="view-column">
+  <!-- <open-data type="userAvatarUrl" mode="cover" class="title_img"></open-data> -->
+  <image class="title_img" src="/state/images/yucun.png" mode="widthFix"></image>
+  <text>（{{details.merchantName}}）</text>
+  <view class="view-white">
+    <view class="view-row">
+      <text style="font-size: 100rpx;margin-right: 20rpx;">￥</text>
+      <input style="font-size: 38rpx;" placeholder="请输入金额" bindinput='getInputName' type="digit"></input>
+    </view>
+  </view>
+</view>
+<!-- <text>{{receiveAmount}}</text> -->
+<view class="view-column1" bindtap="collection">
+  <text class="btn_identity">付款</text>
+</view>

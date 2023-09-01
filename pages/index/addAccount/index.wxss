@@ -1,0 +1,58 @@
+.header {
+  width: 100%;
+  height: 180rpx;
+  background: #ffffff;
+}
+.herderInput {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.herderInput image {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  left: 10rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.serch {
+  width: 600rpx;
+  height: 60rpx;
+  border: 1rpx solid #cccccc;
+  background: #f2f2f2;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  padding-left: 50rpx;
+}
+.herderText {
+  display: flex;
+  font-size: 30rpx;
+  color: #26a886;
+  padding: 0rpx 20rpx;
+}
+.herderText image {
+  width: 40rpx;
+  height:40rpx;
+  margin-right: 10rpx;
+}
+.content {
+  font-size: 28rpx;
+}
+.contentText {
+  color: #8a8a8a;
+}
+.contenList {
+  background: #ffffff;
+  border: 1rpx solid #f2f2f2;
+}
+.contenList image {
+  width: 30rpx;
+  height: 20rpx;
+}
+.contenListText {
+  flex: 1;
+}

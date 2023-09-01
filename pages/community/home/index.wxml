@@ -1,0 +1,147 @@
+<wxs src="../../../utils/string.wxs" module="tools" />
+<view class="base">
+  <view class="content">
+    <view class="header ">
+      <!-- flex align-center justify-center -->
+      <view class="positionArea" bindtap="goToBindPage">
+        <text class="cummunityFullName" hover-class="none" hover-stop-propagation="false">
+          {{currentCommunityName}}
+        </text>
+        <view class="arrowDown" style="background-image:url('/state/images/communityServiceImages/arrowDown.png'); background-size:100% 100% ;">
+          <!-- <image src="/subpackage/community/images/arrowDown.png" ></image> -->
+        </view>
+
+      </view>
+      <view class="tabBarTitle">
+        社区服务
+      </view>
+    </view>
+    <view class="" style="height: {{scrollHeight}}px;">
+      <scroll-view scroll-y="true" style="height: {{scrollHeight}}px;" bindscrolltolower="scrollBotten">
+        <view class="view-column" wx:if="{{isBindSuccess}}">
+          <!-- <view wx:for="{{payData}}" wx:key="index" bindtap="goCommunityServiece" data-id="{{item.id}}">
+              <view class="view-column">
+                <image class="icon-img"  src="{{item.url}}" mode="widthFix"></image>
+              <view class="content-txt">
+              <view class="title-item">
+                {{item.title}}
+              </view>
+              <view class="Description">
+                {{item.Description}}
+              </view>
+            </view>
+            </view>
+          </view> -->
+          <view class="community-top">
+            <image src="/state/images/communityServiceImages/community_note.png" style="height: 200rpx;width: 670rpx;"></image>
+            <view class="top-text">
+              <view style="width: 380rpx;height: 50rpx;overflow: hidden;white-space: nowrap;">
+                <swiper class="news-swiper" indicator-active-color="#FFFFFF"  vertical="true" autoplay="true" circular="true" interval="2000">
+                  <swiper-item wx:for="{{noticeList}}" wx:key="index" bindtap="showtNotice" data-noticeId="{{noticeList[index].noticeId}}">
+                    <text style="font-size: 32rpx;color: white;">{{noticeList[index].title}}</text>
+                  </swiper-item>
+                </swiper>
+              </view>
+
+              <text style="font-size: 28rpx;margin-top: 10rpx;color: white;">点击这里进行查看</text>
+            </view>
+          </view>
+          <view class="community-matter">
+            <view style="flex-direction: row;display: flex;margin-top: 28rpx;margin-left: 30rpx;">
+              <view class="matter-sign"></view>
+              <view style="color: #333333;font-size: 34rpx;font-weight: bolder;margin-left: 20rpx;">社区事项</view>
+            </view>
+            <view class="matter-img">
+              <image src="/state/images/communityServiceImages/onlineAppointment.png" style="height: 150rpx;width: 320rpx;padding-right: 10rpx;"></image>
+              <image src="/state/images/communityServiceImages/communityGuide.png" style="height: 150rpx;width: 320rpx;padding-left: 10rpx;"></image>
+            </view>
+            <view class="matter-view">
+              <view class="matter-text" bindtap="goCommunityServiece" data-type="appoint">
+                <text style="font-size: 30rpx;color: #333333;">在线预约</text>
+                <text style="font-size: 26rpx;color: #666666;margin-top: 10rpx;">提前预约</text>
+              </view>
+              <view class="matter-text" bindtap="goCommunityServiece" data-type="guide">
+                <text style="font-size: 30rpx;color: #333333;padding-left: 10rpx;">办事指南 </text>
+                <text style="font-size: 26rpx;color: #666666;padding-left: 10rpx;margin-top: 10rpx;">服务大厅</text>
+              </view>
+            </view>
+          </view>
+
+          <view class="community-matter" style="margin-top: 30rpx;">
+            <view style="flex-direction: row;display: flex;margin-top: 28rpx;margin-left: 30rpx;">
+              <view class="matter-sign"></view>
+              <view style="color: #333333;font-size: 34rpx;font-weight: bolder;margin-left: 20rpx;">社区通知</view>
+            </view>
+
+            <view class="matter-img">
+              <image src="/state/images/communityServiceImages/communityNotice.png" style="height: 150rpx;width: 320rpx;padding-right: 10rpx;"></image>
+              <image src="/state/images/communityServiceImages/communityActivity.png" style="height: 150rpx;width: 320rpx;padding-left: 10rpx;"></image>
+            </view>
+            <view class="matter-view">
+              <view class="matter-text" bindtap="goCommunityServiece" data-type="notice">
+                <text style="font-size: 30rpx;color: #333333;">社区公告</text>
+                <text style="font-size: 26rpx;color: #666666;margin-top: 10rpx;">消息通知</text>
+              </view>
+              <view class="matter-text" bindtap="goCommunityServiece" data-type="activity">
+                <text style="font-size: 30rpx;color: #333333;padding-left: 10rpx;">社区活动 </text>
+                <text style="font-size: 26rpx;color: #666666;padding-left: 10rpx;margin-top: 10rpx;">活动报名</text>
+              </view>
+            </view>
+
+          </view>
+
+
+          <view class="community-matter" style="margin-top: 30rpx;">
+
+            <view style="flex-direction: row;display: flex;margin-top: 28rpx;margin-left: 30rpx;">
+              <view class="matter-sign"></view>
+              <view style="color: #333333;font-size: 34rpx;font-weight: bolder;margin-left: 20rpx;">社区互动</view>
+            </view>
+            <view class="matter-img">
+              <image src="/state/images/communityServiceImages/CommunityConsultation.png" style="height: 150rpx;width: 320rpx;padding-right: 10rpx;"></image>
+              <image src="/state/images/communityServiceImages/communityComplaints.png" style="height: 150rpx;width: 320rpx;padding-left: 10rpx;"></image>
+            </view>
+            <view class="matter-view-bottom">
+              <!-- <view class="matter-text" bindtap="goCommunityServiece" data-type="consult">
+                <text style="font-size: 30rpx;color: #478BEB;">社区咨询</text>
+                <text style="font-size: 26rpx;color: rgba(71,139,235,0.67);margin-top: 10rpx;">活动报名</text>
+                <text class="matter-view-text-counsel" style="font-size: 26rpx;color:white;">立即咨询
+                </text>
+              </view> -->
+
+              <!-- <view class="matter-text" bindtap="goCommunityServiece" data-type="complaints">
+                <text style="font-size: 30rpx;color: #EA6469;padding-left: 10rpx;">社区投诉 </text>
+                <text style="font-size: 26rpx;color: rgba(234,100,105,0.67);padding-left: 10rpx;margin-top: 10rpx;">投诉维权</text>
+                <text class="matter-view-text-question" style="font-size: 26rpx;color:white;">立即咨询
+                </text>
+              </view> -->
+
+              <view class="matter-text" bindtap="goCommunityServiece" data-type="consult">
+                <text style="font-size: 30rpx;color: #333333;padding-left: 10rpx;">社区咨询 </text>
+                <text style="font-size: 26rpx;color: #666666;padding-left: 10rpx;margin-top: 10rpx;">投诉维权</text>
+              </view>
+
+              <view class="matter-text" bindtap="goCommunityServiece" data-type="complaints">
+                <text style="font-size: 30rpx;color: #333333;padding-left: 10rpx;">社区投诉 </text>
+                <text style="font-size: 26rpx;color: #666666;padding-left: 10rpx;margin-top: 10rpx;">活动报名</text>
+              </view>
+            </view>
+
+          </view>
+
+
+
+          <image src="/state/images/communityServiceImages/communityMarket.png" class="img-market" bindtap="goCommunityServiece" data-type="market"></image>
+
+
+
+
+        </view>
+        <view class="noData" wx:else>
+          <image mode="widthFix" src="/state/images/noData.png"></image>
+          <view>暂无社区服务信息，请先绑定社区</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

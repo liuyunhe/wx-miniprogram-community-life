@@ -1,0 +1,109 @@
+page {
+  background: #f7f7f7;
+}
+
+.view-block {
+  position: relative;
+  background: #26a886;
+  height: 450rpx;
+}
+
+.icon_img {
+  width: 110rpx;
+  height: 110rpx;
+  margin-top: 60rpx;
+  margin-bottom: 30rpx;
+}
+
+.text-success {
+  font-size: 40rpx;
+  color: #fff;
+  font-weight: bold;
+}
+
+.text-light {
+  font-size: 26rpx;
+  margin-top: 20rpx;
+  color: #fff;
+}
+
+.view-content {
+  position: absolute;
+  top: 374rpx;
+  width: 100%;
+}
+
+.view-white {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+  color: #000;
+}
+
+.view-ff {
+  background: #fff;
+  display: flex;
+  flex-flow: column;
+  /* align-items: center; */
+  width: 83%;
+  margin-right: 6rpx;
+}
+
+.view-order {
+  padding: 30rpx;
+  font-size: 28rpx;
+}
+
+.view-line {
+  width: 100%;
+  height: 1px;
+  background: #dedede;
+  margin-top: 30rpx;
+  margin-bottom: 50rpx;
+}
+
+.view-money {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: 50rpx;
+  font-weight: bold;
+  color: #26a886;
+}
+
+.view-bottom {
+  margin-bottom: 20rpx;
+}
+
+.pay-list {
+  color: #fff;
+  font-size: 30rpx;
+  background: #26a886;
+  border-radius: 8rpx;
+  padding: 20rpx 10rpx;
+  flex: 1;
+  text-align: center;
+  margin-left: 50rpx;
+}
+
+.clerk-list {
+  color: #26a886;
+  border: 1px solid #26a886;
+  border-radius: 8rpx;
+  padding: 18rpx 10rpx;
+  font-size: 30rpx;
+  flex: 1;
+  /* margin-left: 30rpx; */
+  text-align: center;
+}
+.img-line {
+  width: 88%;
+  margin-top: 50rpx;
+}
+.view-foot{
+  align-items: center;
+  justify-content: center;
+}

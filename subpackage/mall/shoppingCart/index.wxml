@@ -1,0 +1,343 @@
+<wxs module="filters" src="../../../utils/addmul.wxs"></wxs>
+<wxs module="tools" src="../../../utils/string.wxs" />
+<view class="base">
+  <view class="header">
+    <view class="content rpx-30">
+      <view class="good-list">
+        <view wx:if="{{ list.length > 0 }}">
+          <!-- 店铺 -->
+          <view class="good-item" wx:for="{{ list }}" wx:key="shopId">
+            <view class="shop-name">
+              <!-- 结算选中店铺 -->
+              <image
+                wx:if="{{ !item.shopChecked && !showEdit }}"
+                class="check"
+                bindtap="handleToggleShop"
+                data-shop="{{ item }}"
+                data-id="{{ item.merchantId }}"
+                src="/state/images/oncheck.png"
+              ></image>
+              <image
+                wx:if="{{ item.shopChecked && !showEdit }}"
+                bindtap="handleToggleShop"
+                data-shop="{{ item }}"
+                data-id="{{ item.merchantId }}"
+                class="check"
+                src="/state/images/check.png"
+              >
+              </image>
+              <!-- 删除选中店铺 -->
+              <image
+                wx:if="{{ !item.shopDeleteChecked && showEdit }}"
+                class="check"
+                bindtap="handleToggleShopDelete"
+                data-shop="{{ item }}"
+                data-id="{{ item.merchantId }}"
+                src="/state/images/oncheck.png"
+              ></image>
+              <image
+                wx:if="{{ item.shopDeleteChecked && showEdit }}"
+                bindtap="handleToggleShopDelete"
+                data-shop="{{ item }}"
+                data-id="{{ item.merchantId }}"
+                class="check"
+                src="/state/images/check.png"
+              >
+              </image>
+              <!-- 店铺名称 -->
+              <text>{{ item.merchantName }}</text>
+              <image
+                class="arrow"
+                src="../../../state/images/youjiantou.png"
+                mode="widthFix"
+                lazy-load="false"
+                binderror=""
+                bindload=""
+              ></image>
+            </view>
+            <!-- 商品 -->
+            <view class="row" wx:for="{{ item.list }}" wx:key="goodsId">
+              <!-- 非编辑状态下商品可滑动删除 -->
+              <movable-area class="list_item" wx:if="{{ !showEdit }}">
+                <!-- 坑就在这里，当你向右滑动一点点距离的时候它就停住了，不回去。坑 -->
+                <movable-view
+                  class="itmem_wrap"
+                  direction="horizontal"
+                  inertia="{{ true }}"
+                  out-of-bounds="{{ true }}"
+                  x="{{ item.x }}"
+                  damping="{{ 60 }}"
+                  data-id="{{ item.cjStoreGoodsVO.goodsId }}"
+                  bind:touchstart="touchMoveStartHandle"
+                  bind:touchend="touchMoveEndHandle"
+                >
+                  <!-- 结算选中商品 -->
+                  <image
+                    wx:if="{{ item.checked !== 1 && !showEdit }}"
+                    class="check-icon"
+                    bindtap="handleToggleGood"
+                    data-id="{{ item.goodsId }}"
+                    data-good="{{ item }}"
+                    src="/state/images/oncheck.png"
+                  ></image>
+                  <image
+                    wx:if="{{ item.checked === 1 && !showEdit }}"
+                    class="check-icon"
+                    bindtap="handleToggleGood"
+                    data-id="{{ item.goodsId }}"
+                    data-good="{{ item }}"
+                    src="/state/images/check.png"
+                  ></image>
+                  <!-- 商品图片 -->
+                  <image
+                    class="good-img"
+                    src="{{ tools.my_json(item.cjStoreGoodsVO.image) }}"
+                    mode="aspectFill"
+                    lazy-load="false"
+                    binderror=""
+                    bindload=""
+                  ></image>
+                  <view class="content">
+                    <view class="title"
+                      >{{ item.cjStoreGoodsVO.goodsName }}</view
+                    >
+                    <view class="info mb-42">
+                      <view class="type">
+                        <view class="label">黑/白/灰</view>
+                        <view class="label">M</view>
+                      </view>
+                      <view class="price">
+                        价格：￥{{ filters.toFixHead(item.cjStoreGoodsVO.price)
+                        }}.{{ filters.toFixTail(item.cjStoreGoodsVO.price) }}×{{
+                        item.quantity }}
+                      </view>
+                    </view>
+                    <view class="info">
+                      <view class="total-price">
+                        <text>合计：</text>
+                        <text class="footmoney">￥</text>
+                        <text class="head"
+                          >{{
+                          filters.toFixHead(item.cjStoreGoodsVO.price*item.quantity)
+                          }}</text
+                        >
+                        <text class="tail"
+                          >.{{
+                          filters.toFixTail(item.cjStoreGoodsVO.price*item.quantity)
+                          }}</text
+                        >
+                      </view>
+                      <view class="btn-groups">
+                        <button
+                          class="goods-btn btn-minus"
+                          data-index="{{index}}"
+                          data-good="{{item}}"
+                          bindtap="handleSubtractGoodNum"
+                        >
+                          —
+                        </button>
+                        <input
+                          class="num"
+                          type="number"
+                          disabled
+                          data-index="{{index}}"
+                          bindblur="numIputBlur"
+                          bindinput="inputNum"
+                          value="{{item.quantity}}"
+                        />
+                        <button
+                          class="goods-btn btn-add"
+                          data-index="{{index}}"
+                          data-good="{{item}}"
+                          bindtap="handleAddGoodNum"
+                        >
+                          +
+                        </button>
+                      </view>
+                    </view>
+                  </view>
+                </movable-view>
+                <view
+                  class="delete_wrap"
+                  data-id="{{item.cartId}}"
+                  bindtap="handleClickDel"
+                >
+                  <view class="delete_btn">
+                    <image
+                      class="icon-delete"
+                      src="/state/images/icon-delete.png"
+                      mode="widthFix"
+                    ></image>
+                    删除
+                  </view>
+                </view>
+              </movable-area>
+              <!-- 编辑状态下商品不可滑动删除 -->
+              <view class="list_item" wx:if="{{ showEdit }}">
+                <!-- 坑就在这里，当你向右滑动一点点距离的时候它就停住了，不回去。坑 -->
+                <view
+                  class="itmem_wrap"
+                  data-id="{{ item.cjStoreGoodsVO.goodsId }}"
+                >
+                  <!-- 删除选中商品 -->
+                  <image
+                    wx:if="{{ item.deleteChecked !== 1 && showEdit }}"
+                    class="check-icon"
+                    bindtap="handleToggleGoodDelete"
+                    data-id="{{ item.goodsId }}"
+                    data-good="{{ item }}"
+                    src="/state/images/oncheck.png"
+                  ></image>
+                  <image
+                    wx:if="{{ item.deleteChecked === 1 && showEdit }}"
+                    class="check-icon"
+                    bindtap="handleToggleGoodDelete"
+                    data-id="{{ item.goodsId }}"
+                    data-good="{{ item }}"
+                    src="/state/images/check.png"
+                  ></image>
+                  <!-- 商品图片 -->
+                  <image
+                    class="good-img"
+                    src="{{ tools.my_json(item.cjStoreGoodsVO.image) }}"
+                    mode="aspectFill"
+                    lazy-load="false"
+                    binderror=""
+                    bindload=""
+                  ></image>
+                  <view class="content">
+                    <view class="title"
+                      >{{ item.cjStoreGoodsVO.goodsName }}</view
+                    >
+                    <view class="info mb-42">
+                      <view class="type">
+                        <view class="label">黑/白/灰</view>
+                        <view class="label">M</view>
+                      </view>
+                      <view class="price">
+                        价格：￥{{ filters.toFixHead(item.cjStoreGoodsVO.price)
+                        }}.{{ filters.toFixTail(item.cjStoreGoodsVO.price) }}×{{
+                        item.quantity }}
+                      </view>
+                    </view>
+                    <view class="info">
+                      <view class="total-price">
+                        <text>合计：</text>
+                        <text class="footmoney">￥</text>
+                        <text class="head"
+                          >{{
+                          filters.toFixHead(item.cjStoreGoodsVO.price*item.quantity)
+                          }}</text
+                        >
+                        <text class="tail"
+                          >.{{
+                          filters.toFixTail(item.cjStoreGoodsVO.price*item.quantity)
+                          }}</text
+                        >
+                      </view>
+                      <view class="btn-groups">
+                        <button
+                          class="goods-btn btn-minus"
+                          data-index="{{index}}"
+                          data-good="{{item}}"
+                          bindtap="handleSubtractGoodNum"
+                        >
+                          —
+                        </button>
+                        <input
+                          class="num"
+                          type="number"
+                          disabled
+                          data-index="{{index}}"
+                          bindblur="numIputBlur"
+                          bindinput="inputNum"
+                          value="{{item.quantity}}"
+                        />
+                        <button
+                          class="goods-btn btn-add"
+                          data-index="{{index}}"
+                          data-good="{{item}}"
+                          bindtap="handleAddGoodNum"
+                        >
+                          +
+                        </button>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="noData" wx:else>
+          <image mode="widthFix" src="/state/images/noData.png"></image>
+          <view>暂无商品</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="foot flex rpx-40" wx:if="{{ list.length > 0 }}">
+    <!-- 选择购买商品checkbox -->
+    <view
+      class="footLeft check"
+      bindtap="handleToggleAll"
+      wx:if="{{ !showEdit }}"
+    >
+      <image
+        wx:if="{{ !isCheckAll }}"
+        class="check-all"
+        src="/state/images/oncheck.png"
+      ></image>
+      <image wx:else class="check-all" src="/state/images/check.png"> </image>
+      <view class="view-text">全选 </view>
+    </view>
+    <!-- 选择删除商品checkbox -->
+    <view
+      class="footLeft check"
+      bindtap="handleToggleDeleteAll"
+      wx:if="{{ showEdit }}"
+    >
+      <image
+        wx:if="{{ !isCheckDeleteAll }}"
+        class="check-all"
+        src="/state/images/oncheck.png"
+      ></image>
+      <image wx:else class="check-all" src="/state/images/check.png"> </image>
+      <view class="view-text">全选 </view>
+    </view>
+    <view class="footLeft edit">
+      <view
+        catch:tap="handleClickBtnEdit"
+        class="view-text"
+        style="color: #1dd394"
+        wx:if="{{ !showEdit }}"
+        >编辑
+      </view>
+      <view
+        catch:tap="handleClickBtnEditClear"
+        class="view-text"
+        style="color: #1dd394"
+        wx:if="{{ showEdit }}"
+        >完成
+      </view>
+    </view>
+    <!-- 结算模块 -->
+    <view class="footLeft total-price" wx:if="{{ !showEdit }}">
+      <text class="view-text" style="color: #343434">合计：</text>
+      <text class="footmoney">￥</text>
+      <text class="head">{{filters.toFixHead(totalPrice)}}</text
+      ><text class="tail">.{{filters.toFixTail(totalPrice)}}</text>
+    </view>
+    <view class="btn-place-orde" bindtap="goOrder" wx:if="{{ !showEdit }}"
+      >结算（{{ totalGoodsNum }}）</view
+    >
+    <!-- 删除模块 -->
+    <view
+      class="btn-place-delete"
+      bindtap="handleClickBtnDelete"
+      wx:if="{{ showEdit }}"
+      >删除</view
+    >
+  </view>
+</view>

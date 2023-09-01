@@ -1,0 +1,39 @@
+<wxs src="../../../utils/string.wxs" module="tools" />
+<view class="base">
+  <view class="content">
+    <view class="header flex align-center justify-center rpx-30">
+      <!-- <image class="img" src="/state/images/serch.png"></image> -->
+      <view class="view-row align-center view-search">
+        <input class="input" value="{{inpValue}}" type="text" bindinput="getValue" />
+        <view class="serchbtn" bindtap="goInstall">搜索</view>
+      </view>
+    </view>
+    <view class="left pt-20" style="height: {{scrollHeight}}px;">
+      <view class="leftList  {{categoryId==item.key? 'check':''}}" wx:for="{{newsData}}" wx:key="index" bindtap="change" data-key="{{item.key}}">{{item.name}}</view>
+    </view>
+    <view class="right rpx-30" style="height: {{scrollHeight}}px;">
+      <scroll-view scroll-y="true" style="height: {{scrollHeight}}px;" bindscrolltolower="scrollBotten">
+        <view class="mt-20" wx:if="{{dataList.length>0}}">
+          <view class="list rpx-30 ptb-20 flex" wx:for="{{dataList}}" wx:key="index" bindtap="goDetail" data-serviceId="{{item.serviceId}}">
+            <image src="{{tools.my_json(item.images)}}" mode="widthFix"></image>
+            <view class="ml-20" style="flex: 1;">
+              <view class="fs-28 mb-10" style="color:#333">{{item.serviceName}}</view>
+              <view class="fs-24">
+                <text>{{item.storeName}}</text>
+                <text>丨</text>
+                <text>{{item.merchantName}}</text>
+              </view>
+              <view class="money">
+                <text>￥{{item.unitPrice}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="noData" wx:else>
+          <image mode="widthFix" src="/state/images/noData.png"></image>
+          <view>暂无数据</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

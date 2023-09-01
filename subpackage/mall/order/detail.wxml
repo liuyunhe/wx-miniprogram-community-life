@@ -1,0 +1,132 @@
+<wxs module="filters" src="../../../utils/addmul.wxs"></wxs>
+<wxs module="tools" src="../../../utils/string.wxs" />
+<view class="base {{ orderDetail.payStatus === '0' ? 'pb-150' : '' }}">
+  <!-- 订单状态 -->
+  <view class="view-status flex align-center rpx-30">
+    <image
+      class="icon-truck"
+      src="/state/images/icon-truck.png"
+      mode="widthFix"
+    ></image>
+    <view class="text">您的订单正等待揽收。</view>
+    <image
+      class="icon-arrow"
+      src="/state/images/youjiantou.png"
+      mode="widthFix"
+    ></image>
+  </view>
+  <!-- 地址 -->
+  <view class="view-content">
+    <view class="addr flex align-center rpx-30">
+      <view class="text">
+        <view class="fs-28">
+          <image
+            class="img"
+            mode="widthFix"
+            src="/state/images/icon-local.png"
+          ></image>
+          <text>{{ orderDetail.contact }}</text>
+          <text style="margin-left: 20rpx; color: #666666"
+            >{{ orderDetail.phone }}</text
+          >
+        </view>
+        <view class="arrder"
+          >地址：{{ orderDetail.province }}{{ orderDetail.city }}{{
+          orderDetail.district }}{{ orderDetail.address }}</view
+        >
+      </view>
+    </view>
+  </view>
+  <!-- 商品信息 -->
+  <view class="goods-list">
+    <view class="row">
+      <view class="itmem_wrap" data-id="{{ orderDetail.orderId }}">
+        <view class="shop-name">
+          {{ orderDetail.merchantName }}
+          <image mode="widthFix" src="/state/images/youjiantou.png"></image>
+        </view>
+        <navigator
+          class="good-info"
+          wx:for="{{ orderDetail.orderGoodsList }}"
+          wx:key="goodsId"
+          wx:for-item="good"
+          url="/subpackage/mall/goodDetail/index?id={{good.goodsId}}"
+          open-type="navigate"
+        >
+          <image
+            class="good-img"
+            src="{{ tools.my_json(good.image) }}"
+            mode="aspectFill"
+            lazy-load="false"
+            binderror=""
+            bindload=""
+          ></image>
+          <view class="content">
+            <view class="title">{{ good.goodsName }}</view>
+            <view class="info mb-10">
+              <view class="price"> 数量：×{{ good.totalNum }} </view>
+              <view class="total-price">
+                <text class="footmoney">￥</text>
+                <text class="head"
+                  >{{ filters.toFixHead(good.totalPrice) }}</text
+                >
+                <text class="tail"
+                  >.{{ filters.toFixTail(good.totalPrice) }}</text
+                >
+              </view>
+            </view>
+            <view class="info bottom">
+              <view class="btn-groups">
+                <view
+                  wx:if="{{ orderDetail.status - 0 >= 3 }}"
+                  class="btn"
+                  bindtap="handleClickBtnComment"
+                  data-orderid="{{ good.orderId }}"
+                  data-goodsid="{{ good.goodsId }}"
+                  data-goodstype="{{ good.goodsType }}"
+                  >立即评价</view
+                >
+                <view
+                  wx:if="{{ orderDetail.status - 0 >= 3 }}"
+                  class="btn main"
+                  data-goodsid="{{ good.goodsId }}"
+                  catchtap="handleClickBtnBuyAgain"
+                  >加入购物车</view
+                >
+              </view>
+            </view>
+          </view>
+        </navigator>
+        <view class="order-line" style="margin-top: 30rpx">
+          <view class="title">下单时间</view>
+          <view class="info">{{ orderDetail.createTime }}</view>
+        </view>
+        <view class="order-line">
+          <view class="title">支付渠道</view>
+          <view class="info"
+            >{{ orderDetail.payType === "13" ? "微信支付" : "支付宝" }}</view
+          >
+        </view>
+        <view class="order-line">
+          <view class="title">订单编号</view>
+          <view class="info">{{ orderDetail.orderId }}</view>
+        </view>
+        <view class="order-line">
+          <view class="title">配送方式</view>
+          <view class="info">快递运输</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{ orderDetail.payStatus === '0' }}" class="foot flex rpx-40">
+    <view class="footLeft">
+      <text class="view-text" style="color: #343434">合计：</text>
+      <text class="footmoney">￥</text>
+      <text class="head">{{ filters.toFixHead(orderDetail.totalPrice) }}</text
+      ><text class="tail"
+        >.{{ filters.toFixTail(orderDetail.totalPrice) }}</text
+      >
+    </view>
+    <view class="btn-place-orde" bindtap="handleCLickBtnPay">继续支付</view>
+  </view>
+</view>

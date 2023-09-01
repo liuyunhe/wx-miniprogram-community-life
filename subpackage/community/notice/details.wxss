@@ -1,0 +1,33 @@
+/* pages/community/notice/details.wxss */
+
+.title{
+  /* text-align: center; */
+}
+/*分割线样式*/
+.divLine{
+  background: #E0E3DA;
+  margin-top: 4px;
+  width: 100%;
+  height: 5rpx;
+}
+.rootView{
+  position: relative;
+  background-color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  margin: 10pt 10pt 20pt 10pt;
+  padding: 10pt 10pt 20pt 10pt;
+}
+.detailStyle{
+  font-size: 32rpx;
+  color: #333333;
+}
+.timeView{
+  position: absolute;
+  font-size: 32rpx;
+  color: #999999;
+  bottom: 0;
+  right: 0;
+}
+.root{
+  background-color: #F9FBFC;
+}

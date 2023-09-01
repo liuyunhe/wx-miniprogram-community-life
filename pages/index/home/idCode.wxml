@@ -1,0 +1,26 @@
+<!-- <view class="view-top">
+  <image class="img-icon" src="/state/images/lingdang.png" mode="widthFix"></image>
+  <text>截图保存相册，到店核销时出示二维码即可</text>
+</view> -->
+<view class="view-block">
+  <view class="view-title">
+    <text class="font-bold" style="color:#26a886;margin-left: 30rpx;">{{name}}</text>
+  </view>
+  <view class="view-column view-center view-white">
+    <view class="container-code">
+      <view class="view-canvas">
+        <canvas class="userinfo-avatar" canvas-id='canvas'></canvas>
+      </view>
+    </view>
+    <text class="text-black" style="margin-top: 10rpx;">微信扫一扫，查看信息</text>
+  </view>
+  <view class="view-foot">
+    <view class="view-column" wx:for="{{codeList}}" wx:key="index" wx:for-item="item">
+      <view class="view-row view-center" style="margin-top:15rpx;">
+        <text class="{{item.selected?'active-color':''}}" style="flex: 1;">{{item.name}}</text>
+        <radio checked="{{item.selected}}" bindtap="selectList" data-index="{{index}}" style="transform:scale(0.9);" color="#26a886" />
+      </view>
+      <view class="view-line"></view>
+    </view>
+  </view>
+</view>

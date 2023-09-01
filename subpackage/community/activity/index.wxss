@@ -1,0 +1,193 @@
+/* pages/community/activity/index.wxss */
+ /* page设置当前窗口背景色 */
+ page{
+  background-color: #F5F5F5;
+}
+.noticeCard{
+
+  background-color: #FFFFFF ;
+  border-radius: 16rpx;
+}
+/* 定义.container设置容器样式 */
+.container{
+  padding: 10px 10px;
+  align-content: center;
+}
+.content-partition{
+  padding-bottom: 10px;
+}
+/* 定义.text-content设置文本样式 */
+.text-content{
+  padding: 10px 0px;
+  /* color:white; */
+  border-radius: 5px;
+  align-content: center;
+  border-bottom: 1rpx solid #F5F5F5;
+  background-color: #d0dfdb;
+  box-shadow: 0px 0px 5px 2px grey;
+}
+.title{
+  font-weight:Medium;
+  font-family: PingFang;
+  color: #333333;
+  padding-left: 30rpx;
+}
+.text-title{
+  font-size: 32rpx;
+  padding-left: 30rpx;
+  padding-top: 20rpx;
+}
+.timeStyle{
+  font-size: 24rpx;
+  color: #999999;
+  font-family: PingFang SC-Regular;
+  margin-left: 30rpx;
+  margin-top: 12rpx;
+}
+/*分割线样式*/
+.divLine{
+  background-color: #E0E0E0;
+  margin-top: 15rpx;
+  width: 610rpx;
+  height: 1rpx;
+}
+.text-style{
+  padding-left: 5px;
+}
+.view-column{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  /* background: chocolate; */
+  
+}
+
+.view-order{
+  display:flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+  background-color: #FFFFFF ;
+  border-radius: 16rpx;
+ 
+}
+
+.order-row{
+  display:flex;
+  flex-direction:row;
+  text-align:center;
+  align-items:center;
+  font-size:30rpx;
+  margin-left:40rpx;
+  margin-right:40rpx;
+  margin-top:25rpx;
+}
+
+.view-row{
+  display:flex;
+  flex-direction: row;
+  text-align:center;
+  width: 98vw;
+}
+
+.text-tab{
+  flex:1;
+  font-size:30rpx;
+  color:#666;
+}
+
+.text-active{
+  color: #26a886;
+}
+
+.text-flex{
+  /* flex:1;
+  text-align:right; */
+  margin-left: 16rpx;
+}
+
+.text-cacel{
+  /* flex:1; */
+  text-align:right;
+  color:#35c0ae;
+  border-radius: 30rpx;
+  border: 1px solid #35c0ae;
+  padding:9rpx 30rpx;
+  font-size:30rpx;
+}
+
+.text-pay{
+  color:#fff;
+  font-size:30rpx;
+  background:#35c0ae;
+  border-radius: 30rpx;
+  padding:10rpx 30rpx;
+  margin-left:20rpx;
+}
+
+.font-bold{
+  font-weight:bold;
+  color: #333;
+}
+
+.view-list{
+  /* margin-top:10rpx; */
+  margin-bottom:30rpx;
+  /* align-items: center; */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.view-line{
+  width:92%;
+  height:1px;
+  background:#eee;
+  margin-top:20rpx;
+  margin-left:30rpx;
+}
+
+.yoshop-notcont {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 130rpx 100rpx;
+  box-sizing: border-box;
+}
+
+.cont {
+  font-size: 30rpx;
+  color: #666;
+  margin-top:100rpx;
+}
+
+.no-more {
+  text-align: center;
+  color: #737373;
+  padding: 10px 0;
+  font-size: 30rpx;
+}
+
+.text-cacel{
+  /* flex:1; */
+  text-align:right;
+  color:#26a886;
+  border-radius: 30rpx;
+  border: 1px solid #26a886;
+  padding:9rpx 30rpx;
+  font-size:26rpx;
+}
+
+.text-del{
+  /* flex:1; */
+  text-align:right;
+  color:red;
+  border-radius: 30rpx;
+  border: 1px solid red;
+  padding:9rpx 30rpx;
+  font-size:26rpx;
+  margin-left: 20rpx;
+}
+
+.text-active{
+  color: #3CDABB;
+}

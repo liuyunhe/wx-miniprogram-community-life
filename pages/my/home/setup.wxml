@@ -1,0 +1,9 @@
+<view class="base">
+  <view class="list">
+    <view class="listLine" wx:for="{{listData}}" wx:key="index" bindtap="getPage" data-id="{{item.id}}">
+      <image class="listImg mr-23" src="{{item.url}}" mode="widthFix"></image>
+      <view style="flex: 1;color:#333;">{{item.title}}</view>
+      <image class="listRight" src="/state/images/youjiantou.png" mode="widthFix"></image>
+    </view>
+  </view>
+</view>

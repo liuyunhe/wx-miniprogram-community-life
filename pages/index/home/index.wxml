@@ -1,0 +1,111 @@
+<!-- <web-view src="{{url}}"></web-view> -->
+<!-- <view class="base">
+  <view class="imgNews">
+    <swiper class="news-swiper" indicator-active-color="#FFFFFF">
+      <swiper-item wx:for="{{imgNewsData}}" wx:key="index">
+        <image class="imgNewsSwiper " src="{{item.url}}" mode="widthFix"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000" wx:if="{{newsData.length>0}}">
+    <block wx:for="{{newsData}}" wx:key="index">
+      <swiper-item>
+        <view class="view-row1" bindtap="noticeDetails" data-id="{{item.noticeId}}">
+          <image src="/state/images/horn.png" mode="widthFix" class="msg_img"></image>
+          <view class="swiper_item" style="flex:1;">{{item.noticeTitle}}</view>
+          <view class="swiper_item">{{item.createTime}}</view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="pay">
+    <view class="herder">公用服务</view>
+    <view class="content">
+      <view class="content-img but_list" wx:for="{{payData}}" wx:key="index" bindtap="goPay" data-id="{{item.id}}">
+        <view wx:if="{{item.id!='4'}}">
+          <image src="{{item.url}}" mode="widthFix"></image>
+          <view class="content-txt">{{item.title}}</view>
+          <text wx:if="{{item.num>0}}" class="span">{{item.num}}</text>
+        </view>
+        <navigator wx:if="{{item.id=='4'}}" target="miniProgram" open-type="navigate" app-id="wx36ea76d9b69f426a" hover-class="none">
+          <image src="{{item.url}}" mode="widthFix"></image>
+          <view class="content-txt">{{item.title}}</view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view class="view-row view-margin">
+    <view class="view-row view-scan" bindtap="confirm">
+      <image class="banner-img" src="/state/images/scan.png" mode="widthFix"></image>
+      <text class="nav-text">扫一扫</text>
+    </view>
+    <view class="view-row view-scan" style="margin-left:20rpx;" bindtap="idCode">
+      <image class="banner-img" src="/state/images/code.png" mode="widthFix"></image>
+      <text class="nav-text">身份码</text>
+    </view>
+  </view>
+  <view class="foot">
+    <view class="herder">
+      <view class="in-block">服务大厅</view>
+    </view>
+    <view class="content">
+      <view class="view-row view-margin">
+        <view class="view-column view-left" bindtap="repair">
+          <text>公用设施报修</text>
+          <view class="view-row">
+            <text style="flex: 1;font-size: 20rpx;color: #999;">帮您快速解决问题</text>
+            <image class="icon-img" style="text-align: right;" src="/state/images/repair-icon.png" mode="widthFix"></image>
+          </view>
+        </view>
+        <view class="view-column view-right" style="margin-left:20rpx;" bindtap="goSubscribe">
+          <text>在线预约</text>
+          <view class="view-row">
+            <text style="flex: 1;font-size: 20rpx;color: #999;">便民快捷无需排队</text>
+            <image class="icon-img" src="/state/images/make-icon.png" mode="widthFix"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="foot">
+    <view class="imgNews" style="padding-top: 20rpx;padding-bottom: 20rpx;">
+      <swiper class="news-swiper" indicator-dots="true" indicator-active-color="#FFFFFF">
+        <swiper-item wx:for="{{imgNewsData1}}" wx:key="index">
+          <image class="imgNewsSwiper" style="margin-left: 19rpx;margin-right:19rpx;width: 95%; border-radius: 20rpx;" src="{{item.url}}" mode="widthFix"></image>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+  <view class="foot">
+    <view class="herder">
+      <view class="in-block">社区服务</view>
+    </view>
+    <view class="content-img" bindtap="gocommunity" data-id="{{item.id}}" wx:for="{{footData}}" wx:key="index">
+      <image src="{{item.url}}"></image>
+      <view class="content-txt">{{item.title}}</view>
+    </view>
+  </view>
+  <view class="cityService">
+    <view class="herder">城市服务</view>
+    <view class="city-img">
+      <view class="in-block mr-16">
+        <image class="img-left" src="/state/images/shizheng.png"></image>
+      </view>
+      <view class="in-block ">
+        <image class="img-right" src="/state/images/shuiqi.png"></image>
+        <image class="img-right" src="/state/images/zhoubian.png"></image>
+      </view>
+    </view>
+  </view>
+</view> -->
+
+
+<!-- 这是地图部分 -->
+<view class="map_container">
+  <map id="Map" class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' markers='{{markers}}' controls="{{controls}}" bindcontroltap="bindcontroltap" polyline='{{polyline}}' circles="{{circles}}" bindmarkertap='bindmarkertap' bindcontroltap='bindcontroltap'>
+  </map>
+</view>
+<dialog id='dialog' bind:cancelEvent="_cancelEvent" bind:confirmEvent="_confirmEvent">
+</dialog>
+<shortcut id=""></shortcut>
+<position id="" bind:currentLocation="currentLocation"></position>

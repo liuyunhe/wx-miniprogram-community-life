@@ -1,0 +1,25 @@
+<view class="view-block">
+  <view class="view-column view-center">
+    <image class="img-titile" src="/state/images/yucun.png" mode="widthFix"></image>
+    <text class="text-margin">{{details.merchantName}}</text>
+    <text wx:if="{{details.inOut=='0'}}" class="text-margin" style="font-size: 45rpx;font-weight: bold;">-{{details.amount/100}}</text>
+    <text wx:if="{{details.inOut=='1'}}" class="text-margin" style="font-size: 45rpx;font-weight: bold;">+{{details.amount/100}}</text>
+    <text class="text-margin">交易成功</text>
+  </view>
+  <view class="view-row text-margin">
+    <text class="text-flex">付款方式</text>
+    <text>微信支付</text>
+  </view>
+  <view class="view-row text-margin">
+    <text class="text-flex">账单分类</text>
+    <text>日用百货</text>
+  </view>
+  <view class="view-row text-margin">
+    <text class="text-flex">创建时间</text>
+    <text>{{details.orderCreateTime}}</text>
+  </view>
+  <view class="view-row text-margin">
+    <text class="text-flex">支付时间</text>
+    <text>{{details.orderPayTime}}</text>
+  </view>
+</view>

@@ -1,0 +1,20 @@
+<view class="base">
+  <view class="header">
+    <view class="herderInput">
+      <view style="position: relative;">
+        <image src="/state/images/serch.png"></image>
+        <input class="serch" type="text" placeholder="输入缴费机构搜索"/>
+      </view>
+    </view>
+    <view class="herderText">
+      <image src="/state/images/tips.png"></image>
+      <view>可通过缴费账单或短信查看缴费单位</view>
+    </view>
+  </view>
+  <view class="content">
+    <view class="contentText rpx-20 ptb-10">水费缴费机构</view>
+    <view class="contenList rpx-20 ptb-20 flex align-center" wx:for="{{orgList}}" wx:key="index" bindtap="goadd" data-id="{{item.id}}">
+      <view class="contenListText">{{item.title}}</view>
+    </view>
+  </view>
+</view>

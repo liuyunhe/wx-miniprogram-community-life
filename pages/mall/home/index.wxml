@@ -1,0 +1,105 @@
+<wxs module="filters" src="../../../utils/addmul.wxs" />
+<wxs module="tools" src="../../../utils/string.wxs" />
+<view class="base">
+  <view class="content">
+    <view class="header flex align-center justify-center rpx-30">
+      <view class="view-row align-center view-search">
+        <input
+          class="input"
+          placeholder="搜索您想要的商品"
+          value="{{ mallInputValue }}"
+          type="text"
+          bindinput="getValue"
+          bindfocus="handleFoucsInput"
+        />
+        <view class="serchbtn" bindtap="goInstall">搜索</view>
+      </view>
+    </view>
+
+    <view class="mall-banner">
+      <image class="mall-img" src="{{ mallBannerImg }}" mode="widthFix"></image>
+    </view>
+
+    <scroll-view
+      scroll-x
+      class="rpx-20 pt-30 view-sort"
+      style="display: flex; white-space: nowrap"
+      scroll-with-animation="true"
+      scroll-left="0"
+      bindscroll="getleft"
+    >
+      <view
+        class="content-img but_list"
+        wx:for="{{ sortData }}"
+        wx:key="index"
+        bindtap="goMallSort"
+        data-id="{{ item.categoryId }}"
+      >
+        <image
+          src="{{ item.categoryImage ? tools.my_json(item.categoryImage) : '' }}"
+          mode="widthFix|aspectFill"
+        ></image>
+        <view class="content-txt text-overflow">{{ item.categoryName }}</view>
+      </view>
+    </scroll-view>
+    <!--滚动条部分-->
+    <!-- <view wx:if="{{slideShow}}" class="slide">
+      <view class="slide-bar">
+        <view
+          class="slide-show"
+          style="width:{{slideWidth}}rpx; margin-left:{{slideLeft<=1 ? 0 : slideLeft+'rpx'}};"
+        ></view>
+      </view>
+    </view> -->
+
+    <view class="view-jx">
+      <view class="herder">
+        <view class="in-block">精选热销榜</view>
+      </view>
+      <view class="view-goods">
+        <view wx:if="{{ dataList.length > 0 }}">
+          <view
+            class="good"
+            wx:for="{{ dataList }}"
+            wx:key="index"
+            bindtap="goGoodDetal"
+            data-value="{{ item }}"
+            data-id="{{ item.goodsId }}"
+          >
+            <image
+              class="good-img"
+              mode="aspectFill"
+              src="{{ item.image ? tools.my_json(item.image) : '' }}"
+            ></image>
+            <view class="good-name">{{ item.goodsName }}</view>
+            <!-- <view class="good-desc text-overflow">{{ item.goodsDesc }}</view> -->
+            <view class="good-desc text-overflow"></view>
+            <view class="good-bottom">
+              <view class="price"
+                ><span>￥</span
+                ><span class="head">{{ filters.toFixHead(item.price) }}</span
+                ><span>.{{ filters.toFixTail(item.price) }}</span></view
+              >
+              <view class="sales">销量{{ item.sales }}</view>
+            </view>
+          </view>
+        </view>
+        <view class="noData" wx:else>
+          <image mode="widthFix" src="/state/images/noData.png"></image>
+          <view>暂无数据</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="btn-cart" bindtap="goMallCart">
+    <image
+      class="icon-cart"
+      src="/state/images/icon-cart.png"
+      mode="widthFix"
+      lazy-load="false"
+      binderror=""
+      bindload=""
+    ></image>
+    <view class="num"> {{ cartCount }} </view>
+  </view>
+</view>

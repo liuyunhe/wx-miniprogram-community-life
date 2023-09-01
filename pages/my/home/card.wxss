@@ -1,0 +1,45 @@
+.view-card {
+  border-radius: 10rpx;
+  background-color: #fd5562;
+  padding: 20rpx;
+  font-size: 30rpx;
+  align-items: center;
+  color: #fff;
+}
+
+.view-card1 {
+  border-radius: 10rpx;
+  background-color: #3066d0;
+  padding: 20rpx;
+  font-size: 30rpx;
+  align-items: center;
+  color: #fff;
+}
+
+.img-icon {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 30rpx;
+  border-radius: 50%;
+}
+
+.view-block {
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  margin-top: 30rpx;
+}
+
+.btn_identity {
+  width: 92%;
+  position: fixed;
+  bottom: 0;
+  color: #fff;
+  font-size: 35rpx;
+  text-align: center;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  /* background: #26a886; */
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+}

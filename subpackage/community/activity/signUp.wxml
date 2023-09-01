@@ -1,0 +1,34 @@
+<!--pages/community/activity/signUp.wxml-->
+<view class="" hover-class="none" style="position:relative;" hover-stop-propagation="false">
+  <view class="contentArea" hover-class="none" hover-stop-propagation="false">
+    <view class="contentItem" hover-class="none" hover-stop-propagation="false">
+      活动名称<span class="timeStyle">{{title}}</span>
+    </view>
+    <view class="divLine" hover-class="none" hover-stop-propagation="false">
+    </view>
+    <view class="contentItem" hover-class="none" hover-stop-propagation="false">
+      <view class="labelStyle">姓名</view>
+      <input  type="text" model:value="{{userName}}" style="font-size: 32rpx;"></input>
+    </view>
+    <view class="divLine" hover-class="none" hover-stop-propagation="false">
+    </view>
+    <view class="contentItem"  hover-class="none" hover-stop-propagation="false">
+      <view class="labelStyle">证件号</view>
+      <input type="text" model:value="{{IdNumber}}" style="font-size: 32rpx;"></input>
+    </view>
+    <view class="divLine" hover-class="none" hover-stop-propagation="false">
+    </view>
+    <view class="contentItem" hover-class="none" hover-stop-propagation="false">
+      <view class="labelStyle">手机号</view>
+      <input type="text" model:value="{{mobileNumber}}" style="font-size: 32rpx;"></input>
+    </view>
+    <view class="divLine" hover-class="none" hover-stop-propagation="false">
+    </view>
+    <view class="contentItem" hover-class="none" hover-stop-propagation="false">
+      活动时间<span class="timeStyle">{{beginDate}}</span> 
+    </view>
+  </view>
+  <view class="signUpButton" catchtap="signUpSubmit" hover-class="none" hover-stop-propagation="false">
+    报名
+  </view>
+</view>

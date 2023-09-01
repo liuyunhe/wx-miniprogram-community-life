@@ -1,0 +1,53 @@
+.bg-FFFF {
+  background: #ffffff;
+  
+}
+.header {
+  width: 100%;
+  height: 100rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #000000;
+  border-bottom: 1rpx solid #f7f7f7;
+  margin-bottom: 30rpx;
+}
+.bg-FFFF image {
+  width: 80rpx;
+  margin-right: 10rpx;
+}
+.inp {
+  border: 1rpx solid #cccccc;
+  width: 100%;
+  height: 80rpx;
+  border-radius: 10rpx;
+  padding-left: 10rpx;
+  box-sizing: border-box;
+}
+.foot {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color: #333;
+  padding-bottom: 20rpx;
+}
+.mb-20{
+  margin-bottom: 20rpx;
+}
+.flex-1 {
+  flex: 1;
+}
+.mt-20 {
+  margin-top: 20rpx;
+}
+.btn {
+  width: 100%;
+  height: 80rpx;
+  color: #ffffff;
+  background: #26a886;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+}
+checkbox {
+  zoom: 60%;
+}

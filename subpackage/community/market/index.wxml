@@ -1,0 +1,82 @@
+<view class="view-column">
+  <view class="view-row" style="margin-top:15rpx;">
+    <view class="text-tab {{dataType===''?'text-active':''}}" data-type="" catchtap="bindHeaderTap">全部</view>
+    <view class="text-tab {{dataType==='1'?'text-active':''}}" data-type="1" catchtap="bindHeaderTap">在架</view>
+    <view class="text-tab {{dataType==='0'?'text-active':''}}" data-type="0" catchtap="bindHeaderTap">待审核</view>
+    <view class="text-tab {{dataType==='3'?'text-active':''}}" data-type="3" catchtap="bindHeaderTap">已下架</view>
+  </view>
+
+
+  <view class="view-row-nav" style="margin-top:-32rpx;">
+    <view class="text-tab-nav {{dataType===''?'text-active-nav':''}}" data-type=""></view>
+    <view class="text-tab-nav {{dataType==='1'?'text-active-nav':''}}" data-type="1"></view>
+    <view class="text-tab-nav {{dataType==='0'?'text-active-nav':''}}" data-type="0"></view>
+    <view class="text-tab-nav {{dataType==='3'?'text-active-nav':''}}" data-type="3"></view>
+  </view>
+
+  <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; width: 750rpx;">
+    <view wx:if="{{true}}">
+      <view class="view-list" wx:for="{{list}}" wx:key="index">
+        <view class="view-order">
+          <view bindtap="details" data-item="{{item}}" class="view-order-item">
+            <view class="img-class">
+              <image wx:if="{{item.goodsImage}}" src="{{baseImageUrl + item.goodsImage}}" style="width: 200rpx;height: 200rpx;margin-left: 10rpx;"></image>
+              <view class="alternative" wx:else style="width: 200rpx;height: 200rpx;margin-left: 10rpx;" hover-stop-propagation="false">
+              </view>
+              <view class="maskImage" wx:if="{{item.state == 0 }}" style="width: 200rpx;height: 200rpx;margin-left: 10rpx;" hover-stop-propagation="false">
+                待审核
+              </view>
+              <view class="maskImage" wx:elif="{{item.state == 3 }}" style="width: 200rpx;height: 200rpx;margin-left: 10rpx;" hover-stop-propagation="false">
+                已下架
+              </view>
+            </view>
+
+            <view class="text-price">
+              <text class="price-title">{{item.goodsName}}</text>
+              <view class="price-hint">{{item.description}}</view>
+
+              <view class="price-bottom">
+                <view class="price-style">￥</view>
+                <view class="price-style">{{item.goodsPrice}}</view>
+
+                <view class="img-view-style">
+                  <image class="marker-view" src="/subpackage/community/images/activityEye.png">
+                  </image>
+                </view>
+                <view class="view-style">
+                  4577
+                </view>
+              </view>
+            </view>
+            <!-- <view class="line-column"></view> -->
+            <view class="dowm-class" wx:if="{{item.state == 1 || item.state == 0}}" catchtap="delist" data-id="{{item.goodsId}}">
+              <image src="/subpackage/community/images/down.png" class="dowm-img"></image>
+              <view class="down-text">下架</view>
+            </view>
+            <view class="dowm-class" wx:elif="{{item.state == 3}}" catchtap="delete" data-id="{{item.goodsId}}">
+              <image src="/subpackage/community/images/goodsDelete.png" class="dowm-img"></image>
+              <view class="down-text">删除</view>
+            </view>
+
+          </view>
+          <view class="order-row" style="margin-top:20rpx;">
+            <text class="text-flex"></text>
+            <text wx:if="{{item.status=='1'}}" class="text-cacel" catchtap="cancel" data-status="4" data-id="{{item.id}}">取消预约</text>
+            <text wx:if="{{item.status=='3' || item.status=='4' || item.status=='6'}}" class="text-del" catchtap="cancel" data-status="5" data-id="{{item.id}}">删除</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
+    <view wx:if="{{ !isLoading && !list.length }}">
+      <view class="yoshop-notcont">
+        <text class="cont">亲，您还没有预约信息哦！</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<view class="view-mfn">
+  <view class="mfn-content" bindtap="publish">
+    <text class="text-mfn">发布</text>
+  </view>
+</view>

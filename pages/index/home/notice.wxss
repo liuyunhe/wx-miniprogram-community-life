@@ -1,0 +1,30 @@
+.view-column {
+  display: flex;
+  flex-flow: column;
+  font-size: 25rpx;
+  padding: 30rpx;
+}
+
+.guide-img {
+  width: 140rpx;
+  margin-bottom: 30rpx;
+}
+
+.text-content {
+  line-height: 40rpx;
+  font-size: 30rpx;
+}
+
+.text-title {
+  font-size: 40rpx;
+  margin-bottom: 30rpx;
+  margin-top: 30rpx;
+  text-align: center;
+}
+
+.view-line{
+  height:3rpx;
+  background:#f8f8f8;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}

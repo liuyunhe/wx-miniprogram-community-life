@@ -1,0 +1,10 @@
+<view class="view-column">
+  <view class="view-white">
+    <text>充值金额</text>
+    <view class="view-row view-center view-top">
+      <text class="text-fh">￥</text>
+      <input class="pay-input" placeholder="" bindinput='getInputName' type="digit"></input>
+    </view>
+  </view>
+  <text class="btn_identity" bindtap="collection">充值</text>
+</view>

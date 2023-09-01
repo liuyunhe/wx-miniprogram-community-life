@@ -1,0 +1,14 @@
+.img-titile{
+  width: 80rpx;
+  margin-top: 10rpx;
+}
+.text-flex{
+  flex:1;
+}
+.view-block{
+  padding: 30rpx;
+  font-size: 30rpx;
+}
+.text-margin{
+  margin-top:20rpx;
+}

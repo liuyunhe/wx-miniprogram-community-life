@@ -1,0 +1,22 @@
+function my_json(advertise_image_id) {
+  return JSON.parse(advertise_image_id)[0].url
+}
+
+function my_img(advertise_image_id) {
+  if (advertise_image_id.length > 0) {
+    return JSON.parse(advertise_image_id)
+  } else {
+    return advertise_image_id
+  }
+}
+
+function my_list(str) {
+  var list = str.split(",")
+  return list
+}
+
+module.exports = {
+  my_json: my_json,
+  my_list: my_list,
+  my_img: my_img
+}

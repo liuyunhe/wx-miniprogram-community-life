@@ -1,0 +1,25 @@
+/* pages/community/activity/signUpResult.wxss */
+.resultImage{
+  /* display: block; */
+  margin-left: 186rpx;
+  margin-right: 186rpx;
+  margin-top: 375rpx;
+  width: 378.22rpx;
+  height: 297.73rpx;
+}
+.tipTextSuccess{
+  color: #3CDABB;
+  font-family:PingFang SC-Medium;
+  font-weight:Medium ;
+  text-align: center;
+  font-size: 32rpx;
+  margin-bottom: 7rpx;
+}
+.tipTextFail{
+  color: #FF580C;
+  font-family:PingFang SC-Medium;
+  font-weight:Medium ;
+  text-align: center;
+  font-size: 32rpx;
+  margin-bottom: 7rpx;
+}

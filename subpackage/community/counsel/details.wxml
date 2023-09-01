@@ -1,0 +1,4 @@
+<!--pages/community/notice/details.wxml-->
+<view class="title">{{noticeTitle}}</view>
+<view class="divLine"></view>
+<text>{{content}}</text>

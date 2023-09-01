@@ -1,0 +1,80 @@
+<!--pages/community/guide/index.wxml-->
+<!-- <view class='container'>
+  <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; border-radius: 5px; margin-top:5rpx ">
+    <view wx:for="{{guideList}}" wx:key="index">
+      <view  class='text-content' bindtap="guideDetails" data-item="{{item}}">
+        <text class="title">{{item.title }}</text>
+        <view class="divLine"></view>
+        <text>{{item.content}}</text>
+      </view>
+      <view class='text-content'>{{item.content}}</view>
+      <view class ='content-partition' ></view>
+    </view>
+  </scroll-view>
+</view> -->
+
+
+<view class="view-column">
+  <view class="" hover-class="none" hover-stop-propagation="false">
+    <image class="homeImage" src="/subpackage/community/images/guideHomeImage.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+    </image>
+  </view>
+  <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; width: 750rpx;">
+    <view wx:if="{{guideList.length > 0}}">
+      <view class="view-list" wx:for="{{guideList}}" wx:key="index">
+        <view class="view-order">
+          <view catchtap="guideDetails" data-detail="{{item}}" class="guideItem">
+            <view class="guide-title-context">
+              <view class="order-row">
+                <text class="title">{{item.title}}</text>
+              </view>
+              <view class="detailLimits">
+                <rich-text nodes="{{item.content}}" style="padding-top: 8rpx;"></rich-text>
+              </view>
+            </view>
+            <view style="display: flex;justify-content: center;align-items: center;flex-direction: column;width: 100%;">
+              <view style=" display: flex;justify-content: flex-end;align-items: center;width: 100%;margin-right: 48rpx;">
+                <view class="guide-tap-arrow">
+                  <view class="detailButton">详情</view>
+                  <image src="/subpackage/community/images/arrow_right.png" style="width: 16rpx;height:32rpx;"></image>
+                </view>
+              </view>
+
+            </view>
+
+
+
+            <!-- <view class="view-line"></view> -->
+            <!-- <view class="order-row">
+              <text class="font-bold" style="color:#26a886;">{{item.assetName}}</text>
+              <text wx:if="{{item.status=='1'}}" class="text-flex">已预约</text>
+              <text wx:if="{{item.status=='3'}}" class="text-flex">已核销</text>
+              <text wx:if="{{item.status=='4'}}" class="text-flex">已取消</text>
+              <text wx:if="{{item.status=='6'}}" class="text-flex">已过期</text>
+            </view> -->
+            <!-- <view class="order-row" style="margin-top:15rpx;">
+              <text>发布日期：</text>
+              <text class="text-flex">{{item.createTime}}</text>
+            </view> -->
+
+            <!-- <view class="order-row" style="margin-top:15rpx;">
+              <text>发布人：</text>
+              <text class="text-flex">{{item.createOperName}}</text>
+            </view> -->
+          </view>
+          <view class="order-row" style="margin-top:20rpx;">
+            <text class="text-flex"></text>
+            <text wx:if="{{item.status=='1'}}" class="text-cacel" catchtap="cancel" data-status="4" data-id="{{item.id}}">取消预约</text>
+            <text wx:if="{{item.status=='3' || item.status=='4' || item.status=='6'}}" class="text-del" catchtap="cancel" data-status="5" data-id="{{item.id}}">删除</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
+    <view wx:if="{{ !isLoading && !list.length }}">
+      <view class="yoshop-notcont">
+        <text class="cont">亲，您还没有预约信息哦！</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

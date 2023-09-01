@@ -1,0 +1,29 @@
+<view class="base">
+  <view class="flex header ">
+    <view wx:for="{{tabList}}" wx:key="index" class="flex-1 line {{istrue==item.id? 'tablist':''}}" bindtap="changTab" data-id="{{item.id}}">{{item.title}}</view>
+  </view>
+  <view class="content rpx-30">
+    <view class="list" wx:for="{{dataList}}" wx:key="index">
+      <view class="flex ">
+        <image class="img" src="{{item.url}}"></image>
+        <view class="fs-30 pt-20">
+          <view>{{item.title}}</view>
+          <view class="color-DC2 mt-20">
+            <text>￥{{item.prver}}</text>
+            <text>.00</text>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{istrue!=3}}" class="contbtn flex">
+        <view class="shelf mr-10">编辑</view>
+        <view wx:if="{{istrue==1}}" class="shelf">下架</view>
+        <view wx:if="{{istrue==2}}" class="shelf">上架</view>
+      </view>
+    </view>
+  </view>
+  <view class="view-mfn">
+    <view class="mfn-content" catchtap="repair">
+      <image class="img-plus" mode="widthFix" src="/state/images/plus.png"></image>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,27 @@
+<view class="view-block view-white">
+  <image class="header" src="{{img}}" mode="widthFix"></image>
+  <view class="view-foot">
+    <view class="view-row" style="margin-top:15rpx;">
+      <text style="flex: 1;">姓名：</text>
+      <text style="width: 100rpx;">{{details.realname}}</text>
+    </view>
+    <view class="view-row" style="margin-top:15rpx;">
+      <text style="flex: 1;">性别：</text>
+      <text style="width: 100rpx;" wx:if="{{details.sex=='0'}}">男</text>
+      <text style="width: 100rpx;" wx:if="{{details.sex=='1'}}">女</text>
+    </view>
+    <view class="view-row" style="margin-top:15rpx;">
+      <text style="flex: 1;">工号：</text>
+      <text style="width: 100rpx;">{{details. employeeNo}}</text>
+    </view>
+    <view class="view-row" style="margin-top:15rpx;">
+      <text style="flex: 1;">单位：</text>
+      <text style="width: 100rpx;">{{details.storeName}}</text>
+    </view>
+    <view class="view-row" style="margin-top:15rpx;">
+      <text style="flex: 1;">状态：</text>
+      <text style="width: 100rpx;" wx:if="{{details.state=='0'}}" class="text-flex">在职</text>
+      <text style="width: 100rpx;" wx:if="{{details.state=='1'}}" class="text-flex">离职</text>
+    </view>
+  </view>
+</view>

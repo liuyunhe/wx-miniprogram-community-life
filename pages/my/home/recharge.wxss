@@ -1,0 +1,40 @@
+page {
+  background: #f7f7f7;
+}
+
+.view-white {
+  background: #fff;
+  border-radius: 15rpx;
+  margin: 30rpx;
+  font-size: 30rpx;
+  padding: 20rpx;
+}
+
+.view-top{
+  margin-top:100rpx;
+}
+
+.text-fh{
+  font-size: 50rpx;
+  margin-right: 15rpx;
+}
+
+.pay-input{
+  font-size: 60rpx;
+}
+
+.btn_identity{
+  width: 95%;
+  position: fixed; 
+  bottom: 0;
+  color: #fff;
+  font-size: 35rpx;
+  text-align: center;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  background: #26a886;
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+  margin-left: 20rpx;
+  margin-right:20rpx;
+}

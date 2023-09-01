@@ -1,0 +1,35 @@
+<view>
+  <view class="box-contain">
+    <view class="adviceCard">
+      <view style="flex-direction: row;display: flex;margin-top: 28rpx;margin-left: 30rpx;">
+        <view class="matter-sign"></view>
+        <view style="color: #333333;font-size: 34rpx;font-weight: bolder;margin-left: 20rpx;">
+          建议详情
+        </view>
+      </view>
+      <view class="adviceContent">
+        关于整治社区饮水机的意见，在社区南门的第二处饮水机的卫生问题。随着物质生活水平的提高，人民的健康
+        饮水意识增强，对高品质生活用水的需求愿望越来越强烈。加强居住小区内自动售水机水质安全，使业主喝上
+        放心安全的水势在必行。
+      </view>
+      <view style="padding-left:30rpx;margin-top:14rpx;">
+        <image wx:for="{{adviceImageUrl}}" wx:for-item="imageItem" wx:key="item" style="display:inline-block; width:160rpx;height:160rpx;padding-right:20rpx;" src="{{imgUrl + imageItem}}" />
+      </view>
+      <view class="" style="padding-left:30rpx;padding-right:30rpx;height:93rpx;line-height:93rpx;position:relative;">
+        <image class="" style="width:19.78rpx;height:26rpx;margin-right:8rpx" src="/state/images/communityServiceImages/activityPosition.png"></image>
+        <view style="display:inline-block;font-size:24rpx;color:#999999;">方恒社区</view>
+        <view style="display:inline-block;position:absolute;right:50rpx;font-size:24rpx;color:#999999;font-family:D-DIN-PRO-Regular;">
+          {{createTime}}
+        </view>
+      </view>
+    </view>
+    <view class="replyCard">
+      <view style="flex-direction: row;display: flex;margin-top: 28rpx;margin-left: 30rpx;">
+        <view class="matter-sign"></view>
+        <view style="color: #333333;font-size: 34rpx;font-weight: bolder;margin-left: 20rpx;">
+          建议反馈
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

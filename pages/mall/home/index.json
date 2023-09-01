@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    
+  },
+  "navigationBarTitleText": "商城",
+  "backgroundColor": "#fff",
+  "onReachBottomDistance": 50
+}

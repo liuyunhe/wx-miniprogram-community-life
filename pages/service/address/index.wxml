@@ -1,0 +1,31 @@
+<view class="base">
+  <view class="pb-130">
+    <view wx:if="{{dataList.length>0}}">
+      <view class="header flex align-center rpx-30" wx:for="{{dataList}}" wx:key="index" data-addressId="{{item.addressId}}">
+        <radio-group bindchange="setDefault" class="radio-group">
+          <label class="radio">
+            <radio checked="{{item.addressId == default_id}}" style="transform:scale(0.9);margin-right: 5rpx;" color="#3CDABB" value="{{item.addressId}}"></radio>
+          </label>
+        </radio-group>
+        <view class="flex-1">
+          <view class="fs-26" style="font-weight: bold;">{{item.province}}{{item.city}}{{item.district}}</view>
+          <view class="fs-30" style="font-weight: bold;margin-top: 10rpx;margin-bottom: 10rpx;">{{item.address}}</view>
+          <view class="fs-28" style="font-weight: bold;color:#666;">
+            <text class="mr-20">{{item.contact}}</text>
+            <text style="margin-left: 50rpx;">{{item.phone}}</text>
+            <text wx:if="{{item.addressId == default_id}}" class="ml-10">默认</text>
+          </view>
+        </view>
+        <image mode="widthFix" catchtap="goAddaddress" data-addressId="{{item.addressId}}" src="/state/images/enit.png"></image>
+        <image style="margin-left: 20rpx;width: 40rpx;" mode="widthFix" catchtap="deleteAddress" data-addressId="{{item.addressId}}" src="/state/images/communityServiceImages/del_icon.png"></image>
+      </view>
+    </view>
+    <view class="noData" wx:else>
+      <image mode="widthFix" src="/state/images/noData.png"></image>
+      <view>暂无数据</view>
+    </view>
+  </view>
+  <view class="foot rpx-30">
+    <view class="btn" bindtap="goAddaddress">新建收货地址</view>
+  </view>
+</view>

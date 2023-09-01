@@ -1,0 +1,14 @@
+<view class="people-msg">
+  <view style="float: left; flex: 1;" wx:if="{{pics.length>0}}">
+    <view class="view-img" wx:for="{{pics}}" wx:key="index" data-index="{{index}}" wx:for-item="item" catchtap="previewImages">
+      <image src="/state/images/ch.png" class="del-img" data-index="{{index}}" catchtap="delImg"></image>
+      <image src="{{item}}" class="imgae_repair" mode='aspectFill' data-index="{{index}}"></image>
+    </view>
+    <block wx:if="{{pics.length<imgNum}}">
+      <image src="/state/images/repair-img.png" class="imgae_repair" bindtap="chooseImg"></image>
+    </block>
+  </view>
+  <view class="people-msg" wx:else>
+    <image style="margin-bottom: 10rpx;" src="/state/images/repair-img.png" class="imgae_repair" bindtap="chooseImg"></image>
+  </view>
+</view>

@@ -1,0 +1,123 @@
+.view-column{
+  display:flex;
+  flex-flow:column;
+  padding: 10rpx;
+}
+
+.view-order{
+  display:flex;
+  flex-flow:column;
+  margin-top: 15rpx;
+  /* align-items:center; */
+}
+
+.order-row{
+  display:flex;
+  flex-flow:row;
+  text-align:center;
+  align-items:center;
+  font-size:30rpx;
+  margin-left:40rpx;
+  margin-right:40rpx;
+  margin-top:25rpx;
+}
+
+.view-row{
+  display:flex;
+  flex-flow:row;
+  text-align:center;
+}
+
+.text-tab{
+  flex:1;
+  font-size:30rpx;
+  color:#666;
+}
+
+.text-active{
+  color: #26a886;
+}
+
+.text-flex{
+  /* flex:1; */
+  text-align:right;
+}
+
+.text-cacel{
+  /* flex:1; */
+  text-align:right;
+  color:#35c0ae;
+  border-radius: 30rpx;
+  border: 1px solid #35c0ae;
+  padding:9rpx 30rpx;
+  font-size:30rpx;
+}
+
+.text-pay{
+  color:#fff;
+  font-size:30rpx;
+  background:#35c0ae;
+  border-radius: 30rpx;
+  padding:10rpx 30rpx;
+  margin-left:20rpx;
+}
+
+.font-bold{
+  font-weight:bold;
+  color: #333;
+}
+
+.view-list{
+  margin-top:20rpx;
+  margin-bottom:20rpx;
+}
+
+.view-line{
+  width:92%;
+  height:1px;
+  background:#f8f8f8;
+  margin-top:20rpx;
+  margin-left:30rpx;
+}
+
+.yoshop-notcont {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 130rpx 100rpx;
+  box-sizing: border-box;
+}
+
+.cont {
+  font-size: 30rpx;
+  color: #666;
+  margin-top:100rpx;
+}
+
+.no-more {
+  text-align: center;
+  color: #737373;
+  padding: 10px 0;
+  font-size: 30rpx;
+}
+
+.text-cacel{
+  /* flex:1; */
+  text-align:right;
+  color:#26a886;
+  border-radius: 30rpx;
+  border: 1px solid #26a886;
+  padding:9rpx 30rpx;
+  font-size:26rpx;
+}
+
+.text-del{
+  /* flex:1; */
+  text-align:right;
+  color:red;
+  border-radius: 30rpx;
+  border: 1px solid red;
+  padding:9rpx 30rpx;
+  font-size:26rpx;
+  margin-left: 20rpx;
+}

@@ -1,0 +1,40 @@
+<view class="base">
+  <view class="rpx-30 pt-20 header">
+    <view class="flex align-center border">
+      <view>物品标题：</view>
+      <input type="text" class="flex-1" placeholder="填写品牌型号" />
+    </view>
+    <view class="flex  border">
+      <view>物品描述：</view>
+      <textarea type="text" class="textInput" placeholder="描述下物品来源、转手原因、新旧程度、型号尺码等，可以让物品更快卖出～" />
+    </view>
+    <view class="flex  border align-center">
+      <view class="flex-1">全新物品：</view>
+      <switch type="switch" style="zoom:.7" />
+    </view>
+    <view class="flex border align-center">
+      <view class="flex-1">分类：</view>
+      <image class="img" src="/state/images/youjiantou.png"></image>
+    </view>
+    <view class="flex align-center border">
+      <view>卖家：</view>
+      <input class="flex-1" type="text" placeholder="填写价格" />
+    </view>
+    <view class="flex align-center border">
+      <view>联系人：</view>
+      <input class="flex-1" type="text" placeholder="请输入联系人名称" />
+    </view>
+    <view class="flex align-center border">
+      <view>联系电话：</view>
+      <input class="flex-1" type="text" placeholder="便于买家与您联系" />
+    </view>
+
+  </view>
+  <view class="upimg ">
+    <view class="pt-20 rpx-30">上传照片：</view>
+    <uploadImg  id='uploadImg' imgNum='{{9}}'></uploadImg>
+  </view>
+  <view class="foot rpx-30">
+    <view class="btn" bindtap="goAddaddress">发布</view>
+  </view>
+</view>

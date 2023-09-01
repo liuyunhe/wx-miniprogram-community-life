@@ -1,0 +1,42 @@
+<view class="base rpx-30">
+  <view class="header rpx-20 ">
+    <view class="headerImg">
+      <text style="margin-right: 20rpx;color:#333;">预约时间</text>
+      <!-- <view class="mtb-30"> -->
+        <text class="text-right">{{dataList.appointDate}}</text>
+        <text class="text-right">（{{dataList.week}}）</text>
+      <!-- </view> -->
+      <text class="text-right">{{dataList.startTime}}~{{dataList.endTime}}</text>
+    </view>
+    <view class="headerImg">
+      <text style="margin-right: 20rpx;color:#333;">预约人</text>
+        <text class="text-right">{{userName}}</text>
+    </view>
+    <view class="mtb-30" style="margin-left: 20rpx;margin-right: 20rpx;">
+      <view class="fs-35">{{assetName}}</view>
+      <view class="text-right">{{assetContent}}</view>
+    </view>
+  </view>
+  <!-- <view class="people rpx-20 ptb-20">
+    <view class="flex ">
+      <view class="flex-1">预约人</view>
+    </view>
+    <view class="">
+      <view class="mtb-30 fs-35">{{userName}}</view>
+    </view>
+  </view> -->
+  <!-- <view class="foot rpx-20 ptb-20">
+    <view class="fs-35 mb-20">挂号须知</view>
+    <view class="line">
+     <view>1,哈哈哈哈哈哈哈哈哈哈</view>
+     <view>2,哈哈哈哈哈哈哈哈哈哈</view>
+     <view>3,哈哈哈哈哈哈哈哈哈哈</view>
+     <view>4,哈哈哈哈哈哈哈哈哈哈</view>
+     <view>5,哈哈哈哈哈哈哈哈哈哈</view>
+     <view>6,哈哈哈哈哈哈哈哈哈哈</view>
+    </view>
+  </view> -->
+  <view class="footBtn flex align-center justify-center">
+    <view class="btn" bindtap="appointAdd">确认预约</view>
+  </view>
+</view>

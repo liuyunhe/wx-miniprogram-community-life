@@ -1,0 +1,17 @@
+<view class="view-column view-block" wx:for="{{cardList}}" wx:key="index">
+  <view class="view-row view-card" wx:if="{{item.type=='0'}}">
+    <image class="img-icon" src="{{item.img}}" mode="widthFix"></image>
+    <view class="view-column" wx:if="{{item.type=='0'}}">
+      <text>{{item.name}}<text style="font-size: 20rpx;margin-left: 20rpx;">{{item.card_type}}</text></text>
+      <text>{{item.number}}</text>
+    </view>
+  </view>
+  <view class="view-row view-card1" wx:if="{{item.type=='1'}}">
+    <image class="img-icon" src="{{item.img}}" mode="widthFix"></image>
+    <view class="view-column">
+      <text>{{item.name}}<text style="font-size: 20rpx;margin-left: 20rpx;">{{item.card_type}}</text></text>
+      <text>{{item.number}}</text>
+    </view>
+  </view>
+  <text class="btn_identity">添加银行卡</text>
+</view>

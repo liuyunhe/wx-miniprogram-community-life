@@ -1,0 +1,40 @@
+<view class='wx_dialog_container' hidden="{{!isShow}}">
+  <view class='wx-mask'></view>
+  <view class='wx-dialog'>
+    <!-- <view class='wx-dialog-title'>{{ title }}</view> -->
+    <view class="view-row view-center">
+      <text style="flex: 1;color:#333;font-size: 30rpx;">选择头像</text>
+      <button style="width:30%;" class="avatar" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+        <image mode="aspectFill" src="{{avatarUrl}}"></image>
+      </button>
+    </view>
+    <view class="view-line"></view>
+    <view class="view-row view-center">
+      <text style="flex: 0.8;color:#333;font-size: 30rpx;">填写昵称</text>
+      <input type="nickname" bind:change="getNickname" class="weui-input" value="{{nickname}}" placeholder="请输入昵称" />
+    </view>
+    <view class="view-line"></view>
+    <view class="view-row">
+      <text style="color: #999;font-size: 28rpx;">说明：</text>
+    </view>
+    <view class="view-row1">
+      <text>（1）点击头像选择框可选择</text>
+      <text style="font-weight: bold;color:#FF580C;">"微信头像";</text>
+    </view>
+    <view class="view-row1">
+      <text>（2）点击昵称输入框后可选择</text>
+      <text style="font-weight: bold;color:#FF580C;">"微信昵称";</text>
+    </view>
+    <view class="view-row1">
+      <text>（3）平台不会将您的信息泄露给第三方平台。</text>
+    </view>
+    <view class='wx-dialog-footer'>
+      <view class='wx-dialog-btn1' catchtap='_cancelEvent'>
+        <text class="text-cancel">{{ cancelText }}</text>
+      </view>
+      <view class='wx-dialog-btn' catchtap='_confirmEvent'>
+        <text class="text-confirm">{{ confirmText }}</text>
+      </view>
+    </view>
+  </view>
+</view>

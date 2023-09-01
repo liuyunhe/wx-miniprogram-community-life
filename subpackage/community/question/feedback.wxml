@@ -1,0 +1,19 @@
+<view class="view-column">
+  <!-- <text class="view-title">反馈类别</text>
+  <view class="tab-bar">
+    <view class="view-flex" wx:for="{{itemTag}}" wx:for-item="item">
+      <text class="text-tab {{item.checked ? 'text-color' : ''}}" bindtap="swichNav" data-id="{{item.id}}">{{item.name}}</text>
+    </view>
+  </view> -->
+  <form bindsubmit="saveData">
+    <view class="view-back">
+      <text class="view-title">问题描述</text>
+      <textarea name="content" style="font-size: 26rpx;margin-bottom: 30rpx;" placeholder="请填写10字以上的问题描述，以便我们更好的帮您解决问题。"></textarea>
+      <uploadImg id='uploadImg' imgNum='{{9}}' binditemChange="handleItemChange">
+      </uploadImg>
+      <text class="view-title" style="margin-top:20rpx;">联系方式</text>
+      <input class="input-tel" type="number" placeholder="请留下您的手机号，我们可能会联系您进行沟通" name="phone"></input>
+      <button class="btn-enter" style="width:100%" formType="submit">提交</button>
+    </view>
+  </form>
+</view>

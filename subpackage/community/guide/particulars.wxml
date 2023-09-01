@@ -1,0 +1,14 @@
+<!--pages/community/guide/particulars.wxml-->
+<view class="root">
+  <view class="rootview">
+    <view class="title">{{guideTitle}}</view>
+      <!-- <view class="divLine"></view>
+      <text>{{content}}</text>
+      <view class="divLine"></view> -->
+      <view class="detailStyle">
+        <rich-text nodes="{{guideDetail}}"></rich-text>
+      </view>
+  </view>
+  
+  
+</view>

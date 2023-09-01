@@ -1,0 +1,20 @@
+<view class="base">
+  <view class="header rpx-30 flex align-center">
+    <image src="/state/images/serch.png"></image>
+    <input class="serch" type="text" value="{{inpValue}}" confirm-type="search" placeholder="输入机构名称搜索" bindconfirm="search" bindinput="getValue" />
+  </view>
+  <view style="padding-top: 120rpx;">
+    <view wx:if="{{dataList.length>0}}">
+      <view class="list rpx-30  ptb-20" wx:for="{{dataList}}" wx:key="index" bindtap="goApprox" data-value="{{item}}">
+        <view class="org">{{item.assetName}}</view>
+        <view class="mb-10">发布时间：{{item.createTime}}</view>
+        <view class=" mb-10"> {{item.assetOrgName}}</view>
+        <view class="orgAddress">{{item.assetOrgAddress}}</view>
+      </view>
+    </view>
+    <view class="noData" wx:else>
+      <image mode="widthFix" src="/state/images/noData.png"></image>
+      <view>暂无数据</view>
+    </view>
+  </view>
+</view>

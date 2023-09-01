@@ -1,0 +1,43 @@
+.header {
+  font-size: 30rpx;
+  background: #ffffff;
+}
+.border {
+  border-bottom: 1rpx solid #f7f7f7;
+  padding: 20rpx 0;
+}
+.textInput {
+  width: 500rpx;
+  height: 100rpx;
+  padding-top: 5rpx;
+}
+.img {
+  width: 20rpx;
+  height: 40rpx;
+}
+.upimg {
+  background: #ffffff;
+  font-size: 30rpx;
+  padding-bottom: 30rpx;
+}
+.pt-20 {
+  padding-top: 20rpx;
+}
+.foot {
+  width: 100%;
+  height: 120rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  /* background: #ffffff; */
+}
+.btn {
+  color: #ffffff;
+  background: #0097F7;
+  font-size: 30rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+}

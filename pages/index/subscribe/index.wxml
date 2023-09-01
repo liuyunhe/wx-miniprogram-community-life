@@ -1,0 +1,33 @@
+<view class="base">
+  <view class="header flex align-center justify-center rpx-30">
+    <!-- <image class="img" src="/state/images/serch.png"></image> -->
+    <view class="view-row align-center view-search">
+      <input class="input" type="text" value="{{inpValue}}" bindinput="getValue" />
+      <view class="serchbtn" bindtap="goInstall">搜索</view>
+    </view>
+  </view>
+  <view class="content">
+    <view class="left pt-20" style="height: {{scrollHeight}}px;">
+      <view class="leftList  {{isCheck==item.key? 'check':''}}" wx:for="{{newsData}}" wx:key="index" bindtap="change" data-key="{{item.key}}">{{item.name}}</view>
+    </view>
+    <view class="right" style="height: {{scrollHeight}}px;">
+      <scroll-view style="height: {{scrollHeight}}px;" scroll-y="true" bindscrolltolower="scrollBotten">
+        <view wx:if="{{dataList.length>0}}">
+          <view class="list rpx-30  ptb-20" wx:for="{{dataList}}" wx:key="index" bindtap="goApprox" data-value="{{item}}">
+            <view class="org">{{item.assetName}}</view>
+            <!-- <view class="mb-10">发布时间：{{item.createTime}}</view> -->
+            <view class="float mb-10"> {{item.assetOrgName}}</view>
+            <view class="float mb-10"> {{item.storeName}}</view>
+            <view class="orgAddress">{{item.assetOrgAddress}}</view>
+            <view class="orgAddress">联系电话：{{item.linkPhone}}</view>
+            <view class="orgAddress">营业时间：{{item.businessHours}}</view>
+          </view>
+        </view>
+        <view class="noData" wx:else>
+          <image mode="widthFix" src="/state/images/noData.png"></image>
+          <view>暂无数据</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

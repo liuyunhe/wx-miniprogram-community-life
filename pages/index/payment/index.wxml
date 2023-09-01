@@ -1,0 +1,39 @@
+<view class="base">
+  <view wx:if="{{list.length > 0}}">
+    <view class="view-back" wx:for="{{list}}">
+      <view class="list">
+        <image class="listImg" mode="widthFix" src="{{payImg}}" wx:key="{{index}}"></image>
+        <view class="listtotal" catchtap="goDetail" data-item="{{item}}">
+          <view class="listTitle">
+            <span>{{payName}}</span>
+            <span class="span-flag" wx:if="{{item.chargeCustFlag=='1'}}">我家</span>
+            <span class="span-flag" wx:if="{{item.chargeCustFlag=='2'}}">公司</span>
+            <span class="span-flag" wx:if="{{item.chargeCustFlag=='3'}}">父母</span>
+          </view>
+          <view class="listName">{{item.chargeCustName}}丨{{item.custChargeNo}}</view>
+        </view>
+        <!-- <image class="mr-30" src="/state/images/bianji.png" catchtap="goEdit"></image> -->
+        <!-- <image style="margin-right: 30rpx;" src="/state/images/set-up.png" catchtap="setUp" data-item="{{item}}" data-id="{{item.chargeCustId}}"></image>
+      <image src="/state/images/delete.png" catchtap="goDelete" data-id="{{item.chargeCustId}}"></image> -->
+
+      </view>
+      <view class="view-line"></view>
+      <view class="view-row">
+        <view class="view-gs" style="flex:1;">{{item.chargeOrgName}}</view>
+        <text class="view-gs" style="color:#666;" catchtap="setUp" data-item="{{item}}" data-id="{{item.chargeCustId}}">编辑</text>
+        <text class="view-gs" catchtap="goDelete" data-id="{{item.chargeCustId}}" style="color:#666;margin-left:30rpx;">删除</text>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{ !isLoading && !list.length }}">
+    <view class="yoshop-notcont">
+      <text class="cont">暂时没有户号信息~</text>
+    </view>
+  </view>
+  <view class="foot">
+    <view class="flexText" bindtap="goAddAccount">
+      <!-- <image src="/state/images/plus.png"></image> -->
+      <view class="add">添加户号</view>
+    </view>
+  </view>
+</view>

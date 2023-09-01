@@ -1,0 +1,123 @@
+page{
+  background: #F9FBFC;
+}
+.header {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  color: #ffffff;
+  font-size: 30rpx;
+  align-items: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background: #26a886;
+  box-sizing: border-box;
+  margin-top: 20rpx;
+}
+.header image {
+  width: 80rpx;
+}
+.content {
+  /* width: 100%; */
+  /* height: 300rpx; */
+  background: #ffffff;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding:30rpx;
+  margin-top: 30rpx;
+  box-shadow: 0px 1px 4px 1px #DDD;
+}
+.view-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.content image {
+  width: 15rpx;
+}
+.fs-26{
+  font-size: 26rpx;
+  color: #bfbfbf;
+  /* padding-top: 20rpx; */
+}
+.fs-30 {
+  font-size: 30rpx;
+  color: #000000;
+  font-weight: 700;
+  flex: 1;
+}
+.content .flex {
+  height: 80rpx;
+  /* border-bottom: 1rpx solid #e6e6e6; */
+}
+.view-shu{
+  width: 6rpx;
+  height: 35rpx;
+  background: #3CDABB;
+}
+.inp {
+  margin-top: 5rpx;
+  /* border-bottom: 1rpx solid #e6e6e6 ; */
+  font-size: 26rpx;
+  margin-left:30rpx;
+  color:#666;
+}
+.view-line {
+  width: 100%;
+  height: 1rpx;
+  background: #f7f7f7;
+  margin-top: 10rpx;
+  margin-bottom: 30rpx;
+  /* margin-top: 20rpx;
+  margin-left: 30rpx; */
+}
+.ml-10 {
+  margin-left: 10rpx;
+}
+.foot {
+  width: 100%;
+  height: 200rpx;
+  background-color: #ffffff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding-top: 20rpx;
+}
+.foot image{
+  width: 35rpx;
+  height: 35rpx;
+}
+.color {
+  color: #000000;
+}
+.colorOne {
+  color: #26a886;
+}
+.foot-fs-26 {
+  font-size: 26rpx;
+}
+.footbon {
+  width: 100%;
+  height: 80rpx;
+  /* background-color: #26a886; */
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
+  text-align: center;
+  line-height: 80rpx;
+  color: #ffffff;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+}
+.listImg {
+  width: 15rpx;
+}
+.btn {
+  width: 100%;
+  height: 120rpx;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+}

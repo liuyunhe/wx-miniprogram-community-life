@@ -1,0 +1,72 @@
+<view class="view-column">
+  <!-- <view class="view-row" style="margin-top:15rpx;">
+    <view class="text-tab {{dataType===''?'text-active':''}}" data-type="" catchtap="bindHeaderTap">全部</view>
+    <view class="text-tab {{dataType==='1'?'text-active':''}}" data-type="1" catchtap="bindHeaderTap">已预约</view>
+    <view class="text-tab {{dataType==='3'?'text-active':''}}" data-type="3" catchtap="bindHeaderTap">已核销</view>
+    <view class="text-tab {{dataType==='4'?'text-active':''}}" data-type="4" catchtap="bindHeaderTap">已取消</view>
+    <view class="text-tab {{dataType==='6'?'text-active':''}}" data-type="6" catchtap="bindHeaderTap">已过期</view>
+  </view> -->
+  <scroll-view bindscrolltolower="scrollBotten" scroll-y style="height: {{scrollHeight}}px; width: 750rpx;">
+    <view wx:if="{{true}}">
+      <view class="view-list" wx:for="{{list}}" wx:key="index">
+        <view class="view-order">
+          <view bindtap="details" data-item="{{item}}" data-value="{{item}}">
+            <view class="order-row">
+              <!-- <text class="font-bold">预约编号：{{item.id}}</text> -->
+              <text class="font-bold">{{item.assetName}}</text>
+            </view>
+            <view class="view-line"></view>
+            <view class="order-row">
+              <!-- <text class="font-bold" style="color:#26a886;">{{item.assetName}}</text> -->
+              <text wx:if="{{item.status=='1'}}" class="text-flex">已预约</text>
+              <text wx:if="{{item.status=='3'}}" class="text-flex">已核销</text>
+              <text wx:if="{{item.status=='4'}}" class="text-flex">已取消</text>
+              <text wx:if="{{item.status=='6'}}" class="text-flex">已过期</text>
+            </view>
+            <view class="order-row" style="margin-top:15rpx;">
+              <text  style="color: black;">{{item.assetOrgName}}</text>
+              <!-- <text style="color: black;">2023-06-21</text>
+              <text class="text-flex">{{item.assetOrgName}}</text> -->
+            </view>
+            <view class="order-row" style="margin-top:15rpx;">
+              <text class="labelName">营业时间：{{item.businessHours}}</text>
+              <!-- <text style="color: black;">2023-06-21 - 2023-06-23</text>
+              <text class="text-flex">{{item.startTime}} - {{item.endTime}}</text> -->
+            </view>
+            <view class="order-row" style="margin-top:15rpx;">
+              <text class="labelName">办理地点：</text>
+              <text style="color: black;">{{item.storeName}}</text>
+              <!-- <text class="text-flex">{{item.storeName}}</text> -->
+            </view>
+            <view class="order-row" style="margin-top:15rpx;padding-bottom: 16rpx;">
+              <text class="labelName">联系电话：</text>
+              <!-- <text style="color: #3CDABB;">已预约</text> -->
+              <text class="text-flex">{{item.linkPhone}}</text>
+              <!-- <view class="tagStyle" >取消预约</view> -->
+            </view>
+          </view>
+          <view class="order-row" style="margin-top:20rpx;">
+            <text class="text-flex"></text>
+            <text wx:if="{{item.status=='1'}}" class="text-cacel" catchtap="cancel" data-status="4" data-id="{{item.id}}">
+              取消预约
+            </text>
+            <text wx:if="{{item.status=='3' || item.status=='4' || item.status=='6'}}" class="text-del" catchtap="cancel" data-status="5" data-id="{{item.id}}">
+              删除
+            </text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
+    <view wx:if="{{ !isLoading && !list.length }}">
+      <view class="yoshop-notcont">
+        <text class="cont">亲，您还没有预约信息哦！</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<!-- <view class="view-mfn">
+  <view class="mfn-content" bindtap="appoint">
+    <text class="text-mfn">预约</text>
+  </view>
+</view> -->

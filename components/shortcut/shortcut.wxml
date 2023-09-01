@@ -1,0 +1,5 @@
+<view class="view-mfn">
+  <view class="mfn-content" catchtap="repair">
+    <image class="img-plus" mode="widthFix" src="/state/images/kefu.png"></image>
+  </view>
+</view>

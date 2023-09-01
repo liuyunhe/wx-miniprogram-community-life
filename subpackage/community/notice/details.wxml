@@ -1,0 +1,11 @@
+<!--pages/community/notice/details.wxml-->
+<view class="root">
+  <view class="rootView">
+    <!-- <view class="title">{{noticeTitle}}</view>
+    <view class="divLine"></view> -->
+    <rich-text nodes="{{noticeDetail}}" class="detailStyle"></rich-text>
+    <view class="timeView" hover-class="none" hover-stop-propagation="false">
+      {{createTime}}
+    </view>
+  </view>
+</view>

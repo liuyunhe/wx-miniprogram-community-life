@@ -1,0 +1,91 @@
+.news {
+  font-size: 24rpx;
+  text-align: center;
+  padding-top: 30rpx;
+  color: #666666;
+}
+
+.date {
+  padding-top: 20rpx;
+}
+
+.dataName {
+  width: 150rpx;
+  /* height: 180rpx; */
+  flex-shrink: 0;
+  /* background: #ffffff; */
+  color: #333333;
+  /* border-radius: 30rpx; */
+  text-align: center;
+  font-size: 30rpx;
+  padding: 30rpx 0rpx;
+  /* padding-top: 30rpx; */
+  /* margin-right: 20rpx; */
+}
+
+.date-back{
+  background: #ffffff;
+  border-radius: 15rpx;
+  /* box-shadow: 0px 1px 4px #DDD; */
+}
+
+.mt-10 {
+  margin-top: 10rpx;
+}
+
+.mt-20 {
+  margin-top: 20rpx;
+}
+
+.font {
+  font-weight: 700;
+}
+
+.isCheck {
+  background: #3CDABB;
+  border-radius: 15rpx;
+  color: #ffffff;
+}
+
+.mt-30 {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 30rpx;
+  box-sizing: border-box;
+}
+
+.num {
+  color: #ffffff;
+  background: #3CDABB;
+  padding: 10rpx 10rpx;
+  border-radius: 10rpx;
+}
+
+.mb-20 {
+  margin-bottom: 20rpx;
+}
+
+map {
+  height: 100vh;
+  width: 100vw;
+}
+
+.addr_class {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: 100%;
+}
+.addr{
+  width: 22rpx;
+  /* height: 32rpx; */
+  margin-top:16rpx;
+  margin-left:5rpx;
+  margin-right: 10rpx;
+}

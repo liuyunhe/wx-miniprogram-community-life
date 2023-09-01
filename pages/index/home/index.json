@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "dialog": "/components/bubbleDialog/evaluate",
+    "shortcut":"/components/menu/shortcut",
+    "position":"/components/position/shortcut"
+  },
+  "navigationBarTitleText": "首页",
+  "navigationStyle": "custom"
+}

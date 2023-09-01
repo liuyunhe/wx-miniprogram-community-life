@@ -1,0 +1,12 @@
+/* pages/community/notice/details.wxss */
+
+.title{
+  text-align: center;
+}
+/*分割线样式*/
+.divLine{
+  background: #E0E3DA;
+  margin-top: 4px;
+  width: 100%;
+  height: 5rpx;
+}

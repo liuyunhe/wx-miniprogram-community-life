@@ -1,0 +1,112 @@
+.header {
+  width: 100%;
+  height: 80rpx;
+  font-size: 30rpx;
+  background: #ffffff;
+  text-align: center;
+  line-height: 80rpx;
+  box-sizing: border-box;
+}
+
+.line {
+  font-size: 30rpx;
+  color: #000000;
+}
+
+.tablist {
+  border-bottom: 1rpx solid #0082DF;
+}
+
+.content {
+  margin-top: 20rpx;
+  width: 100%;
+  height: 220rpx;
+  box-sizing: border-box;
+}
+
+.list {
+  position: relative;
+  margin-bottom: 20rpx;
+  width: 100%;
+  height: 100%;
+}
+
+.img {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.fs-30 {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.color-DC2 {
+  color: #DC2E1D;
+}
+
+.mt-20 {
+  margin-top: 20rpx;
+}
+
+.pt-20 {
+  padding-top: 20rpx;
+  margin-left: 20rpx;
+}
+
+.contbtn {
+  position: absolute;
+  bottom: 0;
+  right: 0rpx;
+}
+
+.shelf {
+  font-size: 28rpx;
+  width: 150rpx;
+  height: 50rpx;
+  border: 1rpx solid #cccccc;
+  border-radius: 30rpx;
+  color: #000000;
+  text-align: center;
+  line-height: 50rpx;
+}
+
+.mr-10 {
+  margin-right: 10rpx;
+}
+
+.view-mfn {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 100;
+  align-content: center;
+  flex-direction: row-reverse;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+  margin-bottom: 30rpx;
+}
+
+.mfn-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 85rpx;
+  height: 85rpx;
+  /* background-color: #fe767a; */
+  background-color: #3399cc;
+  /* background: rgba(0, 0, 0, 0.4); */
+  text-align: center;
+  align-content: center;
+  justify-items: center;
+  border-radius: 50%;
+  align-items: center;
+  margin-right: 30rpx;
+  margin-bottom: 150rpx;
+}
+
+.img-plus {
+  width: 50rpx;
+  height: 50rpx;
+}

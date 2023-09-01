@@ -1,0 +1,101 @@
+<wxs module="filters" src="../../../utils/addmul.wxs"></wxs>
+<wxs module="tools" src="../../../utils/string.wxs" />
+<view class="base">
+  <!-- 地址 -->
+  <view class="view-content">
+    <view class="header flex align-center rpx-30" bindtap="goAddress">
+      <image
+        class="img"
+        mode="widthFix"
+        src="/state/images/location.png"
+      ></image>
+      <view class="text" wx:if="{{isAddress}}">
+        <view class="fs-28">
+          <text>{{dataList.contact}}</text>
+          <text style="margin-left: 20rpx">{{dataList.phone}}</text>
+        </view>
+        <view class="arrder"
+          >{{dataList.province}}{{dataList.city}}{{dataList.district}}{{dataList.address}}</view
+        >
+      </view>
+      <view class="text arrder" wx:if="{{!isAddress}}">请选择地址</view>
+      <image mode="widthFix" src="/state/images/youjiantou.png"></image>
+    </view>
+    <!-- 商品列表 -->
+    <view class="goods-list">
+      <view class="row" wx:for="{{ goodList }}" wx:key="goodsId">
+        <view class="itmem_wrap" data-id="{{ item.goodsId }}">
+          <image
+            class="good-img"
+            src="{{ tools.my_json(item.image) }}"
+            mode="aspectFill"
+            lazy-load="false"
+            binderror=""
+            bindload=""
+          ></image>
+          <view class="content">
+            <view class="title">{{ item.goodsName }}</view>
+            <view class="info mb-42">
+              <view class="type">
+                <view class="label">黑/白/灰</view>
+                <view class="label">M</view>
+              </view>
+              <view class="price">
+                价格：￥{{ filters.toFixHead(item.price) }}.{{
+                filters.toFixTail(item.price) }}×{{ item.quantity }}
+              </view>
+            </view>
+            <view class="info">
+              <view class="total-price">
+                <text>合计：</text>
+                <text class="footmoney">￥</text>
+                <text class="head"
+                  >{{ filters.toFixHead(item.price*item.quantity) }}</text
+                >
+                <text class="tail"
+                  >.{{ filters.toFixTail(item.price*item.quantity) }}</text
+                >
+              </view>
+              <view class="btn-groups">
+                <button
+                  class="goods-btn btn-minus"
+                  data-index="{{index}}"
+                  data-id="{{item.goodsId}}"
+                  bindtap="handleSubtractGoodNum"
+                >
+                  —
+                </button>
+                <input
+                  class="num"
+                  type="number"
+                  disabled
+                  data-index="{{index}}"
+                  bindblur="numIputBlur"
+                  bindinput="inputNum"
+                  value="{{item.quantity}}"
+                />
+                <button
+                  class="goods-btn btn-add"
+                  data-index="{{index}}"
+                  data-id="{{item.goodsId}}"
+                  bindtap="handleAddGoodNum"
+                >
+                  +
+                </button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="foot flex rpx-40">
+    <view class="footLeft">
+      <text class="view-text" style="color: #343434">实付：</text>
+      <text class="footmoney">￥</text>
+      <text class="head">{{filters.toFixHead(totalPrice)}}</text
+      ><text class="tail">.{{filters.toFixTail(totalPrice)}}</text>
+    </view>
+    <view class="btn-place-orde" bindtap="handleAddStoreOrder">提交订单</view>
+  </view>
+</view>

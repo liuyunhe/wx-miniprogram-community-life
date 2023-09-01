@@ -1,0 +1,20 @@
+<view class="view-column">
+  <view class="view-title">
+    <view>充值方式</view>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" range-key="name">
+      <view class="view-row" style="align-items: center;margin-top:20rpx;">
+        <!-- <image class="img-logo" src="/state/images/zs-logo.png" mode="widthFix"></image> -->
+        <text style="flex:1;">招商银行储蓄卡(0203)</text>
+        <image class="listRight" src="/state/images/youjiantou.png" mode="widthFix"></image>
+      </view>
+    </picker>
+  </view>
+  <view class="view-white">
+    <text>充值金额</text>
+    <view class="view-row view-center view-top">
+      <text class="text-fh">￥</text>
+      <input class="pay-input" placeholder="" bindinput='getInputName' type="digit"></input>
+    </view>
+  </view>
+  <text class="btn_identity" bindtap="collection">充值</text>
+</view>

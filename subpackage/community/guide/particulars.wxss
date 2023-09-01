@@ -1,0 +1,33 @@
+/* pages/community/guide/particulars.wxss */
+.page{
+  background: white;
+}
+.title{
+  text-align: center;
+  /* font-weight: bold; */
+  font-size: medium;
+}
+/*分割线样式*/
+.divLine{
+  background: #E0E3DA;
+  margin-top: 4px;
+  width: 100%;
+  height: 5rpx;
+}
+.root{
+  padding: 10pt;
+  background-color: #F9FBFC;
+}
+.rootview{
+  position: relative;
+  background-color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  box-shadow: 0 4rpx 8rpx #E8E8E8;
+  padding: 30rpx;
+  border-radius: 8rpx 8rpx 0 0;
+}
+.detailStyle{
+  margin-top: 10pt;
+  font-size: 30rpx;
+  line-height: 42rpx;
+}

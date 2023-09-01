@@ -1,0 +1,44 @@
+<wxs src="../../../utils/string.wxs" module="tools" />
+<view class="base">
+  <view class="header">
+    <swiper class="swiper" indicator-dots="true" indicator-active-color="#44A9FF">
+      <swiper-item>
+        <image mode='widthFix' class="headerImg" autoplay="true" src="{{tools.my_json(dataList.images)}}"></image>
+      </swiper-item>
+    </swiper>
+    <view class="rpx-20">
+      <view class="headerText">{{dataList.serviceName}}</view>
+      <view class="headerDerr">
+        <text>{{dataList.storeName}}</text>
+        <text>丨</text>
+        <text>{{dataList.merchantName}}</text>
+      </view>
+      <view class="intro">
+        {{dataList.serviceContent}}
+      </view>
+      <view class="address flex">
+        <image src="/state/images/addr.png"></image>
+        <view bindtap="goMap">
+          <view>{{dataList.storeAddress}}</view>
+          <view style="height: 50rpx;" class="flex align-center">
+            <view style="line-height: 50rpx;">距离您{{dataList.distance}}</view>
+            <image class="addimg" mode="widthFix" src="/state/images/youjiantou.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="content rpx-20 ptb-20">
+    <view>
+      <rich-text nodes="{{dataList.supplementaryNotes}}"></rich-text>
+    </view>
+  </view>
+  <view class="foot flex  rpx-20">
+    <view class="footLeft">
+      <text>价格：</text>
+      <text class="footmoney">￥{{dataList.unitPrice}}</text>
+      <!-- <text class="color-DC2">00</text> -->
+    </view>
+    <view class="footRight" bindtap="goOrder">立即下单</view>
+  </view>
+</view>

@@ -1,0 +1,39 @@
+<view class="base">
+  <view class="rpx-20 bg-FFFF">
+    <view class="flex align-center header">
+      <image mode="widthFix" src="{{payImg}}"></image>
+      <view class="fs-28 ">{{payName}}</view>
+    </view>
+    <!-- <view>
+      <input class="inp" type="number" placeholder="请输入金额" />
+    </view> -->
+    <view class="foot">
+      <view class="flex align-center mb-20">
+        <view class="flex-1">缴费单位</view>
+        <view>{{orgItem.payUnit}}</view>
+      </view>
+      <view class="flex align-center mb-20">
+        <view class="flex-1">缴费户号</view>
+        <view>{{orgItem.custChargeNo}}</view>
+      </view>
+      <view class="flex align-center mb-20">
+        <view class="flex-1">缴费户名</view>
+        <view>{{custName}}</view>
+      </view>
+      <view class="flex align-center mb-20">
+        <view class="flex-1">应缴金额</view>
+        <view>{{details.transAmount}}元</view>
+      </view>
+      <view class="flex align-center mb-20">
+        <checkbox value="{{isflag}}" checked="{{isflag}}"/>
+        <view class="flex-1">是否开通代缴服务</view>
+      </view>
+    </view>
+  </view>
+  <view class="rpx-20 mt-20" style="margin-top: 30rpx;" bindtap="chargePay">
+    <view class="btn">缴 费</view>
+  </view>
+  <!-- <view class="rpx-20 mt-20">
+    <view class="btn">查看明细</view>
+  </view> -->
+</view>

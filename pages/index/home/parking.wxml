@@ -1,0 +1,31 @@
+<view class="view-column">
+  <!-- <open-data type="userAvatarUrl" mode="cover" class="title_img"></open-data> -->
+  <image class="title_img" src="/state/images/parking.png" mode="widthFix"></image>
+  <text>（{{details.merchantName}}）</text>
+  <view class="view-white">
+    <!-- <view class="view-row">
+      <text style="font-size: 100rpx;margin-right: 20rpx;">￥</text>
+      <input style="font-size: 38rpx;" placeholder="请输入金额" bindinput='getInputName' type="digit"></input>
+    </view> -->
+    <view class="view-row margin-bottom" style="margin-top: 25rpx;">
+      <text style="flex: 1;">入场时间：</text>
+      <text>{{details.entryTime}}</text>
+    </view>
+    <view class="view-row margin-bottom">
+      <text style="flex: 1;">离场时间：</text>
+      <text>{{details.departureTime}}</text>
+    </view>
+    <view class="view-row margin-bottom">
+      <text style="flex: 1;">车牌号码：</text>
+      <text>{{details.licensePlateNumber}}</text>
+    </view>
+    <view class="view-row margin-bottom">
+      <text style="flex: 1;">应缴金额：</text>
+      <text>{{details.amount}}</text>
+    </view>
+  </view>
+</view>
+<!-- <text>{{receiveAmount}}</text> -->
+<view class="view-column1" bindtap="collection">
+  <text class="btn_identity">付款</text>
+</view>

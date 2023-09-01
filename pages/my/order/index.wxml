@@ -1,0 +1,352 @@
+<wxs module="filters" src="../../../utils/addmul.wxs"></wxs>
+<wxs module="tools" src="../../../utils/string.wxs" />
+<view class="view-title">
+  <view class="view-row">
+    <view
+      class="text-tab {{ dataType == item.id ? 'text-active' : '' }}"
+      wx:for="{{ tanData }}"
+      wx:key="index"
+      data-id="{{ item.id }}"
+      catchtap="bindHeaderTap"
+      >{{ item.name }}</view
+    >
+    <!-- <view class="text-tab {{dataType==='1'?'text-active':''}}" data-type="1" catchtap="bindHeaderTap">便民服务</view> -->
+    <!--<view class="text-tab {{dataType==='5'?'text-active':''}}" data-type="5" catchtap="bindHeaderTap">已关闭</view>
+    <view class="text-tab {{dataType==='2'?'text-active':''}}" data-type="2" catchtap="bindHeaderTap">已完成</view>-->
+    <!-- <view class="text-tab {{dataType==='4'?'text-active':''}}" data-type="4" catchtap="bindHeaderTap">其他</view> -->
+  </view>
+  <view class="view-row1">
+    <view
+      class="text-tab {{ dataType === '0' ? 'view-green' : 'view-white' }}"
+    ></view>
+    <view
+      class="text-tab {{ dataType === '1' ? 'view-green' : 'view-white' }}"
+    ></view>
+    <view
+      class="text-tab {{ dataType === '3' ? 'view-green' : 'view-white' }}"
+    ></view>
+    <view
+      class="text-tab {{ dataType === '2' ? 'view-green' : 'view-white' }}"
+    ></view>
+    <!-- <view class="text-tab {{dataType==='1'?'text-active':''}}" data-type="1" catchtap="bindHeaderTap">便民服务</view> -->
+    <!--<view class="text-tab {{dataType==='5'?'text-active':''}}" data-type="5" catchtap="bindHeaderTap">已关闭</view>
+    <view class="text-tab {{dataType==='2'?'text-active':''}}" data-type="2" catchtap="bindHeaderTap">已完成</view>-->
+    <!-- <view class="text-tab {{dataType==='4'?'text-active':''}}" data-type="4" catchtap="bindHeaderTap">其他</view> -->
+  </view>
+</view>
+<view class="view-column">
+  <scroll-view
+    bindscrolltolower="bindDownLoad"
+    scroll-y
+    style="height: {{ scrollHeight }}px; width: 750rpx;"
+  >
+    <view wx:if="{{ orderList.length > 0 && dataType !== '3' }}">
+      <view class="view-list" wx:for="{{ orderList }}" wx:key="index">
+        <view class="view-order" catchtap="details" data-value="{{ item }}">
+          <view class="order-row">
+            <text wx:if="{{ dataType == '0' }}" class="font-bold"
+              >订单编号：{{ item.transId }}</text
+            >
+            <text wx:if="{{ dataType != '0' }}" class="font-bold"
+              >订单编号：{{ item.orderId }}</text
+            >
+          </view>
+          <view class="view-line"></view>
+          <!--生活缴费 开始-->
+          <view wx:if="{{ dataType == '0' }}">
+            <view class="order-row" style="margin-top: 15rpx">
+              <text>{{ item.chargeItemName }}</text>
+              <text class="text-flex">{{
+                item.status == "0"
+                  ? "待支付"
+                  : item.status == "1"
+                  ? "支付成功"
+                  : item.status == "2"
+                  ? "支付失败"
+                  : item.status == "3"
+                  ? "未支付"
+                  : item.status == "4"
+                  ? "订单关闭"
+                  : item.status == "5"
+                  ? "退款异常"
+                  : item.status == "6"
+                  ? "已撤销"
+                  : item.status == "7"
+                  ? "已退款"
+                  : "已接收，等待扣款"
+              }}</text>
+            </view>
+            <view class="order-row" style="margin-top: 15rpx">
+              <text>下单时间：</text>
+              <text class="text-flex">{{ item.createTime }}</text>
+            </view>
+            <view class="order-row" style="margin-top: 15rpx">
+              <text>支付渠道：</text>
+              <text class="text-flex">{{
+                item.channelId == "12"
+                  ? "银联"
+                  : item.channelId == "13"
+                  ? "微信"
+                  : "支付宝"
+              }}</text>
+            </view>
+            <view
+              class="btn"
+              wx:if="{{ item.status == '0' || item.status == '3' }}"
+            >
+              <!-- <text class="bg-F2F2">取消订单</text> -->
+              <text class="bg-26A" catchtap="goPay" data-value="{{ item }}"
+                >立即支付</text
+              >
+            </view>
+            <!-- <view class="btn" wx:if="{{item.status=='4'}}">
+              <text class="bg-F41" catchtap="deleteOrder" data-orderId="{{item.orderId}}">删除</text>
+            </view> -->
+          </view>
+          <!--生活缴费 结束-->
+          <!--便民服务 开始-->
+          <view wx:if="{{ dataType == '1' }}">
+            <view class="order-row" style="margin-top: 15rpx">
+              <text>{{ item.serviceName }}</text>
+              <text class="text-flex">{{
+                item.paystate == "0"
+                  ? "未支付"
+                  : item.paystate == "1"
+                  ? "支付成功"
+                  : item.paystate == "2"
+                  ? "支付失败"
+                  : item.paystate == "3"
+                  ? "未支付"
+                  : item.paystate == "4"
+                  ? "订单关闭"
+                  : item.paystate == "5"
+                  ? "退款异常"
+                  : item.paystate == "6"
+                  ? "已撤销"
+                  : item.paystate == "7"
+                  ? "已退款"
+                  : "已接收，等待扣款"
+              }}</text>
+            </view>
+            <view class="order-row" style="margin-top: 15rpx">
+              <text>下单时间：</text>
+              <text class="text-flex">{{ item.createDate }}</text>
+            </view>
+            <view class="order-row" style="margin-top: 15rpx">
+              <text>支付渠道：</text>
+              <text class="text-flex">{{
+                item.paychannel == "11"
+                  ? "银联"
+                  : item.paychannel == "12"
+                  ? "支付宝"
+                  : "微信"
+              }}</text>
+            </view>
+            <view
+              class="btn"
+              wx:if="{{ item.paystate == '0' || item.paystate == '3' }}"
+            >
+              <text class="bg-F2F2">取消订单</text>
+              <text class="bg-26A" catchtap="goPay" data-value="{{ item }}"
+                >立即支付</text
+              >
+            </view>
+            <view
+              class="btn"
+              wx:if="{{ item.paystate == '1' && item.finalPaymentStatus == '0' }}"
+            >
+              <text class="bg-26A" catchtap="showDialog" data-value="{{ item }}"
+                >付尾款</text
+              >
+            </view>
+            <view class="btn" wx:if="{{ item.paystate == '4' }}">
+              <text
+                class="bg-F41"
+                catchtap="deleteOrder"
+                data-orderId="{{ item.orderId }}"
+                >删除</text
+              >
+            </view>
+          </view>
+          <!--便民服务 结束-->
+          <!--其它 开始-->
+          <view wx:if="{{ dataType == '2' }}">
+            <view class="order-row" style="margin-top: 15rpx">
+              <text>{{ item.description }}</text>
+              <text class="text-flex">{{
+                item.status == "0"
+                  ? "待支付"
+                  : item.status == "1"
+                  ? "支付成功"
+                  : item.status == "2"
+                  ? "支付失败"
+                  : item.status == "3"
+                  ? "未支付"
+                  : item.status == "4"
+                  ? "订单关闭"
+                  : item.status == "5"
+                  ? "退款异常"
+                  : item.status == "6"
+                  ? "已撤销"
+                  : item.status == "7"
+                  ? "已退款"
+                  : "已接收，等待扣款"
+              }}</text>
+            </view>
+            <view class="order-row" style="margin-top: 15rpx">
+              <text>下单时间：</text>
+              <text class="text-flex">{{ item.createTime }}</text>
+            </view>
+            <view class="order-row" style="margin-top: 15rpx">
+              <text>支付渠道：</text>
+              <text class="text-flex">{{
+                item.channelId == "12"
+                  ? "银联"
+                  : item.channelId == "13"
+                  ? "微信"
+                  : "支付宝"
+              }}</text>
+            </view>
+            <view
+              class="btn"
+              wx:if="{{ item.status == '0' || item.status == '3' }}"
+            >
+              <!-- <text class="bg-F2F2">取消订单</text> -->
+              <text class="bg-26A" catchtap="goPay" data-value="{{ item }}"
+                >立即支付</text
+              >
+            </view>
+            <!-- <view class="btn" wx:if="{{item.status=='4'}}">
+              <text class="bg-F41" catchtap="deleteOrder" data-orderId="{{item.orderId}}">删除</text>
+            </view> -->
+          </view>
+          <!--其它 结束-->
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{ orderList.length > 0 && dataType == '3' }}">
+      <view class="goods-list">
+        <view class="row">
+          <view
+            wx:for="{{ orderList }}"
+            wx:key="orderId"
+            class="itmem_wrap"
+            catchtap="mallOrderdetails"
+            data-id="{{ item.orderId }}"
+          >
+            <view class="shop-name">
+              <span class="">{{ item.merchantName }}</span>
+              <!-- '订单状态（0：待发货；1：待收货；2：已收货；3：已完成；4：申请退款；5：已退货；6：已退款）', -->
+              <!-- '支付状态（0：待支付；1：支付成功；2：支付失败）', -->
+
+              <span class="status" wx:if="{{ item.payStatus == 0 }}"
+                >待支付</span
+              >
+
+              <span class="status" wx:if="{{ item.payStatus == 2 }}"
+                >支付失败</span
+              >
+
+              <span
+                class="status"
+                wx:if="{{ item.status == 0 && item.payStatus == 1 }}"
+                >待发货</span
+              >
+              <span
+                class="status"
+                wx:if="{{ item.status == 1 && item.payStatus == 1 }}"
+                >待收货</span
+              >
+              <span
+                class="status"
+                wx:if="{{ item.status == 2 && item.payStatus == 1 }}"
+                >已收货</span
+              >
+              <span
+                class="status"
+                wx:if="{{ item.status == 3 && item.payStatus == 1 }}"
+                >已完成</span
+              >
+              <span
+                class="status"
+                wx:if="{{ item.status == 4 && item.payStatus == 1 }}"
+                >申请退款</span
+              >
+              <span
+                class="status"
+                wx:if="{{ item.status == 5 && item.payStatus == 1 }}"
+                >已退货</span
+              >
+              <span
+                class="status"
+                wx:if="{{ item.status == 6 && item.payStatus == 1 }}"
+                >已退款</span
+              >
+              <!-- <image mode="widthFix" src="/state/images/youjiantou.png"></image> -->
+            </view>
+            <view
+              class="good-info"
+              wx:for="{{ item.orderGoodsList }}"
+              wx:for-item="good"
+              wx:key="goodsId"
+            >
+              <image
+                class="good-img"
+                src="{{ tools.my_json(good.image) }}"
+                mode="aspectFill"
+                lazy-load="false"
+                binderror=""
+                bindload=""
+              ></image>
+              <view class="content">
+                <view class="title">{{ good.goodsName }}</view>
+                <view class="info mb-20">
+                  <view class="total-price">
+                    <text class="footmoney">￥</text>
+                    <text class="head">{{
+                      filters.toFixHead(good.totalPrice)
+                    }}</text>
+                    <text class="tail"
+                      >.{{ filters.toFixTail(good.totalPrice) }}</text
+                    >
+                  </view>
+                  <view class="price"> 共{{ good.totalNum }}件 </view>
+                </view>
+                <view class="info bottom">
+                  <view class="btn-groups">
+                    <!-- <view class="btn">删除订单</view> -->
+                    <view
+                      wx:if="{{ item.payStatus !== '0' }}"
+                      class="btn main"
+                      data-goodsid="{{ good.goodsId }}"
+                      catchtap="handleClickBtnBuyAgain"
+                      >再次购买</view
+                    >
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
+    <view wx:if="{{ !isLoading && !orderList.length }}">
+      <view class="yoshop-notcont">
+        <text class="cont">亲，您还没有订单信息哦！</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<dialog
+  id="dialog"
+  title="付尾款"
+  orderId="{{ orderId }}"
+  merchantId="{{ merchantId }}"
+  merchantName="{{ merchantName }}"
+  description="{{ serviceName }}"
+  cancelText="取消"
+  confirm="确认"
+  bind:cancelEvent="_cancelEvent"
+  bind:confirmEvent="_confirmEvent"
+></dialog>

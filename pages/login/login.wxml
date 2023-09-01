@@ -1,0 +1,19 @@
+<view class="container">
+  <!-- <view class="wechatapp">
+    <image class="header" src="/state/images/yucun.png" mode="widthFix"></image>
+  </view> -->
+  <!-- <view class="auth-title">申请获取以下权限</view>
+  <view class="auth-subtitle">获得你的公开信息（昵称、头像等）</view> -->
+  <view class="view-bottom">
+  <view class="view-row">
+    <radio color="#26a886;" style="transform:scale(0.6);" bindtap="radioTap" checked="{{radioType}}"></radio>
+    <text style="color:#585858;">已阅读并同意</text>
+    <text style="color:#26a886;" bindtap="agreement">《用户服务协议》</text>
+  </view>
+  <!-- <button class="login-btn" wx:if="{{radioType && !isType}}" style="width:100%;" bindtap="getUserProfile">授权登录</button>
+  <button class="login-btn" wx:if="{{!radioType && !isType}}" style="width:100%;" bindtap="showStr">授权登录</button> -->
+  <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" style="width:100%;">获取手机号码</button>
+</view>
+</view>
+<dialog id='dialog' title='发表评价' cancelText='取消' confirm='确认' bind:cancelEvent="_cancelEvent" bind:confirmEvent="_confirmEvent">
+</dialog>

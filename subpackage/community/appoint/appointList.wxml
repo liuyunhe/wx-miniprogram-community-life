@@ -1,0 +1,50 @@
+<!--pages/community/appoint/appointList.wxml-->
+<!--pages/community/activity/signUp.wxml-->
+<view class="" hover-class="none" style="position:relative;" hover-stop-propagation="false">
+  <view class="contentArea" hover-class="none" hover-stop-propagation="false">
+    <view class="contentItem" hover-class="none" hover-stop-propagation="false">
+        <picker mode="selector"  model:value="{{type}}"  bindchange="bindDateChange">
+            <view class="pickerParent">
+                预约类型
+                <view class="pickerchildren">
+                    {{type}}>
+                </view>
+            </view>
+        </picker>
+    </view>
+    <view class="divLine" hover-class="none" hover-stop-propagation="false">
+    </view>
+    <view class="contentItem" hover-class="none" hover-stop-propagation="false">
+      <view class="labelStyle">预约人</view>
+      <input  type="text" model:value="{{userName}}"></input>
+    </view>
+    <view class="divLine" hover-class="none" hover-stop-propagation="false">
+    </view>
+    <view class="contentItem"  hover-class="none" hover-stop-propagation="false">
+      <view class="labelStyle">证件号</view>
+      <input type="text" model:value="{{IdNumber}}"></input>
+    </view>
+    <view class="divLine" hover-class="none" hover-stop-propagation="false">
+    </view>
+    <view class="contentItem" hover-class="none" hover-stop-propagation="false">
+      <view class="labelStyle">手机号</view>
+      <input type="text" model:value="{{mobileNumber}}"></input>
+    </view>
+    <view class="divLine" hover-class="none" hover-stop-propagation="false">
+    </view>
+    <view class="contentItem" hover-class="none"  hover-stop-propagation="false">
+      <picker mode="date"  model:value="{{date}}"  bindchange="bindDateChange">
+        <view class="pickerParent">
+            预约时间
+            <view class="pickerchildren">
+                {{date}}>
+            </view>
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="signUpButton" catchtap="signUpSubmit" hover-class="none" hover-stop-propagation="false">
+    预约
+  </view>
+</view>
+

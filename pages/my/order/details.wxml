@@ -1,0 +1,27 @@
+<view class="view-block">
+  <view class="view-column view-center">
+    <image class="img-titile" src="/state/images/yucun.png" mode="widthFix"></image>
+    <text class="text-margin">{{payDetail.serviceName}}</text>
+    <text class="text-margin" style="font-size: 45rpx;font-weight: bold;">
+      <text wx:if="{{payDetail.paystate =='1'}}">-</text>
+      <text>￥{{payDetail.realPrice}}</text>
+    </text>
+    <text class="text-margin">{{payDetail.paystate =='1'?'交易成功' : payDetail.paystate =='0'? '未支付' : payDetail.paystate =='2'? '交易失败': payDetail.paystate =='3'? '未支付' : payDetail.paystate =='4'? '订单关闭': payDetail.paystate =='5'? '退款异常': payDetail.paystate =='6'?'已撤销':payDetail.paystate =='7'? '已退款':'已接收，等待扣款'}}</text>
+  </view>
+  <view class="view-row text-margin">
+    <text class="text-flex">付款方式</text>
+    <text>{{payDetail.paychannel=='11'?'银联':payDetail.paychannel=='12'?'支付宝':'微信'}}</text>
+  </view>
+  <view class="view-row text-margin">
+    <text class="text-flex">账单分类</text>
+    <text>{{payDetail.dataType=='0'?'生活缴费':payDetail.dataType=='1'?'便民服务':'其它'}}</text>
+  </view>
+  <view class="view-row text-margin">
+    <text class="text-flex">创建时间</text>
+    <text>{{payDetail.createDate}}</text>
+  </view>
+  <view class="view-row text-margin" wx:if="{{payDetail.payDate}}">
+    <text class="text-flex">支付时间</text>
+    <text>{{payDetail.payDate}}</text>
+  </view>
+</view>

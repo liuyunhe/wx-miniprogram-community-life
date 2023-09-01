@@ -1,0 +1,92 @@
+<wxs module="filters" src="../../../utils/addmul.wxs"></wxs>
+<wxs module="tools" src="../../../utils/string.wxs" />
+<view class="base">
+  <view class="content">
+    <view class="header flex align-center justify-center rpx-30">
+      <view class="view-row align-center view-search">
+        <input
+          class="input"
+          placeholder="搜索您想要的商品"
+          value="{{ goodsName }}"
+          type="text"
+          bindinput="getValue"
+        />
+        <view class="serchbtn" bindtap="goInstall">搜索</view>
+      </view>
+    </view>
+
+    <scroll-view
+      wx:if="{{categoryId}}"
+      scroll-x
+      class="rpx-20 pt-30 view-sort"
+      style="display: flex; white-space: nowrap"
+    >
+      <view
+        class="content-img but_list"
+        wx:for="{{ sortData }}"
+        wx:key="index"
+        bindtap="goMallSort"
+        data-id="{{ item.categoryId }}"
+      >
+        <image
+          src="{{ tools.my_json(item.categoryImage) }}"
+          mode="widthFix|aspectFill"
+        ></image>
+        <view class="content-txt text-overflow">{{ item.categoryName }}</view>
+      </view>
+    </scroll-view>
+
+    <view class="goods-list">
+      <view wx:if="{{ goodList.length > 0 }}">
+        <view class="row" wx:for="{{ goodList }}" wx:key="goodsId">
+          <view
+            class="itmem_wrap"
+            data-id="{{ item.goodsId }}"
+            bind:tap="goGoodDetal"
+          >
+            <image
+              class="good-img"
+              src="{{ item.image ? tools.my_json(item.image) : '' }}"
+              mode="aspectFill"
+              lazy-load="false"
+              binderror=""
+              bindload=""
+            ></image>
+            <view class="content">
+              <view class="title">{{ item.goodsName }}</view>
+              <view class="info mb-30">
+                <view class="type">
+                  <!-- <view class="label text-overflow">{{ item.goodsDesc }}</view> -->
+                  <view class="label text-overflow"></view>
+                </view>
+              </view>
+              <view class="info">
+                <view class="total-price">
+                  <text class="footmoney">￥</text>
+                  <text class="head">{{ filters.toFixHead(item.price) }}</text>
+                  <text class="tail">.{{ filters.toFixTail(item.price) }}</text>
+                </view>
+                <view class="btn-groups">
+                  <view
+                    class="add-cart"
+                    catch:tap="addToChart"
+                    data-id="{{ item.goodsId }}"
+                  >
+                    <image
+                      src="/state/images/icon-add-cart.png"
+                      mode="widthFix"
+                    ></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="noData" wx:else>
+        <image mode="widthFix" src="/state/images/noData.png"></image>
+        <view>暂无数据</view>
+      </view>
+    </view>
+  </view>
+</view>

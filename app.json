@@ -1,0 +1,162 @@
+{
+  "pages": [
+    "pages/index/home/index",
+    "pages/index/home/notice",
+    "pages/index/home/confirm",
+    "pages/index/home/parking",
+    "pages/index/home/communal",
+    "pages/index/home/workCard",
+    "pages/index/home/idCode",
+    "pages/index/home/success",
+    "pages/index/proposal/index",
+    "pages/index/proposal/repairAdd",
+    "pages/index/proposal/detail",
+    "pages/my/home/index",
+    "pages/my/home/setup",
+    "pages/my/home/problemList",
+    "pages/my/home/problemDetails",
+    "pages/my/home/appointment",
+    "pages/my/home/appointmentDetails",
+    "pages/my/home/card",
+    "pages/my/home/accountno",
+    "pages/my/home/password",
+    "pages/my/home/feedback",
+    "pages/my/home/balance",
+    "pages/my/home/balance1",
+    "pages/my/home/openAccount",
+    "pages/my/home/recharge",
+    "pages/my/home/recharge1",
+    "pages/my/bill/order",
+    "pages/my/bill/details",
+    "pages/my/order/index",
+    "pages/my/order/details",
+    "pages/service/home/index",
+    "pages/login/login",
+    "pages/index/payment/index",
+    "pages/index/query/index",
+    "pages/index/addAccount/index",
+    "pages/index/navigation/index",
+    "pages/index/addPay/index",
+    "pages/index/lifePay/index",
+    "pages/index/setUp/index",
+    "pages/service/install/index",
+    "pages/service/installDetail/index",
+    "pages/service/order/index",
+    "pages/service/address/index",
+    "pages/service/addAddress/index",
+    "pages/index/subscribe/index",
+    "pages/index/approx/index",
+    "pages/index/approxOrder/index",
+    "pages/my/market/index",
+    "pages/my/newMarket/index",
+    "pages/my/home/myActivities",
+    "pages/my/home/about",
+    "pages/community/home/index",
+    "pages/mall/home/index"
+  ],
+  "subpackages": [{
+    "root": "subpackage/community",
+    "name": "community",
+    "pages": [
+      "activity/index",
+      "appoint/index",
+      "guide/index",
+      "info/index",
+      "market/index",
+      "notice/index",
+      "question/index",
+      "other/index",
+      "info/detail",
+      "notice/details",
+      "guide/particulars",
+      "activity/details",
+      "activity/signUp",
+      "question/feedback",
+      "question/details",
+      "counsel/index",
+      "counsel/details",
+      "appoint/appointList",
+      "appoint/signUp",
+      "activity/signUpResult",
+      "market/publish"
+    ],
+    "independent": false
+  },{
+    "root": "subpackage/mall",
+    "name": "mall",
+    "pages": [
+      "goodDetail/index",
+      "goodDetail/comment",
+      "shoppingCart/index",
+      "confirmOrder/index",
+      "order/detail",
+      "order/comment",
+      "order/list",
+      "search/sort"
+    ],
+    "independent": false
+  }],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3CDABB",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "custom": false,
+    "color": "#6e6d6b",
+    "selectedColor": "#3CDABB",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [{
+        "pagePath": "pages/index/home/index",
+        "text": "首页",
+        "iconPath": "/state/images/home.png",
+        "selectedIconPath": "/state/images/home-active.png"
+      },
+      {
+        "pagePath": "pages/index/home/communal",
+        "text": "公用",
+        "iconPath": "/state/images/communal.png",
+        "selectedIconPath": "/state/images/communal-active.png"
+      },
+      {
+        "pagePath": "pages/mall/home/index",
+        "text": "商城",
+        "iconPath": "/state/images/mall.png",
+        "selectedIconPath": "/state/images/mall-active.png"
+      },
+      {
+        "pagePath": "pages/community/home/index",
+        "text": "社区",
+        "iconPath": "/subpackage/community/images/community_icon.png",
+        "selectedIconPath": "/subpackage/community/images/community_icon_active.png"
+      },
+      {
+        "pagePath": "pages/my/home/index",
+        "text": "我的",
+        "iconPath": "/state/images/my.png",
+        "selectedIconPath": "/state/images/my-active.png"
+      }
+    ],
+    "position": "bottom"
+  },
+  "plugins": {
+    "ocr-plugin": {
+      "version": "3.1.5",
+      "provider": "wx4418e3e031e551be"
+    }
+  },
+  "usingComponents": {},
+  "style": "v2",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于为您提供更合适您的服务"
+    }
+  },
+  "sitemapLocation": "sitemap.json",
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ]
+}

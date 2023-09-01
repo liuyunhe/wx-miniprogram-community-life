@@ -1,0 +1,21 @@
+<view class='wx_dialog_container' hidden="{{!isShow}}">
+  <view class='wx-mask' catchtap="hideDialog"></view>
+  <view class='wx-dialog'>
+    <view class="people-msg">
+      <view class='wx-dialog-title' style="flex: 1;">{{attributes.merchantName}}</view>
+      <image class="img-del" src="/state/images/close.png" bindtap="_cancelEvent" mode="widthFix"></image>
+    </view>
+    <view class='view-text' style="color:blue;" bindtap="showAddrAdvance">{{attributes.address}}</view>
+    <view wx:if="{{type=='merchant'}}" class='view-text' style="color:red;text-align: right;margin-top:30rpx;" catchtap="pay">去缴费</view>
+    <view wx:if="{{type=='service'}}" class='view-text' style="color:red;text-align: right;margin-top:30rpx;" catchtap="service">查看服务</view>
+    <view wx:if="{{type=='charge'}}" class='view-text people-msg' style="color:red;margin-top:30rpx;">
+      <text style="margin-right: 20rpx;" catchtap="goTo" data-item="sf">缴水费</text>
+      <text style="margin-right: 20rpx;" catchtap="goTo" data-item="rqf">缴燃气费</text>
+      <text style="margin-right: 20rpx;" catchtap="goTo" data-item="rlf">缴热力费</text>
+    </view>
+    <!-- <view class='wx-dialog-footer'>
+      <view class='wx-dialog-btn' catchtap='_cancelEvent'>{{ cancelText }}</view>
+      <view class='wx-dialog-btn' catchtap='_confirmEvent'>{{ confirmText }}</view>
+    </view> -->
+  </view>
+</view>

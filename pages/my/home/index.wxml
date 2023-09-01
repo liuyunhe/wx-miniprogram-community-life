@@ -1,0 +1,73 @@
+<view class="base">
+  <view class="header">
+    <view class="view-row" style="margin-top: 20rpx;">
+      <image class="headImg" src="{{titleImg}}" mode="aspectFill"></image>
+      <view class="view-column" style="flex:1;">
+        <view>{{titleName}}</view>
+        <view style="font-size: 26rpx;margin-top: 8rpx;" bindtap="showDialog">查看并编辑个人资料</view>
+      </view>
+      <image class="login-out" src="/state/images/tuichu.png" catchtap="loginOut"></image>
+    </view>
+    <view class="view-mianmi">
+      <image class="mm-btn" mode="widthFix" src="{{imgIcon}}" catchtap="balance"></image>
+    </view>
+    <!-- <view class="headerText">
+      <image class="headImg in-block mr-20" src="{{titleImg}}" mode="aspectFill"></image>
+      <view class="in-block mb-10">
+        <view class="mb-10" style="margin-bottom: 25rpx;">{{titleName}}</view>
+      </view>
+    </view>
+    <image class="right" src="/state/images/jiantou.png" mode="widthFix"></image> -->
+  </view>
+  <!-- <view class="view-row view-center" style="background: #26a886;">
+    <text style="flex:1;"></text>
+    <image class="login-out" src="/state/images/tuichu.png" catchtap="loginOut"></image>
+  </view> -->
+  <view class="list">
+    <!-- <view class="listLine mb-24" bindtap="balance">
+      <image class="listImg mr-23" src="/state/images/yue-icon.png" mode="widthFix"></image>
+      <view style="flex: 0.9;">免密协议</view>
+      <view class="mr-20">未开通</view>
+      <image class="listRight" src="/state/images/youjiantou.png" mode="widthFix" style="margin-right:10rpx;"></image>
+    </view> -->
+    <view class="view-column view-padding">
+      <view class="view-row">
+        <view class="matter-sign"></view>
+        <text class="text-title">服务与功能</text>
+      </view>
+      <view class="view-row">
+        <view class="view-nav" bindtap="getPage" data-id="0">
+          <image class="navImg" src="/state/images/zhangdan1.png" mode="widthFix"></image>
+          <text>我的账单</text>
+        </view>
+        <view class="view-nav" bindtap="getPage" data-id="1">
+          <image class="navImg" src="/state/images/zhangdan1.png" mode="widthFix"></image>
+          <text>我的订单</text>
+        </view>
+        <view class="view-nav" bindtap="getPage" data-id="3">
+          <image class="navImg" src="/state/images/yuyue.png" mode="widthFix"></image>
+          <text>我的互动</text>
+        </view>
+        <view class="view-nav" bindtap="getPage" data-id="2">
+          <image class="navImg" src="/state/images/huhao.png" mode="widthFix"></image>
+          <text>我的缴费</text>
+        </view>
+      </view>
+    </view>
+    <!-- <view class="view-column view-padding">
+      <text class="text-title" style="margin-bottom: 0rpx;">其他</text>
+    </view>   -->
+    <view class="view-column view-padding1">
+      <view class="listLine" wx:for="{{listData}}" wx:key="index" bindtap="getPage" data-id="{{item.id}}">
+        <image class="listImg mr-23" src="{{item.url}}" mode="widthFix"></image>
+        <view style="flex: 0.9;color:#333;">{{item.title}}</view>
+        <image class="listRight" src="/state/images/youjiantou.png" mode="widthFix"></image>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="view-column view-center">
+    <text class="pay-list" bindtap="refundDetails">退出登录</text>
+  </view> -->
+</view>
+<dialog id='dialog' title='发表评价' nickname='{{titleName}}' avatarUrl='{{titleImg}}' bind:cancelEvent="_cancelEvent" bind:confirmEvent="_confirmEvent">
+</dialog>

@@ -1,0 +1,51 @@
+<view class="view-column padding-30">
+  <view class="view-row view-center" style="margin-top: 10rpx;">
+    <text class="text-month">{{month}}</text>
+    <text class="text-yue">月</text>
+    <picker mode="date" value="{{date}}" fields="month" bindchange="bindDateChange">
+      <image class="xia-img" src="/state/images/jt-xia.png" mode="widthFix"></image>
+    </picker>
+    <view class="view-shu"></view>
+    <view class="view-total">
+      <text>支出：￥1587.58</text>
+      <text style="margin-top: 10rpx;">收入：￥2300</text>
+    </view>
+    <view class="view-row view-center font-30">
+      <!-- <text style="flex:1;">支出 ￥1587.58 收入 ￥2300</text> -->
+      <text>{{typeStr}}</text>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" range-key="name">
+        <image class="xia-img" src="/state/images/jt-xia.png" mode="widthFix"></image>
+      </picker>
+    </view>
+  </view>
+  <!-- <view class="view-row view-center font-30">
+    <text style="flex:1;">支出 ￥1587.58 收入 ￥2300</text>
+    <text>{{typeStr}}</text>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" range-key="name">
+      <image class="xia-img" src="/state/images/jt-xia.png" mode="widthFix"></image>
+    </picker>
+  </view> -->
+  <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; width: 690rpx;">
+    <view wx:if="{{list.length > 0}}">
+      <view class="view-list" wx:for="{{list}}">
+        <view class="view-row" bindtap="details" data-item="{{item}}">
+          <image class="img-titile" src="/state/images/yucun.png" mode="widthFix"></image>
+          <view class="view-column view-content">
+            <text style="margin-left: 20rpx;">{{item.merchantName}}</text>
+            <text class="text-type" style="margin-left: 20rpx;">日用百货</text>
+            <text class="text-type" style="margin-left: 20rpx;">{{item.orderCreateTime}}</text>
+          </view>
+          <text wx:if="{{item.inOut=='0'}}" class="text-pay">-{{item.amount/100}}</text>
+          <text wx:if="{{item.inOut=='1'}}" class="text-pay">+{{item.amount/100}}</text>
+        </view>
+        <view class="view-line"></view>
+      </view>
+    </view>
+    <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
+    <view wx:if="{{ !isLoading && !list.length }}">
+      <view class="yoshop-notcont">
+        <text class="cont">亲，您还没有账单信息哦！</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

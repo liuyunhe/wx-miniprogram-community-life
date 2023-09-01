@@ -1,0 +1,42 @@
+<view class="base">
+  <view class="rpx-20">
+    <!-- <view class="header rpx-20">
+      <image mode="widthFix" src="{{payImg}}"></image>
+      <view class="ml-10">{{payName}}</view>
+    </view> -->
+    <view class="content rpx-20">
+      <view class="view-row">
+        <view class="view-shu"></view>
+        <view class="ml-10" style="font-weight: bold;">{{payName}}</view>
+      </view>
+      <view class="view-row">
+        <view class="fs-26" style="flex:1; color:#666666">缴费单位</view>
+        <picker mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{orgList}}" range-key="merchantName">
+          <view class="flex align-center">
+            <input class="fs-26" style="text-align: right;margin-right: 20rpx;color:#666;" value="{{payUnit}}"placeholder="请选择缴费单位" disabled></input>
+            <image src="/state/images/youjiantou.png" mode="widthFix"></image>
+          </view>
+        </picker>
+      </view>
+      <view class="view-line"></view>
+      <view class="view-row">
+        <view class="fs-26" style="color:#666666;"> 用户编号</view>
+        <input class="inp" type="text" value="{{custChargeNo}}" bindinput='getInputValue' placeholder="请输入用户编号" />
+      </view>
+    </view>
+  </view>
+  <view class="foot rpx-20">
+    <!-- <view class="flex align-center">
+      <image wx:if="{{isCheck}}" src="/state/images/check.png" bindtap="onCheck"></image>
+      <image wx:else="{{!isCheck}}" src="/state/images/oncheck.png" bindtap="onCheck"></image>
+      <view class="ml-10 foot-fs-26">
+        <text class="color">同意</text>
+        <text class="colorOne">《缴费协议》</text>
+      </view>
+    </view> -->
+    <view class="footbon" bindtap="goTo">下一步</view>
+  </view>
+  <!-- <view class="btn rpx-20 ">
+    <view class="footbon">保存</view>
+  </view> -->
+</view>

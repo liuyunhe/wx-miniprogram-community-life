@@ -1,0 +1,58 @@
+<view class="view-column">
+  <form bindsubmit="saveData">
+    <view class="view-star">
+      <view class="title" hover-class="none" hover-stop-propagation="false">
+        商品评价
+      </view>
+      <view class="star-wrap" wx:for="{{ stars }}" wx:key="index">
+        <image
+          class="star"
+          wx:if="{{ item === 1 }}"
+          data-index="{{ index }}"
+          bindtap="change_star"
+          src="/state/images/icon-star-active.png"
+          mode="widthFix"
+        ></image>
+        <image
+          class="star"
+          wx:if="{{ item === 0 }}"
+          data-index="{{ index }}"
+          bindtap="change_star"
+          src="/state/images/icon-star-deactive.png"
+          mode="widthFix"
+        ></image>
+      </view>
+      <view class="star-type">
+        <span wx:if="{{ starsNum === 0 }}">强烈不推荐</span>
+        <span wx:if="{{ starsNum === 1 }}"> 不推荐 </span>
+        <span wx:if="{{ starsNum === 2 }}"> 一般般 </span>
+        <span wx:if="{{ starsNum === 3 }}"> 还不错 </span>
+        <span wx:if="{{ starsNum === 4 }}"> 推荐 </span>
+        <span wx:if="{{ starsNum === 5 }}"> 强烈推荐 </span>
+      </view>
+    </view>
+    <view class="view-back">
+      <textarea
+        name="commentContent"
+        style="font-size: 26rpx; margin-bottom: 30rpx"
+        placeholder="请对物品进行评价~"
+      ></textarea>
+      <view
+        class="upload-img-title"
+        hover-class="none"
+        hover-stop-propagation="false"
+      >
+        拍个照呗~
+      </view>
+      <uploadImg
+        id="uploadImg"
+        imgNum="{{ 9 }}"
+        binditemResChange="handleItemChange"
+      >
+      </uploadImg>
+    </view>
+    <button class="btn-enter" style="width: 100%" formType="submit">
+      提交
+    </button>
+  </form>
+</view>

@@ -1,0 +1,79 @@
+<!--pages/community/notice/index.wxml-->
+<!-- <view class='container'>
+  <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; border-radius: 5px; margin-top:5rpx ">
+    <view wx:for="{{noticeList}}" wx:key="index">
+      <view  class='text-content' bindtap="noticeDetails" data-item="{{item}}">
+        <text class="title">{{item.title }}</text>
+        <view class="weight-divLine"></view>
+        <rich-text nodes="{{item.noticeDetail}}"></rich-text>
+        <view class="divLine"></view>
+        <view >发布人：{{item.createOperName }}</view>
+      </view>
+      <view class ='content-partition' ></view>
+    </view>
+  </scroll-view>
+</view> -->
+
+<view class="view-column">
+  <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; width: 750rpx;">
+    <view wx:if="{{list.length > 0}}">
+      <view class="view-list" wx:for="{{list}}" wx:key="index">
+        <view class="view-order">
+          <view  data-item="{{item}}">
+            <view class="order-row" catchtap="questionDetails" data-detail="{{item}}">
+              <view class="font-bold">{{item.content}}</view>
+            </view>
+            <view  style="padding-left:30rpx;margin-top:14rpx;">
+              <image wx:for="{{item.adviceImage}}"  wx:for-item="imageItem" wx:key="item" style="display:inline-block; width:160rpx;height:160rpx;padding-right:20rpx;" src="{{baseImageUrl + imageItem}}" />
+            </view>
+            <view class="view-line"></view>
+            <!-- <view class="order-row">
+              <text class="font-bold" style="color:#26a886;">{{item.assetName}}</text>
+              <text wx:if="{{item.status=='1'}}" class="text-flex">已预约</text>
+              <text wx:if="{{item.status=='3'}}" class="text-flex">已核销</text>
+              <text wx:if="{{item.status=='4'}}" class="text-flex">已取消</text>
+              <text wx:if="{{item.status=='6'}}" class="text-flex">已过期</text>
+            </view> -->
+            <!-- <view class="order-row" style="margin-top:15rpx;">
+              <text>状态：</text>
+              <text class="text-flex" wx:if="{{item.state=='0'}}">待回复</text>
+              <text class="text-flex" wx:if="{{item.state=='1'}}">已回复</text>
+            </view>
+            <view class="order-row" style="margin-top:15rpx;">
+              <text>创建日期：</text>
+              <text class="text-flex">{{item.createTime}}</text>
+            </view> -->
+            <view class="" style="padding-left:30rpx;padding-right:30rpx;height:93rpx;line-height:93rpx;position:relative;">
+              <image class="" style="width:19.78rpx;height:26rpx;margin-right:8rpx" src="/subpackage/community/images/activityPosition.png"></image>
+              <view style="display:inline-block;font-size:24rpx;color:#999999;">方恒社区</view>
+              <image class="" style="width:29.1rpx;height:18rpx;margin-left:29rpx; margin-right:8rpx" src="/subpackage/community/images/activityEye.png"></image>
+              <view style="display:inline-block;font-size:24rpx;color:#999999;">4577</view>
+              <view style="display:inline-block;font-size:24rpx;margin-left:140rpx;color:#999999;font-family:PingFang SC-Regular;">
+                {{item.createTime}}
+              </view>
+            </view>
+      
+   
+          </view>
+          <!-- <view class="order-row" style="margin-top:20rpx;">
+            <text class="text-flex"></text>
+            <text wx:if="{{item.status=='1'}}" class="text-cacel" catchtap="cancel" data-status="4" data-id="{{item.id}}">取消预约</text>
+            <text wx:if="{{item.status=='3' || item.status=='4' || item.status=='6'}}" class="text-del" catchtap="cancel" data-status="5" data-id="{{item.id}}">删除</text>
+          </view> -->
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
+    <view wx:if="{{ !isLoading && !list.length }}">
+      <view class="yoshop-notcont">
+        <text class="cont">亲，您还没有投诉信息哦！</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<view class="view-mfn">
+  <view class="mfn-content" bindtap="addQuestion">
+    <text class="text-mfn">投诉</text>
+  </view>
+</view>
+

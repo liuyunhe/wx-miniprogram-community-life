@@ -1,0 +1,62 @@
+<wxs src="../../../utils/string.wxs" module="my_img" />
+<view class="container">
+  <view class="list-header">
+    <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; width: 750rpx;">
+      <view class="new" wx:if="{{list.length > 0}}">
+        <view class="category-list  arrange">
+          <view class="list b-f" hover-class="none" wx:for="{{list}}" wx:key="index" data-item="{{item}}" catchtap="detail">
+            <view class="item-category">
+              <view class="transverse_class">
+                <!-- <image class="img-header" src="{{avatarUrl}}"></image> -->
+                <view class="user-info" style="margin-top:15rpx;">
+                  <view class="view-row">
+                    <text class="user-name">【{{item.repairTypeName}}】</text>
+                    <view style="flex: 1;">
+                      <text class="text-orange" wx:if="{{item.state=='0'}}">待派单</text>
+                      <text class="text-state" wx:if="{{item.state=='1'}}">已派单</text>
+                      <text class="text-state" wx:if="{{item.state=='2'}}">已处理</text>
+                      <text class="text-state" wx:if="{{item.state=='3'}}">已评价</text>
+                      <text class="text-state" wx:if="{{item.state=='4'}}">已关闭</text>
+                    </view>
+                    <text>{{item.createTime}}</text>
+                  </view>
+                </view>
+              </view>
+              <!-- <text class="category-mark">【{{item.repairTypeName}}】</text> -->
+              <view class="goods-desc">
+                <text class="text-desc">{{item.content}}</text>
+              </view>
+            </view>
+            <view class="img-list" wx:if="{{item.repairImage.length>0}}" wx:for="{{my_img.my_img(item.repairImage)}}" wx:for-item="imglist" wx:key="index">
+              <view wx:if="{{index<3}}">
+                <image class="goodsImg" mode="aspectFill" src="{{imgUrl}}{{imglist}}"></image>
+              </view>
+            </view>
+            <view class="transverse_class" style="padding-top:25rpx; margin-left:20rpx;">
+              <text style="flex:1; margin-top:10rpx;margin-bottom: 20rpx;">手机号：{{item.phone}}</text>
+              <text wx:if="{{item.state=='1' || item.state=='2'}}" class="del-btn" data-text="{{item.phone}}" data-item="{{item}}" catchtap='showDialog'>评价</text>
+            </view>
+
+            <view class="addr_class" style="padding-bottom:20rpx; margin-left:20rpx;">
+              <image class="addr" mode="widthFix" src="/state/images/addr.png"></image>
+              <text style="flex:1; margin-top:10rpx;">{{item.address}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
+      <view wx:if="{{ !isLoading && !list.length }}">
+        <view class="yoshop-notcont">
+          <text class="cont">亲，您还没有报修信息哦！</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+<view class="view-mfn">
+  <view class="mfn-content" catchtap="repair">
+    <image class="img-plus" mode="widthFix" src="/state/images/plus.png"></image>
+  </view>
+</view>
+<dialog id='dialog' title='发表评价' repairId='{{repairId}}' type='1' cancelText='取消' confirm='确认' bind:cancelEvent="_cancelEvent" bind:confirmEvent="_confirmEvent">
+</dialog>

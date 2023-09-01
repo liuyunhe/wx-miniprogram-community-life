@@ -1,0 +1,13 @@
+<wxs src="../../utils/string.wxs" module="tools" />
+<swiper style="height: 100%;">
+  <swiper-item wx:for="{{imgList}}" wx:key="index">
+    <view class="special-topic">
+      <!-- {{tools.my_json(item.advertise_image_id)}} -->
+      <image class='imagesize' src="{{item.url}}" mode="widthFix"></image>
+      <view class="special-topic-content">
+        <view class="special-topic-content-left">广告</view>
+        <view class="special-topic-content-right" bindtap="jump">跳过</view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>

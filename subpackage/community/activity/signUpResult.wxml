@@ -1,0 +1,18 @@
+<!--pages/community/activity/signUpResult.wxml-->
+<view class="" hover-class="none" hover-stop-propagation="false">
+  <view class="" hover-class="none" hover-stop-propagation="false">
+    <!-- <image class="resultImage" 
+    src="{{signUpResultlabel? '/subpackage/community/images/signUpSuccess.png' : '/subpackage/community/images/signUpFail.png'}}"
+    mode="" lazy-load="false" binderror="" bindload="">
+    </image> -->
+    <view class="tipTextSuccess" wx:if="{{signUpResultlabel}}" hover-class="none" hover-stop-propagation="false">
+      恭喜您报名成功！
+    </view>
+    <view class="" class="tipTextFail" wx:else hover-class="none" hover-stop-propagation="false">
+      报名失败！
+      <view class="" style="color:#FF580C;font-size:26rpx;" hover-class="none" hover-stop-propagation="false">
+        当前预约人数已满
+      </view>
+    </view>
+  </view>
+</view>

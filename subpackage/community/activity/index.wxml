@@ -1,0 +1,52 @@
+
+<view class="view-column">
+  <view wx:if="{{showTopBar}}" class="view-row" style="margin-top:15rpx;margin-bottom: 10rpx;">
+    <view class="text-tab {{dataType===''?'text-active':''}}" data-type="" catchtap="bindHeaderTap">全部</view>
+    <view class="text-tab {{dataType==='1'?'text-active':''}}" data-type="1" catchtap="bindHeaderTap">进行中</view>
+    <view class="text-tab {{dataType==='2'?'text-active':''}}" data-type="2" catchtap="bindHeaderTap">已报名</view>
+    <view class="text-tab {{dataType==='3'?'text-active':''}}" data-type="3" catchtap="bindHeaderTap">已结束</view>
+  </view>
+  <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; width: 670rpx;">
+    <view wx:if="{{activitiesList.length > 0}}">
+      <view class="view-list" wx:for="{{activitiesList}}" wx:key="index">
+        <view class="view-order">
+            <view class="noticeCard" catchtap="acticitiesDetails" data-detail="{{item}}">
+              <view style="padding:20rpx;" wx:if="{{item.activityImage}}">
+                <image mode="widthFix" style="width:100%;height:120rpx;" src="{{item.activityImage}}" />
+              </view>
+              <view class="text-title">
+                {{item.title}}
+              </view>
+              <view class="timeStyle">活动时间：{{item.createTime}}</view>
+              <view class="view-line"></view>
+              <view class="" style="padding-left:30rpx;padding-right:30rpx;">
+                <image class="" style="width:17rpx;margin-right:8rpx;" src="/subpackage/community/images/activityPosition.png" mode="widthFix">
+                </image>
+                <view style="display:inline-block;font-size:24rpx;color:#999999;">
+                  方恒社区
+                </view>
+                <image class="" style="width:29.1rpx;height:18rpx;margin-left:29rpx; margin-right:8rpx" src="/subpackage/community/images/activityEye.png">
+                </image>
+                <view style="display:inline-block;font-size:24rpx;color:#999999;">
+                  4577
+                </view>
+                <view style="display:inline-block;font-size:24rpx;margin-left:100rpx;color:#999999;font-family:PingFang SC-Regular;">{{item.createTime}}</view>
+              </view>
+            </view>
+          <view class="order-row" style="margin-top:20rpx;">
+            <text class="text-flex"></text>
+            <text wx:if="{{item.status=='1'}}" class="text-cacel" catchtap="cancel" data-status="4" data-id="{{item.id}}">取消预约</text>
+            <text wx:if="{{item.status=='3' || item.status=='4' || item.status=='6'}}" class="text-del" catchtap="cancel" data-status="5" data-id="{{item.id}}">删除</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
+    <view wx:if="{{ !isLoading && !activitiesList.length }}">
+      <view class="yoshop-notcont">
+        <text class="cont">亲，您还没有社区活动信息哦！</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
