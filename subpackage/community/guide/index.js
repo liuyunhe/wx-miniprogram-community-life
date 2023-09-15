@@ -69,7 +69,8 @@ Page({
     let systemInfo = wx.getSystemInfoSync(),
       rpx = systemInfo.windowWidth / 750, // 计算rpx
       tapHeight = Math.floor(rpx * 100), // tap高度
-      scrollHeight = systemInfo.windowHeight - tapHeight; // swiper高度
+      bannerHeight = Math.floor(rpx * 280), // tap高度
+      scrollHeight = systemInfo.windowHeight - tapHeight - bannerHeight // swiper高度
     this.setData({
       scrollHeight
     });

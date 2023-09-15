@@ -8,11 +8,11 @@
           <view class="title">
             {{item.title}}
           </view>
-          <view  style="padding:20rpx;" >
+          <view class="wrap-img">
             <image mode="widthFix" style="width:100%;height:120rpx;" src="{{item.noticeImage}}" />
           </view>
-          <view wx:if="{{item.noticeDetail}}" class="detailStyle">
-            <rich-text nodes="{{item.noticeDetail}}"></rich-text>
+          <view wx:if="{{item.content}}" class="detailStyle">
+            {{ item.content }}
           </view>
         </view>
         </view>

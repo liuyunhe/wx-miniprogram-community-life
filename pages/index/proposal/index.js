@@ -52,7 +52,13 @@ Page({
     })
     $api.repairList(_this.data.appointData).then(res => {
       if (res.state) {
+        res.value.rows.forEach((item) => {
+          item.repairImage = JSON.parse(item.repairImage)
+        })
+        console.log(res.value.rows)
         if (isPage == true) {
+          
+          
           _this.setData({
             list: _this.data.list.concat(res.value.rows),
             totalPages: res.value.totalPages,

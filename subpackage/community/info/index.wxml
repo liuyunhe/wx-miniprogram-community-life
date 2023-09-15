@@ -10,7 +10,7 @@
             </view>
             <view class="view-line"></view>
             <view class="order-row" style="margin-top:15rpx;" catchtap="details">
-              <text>社区地址：</text>
+              <text class="name">社区地址：</text>
               <text class="text-flex">{{item.province}} {{item.city}} {{item.address}}</text>
             </view>
             <view class="order-row" style="margin-top:15rpx;" catchtap="details">
@@ -20,11 +20,11 @@
             </view>
 
             <view class="order-row" style="margin-top:15rpx;" catchtap="details">
-              <text>工作时间：</text>
+              <text class="name">工作时间：</text>
               <text class="text-flex">{{item.workTime}}</text>
             </view>
             <view class="order-row" style="margin-top:15rpx;" catchtap="details">
-              <text>备注：</text>
+              <text class="name">备注：</text>
               <text class="text-flex">{{item.appointOrgAddress}}</text>
             </view>
           </view>

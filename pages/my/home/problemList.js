@@ -10,15 +10,19 @@ Page({
     dataType: '10',
     tanData: [{
         id: '10',
-        name: '我的建议'
+        name: '意见反馈'
       },
       {
         id: '20',
-        name: '我的咨询'
+        name: '社区咨询'
       },
       {
         id: '30',
-        name: '我的投诉'
+        name: '社区投诉'
+      },
+      {
+        id: '40',
+        name: '商品咨询'
       },
     ],
     scrollHeight: null, // 列表容器高度

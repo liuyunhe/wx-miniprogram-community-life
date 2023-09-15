@@ -194,7 +194,7 @@ Component({
         console.log("i=======" + i);
       }
     },
-    onlinePreview(imgArray,resArray) {
+    onlinePreview(imgArray, resArray) {
       let _this = this;
       var imgList = [];
       // _this.triggerEvent("itemChange", imgArray);
@@ -202,15 +202,19 @@ Component({
         var imgData = {
           fileId: imgArray[i]
         }
+        const j = i
         $api.onlinePreview(imgData).then(res => {
           console.log("浏览图片结果=====", res);
           if (res.result != 'error') {
-            imgList.push(res.currentUrl);
+            const img = {
+              fileName: resArray[j].fileName,
+              url: `https://tacj.openunion.cn/api/portal/file/onlinePreviewController/v1/getFileById_${resArray[j].fileId}`
+            }
+            imgList.push(img);
             var num = imgArray.length - 1;
             console.log(num);
-            console.log(i);
             if (imgList.length == imgArray.length) {
-              console.log(111111111111111,imgList,resArray);
+              console.log(111111111111111, resArray, imgArray)
               _this.triggerEvent("itemChange", imgList);
               _this.triggerEvent("itemResChange", resArray);
             }

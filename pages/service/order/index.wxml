@@ -6,7 +6,9 @@
         <text>{{dataList.contact}}</text>
         <text>{{dataList.phone}}</text>
       </view>
-      <view class="arrder">{{dataList.province}}{{dataList.city}}{{dataList.district}}{{dataList.address}}</view>
+      <view class="arrder"
+        >{{dataList.province}}{{dataList.city}}{{dataList.district}}{{dataList.address}}</view
+      >
     </view>
     <view class="text arrder" wx:if="{{!isAddress}}">请选择地址</view>
     <image mode="widthFix" src="/state/images/youjiantou.png"></image>
@@ -28,20 +30,40 @@
     </picker>
     <view class="view-column">
       <view>留言</view>
-      <textarea bindinput="bindinput" maxlength="3" class="text-heigth" placeholder="描述下具体要求、上门时段等，可以更精准的为您服务～"></textarea>
+      <textarea
+        bindinput="bindinput"
+        maxlength="{{orderNoteMax}}"
+        class="text-heigth"
+        placeholder="描述下具体要求、上门时段等，可以更精准的为您服务～"
+      >
+        <text class="currentWordNumber">{{currentWordNumber|0}}/{{orderNoteMax}}</text>
+      </textarea>
     </view>
   </view>
   <view class="content">
-    <view class="flex money align-center rpx-30" style="padding-left: 30rpx;padding-right: 30rpx;">
+    <view
+      class="flex money align-center rpx-30"
+      style="padding-left: 30rpx; padding-right: 30rpx"
+    >
       <view class="flex-1">上门服务费：</view>
-      <view class="color-DC2" style="font-size: 30rpx;">¥{{unitPrice}}</view>
+      <view class="color-DC2" style="font-size: 30rpx">¥{{unitPrice}}</view>
     </view>
     <view class="foot rpx-30">
-      <view class="payOrg flex align-center" style="border-top: 1rpx solid #f7f7f7;" wx:for="{{payType}}" wx:key="index">
+      <view
+        class="payOrg flex align-center"
+        style="border-top: 1rpx solid #f7f7f7"
+        wx:for="{{payType}}"
+        wx:key="index"
+      >
         <image class="mr-20" mode="widthFix" src="{{item.url}}"></image>
         <view class="flex-1">{{item.title}}</view>
         <radio-group bindchange="radioChange">
-          <radio value="{{item.id}}" style="zoom:.7" checked="{{item.checked}}" color="#3CDABB" />
+          <radio
+            value="{{item.id}}"
+            style="zoom: 0.7"
+            checked="{{item.checked}}"
+            color="#3CDABB"
+          />
         </radio-group>
         <!-- <image wx:if="{{isCheck!=item.id}}" class="check"  bindtap="changeImg" data-id="{{item.id}}" src="/state/images/oncheck.png"></image>
       <image wx:else bindtap="changeImg" data-id="{{item.id}}"  class="check"  src="/state/images/check.png"></image> -->
@@ -49,9 +71,9 @@
     </view>
   </view>
   <view class="tab flex align-center rpx-30">
-    <view class="flex-1 ">
+    <view class="flex-1">
       <text>价格：</text>
-      <text class="color-DC2" style="font-size: 40rpx;">￥{{unitPrice}}</text>
+      <text class="color-DC2" style="font-size: 40rpx">￥{{unitPrice}}</text>
       <!-- <text class="color-DC2 fs-24">00</text> -->
     </view>
     <view class="btn" bindtap="goPay">立即支付</view>

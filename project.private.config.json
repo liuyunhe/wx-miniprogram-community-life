@@ -11,7 +11,35 @@
       "list": [
         {
           "name": "",
+          "pathName": "subpackage/community/activity/details",
+          "query": "activityId=1701868034844659712",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpackage/community/question/feedback",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
           "pathName": "pages/my/home/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/index/home/communal",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/community/home/index",
           "query": "",
           "launchMode": "default",
           "scene": null

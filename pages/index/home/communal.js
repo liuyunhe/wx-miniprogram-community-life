@@ -100,7 +100,10 @@ Page({
     token: '',
     url: '',
     type: '',
-    chargeList: []
+    chargeList: [],
+    rlfActive:false,
+    sfActive:false,
+    rqfActive:false
   },
 
   /**
@@ -339,6 +342,28 @@ Page({
       });
       this.notice();
       this.userInfo();
+      this.getUseChargeBill("rlf")
+      this.getUseChargeBill("sf")
+      this.getUseChargeBill("rqf")
+    })
+  },
+  getUseChargeBill(type) { 
+    const params = { type }
+    $api.findUseChargeBill(params).then((res) => {
+      console.log(111111)
+      switch (type) {
+        case "rlf":
+          this.setData({rlfActive:res.value})
+          break;
+        case "sf":
+          this.setData({sfActive:res.value})
+          break;
+        case "rqf":
+          this.setData({rqfActive:res.value})
+          break;
+        default:
+          break;
+      }
     })
   },
   notice() {

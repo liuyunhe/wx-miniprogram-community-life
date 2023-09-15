@@ -1,20 +1,50 @@
 <view class="view-root">
-  <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; width: 750rpx;margin-bottom: 20rpx;">
+  <scroll-view
+    bindscrolltolower="bindDownLoad"
+    scroll-y
+    style="height: {{scrollHeight}}px; width: 750rpx;margin-bottom: 20rpx;"
+  >
     <view class="view-column">
       <view class="publish-view">
-        <image src="{{marketUrl}}" class="seat-class" bindtap="chooseImg"></image>
+        <image
+          src="{{marketUrl}}"
+          class="seat-class"
+          bindtap="chooseImg"
+        ></image>
         <view class="title-view">
-          <text style="text-align: left;color: #333333;font-size: 32rpx;line-height: 35rpx;padding-left: 30rpx;">物品标题</text>
+          <text class="title-view-text">物品标题</text>
         </view>
-        <input class="input-title" placeholder="填写品牌型号" model:value="{{marketTitle}}" name="marketTitle" bindchange="bindTitleChange"></input>
+        <input
+          class="input-title"
+          placeholder="填写品牌型号"
+          model:value="{{marketTitle}}"
+          name="marketTitle"
+          bindchange="bindTitleChange"
+          disabled="{{readOnly}}"
+        />
 
         <view class="title-view">
-          <text style="text-align: left;color: #333333;font-size: 32rpx;line-height: 35rpx;padding-left: 30rpx;">物品描述</text>
+          <text class="title-view-text">物品描述</text>
         </view>
-        <textarea class="input-desc" placeholder="描述下物品新旧程度、型号尺码等..." model:value="{{marketDesc}}" name="marketDesc" bindinput="bindDescChange"></textarea>
+        <textarea
+          class="input-desc"
+          placeholder="描述下物品新旧程度、型号尺码等..."
+          model:value="{{marketDesc}}"
+          name="marketDesc"
+          bindinput="bindDescChange"
+          disabled="{{readOnly}}"
+        ></textarea>
 
-        <picker mode="selector" model:value="{{marketType}}" bindchange="bindTypeChange" class="type-pick" range="{{marketTypeArray}}" range-key="name">
-          <view style="display: flex;align-items:center;height: 100rpx;">
+        <picker
+          mode="selector"
+          model:value="{{marketType}}"
+          bindchange="bindTypeChange"
+          class="type-pick"
+          range="{{marketTypeArray}}"
+          range-key="name"
+          disabled="{{readOnly}}"
+        >
+          <view style="display: flex; align-items: center; height: 100rpx">
             <view class="type-view">
               <text class="type-text">分类</text>
               <text class="type-text-right">{{marketTypeName}} ></text>
@@ -24,31 +54,57 @@
         <view class="line-class"></view>
         <view class="price-view">
           <text class="price-text">价格</text>
-          <view style=" display: flex;flex-direction: row;">
+          <view style="display: flex; flex-direction: row">
             <text class="price-view-right">￥</text>
-            <input class="price-text-right" model:value="{{marketPrice}}" bindchange="bindPriceChange"></input>
+            <input
+              class="price-text-right"
+              model:value="{{marketPrice}}"
+              bindchange="bindPriceChange"
+              disabled="{{readOnly}}"
+            />
           </view>
         </view>
         <view class="line-class"></view>
 
         <view class="input-view">
           <text class="price-text">联系人</text>
-          <view style=" display: flex;flex-direction: row;margin-left: 66rpx;">
-            <input class="input-text-right" placeholder="请输入联系人名称" model:value="{{name}}" bindchange="bindNameChange"></input>
+          <view style="display: flex; flex-direction: row; margin-left: 66rpx">
+            <input
+              class="input-text-right"
+              placeholder="请输入联系人名称"
+              disabled="{{readOnly}}"
+              model:value="{{name}}"
+              bindchange="bindNameChange"
+            />
           </view>
         </view>
         <view class="line-class"></view>
         <view class="input-view">
           <text class="price-text">联系电话</text>
-          <view style=" display: flex;flex-direction: row;margin-left: 66rpx;">
-            <input class="input-text-right" placeholder="便于买家与您联系" model:value="{{phone}}" bindchange="bindPhoneChange"></input>
+          <view style="display: flex; flex-direction: row; margin-left: 66rpx">
+            <input
+              class="input-text-right"
+              disabled="{{readOnly}}"
+              placeholder="便于买家与您联系"
+              model:value="{{phone}}"
+              bindchange="bindPhoneChange"
+            />
           </view>
         </view>
       </view>
-      <view>
-      </view>
-      <view class="submit-class" wx:if="{{!edit}}" bindtap="marketPublish">提交</view>
-      <view class="submit-class" wx:if="{{edit}}" bindtap="goodsInfoChange">修改</view>
+      <view> </view>
+      <view
+        class="submit-class"
+        wx:if="{{!edit && !readOnly}}"
+        bindtap="marketPublish"
+        >提交</view
+      >
+      <view
+        class="submit-class"
+        wx:if="{{edit && !readOnly}}"
+        bindtap="goodsInfoChange"
+        >修改</view
+      >
     </view>
   </scroll-view>
 </view>

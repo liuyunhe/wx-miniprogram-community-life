@@ -15,16 +15,22 @@
   height: 5rpx;
 }
 .root{
-  padding: 10pt;
   background-color: #F9FBFC;
+  min-height: 100vh;
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
+}
+.root::before{
+  content: "";
+  display: table;
 }
 .rootview{
   position: relative;
   background-color: #FFFFFF;
-  border: 1px solid #FFFFFF;
-  box-shadow: 0 4rpx 8rpx #E8E8E8;
+  margin: 10pt 10pt 20pt 10pt;
   padding: 30rpx;
-  border-radius: 8rpx 8rpx 0 0;
+  box-shadow: 0rpx 4rpx 7rpx 0rpx rgba(0,0,0,0.09);
+  border-radius: 10rpx;
 }
 .detailStyle{
   margin-top: 10pt;

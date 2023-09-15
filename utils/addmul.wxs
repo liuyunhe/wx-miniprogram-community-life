@@ -1,10 +1,10 @@
 var filters = {
     toFixHead: function (value) {return parseFloat(value).toFixed(2).split('.')[0]}, //此处2为保留两位小数
     toFixTail: function (value) {return parseFloat(value).toFixed(2).split('.')[1]}, //此处2为保留两位小数
-    
+    toFixDate: function (value) { return value.slice(5, -3)}
 }
 module.exports = {
-    toFixHead: filters.toFixHead,
-    toFixTail: filters.toFixTail,
-   
+  toFixHead: filters.toFixHead,
+  toFixTail: filters.toFixTail,
+  toFixDate: filters.toFixDate
 }

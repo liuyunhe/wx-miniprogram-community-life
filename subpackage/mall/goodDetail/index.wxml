@@ -71,7 +71,15 @@
 
   <view class="foot flex rpx-40">
     <view class="footLeft">
-      <text>价格：</text>
+      <!-- <view class="btn gwc">
+        <image class="icon" src="/state/images/icon-gwc.png" mode="widthFix"></image>
+        <view class="btn-name" >购物车</view>
+      </view> -->
+      <view class="btn kf" style="margin-right:10rpx" bindtap="handleClickBtnService">
+        <image class="icon" src="/state/images/icon-kf.png" mode="widthFix"></image>
+        <view class="btn-name" >客服</view>
+      </view>
+      <text style="font-size:24rpx">价格：</text>
       <text class="footmoney">￥</text>
       <text class="head">{{ filters.toFixHead(goodsDetail.price) }}</text
       ><text class="tail">.{{ filters.toFixTail(goodsDetail.price) }}</text>

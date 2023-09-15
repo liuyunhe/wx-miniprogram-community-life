@@ -77,6 +77,7 @@ Page({
           list: res.value.rows,
           isLoading: false
         });
+        this.findListChargeBill()
       } else {
         _this.setData({
           isLoading: false
@@ -84,6 +85,30 @@ Page({
         wx.showToast({
           title: res.message,
           icon: 'none'
+        })
+      }
+    })
+  },
+  findListChargeBill() { 
+    const list = this.data.list
+    const params = list.map((item) => item.chargeCustId)
+    $api.findListChargeBill(params).then((res) => {
+      if (res.state) {
+        list.forEach(item => { 
+          const itemBill = res.value.find(
+            (bill) => bill.id === item.chargeCustId
+          )
+          console.log(itemBill)
+          item.billActive = itemBill.value
+        })
+        console.log(list)
+        this.setData({
+          list
+        })
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: "none"
         })
       }
     })

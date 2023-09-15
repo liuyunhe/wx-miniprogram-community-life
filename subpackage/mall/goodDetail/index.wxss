@@ -157,6 +157,28 @@ wx-swiper .wx-swiper-dot {
   height: 100%;
   line-height: 130rpx;
   font-size: 28rpx;
+  display: flex;
+  align-items: center;
+}
+
+.footLeft .btn {
+  width: 70rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footLeft .btn .icon {
+  width: 36rpx;
+  margin: 0 17rpx;
+}
+.footLeft .btn .btn-name {
+  width: 100%;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 34rpx;
+  color: #333333;
 }
 
 .footmoney {
@@ -165,7 +187,7 @@ wx-swiper .wx-swiper-dot {
 }
 
 .footLeft .head {
-  font-size: 40rpx;
+  font-size: 36rpx;
   color: #ff580c;
   font-weight: bold;
 }
@@ -223,6 +245,6 @@ wx-swiper .wx-swiper-dot {
 }
 
 .rpx-40 {
-  padding-left: 40rpx;
+  padding-left: 30rpx;
   padding-right: 30rpx;
 }

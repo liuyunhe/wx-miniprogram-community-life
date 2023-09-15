@@ -37,8 +37,9 @@ Page({
         let dateList = []
         value.map(item => {
           let list = {}
-          var appointDate = item.split('-')
-          list.appointDate = item
+          var appointDate = item.date.split('-')
+          list.appointDate = item.date
+          list.number = item.number - 0
           list.year = appointDate[0]
           list.month = appointDate[1]
           list.day = appointDate[2]

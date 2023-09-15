@@ -6,6 +6,7 @@ Page({
    */
   data: {
     categoryId: null,
+    categoryIdInit: null,
     goodsName: null,  // 输入框内容
     goodList: [],
     sortData: [],
@@ -23,7 +24,8 @@ Page({
     console.log(categoryId)
     if (categoryId) {
       this.setData({
-        categoryId
+        categoryId,
+        categoryIdInit: categoryId
       })
     }
     this.getStoreGoodsList()
@@ -90,12 +92,15 @@ Page({
   },
 
   goMallSort(e) {
-    const id = e.currentTarget.dataset.id
-    this.setData({
-      categoryId: id,
-      page: 1,
-      goodsName:""
-    })
+    let id = e.currentTarget.dataset.id
+    if (id === this.data.categoryId) { 
+      id = ""
+    }
+      this.setData({
+        categoryId: id ? id : this.data.categoryIdInit,
+        page: 1,
+        goodsName: ""
+      })
     this.getStoreGoodsList(true)  
   },
 

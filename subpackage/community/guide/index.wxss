@@ -18,10 +18,14 @@ page {
   font-size: 28rpx;
   font-family: PingFang;
   width: 80%;
-  margin-left: 40rpx;   
+  margin-left: 30rpx;   
   overflow: hidden;
   word-break: break-all;
   text-overflow: ellipsis;
+  line-height: 40rpx;
+  height: 40rpx;
+  font-size: 24rpx;
+  margin-bottom: 20rpx;
 }
 
 /* 定义.container设置容器样式 */
@@ -32,6 +36,12 @@ page {
 
 .content-partition {
   padding-bottom: 10px;
+}
+
+.icon-notice{
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 30rpx;
 }
 
 /* 定义.text-content设置文本样式 */
@@ -57,6 +67,7 @@ page {
   /* position: relative; */
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .guide-title-context {
@@ -70,7 +81,6 @@ page {
   /* justify-content: center;
   align-items: center; */
   flex-direction: row;
-  padding-top: 12%;
  
 }
 
@@ -107,9 +117,9 @@ page {
   flex-flow: column;
   /* margin-top: 16rpx; */
   width: 92vw;
+  background: #FFFFFF;
+  box-shadow: 0rpx 4rpx 7rpx 0rpx rgba(0,0,0,0.09);
   border-radius: 10rpx;
-  border: 2rpx solid #E0E3DA;
-  box-shadow: 0rpx 4rpx 8rpx #ECEDEE;
 }
 
 .order-row {
@@ -118,10 +128,9 @@ page {
   text-align: center;
   align-items: center;
   font-size: 30rpx;
-  margin-left: 40rpx;
+  margin-left: 30rpx;
   /* margin-right: 40rpx; */
   margin-top: 25rpx;
-  width: 100vw;
 }
 
 .view-row {

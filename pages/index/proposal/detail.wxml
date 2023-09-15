@@ -27,8 +27,8 @@
     {{publish_item.content}}
   </view>
   <!-- <wxs src="../../utils/string.wxs" module="my_list"/> -->
-  <view class="view-list" wx:for="{{img_list}}" data-index="{{index}}" catchtap="previewImages" wx:for-item="item">
-    <image class="list-img" src="{{imgUrl}}{{item}}" mode="widthFix"></image>
+  <view class="view-list" wx:for="{{img_list}}" wx:key="index" data-index="{{index}}" catchtap="previewImages" wx:for-item="item">
+    <image class="list-img" src="{{item.url}}" mode="widthFix"></image>
   </view>
   <view class="text-content" wx:if="{{publish_item.state=='3'}}">
     <view>服务评价：{{publish_item.custEvaluate}}</view>

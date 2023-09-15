@@ -112,7 +112,6 @@
   border-radius: 30rpx;
   border: 1px solid #35c0ae;
   padding:9rpx 30rpx;
-  font-size:30rpx;
 }
 
 .text-pay{
@@ -172,9 +171,12 @@
   text-align:right;
   color:#26a886;
   border-radius: 30rpx;
-  border: 1px solid #26a886;
-  padding:9rpx 30rpx;
+  padding:8rpx 20rpx;
   font-size:26rpx;
+  font-size:24rpx;
+  border-radius: 6rpx;
+  border: 1rpx solid #3CDABB;
+  margin-left: 70rpx;
 }
 
 .text-del{

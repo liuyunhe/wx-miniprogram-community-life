@@ -32,7 +32,7 @@
           src="{{ tools.my_json(item.categoryImage) }}"
           mode="widthFix|aspectFill"
         ></image>
-        <view class="content-txt text-overflow">{{ item.categoryName }}</view>
+        <view class="content-txt text-overflow {{item.categoryId === categoryId?'active':''}}">{{ item.categoryName }}</view>
       </view>
     </scroll-view>
 

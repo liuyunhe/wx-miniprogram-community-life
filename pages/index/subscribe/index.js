@@ -102,6 +102,7 @@ Page({
     approx.appointOrgName = value.assetOrgName
     approx.assetTypeName = value.assetTypeName
     approx.storeId = value.storeId
+    approx.orgId = value.orgId
     approx.storeName = value.storeName
     approx.assetType = value.assetType
     approx.storeAddress = value.storeAddress

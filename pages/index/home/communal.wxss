@@ -71,6 +71,7 @@
   /* height: 388rpx; */
   margin-left: 30rpx;
   margin-right: 30rpx;
+  margin-top: 30rpx;
   border-radius: 20rpx;
   background-color: #FFFFFF;
   box-shadow: 0px 1px 4px 1px #DDD;
@@ -107,7 +108,18 @@
   text-align: center;
   /* margin-top: 10rpx; */
   display: inline-block;
+  position: relative;
 }
+.point{
+  width: 15rpx;
+  height: 15rpx;
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+  background-color: red;
+  border-radius: 50%;
+}
+
 
 .content-img image {
   width: 90rpx;

@@ -45,6 +45,9 @@
   color: #333;
   margin-bottom: 30rpx;
 }
+.content-img .content-txt.active {
+  color: #3CDABB;
+}
 .noData {
   height: 400rpx;
   padding-top: 350rpx;

@@ -12,8 +12,7 @@ const prefix = {
 const API = {
   register: (data) =>
     request("POST", prefix.applet + "/v1/wechat/register", data), //根据微信小程序code获取手机号并完成注册；
-  getToken: (data) =>
-    request("POST", prefix.applet + "/v1/wechat/login", data), //获取最新token
+  getToken: (data) => request("POST", prefix.applet + "/v1/wechat/login", data), //获取最新token
   getByTypeId: (data) =>
     request("GET", prefix.common + "/v1/sys/dataDict/v1/getByTypeId", data), //查询字典
   serviceList: (data) =>
@@ -23,9 +22,17 @@ const API = {
   queryAssetBasicInfo: (data) =>
     request("POST", prefix.group + "/v1/assetBasic/queryAssetBasicInfo", data), //分页查询资产
   queryAssetTimeQuantumDate: (data) =>
-    request("POST",prefix.group + "/v1/assetTimeQuantum/queryAssetTimeQuantumDate", data), //查询预约时间
+    request(
+      "POST",
+      prefix.group + "/v1/assetTimeQuantum/queryAssetTimeQuantumDate",
+      data
+    ), //查询预约时间
   queryAssetTimeQuantumInfo: (data) =>
-    request("POST",prefix.group + "/v1/assetTimeQuantum/queryAssetTimeQuantumInfo", data), //查询预约场次
+    request(
+      "POST",
+      prefix.group + "/v1/assetTimeQuantum/queryAssetTimeQuantumInfo",
+      data
+    ), //查询预约场次
   serviceOrderInfoList: (data) =>
     request("POST", prefix.handy + "/v1/serviceOrderInfo/list", data), //分页查询服务订单信息
   addServiceOrderInfo: (data) =>
@@ -51,13 +58,16 @@ const API = {
   payHandyOrder: (data) =>
     request("POST", prefix.handy + "/v1/pay/payOrder", data),
   getMerchantInfoByShortLink: (data) =>
-    request("get",prefix.accept + "/v1/terminal/getMerchantInfoByShortLink",data), //获取商户信息
+    request(
+      "get",
+      prefix.accept + "/v1/terminal/getMerchantInfoByShortLink",
+      data
+    ), //获取商户信息
   payOrder: (data) =>
     request("POST", prefix.applet + "/v1/wxpay/payOrder", data), //下支付订单
   appointList: (data) =>
     request("POST", prefix.group + "/v1/appoint/list", data), //预约列表
-  appointAdd: (data) =>
-    request("POST", prefix.group + "/v1/appoint/add", data), //添加预约
+  appointAdd: (data) => request("POST", prefix.group + "/v1/appoint/add", data), //添加预约
   appointUpdate: (data) =>
     request("POST", prefix.group + "/v1/appoint/update", data), //更新预约状态
   repairAdd: (data) =>
@@ -65,9 +75,15 @@ const API = {
   repairList: (data) =>
     request("POST", prefix.group + "/v1/cust/repair/list", data), //客户报修列表
   onlinePreview: (data) =>
-    request("GET",prefix.file + "/v1/onlinePreviewController/onlinePreview", data), //图片预览
+    request(
+      "GET",
+      prefix.file + "/v1/onlinePreviewController/onlinePreview",
+      data
+    ), //图片预览
   adviceAdd: (data) =>
-    request("POST", prefix.common + "/v1/cust/advice/add", data), //客户建议申请
+    request("POST", prefix.common + "/v1/cust/advice/add", data), //客户意见反馈
+  addCommunityAdvice: (data) =>
+    request("POST", prefix.common + "/v1/cust/advice/addCommunityAdvice", data), //社区咨询投诉
   adviceList: (data) =>
     request("POST", prefix.common + "/v1/cust/advice/list", data), //客户建议列表
   adviceDetail: (data) =>
@@ -93,8 +109,7 @@ const API = {
     request("GET", prefix.applet + "/v1/wechat/user/info", data), //获取微信小程序当前登录用户信息
   queryEmployeeInfo: (data) =>
     request("GET", prefix.accept + "/v1/employeeInfo/queryEmployeeInfo", data), //员工信息
-  notice: (data) =>
-    request("POST", prefix.group + "/v1/notice/list", data), //通知公告
+  notice: (data) => request("POST", prefix.group + "/v1/notice/list", data), //通知公告
   noticeDetail: (data) =>
     request("GET", prefix.group + "/v1/notice/detail", data), //通知公告
   recharge: (data) =>
@@ -111,7 +126,11 @@ const API = {
     request("POST", prefix.accept + "/v1/merchant/graphic/point", data), //收费机构图层
   withhold: (data) =>
     request("POST", prefix.group + "/v1/charge/cust/withhold", data), //修改开通/取消代扣
-  
+  findUseChargeBill: (data) =>
+    request("GET", prefix.group + "/v1/charge/cust/findUsChargeBill", data), //查询是否存在缴费账单
+  findListChargeBill: (data) =>
+    request("POST", prefix.group + "/v1/charge/cust/findListChargeBill", data), //查询列表是否存在缴费账单
+
   // *****************社区**********************
   getCommunityInfoList: (data) =>
     request("POST", prefix.community + "/v1/communityInfo/list", data), //获取社区列表信息
@@ -131,10 +150,16 @@ const API = {
     request("POST", prefix.community + "/v1/communitySignup/list", data), //社区活动报名查询
   communitySignupAdd: (data) =>
     request("POST", prefix.community + "/v1/communitySignup/add", data), //社区活动报名新增
+  communitySignupDel: (data) =>
+    request("GET", prefix.community + "/v1/communitySignup/delete", data), //社区活动取消报名
   communityBinding: (data) =>
     request("POST", prefix.community + "/v1/communityBinding/add", data), //新增社区绑定关系
   isEmptyByCustId: (data) =>
-    request("GET",prefix.community + "/v1/communityBinding/isEmptyByCustId", data), //查询是否已绑定社区
+    request(
+      "GET",
+      prefix.community + "/v1/communityBinding/isEmptyByCustId",
+      data
+    ), //查询是否已绑定社区
   queryProtocolId: (data) =>
     request("GET", prefix.applet + "/v1/wallet/queryProtocolId", data), //根据userid查询协议编号
   goodPublish: (data) =>
@@ -145,10 +170,16 @@ const API = {
     request("POST", prefix.community + "/v1/communityMarketGoods/update", data), //跳蚤市场商品状态更新
   getGoodsDetail: (data) =>
     request("GET", prefix.community + "/v1/communityMarketGoods/detail", data), //跳蚤市场商品详情
+  addEvaluate: (data) =>
+    request("POST", prefix.common + "/v1/cust/advice/addEvaluate", data), //添加反馈评价
 
   // *****************支付**********************
   checkSignPayProtocol: (data) =>
-    request("POST",prefix.pay + "/applet/v1/wallet/checkSignPayProtocol",data), //签订e支付小额免密协议短信校验
+    request(
+      "POST",
+      prefix.pay + "/applet/v1/wallet/checkSignPayProtocol",
+      data
+    ), //签订e支付小额免密协议短信校验
   signPayProtocol: (data) =>
     request("POST", prefix.pay + "/applet/v1/wallet/signPayProtocol", data), //签订e支付小额免密协议
   isSignProtocol: (data) =>
@@ -162,7 +193,11 @@ const API = {
 
   // *****************商城**********************
   getCategoryListById: (data) =>
-    request("GET",prefix.store + "/v1/cjStoreCategory/searchCategoryForId", data), //查询商城首页商品类目
+    request(
+      "GET",
+      prefix.store + "/v1/cjStoreCategory/searchCategoryForId",
+      data
+    ), //查询商城首页商品类目
   getStoreGoodsList: (data) =>
     request("POST", prefix.store + "/v1/cjStoreGoods/list", data), //查询商城首页商品列表
   getStoreGoodsDetal: (data) =>
@@ -182,9 +217,17 @@ const API = {
   deleteGoodInChart: (data) =>
     request("POST", prefix.store + "/v1/cjShoppingCart/delete", data), //删除购物车商品
   updateCheckedActive: (data) =>
-    request("POST",prefix.store + "/v1/cjShoppingCart/updateChecked?state=1", data), //批量更新选择状态
+    request(
+      "POST",
+      prefix.store + "/v1/cjShoppingCart/updateChecked?state=1",
+      data
+    ), //批量更新选择状态
   updateCheckedDeactive: (data) =>
-    request("POST",prefix.store + "/v1/cjShoppingCart/updateChecked?state=0", data), //批量更新选择状态
+    request(
+      "POST",
+      prefix.store + "/v1/cjShoppingCart/updateChecked?state=0",
+      data
+    ), //批量更新选择状态
   addStoreOrder: (data) =>
     request("POST", prefix.store + "/v1/cjStoreOrder/add", data), //创建订单
   getStoreOrder: (data) =>

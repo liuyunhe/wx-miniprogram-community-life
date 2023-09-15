@@ -140,10 +140,18 @@ page{
   padding: 20rpx 0rpx;
 }
 .text-heigth{
+  position: relative;
   height: 180rpx;
   border: 1rpx solid #999;
   border-radius: 10rpx;
   padding: 20rpx;
   width: 94%;
   margin-top: 20rpx;
+}
+.text-heigth .currentWordNumber{
+   font-size: 28rpx;
+    color: gray;
+    position: absolute;
+    right: 10rpx;
+    bottom: 10rpx;
 }

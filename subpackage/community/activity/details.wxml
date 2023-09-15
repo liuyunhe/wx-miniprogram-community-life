@@ -1,3 +1,4 @@
+<wxs module="filters" src="../../../utils/addmul.wxs"></wxs>
 <!--pages/community/activity/details.wxml-->
 <!-- <view class="title-style">{{title}}</view>
 <view class="divLine"></view>
@@ -9,33 +10,34 @@
     <image class="activityImage" src="/subpackage/community/images/activitySampleImage.png"  binderror="" bindload="">
     </image>
   </view>
-  <view class="contentArea" hover-class="none" hover-stop-propagation="false">
+  <view wx:if="{{!sigle_page}}" class="contentArea" hover-class="none" hover-stop-propagation="false">
     <view class="title-style">{{title}}</view>
     <view class="timeStyle" hover-class="none" hover-stop-propagation="false">
-      活动时间：{{beginDate}}-{{endDate}}
+      活动时间：{{filters.toFixDate(beginDate)}} - {{filters.toFixDate(endDate)}}
     </view>
-    <view class="contentStyle" hover-class="none" hover-stop-propagation="false">
-      {{content}}
-    </view>
-    <view class="" style="padding-left:30rpx;padding-right:30rpx;height:93rpx;line-height:93rpx;position:relative;">
-      <image class="" style="width:19.78rpx;height:26rpx;margin-right:8rpx" src="/subpackage/community/images/activityPosition.png">
-      </image>
-      <view style="display:inline-block;font-size:24rpx;color:#999999;">
+    <rich-text class="contentStyle" nodes="{{content}}"></rich-text>
+    <view class="" style="padding-left:30rpx;padding-right:30rpx;height:93rpx;line-height:93rpx;position:relative;text-align:right">
+      <!-- <image class="" style="width:19.78rpx;height:26rpx;margin-right:8rpx" src="/subpackage/community/images/activityPosition.png">
+      </image> -->
+      <!-- <view style="display:inline-block;font-size:24rpx;color:#999999;">
         方恒社区
       </view>
       <image class="" style="width:29.1rpx;height:18rpx;margin-left:29rpx; margin-right:8rpx" src="/subpackage/community/images/activityEye.png">
       </image>
       <view style="display:inline-block;font-size:24rpx;color:#999999;">
         4577
-      </view>
+      </view> -->
       <view style="display:inline-block;font-size:24rpx;margin-left:100rpx;color:#999999;font-family:PingFang SC-Regular;">{{createTime}}</view>
     </view>
   </view>
   
-  <view class="view-mfn">
+  <view class="view-mfn" wx:if="{{ showBtn && !sigle_page }}">
     <view class="mfn-content" bindtap="activitySignUp">
       <text class="text-mfn">报名</text>
     </view>
+  </view>
+  <view wx:if="{{sigle_page}}" class="" hover-class="none" hover-stop-propagation="false" style="text-align:center;margin-top:300rpx">
+    请点击右下方“前往小程序”按钮获取完整内容
   </view>
 </view>
 

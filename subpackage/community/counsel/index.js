@@ -3,59 +3,67 @@ const $api = require('../../../utils/api.js').API;
 const approx = getApp().globalData.approx
 const App = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     newsData: [
-      { id: 1, name: '咨询列表' },
-      { id: 2, name: '未回复咨询' },
-      { id: 3, name: '已回复咨询' },
-      { id: 4, name: '新增咨询' },
+      { id: 1, name: "咨询列表" },
+      { id: 2, name: "未回复咨询" },
+      { id: 3, name: "已回复咨询" },
+      { id: 4, name: "新增咨询" }
     ],
-    isCheck: '',
+    isCheck: "",
     dataList: [],
     page: 1,
     pageSize: 10,
-    totalPages: '',
-    baseImageUrl:App.globalData.imgUrl,
-    scrollHeight: '',
+    totalPages: "",
+    baseImageUrl: App.globalData.imgUrl,
+    scrollHeight: "",
     list: [],
     appointData: {
       page: 1,
       pageSize: 10,
-      status: ''
+      status: ""
     },
-    dataType: '',
+    dataType: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
-  },
+  onLoad(options) {},
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
     this.setListHeight()
-    this.appointList();
+    this.appointList()
+  },
+
+  questionDetails(e) {
+    console.log(e.currentTarget.dataset.detail)
+    let adviceId = e.currentTarget.dataset.detail.adviceId
+    if (adviceId) {
+      wx.navigateTo({
+        url: "/pages/my/home/problemDetails?adviceId=" + adviceId
+      })
+    }
   },
 
   appointList(isPage, page) {
-    let _this = this;
-    page = page || 1;
-    _this.data.appointData.page = page;
-    _this.data.appointData.adviceType = '20';
+    let _this = this
+    page = page || 1
+    _this.data.appointData.page = page
+    _this.data.appointData.adviceType = "20"
+    _this.data.appointData.orgId = wx.getStorageSync("orgId")
     _this.setData({
       appointData: _this.data.appointData
     })
-    $api.adviceList(_this.data.appointData).then(res => {
+    $api.adviceList(_this.data.appointData).then((res) => {
       if (res.state) {
-        res.value.rows.forEach((item)=>{
-          if(item.adviceImage){
+        res.value.rows.forEach((item) => {
+          if (item.adviceImage) {
             item.adviceImage = JSON.parse(item.adviceImage)
           }
         })
@@ -63,36 +71,36 @@ Page({
           _this.setData({
             list: _this.data.list.concat(res.value.rows),
             totalPages: res.value.totalPages,
-            isLoading: false,
+            isLoading: false
           })
         } else {
           _this.setData({
             list: res.value.rows,
             totalPages: res.value.totalPages,
-            isLoading: false,
+            isLoading: false
           })
         }
       } else {
         wx.showToast({
           title: res.message,
-          icon: 'none'
+          icon: "none"
         })
       }
     })
   },
   //新增咨询
-  addCounsel(){
-    let url = '/pages/my/home/feedback?type=counsel';
+  addCounsel() {
+    let url = "/pages/my/home/feedback?type=counsel"
     // let url = '/pages/community/question/feedback?type=counsel';
     wx.navigateTo({
-      url: url,
+      url: url
     })
   },
   //咨询详情
-  counselDetails(item){
+  counselDetails(item) {
     wx.showToast({
-      title: '功能建设中...',
-      icon: 'none'
+      title: "功能建设中...",
+      icon: "none"
     })
     // wx.navigateTo({
     //   url: '/pages/community/counsel/details',
@@ -100,25 +108,27 @@ Page({
   },
   // 查询字典接口
   getByTypeId() {
-    let _this = this;
-    $api.getByTypeId({
-      typeId: '1595400173767495680'
-    }).then(res => {
-      if (res.state) {
-        if (_this.data.isCheck == '') {
-          _this.setData({
-            newsData: res.value,
-            isCheck: res.value[0].key
-          })
-        } else {
-          _this.setData({
-            newsData: res.value,
-            isCheck: _this.data.isCheck
-          })
+    let _this = this
+    $api
+      .getByTypeId({
+        typeId: "1595400173767495680"
+      })
+      .then((res) => {
+        if (res.state) {
+          if (_this.data.isCheck == "") {
+            _this.setData({
+              newsData: res.value,
+              isCheck: res.value[0].key
+            })
+          } else {
+            _this.setData({
+              newsData: res.value,
+              isCheck: _this.data.isCheck
+            })
+          }
+          _this.getList()
         }
-        _this.getList()
-      }
-    })
+      })
   },
   // 动态计算高度
   setListHeight() {
@@ -128,20 +138,20 @@ Page({
     const scrollHeight = systemInfo.windowHeight - tapHeight
     this.setData({
       scrollHeight
-    });
+    })
   },
   //切换tab栏
   change(e) {
-    let _this = this;
-    _this.data.appointData.status = e.currentTarget.dataset.type;
+    let _this = this
+    _this.data.appointData.status = e.currentTarget.dataset.type
     _this.setData({
       dataType: e.currentTarget.dataset.type,
       isLoading: true,
       no_more: false,
       orderList: [],
       appointData: _this.data.appointData
-    });
-    _this.appointList();
+    })
+    _this.appointList()
   },
   //获取数据
   getList() {
@@ -150,7 +160,7 @@ Page({
       pageSize: this.data.pageSize,
       assetType: this.data.isCheck
     }
-    $api.queryAssetBasicInfo(data).then(res => {
+    $api.queryAssetBasicInfo(data).then((res) => {
       if (res.state) {
         this.setData({
           dataList: res.value.rows,
@@ -169,6 +179,7 @@ Page({
     approx.appointOrgName = value.assetOrgName
     approx.assetTypeName = value.assetTypeName
     approx.storeId = value.storeId
+    approx.orgId = value.orgId
     approx.storeName = value.storeName
     approx.assetType = value.assetType
     approx.storeAddress = value.storeAddress
@@ -177,14 +188,14 @@ Page({
     approx.linkPhone = value.linkPhone
     approx.businessHours = value.businessHours
     wx.navigateTo({
-      url: '/pages/index/approx/index?assetId=' + value.assetId,
+      url: "/pages/index/approx/index?assetId=" + value.assetId
     })
   },
   // 搜索
   goInstall() {
     getApp().globalData.inpValue = this.data.inpValue
     wx.navigateTo({
-      url: '/pages/index/query/index',
+      url: "/pages/index/query/index"
     })
   },
   //获取input的值
@@ -203,52 +214,38 @@ Page({
       this.getList(this.data.isCheck)
     } else {
       wx.showToast({
-        title: '没有更多数据了',
-        icon: 'none'
+        title: "没有更多数据了",
+        icon: "none"
       })
     }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
-
-
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
+  onShareAppMessage() {}
 })

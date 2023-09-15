@@ -29,14 +29,15 @@ Page({
         avatarUrl: wx.getStorageSync('userInfo').avatarUrl,
       })
     }
+    const item = JSON.parse(options.item)
     var img_list = [];
-    if (JSON.parse(options.item).repairImage.length > 0) {
-      img_list = JSON.parse(JSON.parse(options.item).repairImage);
+    if (item.repairImage.length > 0) {
+      img_list = item.repairImage;
       console.log("杰============", img_list);
     };
     var evaluate_list = [];
-    if (JSON.parse(options.item).hasOwnProperty('evaluateImage') && JSON.parse(options.item).evaluateImage.length > 0) {
-      evaluate_list = JSON.parse(JSON.parse(options.item).evaluateImage);
+    if (item.hasOwnProperty('evaluateImage') && item.evaluateImage.length > 0) {
+      evaluate_list = item.evaluateImage;
       console.log("杰============", evaluate_list);
     };
     this.setData({

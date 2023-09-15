@@ -50,6 +50,12 @@ Page({
     })
   },
 
+  handleClickBtnService() { 
+    wx.navigateTo({
+      url: `/pages/my/home/feedback?type=good&orgId=${this.data.goodsDetail.orgId}`
+    })
+  },
+
   // 加入购物车
   addToChart() {
     const custId = wx.getStorageSync("custId")

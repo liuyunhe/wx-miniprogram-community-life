@@ -1,34 +1,88 @@
 <view>
   <view class="box-contain">
     <view class="adviceCard">
-      <view style="flex-direction: row;display: flex;margin-top: 28rpx;margin-left: 30rpx;">
+      <view class="title">
         <view class="matter-sign"></view>
-        <view style="color: #333333;font-size: 34rpx;font-weight: bolder;margin-left: 20rpx;">
-          建议详情
+        <view class="title-name">
+          {{ adviceType === '10' ? '建议详情' : '' }} 
+          {{ adviceType === '20' ? '咨询详情' : '' }} 
+          {{ adviceType === '30' ? '投诉详情' : '' }}
+          {{ adviceType === '40' ? '咨询详情' : '' }}
         </view>
       </view>
-      <view class="adviceContent">
-        关于整治社区饮水机的意见，在社区南门的第二处饮水机的卫生问题。随着物质生活水平的提高，人民的健康
-        饮水意识增强，对高品质生活用水的需求愿望越来越强烈。加强居住小区内自动售水机水质安全，使业主喝上
-        放心安全的水势在必行。
+      <view class="adviceContent"> {{ content }} </view>
+      <view style="padding-left: 30rpx; margin-top: 14rpx">
+        <image
+          class="view-img"
+          wx:for="{{adviceImageUrl}}"
+          wx:for-item="imageItem"
+          wx:key="item"
+          src="{{imageItem.url}}"
+        />
       </view>
-      <view style="padding-left:30rpx;margin-top:14rpx;">
-        <image wx:for="{{adviceImageUrl}}" wx:for-item="imageItem" wx:key="item" style="display:inline-block; width:160rpx;height:160rpx;padding-right:20rpx;" src="{{imgUrl + imageItem}}" />
-      </view>
-      <view class="" style="padding-left:30rpx;padding-right:30rpx;height:93rpx;line-height:93rpx;position:relative;">
-        <image class="" style="width:19.78rpx;height:26rpx;margin-right:8rpx" src="/state/images/communityServiceImages/activityPosition.png"></image>
-        <view style="display:inline-block;font-size:24rpx;color:#999999;">方恒社区</view>
-        <view style="display:inline-block;position:absolute;right:50rpx;font-size:24rpx;color:#999999;font-family:D-DIN-PRO-Regular;">
-          {{createTime}}
-        </view>
+      <view class="bottom">
+        <view class="tag"></view>
+        <view class="create-time"> {{createTime}} </view>
       </view>
     </view>
     <view class="replyCard">
-      <view style="flex-direction: row;display: flex;margin-top: 28rpx;margin-left: 30rpx;">
+      <view class="title">
         <view class="matter-sign"></view>
-        <view style="color: #333333;font-size: 34rpx;font-weight: bolder;margin-left: 20rpx;">
-          建议反馈
-        </view>
+        <view class="title-name"> 建议反馈 </view>
+      </view>
+      <view class="adviceContent"> {{ reply ? reply : '暂无' }} </view>
+    </view>
+    <view class="replyCard" wx:if="{{state>=2}}">
+      <view class="title">
+        <view class="matter-sign"></view>
+        <view class="title-name"> 我的评价 </view>
+      </view>
+      <view class="adviceContent"> 
+        <form bindsubmit="saveData">
+          <view class="view-star">
+            <view class="comment-title" hover-class="none" hover-stop-propagation="false">
+              评价分数
+            </view>
+            <view class="star-wrap" wx:for="{{ stars }}" wx:key="index">
+              <image
+                class="star"
+                wx:if="{{ item === 1 }}"
+                data-index="{{ index }}"
+                bindtap="change_star"
+                src="/state/images/icon-star-active.png"
+                mode="widthFix"
+              ></image>
+              <image
+                class="star"
+                wx:if="{{ item === 0 }}"
+                data-index="{{ index }}"
+                bindtap="change_star"
+                src="/state/images/icon-star-deactive.png"
+                mode="widthFix"
+              ></image>
+            </view>
+            <view class="star-type">
+              <span wx:if="{{ starsNum === 0 }}">0分</span>
+              <span wx:if="{{ starsNum === 1 }}">1分</span>
+              <span wx:if="{{ starsNum === 2 }}">2分</span>
+              <span wx:if="{{ starsNum === 3 }}">3分</span>
+              <span wx:if="{{ starsNum === 4 }}">4分</span>
+              <span wx:if="{{ starsNum === 5 }}">5分</span>
+            </view>
+          </view>
+          <view class="view-back">
+            <textarea
+              name="evaluateContent"
+              style="font-size: 26rpx; margin-bottom: 30rpx"
+              placeholder="请对反馈进行评价~"
+              disabled="{{state>2}}"
+              value="{{evaluateContent}}"
+            ></textarea>
+          </view>
+          <button class="btn-enter" style="width: 100%" formType="submit" wx:if="{{ state == 2 }}">
+            提交
+          </button>
+        </form>
       </view>
     </view>
   </view>

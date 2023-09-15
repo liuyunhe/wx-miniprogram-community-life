@@ -21,6 +21,7 @@
   font-family:PingFang SC-Regular;
 }
 .contentStyle{
+  display: block;
   margin-left: 30rpx;
   margin-top: 19rpx;
   margin-right: 31rpx;

@@ -1,3 +1,4 @@
+<wxs module="tools" src="../../../utils/string.wxs" />
 <view class="view-title">
   <view class="view-row">
     <view class="text-tab {{dataType==item.id?'text-active':''}}" wx:for="{{tanData}}" wx:key="index" data-id="{{item.id}}" catchtap="bindHeaderTap">{{item.name}}</view>
@@ -6,6 +7,7 @@
     <view class="text-tab {{dataType==='10'?'view-green':'view-white'}}"></view>
     <view class="text-tab {{dataType==='20'?'view-green':'view-white'}}"></view>
     <view class="text-tab {{dataType==='30'?'view-green':'view-white'}}"></view>
+    <view class="text-tab {{dataType==='40'?'view-green':'view-white'}}"></view>
   </view>
 </view>
 <view class="view-column">
@@ -16,17 +18,22 @@
             <view data-item="{{item}}">
               <view class="order-row">
                 <view class="font-bold">{{item.content}}</view>
+                <view class="state" wx:if="{{item.state == 0}}">待分配</view>
+                <view class="state" wx:if="{{item.state == 1}}">已分配</view>
+                <view class="state solve" wx:if="{{item.state == 2}}">已处理</view>
+                <view class="state complete" wx:if="{{item.state == 3}}">已评价</view>
+                <view class="state complete" wx:if="{{item.state == 4}}">已关闭</view>
               </view>
               <view style="padding-left:30rpx;margin-top:14rpx;">
-                <image wx:for="{{item.adviceImage}}" wx:for-item="imageItem" wx:key="item" style="display:inline-block; width:160rpx;height:160rpx;padding-right:20rpx;" src="{{baseImageUrl + imageItem}}" />
+                <image wx:for="{{ item.adviceImage }}" wx:for-item="imageItem" wx:key="item" style="display:inline-block; width:160rpx;height:160rpx;padding-right:20rpx;" src="{{imageItem.url}}" />
               </view>
               <view class="view-line"></view>
-              <view class="" style="padding-left:30rpx;padding-right:30rpx;height:93rpx;line-height:93rpx;position:relative;">
-                <image class="" style="width:19.78rpx;height:26rpx;margin-right:8rpx" src="/state/images/communityServiceImages/activityPosition.png"></image>
-                <view style="display:inline-block;font-size:24rpx;color:#999999;">方恒社区</view>
-                <image class="" style="width:29.1rpx;height:18rpx;margin-left:29rpx; margin-right:8rpx" src="/state/images/communityServiceImages/activityEye.png"></image>
-                <view style="display:inline-block;font-size:24rpx;color:#999999;">4577</view>
-                <view style="display:inline-block;font-size:24rpx;margin-left:140rpx;color:#999999;font-family:D-DIN-PRO-Regular;">
+              <view class="" style="padding-left:30rpx;padding-right:30rpx;padding-top:20rpx;height:50rpx;line-height:50rpx;position:relative;">
+                <!-- <image class="" style="width:19.78rpx;height:26rpx;margin-right:8rpx" src="/state/images/communityServiceImages/activityPosition.png"></image>
+                <view style="display:inline-block;font-size:24rpx;color:#999999;">方恒社区</view> -->
+                <!-- <image class="" style="width:29.1rpx;height:18rpx;margin-left:29rpx; margin-right:8rpx" src="/state/images/communityServiceImages/activityEye.png"></image> -->
+                <!-- <view style="display:inline-block;font-size:24rpx;color:#999999;">4577</view> -->
+                <view style="float: right;display:inline-block;font-size:24rpx;margin-left:140rpx;color:#999999;font-family:D-DIN-PRO-Regular;">
                   {{item.createTime}}
                 </view>
               </view>

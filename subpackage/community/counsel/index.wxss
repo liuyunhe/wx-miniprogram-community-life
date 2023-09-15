@@ -50,6 +50,30 @@
   margin-top: 20rpx;
 }
 
+.order-row .state{
+  border: 1px solid #FF773A;
+  border-radius: 4rpx;
+  line-height: 32rpx;
+  font-size: 22rpx;
+  padding: 0 10rpx;
+  margin-left: 20rpx;
+  color: #FF773A;
+}
+
+.order-row .state.solve{
+  border: 1px solid #3CDABB;
+  color: #3CDABB;
+}
+
+.order-row .state.complete{
+  border: 1px solid #B8B8B8;
+  color: #B8B8B8;
+}
+.order-row .phone{
+  flex: 1;
+  text-align: right;
+}
+
 .left {
   width: 200rpx;
   float: left;
@@ -166,6 +190,7 @@
 .view-order{
   display:flex;
   flex-flow:column;
+  background: #FFFFFF;
   margin-top: 15rpx;
   margin-left: 30rpx;
   margin-right: 40rpx;
@@ -182,6 +207,7 @@
   margin-left:40rpx;
   margin-right:40rpx;
   margin-top:25rpx;
+  justify-content: space-between;
 }
 
 .view-row{

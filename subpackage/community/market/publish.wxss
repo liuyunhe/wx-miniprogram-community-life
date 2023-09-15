@@ -38,6 +38,14 @@
   margin-top: 30rpx;
 }
 
+.title-view-text{
+  text-align: left;
+  color: #333333;
+  font-size: 32rpx;
+  line-height: 35rpx;
+  padding-left: 30rpx;
+}
+
 .input-title {
   /* background: #E6E6E6; */
   font-size: 26rpx;
@@ -176,7 +184,7 @@
 .submit-class {
   margin-bottom: 40rpx;
   margin-top: 60rpx;
-  height: 120rpx;
+  height: 50rpx;
   width: 670rpx;
   padding-top: 25rpx;
   padding-bottom: 25rpx;

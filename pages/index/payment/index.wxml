@@ -1,8 +1,10 @@
 <view class="base">
   <view wx:if="{{list.length > 0}}">
-    <view class="view-back" wx:for="{{list}}">
+    <view class="view-back" wx:for="{{list}}" wx:key="{{index}}">
       <view class="list">
-        <image class="listImg" mode="widthFix" src="{{payImg}}" wx:key="{{index}}"></image>
+        <image class="listImg" mode="widthFix" src="{{payImg}}" >
+          <view  wx:if="{{ item.billActive }}" class="point" ></view>
+        </image>
         <view class="listtotal" catchtap="goDetail" data-item="{{item}}">
           <view class="listTitle">
             <span>{{payName}}</span>

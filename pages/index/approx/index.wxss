@@ -24,8 +24,6 @@
 }
 
 .date-back{
-  background: #ffffff;
-  border-radius: 15rpx;
   /* box-shadow: 0px 1px 4px #DDD; */
 }
 

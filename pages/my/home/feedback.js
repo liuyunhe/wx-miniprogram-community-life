@@ -46,7 +46,8 @@ Page({
     
     formData: {},
     navTitle:'',
-    acceptOrgId:'',
+    acceptOrgId: '',
+    type:''
 
   },
 
@@ -57,33 +58,42 @@ Page({
     let adviceType = '';
     let navTitle = '';
     let acceptOrgId = '';
+    let type = ""
+    console.log(options)
     if(options.type){
-      if(options.type == 'counsel'){
+      if (options.type == 'counsel') {
         //社区咨询
-        navTitle = '社区咨询';
-        adviceType = '20';
-        
-      }else if(options.type == 'question'){
+        navTitle = "社区咨询"
+        adviceType = "20"
+        type = "counsel"
+        acceptOrgId = wx.getStorageSync("orgId") //从缓存中获取绑定的社区id
+      } else if (options.type == 'question') {
         //社区投诉
-        navTitle = '社区投诉';
-        adviceType = '30';
+        navTitle = "社区投诉"
+        adviceType = "30"
+        type = "question"
+        acceptOrgId = wx.getStorageSync("orgId") //从缓存中获取绑定的社区id
+      } else if (options.type == "good") { 
+        navTitle = "商品咨询"
+        adviceType = "40"
+        type = "question"
+        acceptOrgId = options.orgId   //orgId为商品orgId
       }
-      //从缓存中获取绑定的社区id
-      acceptOrgId =  wx.getStorageSync('communityId');
     }else{
       console.log("adviceType====");
-      navTitle = '反馈与投诉';
+      navTitle = '意见反馈';
       adviceType = '10';
-      acceptOrgId = '1592423575938273280';
+      type = "adviceType"
     }
     //设置标题
     wx.setNavigationBarTitle({
       title: navTitle,
     })
     this.setData({
-      adviceType:adviceType,
-      navTitle:navTitle,
-      acceptOrgId:acceptOrgId,
+      adviceType: adviceType,
+      navTitle: navTitle,
+      acceptOrgId: acceptOrgId,
+      type
     })
 
   },
@@ -119,28 +129,49 @@ Page({
     values.adviceImage = JSON.stringify(e.detail);
     values.acceptOrgId = _this.data.acceptOrgId;
     values.adviceType = _this.data.adviceType;
+    const type = this.data.type
     // values.acceptOrgId = "1646805444485844992";
     // 表单验证
     if (!_this.validation(values)) {
       App.showError(_this.data.error);
       return false;
     }
-    $api.adviceAdd(values).then(res => {
-      if (res.state) {
-        wx.showToast({
-          title: "提交成功",
-          duration: 2000,
-        });
-        setTimeout(function () {
-          wx.navigateBack();
-        }, 1000)
-      } else {
-        wx.showToast({
-          title: res.message,
-          icon: 'none'
-        })
-      }
-    })
+    if (type === "counsel" || type === "question" || type === "good") {
+      $api.addCommunityAdvice(values).then((res) => {
+        if (res.state) {
+          wx.showToast({
+            title: "提交成功",
+            duration: 2000
+          })
+          setTimeout(function () {
+            wx.navigateBack()
+          }, 1000)
+        } else {
+          wx.showToast({
+            title: res.message,
+            icon: "none"
+          })
+        }
+      })
+    } else if (type === "adviceType") {
+      delete values.acceptOrgId
+      $api.adviceAdd(values).then((res) => {
+        if (res.state) {
+          wx.showToast({
+            title: "提交成功",
+            duration: 2000
+          })
+          setTimeout(function () {
+            wx.navigateBack()
+          }, 1000)
+        } else {
+          wx.showToast({
+            title: res.message,
+            icon: "none"
+          })
+        }
+      })
+    }
   },
 
   /**

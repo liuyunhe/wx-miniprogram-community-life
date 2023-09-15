@@ -1,7 +1,7 @@
 <view class="base">
   <!-- <view class="news">开放18天号源（18：00放出第十六天号源）</view> -->
   <view class="date rpx-30">
-    <scroll-view scroll-x="true">
+    <scroll-view scroll-x="true" style="background: #ffffff;border-radius: 15rpx;">
       <view class="flex date-back">
         <view class="dataName {{isCheck==item.appointDate? 'isCheck' :''}}" wx:for="{{dateList}}" wx:key="index" bindtap="changeData" data-appointDate="{{item.appointDate}}">
           <view>{{item.week}}</view>
@@ -9,7 +9,7 @@
             <text>{{item.month}}/</text>
             <text class="font">{{item.day}}</text>
           </view>
-          <view class="mt-20">{{avaliableNum==0?'已约满':'有号'}}</view>
+          <view class="mt-20">{{item.number == 0 ? '已约满' : '有号' }}</view>
         </view>
       </view>
     </scroll-view>

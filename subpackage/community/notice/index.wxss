@@ -24,20 +24,13 @@ page{
 }
 .noticeCard{
   width: 94vw;
-  border-radius: 12rpx;
+  border-radius: 10rpx;
   background-color: #FFFFFF ;
   margin-right: 3vw;
- 
+  box-shadow: 0rpx 4rpx 7rpx 0rpx rgba(0,0,0,0.09);
 }
-/* 定义.text-content设置文本样式 */
-.text-content{
-  padding: 10px;
-  /* color:white; */
-  border-radius: 5px;
-  align-content: center;
-  border-bottom: 1rpx solid #F5F5F5;
-  background-color: #d0dfdb;
-  box-shadow: 0px 3px 2px  grey;
+.wrap-img{
+  padding: 25rpx 30rpx;
 }
 .title{
   /* font-weight: bold; */
@@ -181,18 +174,9 @@ page{
   font-size:26rpx;
 }
 .detailStyle{
-  padding: 5pt 10pt;
+  padding: 0 30rpx 28rpx;
   font-size: 30rpx;
   line-height: 46rpx;
+  font-size: 30rpx;
+}
 
-}
-.text-del{
-  /* flex:1; */
-  text-align:right;
-  color:red;
-  border-radius: 30rpx;
-  border: 1px solid red;
-  padding:9rpx 30rpx;
-  font-size:26rpx;
-  margin-left: 20rpx;
-}

@@ -27,9 +27,9 @@
                 <text class="text-desc">{{item.content}}</text>
               </view>
             </view>
-            <view class="img-list" wx:if="{{item.repairImage.length>0}}" wx:for="{{my_img.my_img(item.repairImage)}}" wx:for-item="imglist" wx:key="index">
+            <view class="img-list" wx:if="{{item.repairImage.length>0}}" wx:for="{{item.repairImage}}" wx:for-item="img" wx:key="index">
               <view wx:if="{{index<3}}">
-                <image class="goodsImg" mode="aspectFill" src="{{imgUrl}}{{imglist}}"></image>
+                <image class="goodsImg" mode="aspectFill" src="{{img.url}}"></image>
               </view>
             </view>
             <view class="transverse_class" style="padding-top:25rpx; margin-left:20rpx;">

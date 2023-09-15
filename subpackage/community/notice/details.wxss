@@ -13,9 +13,10 @@
 .rootView{
   position: relative;
   background-color: #FFFFFF;
-  border: 1px solid #FFFFFF;
   margin: 10pt 10pt 20pt 10pt;
-  padding: 10pt 10pt 20pt 10pt;
+  padding: 20rpx 30rpx 150rpx;
+  box-shadow: 0rpx 4rpx 7rpx 0rpx rgba(0,0,0,0.09);
+  border-radius: 10rpx;
 }
 .detailStyle{
   font-size: 32rpx;
@@ -25,9 +26,16 @@
   position: absolute;
   font-size: 32rpx;
   color: #999999;
-  bottom: 0;
-  right: 0;
+  bottom: 60rpx;
+  right: 33rpx;
 }
 .root{
   background-color: #F9FBFC;
+  min-height: 100vh;
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
+}
+.root::before{
+  content: "";
+  display: table;
 }
