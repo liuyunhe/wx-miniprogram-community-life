@@ -202,7 +202,7 @@ Page({
                 }
               })
               wx.setStorageSync("communityId", response.value.communityId)
-              wx.setStorageSync("orgId", response.value.orgId)
+              wx.setStorageSync("orgCode", response.value.orgCode)
               wx.setStorageSync("communityName", response.value.communityName)
             }
           })

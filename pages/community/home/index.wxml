@@ -119,12 +119,12 @@
 
               <view class="matter-text" bindtap="goCommunityServiece" data-type="consult">
                 <text style="font-size: 30rpx;color: #333333;padding-left: 10rpx;padding-left: 10rpx;">社区咨询 </text>
-                <text style="font-size: 26rpx;color: #666666;padding-left: 10rpx;margin-top: 10rpx;padding-left: 10rpx;">投诉维权</text>
+                <text style="font-size: 26rpx;color: #666666;padding-left: 10rpx;margin-top: 10rpx;padding-left: 10rpx;">咨询反馈</text>
               </view>
 
               <view class="matter-text" bindtap="goCommunityServiece" data-type="complaints">
                 <text style="font-size: 30rpx;color: #333333;padding-left: 10rpx;">社区投诉 </text>
-                <text style="font-size: 26rpx;color: #666666;padding-left: 10rpx;margin-top: 10rpx;">活动报名</text>
+                <text style="font-size: 26rpx;color: #666666;padding-left: 10rpx;margin-top: 10rpx;">投诉维权</text>
               </view>
             </view>
 

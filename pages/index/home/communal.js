@@ -253,8 +253,16 @@ Page({
       onlyFromCamera: true, // 只允许从相机扫码
       success(res) {
         console.log("扫码成功：" + JSON.stringify(res));
+        if (res.result.includes("oauth")) {
+          const qrCode = encodeURIComponent(res.result)
+          console.log(qrCode)
+          wx.navigateTo({
+            url: `/pages/login/scan?qrCode=${qrCode}`
+          })
+          return
+        }
         var goList = res.result.split("/");
-        console.log(goList[4]);
+        console.log(goList);
         if (goList[4] == 'pay') {
           wx.navigateTo({
             url: '/pages/index/home/confirm?q=' + res.result,

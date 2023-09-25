@@ -1,18 +1,22 @@
 const prefix = {
-  handy: '/handy',
-  accept: '/accept',
-  applet: '/applet',
-  common: '/common',
-  group: '/group',
-  file: '/file',
-  pay: '/pay',
-  community:'/community',
-  store:'/store',
+  handy: "/handy",
+  accept: "/accept",
+  applet: "/applet",
+  common: "/common",
+  group: "/group",
+  file: "/file",
+  pay: "/pay",
+  community: "/community",
+  store: "/store"
 }
 const API = {
   register: (data) =>
     request("POST", prefix.applet + "/v1/wechat/register", data), //根据微信小程序code获取手机号并完成注册；
   getToken: (data) => request("POST", prefix.applet + "/v1/wechat/login", data), //获取最新token
+  getQRUserInfo: (data) =>
+    request("GET", prefix.applet + "/v1/qrCode/userInfo", data), // 小程序前端通过接口向后端查询用户是否有权登录管理端
+  confirmQRLogin: (data) =>
+    request("POST", prefix.applet + "/v1/qrCode/confirm", data), // 小程序前端通过接口向后端发送确信用户登录管理端
   getByTypeId: (data) =>
     request("GET", prefix.common + "/v1/sys/dataDict/v1/getByTypeId", data), //查询字典
   serviceList: (data) =>
@@ -84,6 +88,12 @@ const API = {
     request("POST", prefix.common + "/v1/cust/advice/add", data), //客户意见反馈
   addCommunityAdvice: (data) =>
     request("POST", prefix.common + "/v1/cust/advice/addCommunityAdvice", data), //社区咨询投诉
+  addStoreGoodsAdvice: (data) =>
+    request(
+      "POST",
+      prefix.common + "/v1/cust/advice/addStoreGoodsAdvice",
+      data
+    ), //商品咨询
   adviceList: (data) =>
     request("POST", prefix.common + "/v1/cust/advice/list", data), //客户建议列表
   adviceDetail: (data) =>
@@ -241,25 +251,26 @@ const API = {
   getOrderPaydata: (data) =>
     request("POST", prefix.store + "/v1/cjStoreOrder/contiuePay", data) //继续支付
 }
-const baseUrl = 'https://tacj.openunion.cn/api'
+const baseUrl = "https://tacj.openunion.cn/api"
 
 function request(method, url, data) {
   return new Promise((resolve, reject) => {
     wx.showLoading({
-      title: '加载中',
+      mask: true,
+      title: "加载中"
     })
-    const token = wx.getStorageSync('token');
-    var isToken = url.slice(-8);
-    console.log("isToken====", isToken);
-    var header = {};
-    if ((isToken.indexOf("register") >= 0) || (isToken.indexOf("login") >= 0)) {
+    const token = wx.getStorageSync("token")
+    var isToken = url.slice(-8)
+    console.log("isToken====", isToken)
+    var header = {}
+    if (isToken.indexOf("register") >= 0 || isToken.indexOf("login") >= 0) {
       header = {
-        'content-type': 'application/json',
+        "content-type": "application/json"
       }
     } else {
       header = {
-        'content-type': 'application/json',
-        "authorization": "Bearer " + token
+        "content-type": "application/json",
+        authorization: "Bearer " + token
       }
     }
     wx.request({
@@ -278,10 +289,7 @@ function request(method, url, data) {
       }
     })
   })
-
-
 }
-
 
 module.exports = {
   API,

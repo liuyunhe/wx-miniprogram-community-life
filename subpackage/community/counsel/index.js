@@ -56,7 +56,7 @@ Page({
     page = page || 1
     _this.data.appointData.page = page
     _this.data.appointData.adviceType = "20"
-    _this.data.appointData.orgId = wx.getStorageSync("orgId")
+    _this.data.appointData.orgId = wx.getStorageSync("orgCode")
     _this.setData({
       appointData: _this.data.appointData
     })

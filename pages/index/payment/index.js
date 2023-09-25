@@ -91,6 +91,7 @@ Page({
   },
   findListChargeBill() { 
     const list = this.data.list
+    if(!list.length) return
     const params = list.map((item) => item.chargeCustId)
     $api.findListChargeBill(params).then((res) => {
       if (res.state) {

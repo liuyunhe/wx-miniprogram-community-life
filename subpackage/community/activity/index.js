@@ -13,7 +13,7 @@ Page({
     appointData: {
       page: 1,
       pageSize: 10,
-      status: ""
+      state: ""
     },
     totalPages: 1,
     showTopBar: true //默认显示顶部工具栏
@@ -61,8 +61,8 @@ Page({
     } else if (bindTap == "2") {
       state = ""
       _this.data.appointData.custId = wx.getStorageSync("custId")
-    } else if (bindTap == "3") {
-      state = "3"
+    } else if (bindTap == "4") {
+      state = "4"
       delete _this.data.appointData.custId
     }
     _this.data.appointData.state = state
@@ -149,14 +149,16 @@ Page({
       pageParam = {
         page: 1,
         pageSize: 10,
-        status: ""
+        state: ""
       }
     }
     $api.getCommunityActivityList(pageParam).then((res) => {
       let activityListTmp = []
+      let totalPages
       console.log(res.value)
       if (res.value.rows && res.value.rows.length) {
         activityListTmp = res.value.rows
+        totalPages = res.value.totalPages
         for (let i = 0; i < activityListTmp.length; i++) {
           let url = activityListTmp[i].activityImage
           let urlParse = _this.ParsePicture(url)
@@ -167,12 +169,14 @@ Page({
       if (isPage == true) {
         this.setData({
           activitiesList: this.data.activitiesList.concat(activityListTmp),
-          isLoading: false
+          isLoading: false,
+          totalPages
         })
       } else {
         this.setData({
           activitiesList: activityListTmp,
-          isLoading: false
+          isLoading: false,
+          totalPages
         })
       }
     })

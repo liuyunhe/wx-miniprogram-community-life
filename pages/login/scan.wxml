@@ -1,0 +1,70 @@
+<view class="base">
+  <view class="rpx-30 pt-20 header" style="padding-top: 30rpx">
+    <scroll-view
+      class="scroll-view"
+      scroll-y
+      style="height: {{scrollHeight}}px"
+    >
+      <!-- 有可登录账户 -->
+      <view wx:if="{{list.length}}" class="list-wrap">
+        <view class="info-wrap">
+          <image
+            class="info-icon"
+            src="../../state/images/tacj-logo.png"
+            mode="aspectFit"
+            lazy-load="false"
+          ></image>
+          <view
+            class="text-wrap"
+            selectable="false"
+            space="false"
+            decode="false"
+          >
+            请选择下列账户登录
+          </view>
+        </view>
+        <view
+          wx:for="{{list}}"
+          class="account-item {{index === 0 ? 'bt' : ''}}"
+          wx:key="index"
+          data-account="{{ item.account }}"
+          bindtap="handleClickLogin"
+        >
+          <view class="icon-accont">
+            <image
+              class="icon"
+              src="../../state/images/default-account.jpg"
+              mode="widthFix"
+            ></image>
+          </view>
+          <view class="acount-info" hover-class="none" hover-stop-propagation="false">
+            <view class="name">名称：{{ item.fullname }}</view>
+            <view class="account">账号：{{ item.account }}</view>
+          </view>
+          <image
+            class="arrow"
+            src="../../state/images/youjiantou.png"
+            mode="widthFix"
+          ></image>
+        </view>
+      </view>
+
+      <!-- 无可登录账户 -->
+      <view wx:else class="no-list-wrap">
+        <image
+            class="info-icon"
+            src="../../state/images/tacj-logo.png"
+            mode="aspectFit"
+            lazy-load="false"
+          ></image>
+        <view class="text-wrap" selectable="false" space="false" decode="false">
+           抱歉，您当前暂无账户可登录
+        </view>
+      </view>
+    </scroll-view>
+    <navigator class="" target="" url="" hover-class="navigator-hover" open-type="navigateBack">
+      <button class="return-btn" style="width: 100%">返回</button>
+    </navigator>
+    
+  </view>
+</view>

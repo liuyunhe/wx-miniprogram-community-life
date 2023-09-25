@@ -1,0 +1,83 @@
+.scroll-view {
+  width: 100%;
+  margin-bottom: 40rpx;
+  background-color: #fff;
+}
+.scroll-view .list-wrap {
+  margin-bottom: 40rpx;
+  padding-top: 100rpx;
+}
+.scroll-view .list-wrap .info-wrap {
+  margin-bottom: 100rpx;
+}
+.scroll-view .list-wrap .info-wrap .info-icon {
+  display: block;
+  width: 150rpx;
+  height: 150rpx;
+  margin: 0 auto 100rpx;
+}
+.scroll-view .list-wrap .info-wrap .text-wrap {
+  width: 100%;
+  text-align: center;
+  color: #999999;
+}
+.scroll-view .list-wrap .account-item {
+  height: 100rpx;
+  padding: 30rpx;
+  margin: 0 30rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #BDBDBD;
+}
+.scroll-view .list-wrap .account-item.bt {
+  border-top: 1rpx solid #BDBDBD;
+}
+.scroll-view .list-wrap .account-item .icon-accont {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 30rpx;
+}
+.scroll-view .list-wrap .account-item .icon-accont .icon {
+  width: 100%;
+  border-radius: 50%;
+}
+.scroll-view .list-wrap .account-item .acount-info {
+  margin-right: 30rpx;
+  flex: 1;
+}
+.scroll-view .list-wrap .account-item .acount-info .name {
+  font-size: 28rpx;
+}
+.scroll-view .list-wrap .account-item .acount-info .account {
+  font-size: 24rpx;
+  color: #999999;
+}
+.scroll-view .list-wrap .account-item .arrow {
+  width: 13rpx;
+  height: 23rpx;
+  padding-top: 5rpx;
+}
+.scroll-view .no-list-wrap {
+  margin-bottom: 40rpx;
+  padding-top: 100rpx;
+}
+.scroll-view .no-list-wrap .info-icon {
+  display: block;
+  width: 150rpx;
+  height: 150rpx;
+  margin: 0 auto 100rpx;
+}
+.scroll-view .no-list-wrap .text-wrap {
+  width: 100%;
+  text-align: center;
+  color: #999999;
+}
+.return-btn {
+  border: none;
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 999rpx;
+  padding-top: 22rpx;
+  padding-bottom: 22rpx;
+}

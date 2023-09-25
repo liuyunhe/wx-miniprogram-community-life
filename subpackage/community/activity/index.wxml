@@ -24,8 +24,8 @@
       >已报名</view
     >
     <view
-      class="text-tab {{dataType==='3'?'text-active':''}}"
-      data-type="3"
+      class="text-tab {{dataType==='4'?'text-active':''}}"
+      data-type="4"
       catchtap="bindHeaderTap"
       >已结束</view
     >

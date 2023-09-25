@@ -32,6 +32,7 @@
     "pages/my/order/details",
     "pages/service/home/index",
     "pages/login/login",
+    "pages/login/scan",
     "pages/index/payment/index",
     "pages/index/query/index",
     "pages/index/addAccount/index",

@@ -11,8 +11,8 @@
       "list": [
         {
           "name": "",
-          "pathName": "subpackage/community/activity/details",
-          "query": "activityId=1701868034844659712",
+          "pathName": "pages/login/scan",
+          "query": "",
           "launchMode": "default",
           "scene": null
         },

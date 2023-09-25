@@ -40,6 +40,9 @@ Page({
       this.setData({
         readOnly: true
       })
+      wx.setNavigationBarTitle({
+        title:"物品详情"
+      })
     }
     if (options.goodsId) {
       this.setData({
@@ -119,6 +122,20 @@ Page({
   // /api/community/v1/communityMarketGoods/add   POST
   //商品发布
   marketPublish() {
+    if (!this.data.marketUrlArray) { 
+      wx.showToast({
+        title: "请上传图片！",
+        icon: "error"
+      })
+      return
+    }
+    if (!this.data.marketType) { 
+       wx.showToast({
+         title: "请选择分类！",
+         icon: "error"
+       })
+       return
+    }
     let _this = this
     let publishData = {}
     publishData.goodsName = _this.data.marketTitle
@@ -134,9 +151,7 @@ Page({
     publishData.createOperName = ""
     publishData.custId = wx.getStorageSync("custId")
     publishData.createTime = this.getNowDate()
-    if (_this.data.marketUrlArray) {
-      publishData.goodsImage = JSON.stringify(_this.data.marketUrlArray)
-    }
+    publishData.goodsImage = JSON.stringify(_this.data.marketUrlArray)
     console.log("publishData ===>", publishData)
     $api.goodPublish(publishData).then((res) => {
       console.log("goodPublish ===>", res)

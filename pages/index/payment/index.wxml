@@ -1,6 +1,6 @@
 <view class="base">
   <view wx:if="{{list.length > 0}}">
-    <view class="view-back" wx:for="{{list}}" wx:key="{{index}}">
+    <view class="view-back" wx:for="{{list}}" wx:key="index">
       <view class="list">
         <image class="listImg" mode="widthFix" src="{{payImg}}" >
           <view  wx:if="{{ item.billActive }}" class="point" ></view>

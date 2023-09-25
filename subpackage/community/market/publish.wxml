@@ -11,10 +11,11 @@
           class="seat-class"
           bindtap="chooseImg"
         ></image>
-        <view class="title-view">
+        <view class="title-view" wx:if="{{!readOnly}}">
           <text class="title-view-text">物品标题</text>
         </view>
         <input
+          wx:if="{{!readOnly}}"
           class="input-title"
           placeholder="填写品牌型号"
           model:value="{{marketTitle}}"
@@ -22,19 +23,25 @@
           bindchange="bindTitleChange"
           disabled="{{readOnly}}"
         />
-
+        <view wx:if="{{readOnly}}" class="input-view {{readOnly ? 'bt' : ''}}">
+          <text class="price-text">物品标题</text>
+          <view style="display: flex; flex-direction: row">
+            <text class="price-review-right">{{marketTitle}}</text>
+          </view>
+        </view>
+        <view class="line-class"></view>
         <view class="title-view">
-          <text class="title-view-text">物品描述</text>
+          <text class="{{ readOnly ? 'price-text' : 'title-view-text' }}">物品描述</text>
         </view>
         <textarea
-          class="input-desc"
+          class="input-desc {{ readOnly?'no-border':'' }}"
           placeholder="描述下物品新旧程度、型号尺码等..."
           model:value="{{marketDesc}}"
           name="marketDesc"
           bindinput="bindDescChange"
           disabled="{{readOnly}}"
         ></textarea>
-
+        <view class="line-class"></view>
         <picker
           mode="selector"
           model:value="{{marketType}}"
@@ -47,14 +54,14 @@
           <view style="display: flex; align-items: center; height: 100rpx">
             <view class="type-view">
               <text class="type-text">分类</text>
-              <text class="type-text-right">{{marketTypeName}} ></text>
+              <text class="type-text-right">{{marketTypeName}} {{ readOnly ? "" : ">" }}</text>
             </view>
           </view>
         </picker>
         <view class="line-class"></view>
         <view class="price-view">
           <text class="price-text">价格</text>
-          <view style="display: flex; flex-direction: row">
+          <view wx:if="{{!readOnly}}" style="display: flex; flex-direction: row">
             <text class="price-view-right">￥</text>
             <input
               class="price-text-right"
@@ -63,12 +70,15 @@
               disabled="{{readOnly}}"
             />
           </view>
+          <view wx:else style="display: flex; flex-direction: row">
+            <text class="price-review-right" style="color:#FF580C">￥{{marketPrice}}</text>
+          </view>
         </view>
         <view class="line-class"></view>
 
-        <view class="input-view">
+        <view class="input-view {{readOnly ? 'bt' : ''}}">
           <text class="price-text">联系人</text>
-          <view style="display: flex; flex-direction: row; margin-left: 66rpx">
+          <view wx:if="{{!readOnly}}" style="display: flex; flex-direction: row; margin-left: 66rpx">
             <input
               class="input-text-right"
               placeholder="请输入联系人名称"
@@ -77,11 +87,14 @@
               bindchange="bindNameChange"
             />
           </view>
+          <view wx:else style="display: flex; flex-direction: row">
+            <text class="price-review-right">{{name}}</text>
+          </view>
         </view>
         <view class="line-class"></view>
-        <view class="input-view">
+        <view class="input-view {{readOnly ? 'bt' : ''}}">
           <text class="price-text">联系电话</text>
-          <view style="display: flex; flex-direction: row; margin-left: 66rpx">
+          <view wx:if="{{!readOnly}}"  style="display: flex; flex-direction: row; margin-left: 66rpx">
             <input
               class="input-text-right"
               disabled="{{readOnly}}"
@@ -89,6 +102,9 @@
               model:value="{{phone}}"
               bindchange="bindPhoneChange"
             />
+          </view>
+          <view wx:else style="display: flex; flex-direction: row">
+            <text class="price-review-right">{{phone}}</text>
           </view>
         </view>
       </view>
