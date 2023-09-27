@@ -23,7 +23,7 @@ Page({
       {
         id: 6,
         url: '/state/images/operation.png',
-        title: '我的活动'
+        title: '我的报名'
       },
       {
         id: 7,

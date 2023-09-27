@@ -30,7 +30,8 @@ Page({
       appointData.custId = wx.getStorageSync("custId")
       this.setData({
         showTopBar: false,
-        appointData
+        appointData,
+        dataType: '2'
       })
     }
     this.showActivityList(false)
@@ -79,9 +80,7 @@ Page({
   acticitiesDetails(item) {
     let detailInfo = item.currentTarget.dataset.detail
     wx.navigateTo({
-      url:
-        "/subpackage/community/activity/details?activityId=" +
-        detailInfo.activityId
+      url: `/subpackage/community/activity/details?activityId=${detailInfo.activityId}&dataType=${this.data.dataType}`
     })
   },
 

@@ -15,15 +15,18 @@ Page({
     showBtn: false,
     act_info_loaded: false,
     sigle_page: false,
-    activityImage: ""
+    activityImage: "",
+    dataType: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    const { activityId, dataType } = options
     this.setData({
-      activityId: options.activityId
+      activityId,
+      dataType
     })
     var q = wx.getEnterOptionsSync()
     if (q.scene == 1154) {
@@ -50,7 +53,7 @@ Page({
       if (res.value) {
         const signupDeadline = new Date(res.value.signupDeadline).getTime()
         const signupBeginDate = new Date(res.value.signupBeginDate).getTime()
-        const showBtn = res.value.enableSignup == 1
+        const showBtn = res.value.enableSignup == 1 && this.data.dataType !== '2'
         this.setData({
           activityId: res.value.activityId,
           title: res.value.title,
@@ -104,7 +107,6 @@ Page({
           _this.data.activityId
       })
     }
-    
   },
 
   /**

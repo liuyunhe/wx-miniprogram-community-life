@@ -12,12 +12,6 @@
       >全部</view
     >
     <view
-      class="text-tab {{dataType==='1'?'text-active':''}}"
-      data-type="1"
-      catchtap="bindHeaderTap"
-      >进行中</view
-    >
-    <view
       class="text-tab {{dataType==='2'?'text-active':''}}"
       data-type="2"
       catchtap="bindHeaderTap"
@@ -50,7 +44,9 @@
                 src="{{item.activityImage}}"
               />
             </view>
-            <view class="text-title"> {{item.title}} </view>
+            <view class="text-title"> {{item.title}}
+               <span wx:if="{{item.enableSignup === 1 && (dataType === '' || dataType === '1')}}" class="need-signup">需报名</span>
+            </view>
             <view class="timeStyle"
               >活动时间：{{filters.toFixDate(item.beginDate)}} -
               {{filters.toFixDate(item.endDate)}}
@@ -60,7 +56,7 @@
                 catchtap="handleCancel"
                 data-status="4"
                 data-id="{{item.communitySignupVO.signupId}}"
-                >取消预约</text
+                >取消报名</text
               >
             </view>
             <view class="timeStyle" wx:if="{{dataType==='2'}}"
