@@ -150,14 +150,16 @@ Page({
   },
 
   userInfo() {
+    console.log("userInfo=====>")
     let _this = this;
     $api.userInfo({}).then(res => {
+      console.log(res)
       if (res.state) {
         if (res.value.hasOwnProperty('wechatNickName') && res.value.wechatNickName != '') {
           if (res.value.wechatAvatarUrl == '/state/images/yucun.png') {
             _this.data.titleImg = '/state/images/yucun.png';
           } else {
-            _this.data.titleImg = App.globalData.imgUrl + res.value.wechatAvatarUrl;
+            _this.data.titleImg = JSON.parse(res.value.wechatAvatarUrl)[0].url
             // _this.data.titleImg = '/state/images/yucun.png';
           }
           _this.setData({

@@ -12,28 +12,29 @@ Component({
    */
   properties: {
     // 弹窗标题
-    title: { // 属性名
+    title: {
+      // 属性名
       type: String, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
-      value: '标题' // 属性初始值（可选），如果未指定则会根据类型选择一个
+      value: "标题" // 属性初始值（可选），如果未指定则会根据类型选择一个
     },
     // 弹窗取消按钮文字
     cancelText: {
       type: String,
-      value: '取消'
+      value: "取消"
     },
     // 弹窗确认按钮文字
     confirmText: {
       type: String,
-      value: '保存'
+      value: "保存"
     },
     nickname: {
       type: String,
-      value: ''
+      value: ""
     },
     avatarUrl: {
       type: String,
       value: defaultAvatarUrl
-    },
+    }
   },
 
   /**
@@ -45,7 +46,7 @@ Component({
     isShow: false,
     // avatarUrl: defaultAvatarUrl,
     // nickname: '',
-    wechatAvatarUrl: '/state/images/yucun.png'
+    wechatAvatarUrl: "/state/images/yucun.png"
   },
   /**
    * 组件的方法列表
@@ -61,31 +62,28 @@ Component({
       })
     },
     onChooseAvatar(e) {
-      let _this = this;
-      console.log(e);
-      // const {
-      //   avatarUrl
-      // } = e.detail
-      _this.setData({
-        avatarUrl: e.detail.avatarUrl
-      });
+      let _this = this
+      console.log(e)
+      const { avatarUrl } = e.detail
+      // _this.setData({
+      //   avatarUrl: e.detail.avatarUrl
+      // });
       //  将头像上传到服务器
       wx.uploadFile({
-        url: $baseUrl + '/file/v1/fileUpload',
-        filePath: _this.data.avatarUrl,
-        name: 'files',
-        method: 'POST',
+        url: $baseUrl + "/file/v1/fileUpload",
+        filePath: avatarUrl,
+        name: "files",
+        method: "POST",
         header: {
-          'content-type': 'application/json', // 默认值
-          "authorization": "Bearer " + wx.getStorageSync('token')
+          "content-type": "application/json", // 默认值
+          authorization: "Bearer " + wx.getStorageSync("token")
         },
         success(res) {
           if (res.statusCode == "200") {
             if (res.data) {
-              var fileId = JSON.parse(res.data).fileId;
-              _this.onlinePreview(fileId);
+              const { fileId, fileName } = JSON.parse(res.data)
+              _this.onlinePreview(fileId, fileName)
             } else {
-
             }
           } else {
             App.showError("上传失败")
@@ -93,23 +91,30 @@ Component({
         }
       })
     },
-    onlinePreview(fileId) {
-      let _this = this;
+    onlinePreview(fileId, fileName) {
+      let _this = this
       var imgData = {
         fileId: fileId
       }
-      $api.onlinePreview(imgData).then(res => {
-        console.log("浏览图片结果=====", res);
-        if (res.result != 'error') {
+      $api.onlinePreview(imgData).then((res) => {
+        console.log("浏览图片结果=====", res)
+        if (res.result != "error") {
+          const wechatAvatarUrl = [{
+            fileName: fileName,
+            url: `https://tacj.openunion.cn/api/portal/file/onlinePreviewController/v1/getFileById_${fileId}`
+          }]
+          const avatarUrl = wechatAvatarUrl[0].url
           _this.setData({
             // avatarUrl: res.currentUrl
-            wechatAvatarUrl: res.currentUrl
-          });
+            wechatAvatarUrl:JSON.stringify(wechatAvatarUrl),
+            avatarUrl
+          })
           // _this.triggerEvent("itemChange", res.currentUrl);
+          console.log(_this)
         } else {
           wx.showToast({
             title: res.message,
-            icon: 'none'
+            icon: "none"
           })
         }
       })
@@ -132,43 +137,43 @@ Component({
      * triggerEvent 用于触发事件
      */
     _cancelEvent() {
-      let _this = this;
+      let _this = this
       //触发取消回调
       _this.triggerEvent("cancelEvent")
     },
     _confirmEvent() {
-      let _this = this;
+      let _this = this
       if (_this.data.avatarUrl == defaultAvatarUrl) {
         wx.showToast({
-          title: '请选择头像',
-          icon: 'none'
-        });
-        return;
+          title: "请选择头像",
+          icon: "none"
+        })
+        return
       }
-      if (_this.data.nickname == '') {
+      if (_this.data.nickname == "") {
         wx.showToast({
-          title: '请填写昵称',
-          icon: 'none'
-        });
-        return;
+          title: "请填写昵称",
+          icon: "none"
+        })
+        return
       }
       var imgData = {
         wechatNickName: _this.data.nickname,
         wechatAvatarUrl: _this.data.wechatAvatarUrl
       }
-      $api.wechatUser(imgData).then(res => {
+      $api.wechatUser(imgData).then((res) => {
         if (res.state) {
-          wx.setStorageSync('wechatNickName', _this.data.nickname);
-          wx.setStorageSync('wechatAvatarUrl', _this.data.avatarUrl);
+          wx.setStorageSync("wechatNickName", _this.data.nickname)
+          wx.setStorageSync("wechatAvatarUrl", _this.data.avatarUrl)
+          //触发成功回调
+          _this.triggerEvent("confirmEvent")
         } else {
           wx.showToast({
             title: res.message,
-            icon: 'none'
+            icon: "none"
           })
         }
       })
-      //触发成功回调
-      this.triggerEvent("confirmEvent");
-    },
+    }
   }
 })
