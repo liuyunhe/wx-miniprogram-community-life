@@ -153,7 +153,7 @@
             </view>
             <view
               class="btn"
-              wx:if="{{ item.paystate == '1' && item.finalPaymentStatus == '0' }}"
+              wx:if="{{ item.paystate == '1' && item.state == '1' && item.finalPaymentStatus == '0' }}"
             >
               <text class="bg-26A" catchtap="showDialog" data-value="{{ item }}"
                 >付尾款</text
