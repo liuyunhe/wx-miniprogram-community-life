@@ -1,7 +1,12 @@
 <view class="view-column">
+  <view wx:if="{{noticeImage}}" class="" hover-class="none" hover-stop-propagation="false">
+  <image class="guide-img" mode="widthFix" src="{{noticeImage}}"  binderror="" bindload="">
+    </image>
+  </view>
   <text class="text-title">{{details.noticeTitle}}</text>
   <text class="text-content">{{details.createTime}}</text>
   <view class="view-line"></view>
   <!-- <text class="text-content">{{details.noticeContent}}</text> -->
   <rich-text nodes="{{noticeContent}}"></rich-text>
+
 </view>
