@@ -60,6 +60,9 @@ App({
       list: [],
       totalPrice: 0,
       totalNum: 0
+    },
+    priTmplId: {
+      SUBSCRIBE_BILL_TMP_ID: "rEHp7goCrg-Qn3pSwCdlD77J7UhLwU8waTSeHldt8GI"
     }
   },
   /**
@@ -208,10 +211,10 @@ App({
     }
     const updateManager = wx.getUpdateManager()
     if (!updateManager) return
-      updateManager.onCheckForUpdate(function (res) {
-        // 请求完新版本信息的回调
-        // console.log(res.hasUpdate)
-      })
+    updateManager.onCheckForUpdate(function (res) {
+      // 请求完新版本信息的回调
+      // console.log(res.hasUpdate)
+    })
     updateManager.onUpdateReady(function () {
       wx.showModal({
         title: "更新提示",

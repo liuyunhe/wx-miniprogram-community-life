@@ -1,28 +1,29 @@
 const $api = require('../../../utils/api.js').API;
+const { SUBSCRIBE_BILL_TMP_ID } = getApp().globalData.priTmplId
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    payData: [{
+    payData: [
+      {
         id: 1,
-        url: '/state/images/shui1.png',
-        title: '水费',
+        url: "/state/images/shui1.png",
+        title: "水费",
         num: 1
       },
       {
         id: 2,
-        url: '/state/images/ranqi1.png',
-        title: '燃气费',
+        url: "/state/images/ranqi1.png",
+        title: "燃气费",
         num: 0
       },
       {
         id: 3,
-        url: '/state/images/reli1.png',
-        title: '热力费',
+        url: "/state/images/reli1.png",
+        title: "热力费",
         num: 0
-      },
+      }
       // {
       //   id: 4,
       //   url: '/state/images/tingche1.png',
@@ -50,17 +51,22 @@ Page({
       // },
     ],
     newsData: [],
-    imgNewsData: [{
-      url: '/state/images/table.png'
-    }],
-    imgNewsData1: [{
-      url: '/state/images/table1.png'
-    }],
-    footData: [{
-        id: '1',
-        url: '/state/images/shop.png',
-        title: '跳蚤市场'
-      },
+    imgNewsData: [
+      {
+        url: "/state/images/table.png"
+      }
+    ],
+    imgNewsData1: [
+      {
+        url: "/state/images/table1.png"
+      }
+    ],
+    footData: [
+      {
+        id: "1",
+        url: "/state/images/shop.png",
+        title: "跳蚤市场"
+      }
       // {
       //   id: '2',
       //   url: '/state/images/guanjia.png',
@@ -97,13 +103,36 @@ Page({
       //   title: '咨询投诉'
       // },
     ],
-    token: '',
-    url: '',
-    type: '',
+    token: "",
+    url: "",
+    type: "",
     chargeList: [],
-    rlfActive:false,
-    sfActive:false,
-    rqfActive:false
+    rlfActive: false,
+    sfActive: false,
+    rqfActive: false
+  },
+
+  onTabItemTap(item) {
+    wx.getSetting({
+      withSubscriptions: true,
+      success(res) {
+        console.log("success=====", res)
+        var itemSettings = res.subscriptionsSetting.itemSettings
+        if (itemSettings && itemSettings[SUBSCRIBE_BILL_TMP_ID] === "accept") {
+          return
+        } else {
+          this.subscribeBill()
+        }
+      },
+      fail(res) {
+        console.log("fail=====", res)
+       
+      },
+      complete(res) {
+        console.log("complete=====", res)
+      }
+    })
+    
   },
 
   /**
@@ -130,31 +159,72 @@ Page({
     //     url: '/pages/login/login',
     //   })
     // }
+    // this.subscribeBill()
+  },
+  subscribeBill() {
+    wx.requestSubscribeMessage({
+      tmplIds: [SUBSCRIBE_BILL_TMP_ID],
+      success(res) {
+        console.log("success=====", res)
+        if (res[SUBSCRIBE_BILL_TMP_ID] === "accept") {
+          wx.showToast({
+            title: "订阅成功",
+            icon: "success",
+            duration: 2000
+          })
+        }
+        if (res[SUBSCRIBE_BILL_TMP_ID] === "reject") {
+          wx.showToast({
+            title: "已取消",
+            icon: "success",
+            duration: 2000
+          })
+        }
+      },
+      fail(res) {
+        console.log("fail=====", res)
+        wx.showToast({
+          title: "订阅失败",
+          icon: "none",
+          duration: 2000
+        })
+      },
+      complete(res) {
+        console.log("complete=====", res)
+      }
+    })
   },
   bindmarkertap(e) {
-    console.log("bindmarkertap====", e.markerId);
+    console.log("bindmarkertap====", e.markerId)
     for (let i = 0; i < this.data.markers.length; i++) {
       if (this.data.markers[i].id == e.markerId) {
-        this.dialog.showDialog(this.data.markers[i].type, this.data.markers[i].attributes, this.data.markers[i].item);
+        this.dialog.showDialog(
+          this.data.markers[i].type,
+          this.data.markers[i].attributes,
+          this.data.markers[i].item
+        )
       }
     }
   },
   userInfo() {
-    let _this = this;
-    $api.userInfo({}).then(res => {
+    let _this = this
+    $api.userInfo({}).then((res) => {
       if (res.state) {
-        if (res.value.hasOwnProperty('wechatNickName') && res.value.wechatNickName != '') {
-          wx.setStorageSync("wechatNickName", res.value.wechatNickName);
-          wx.setStorageSync("custId", res.value.custId);
+        if (
+          res.value.hasOwnProperty("wechatNickName") &&
+          res.value.wechatNickName != ""
+        ) {
+          wx.setStorageSync("wechatNickName", res.value.wechatNickName)
+          wx.setStorageSync("custId", res.value.custId)
           // _this.checkSignPayProtocol();
         }
       }
     })
   },
   chargePoint() {
-    let _this = this;
-    $api.chargePoint({}).then(res => {
-      console.log(res);
+    let _this = this
+    $api.chargePoint({}).then((res) => {
+      console.log(res)
       if (res.state) {
         for (let i = 0; i < res.value.length; i++) {
           var markersData = {
@@ -166,10 +236,10 @@ Page({
             longitude: res.value[i].longitude,
             width: res.value[i].width,
             height: res.value[i].height,
-            iconPath: res.value[i].iconPath,
-          };
-          _this.data.markers.push(markersData);
-        };
+            iconPath: res.value[i].iconPath
+          }
+          _this.data.markers.push(markersData)
+        }
         _this.setData({
           markers: _this.data.markers,
           chargeList: res.value
@@ -178,81 +248,82 @@ Page({
     })
   },
   merchantPoint(type) {
-    let _this = this;
-    $api.merchantPoint({
-      chargeTypeKey: type
-    }).then(res => {
-      console.log(res);
-      if (res.state) {
-        for (let i = 0; i < res.value.length; i++) {
-          var markersData = {
-            id: res.value[i].id,
-            type: "merchant",
-            item: type,
-            attributes: res.value[i].attributes,
-            latitude: res.value[i].latitude,
-            longitude: res.value[i].longitude,
-            width: res.value[i].width,
-            height: res.value[i].height,
-            iconPath: res.value[i].iconPath,
-          };
-          _this.data.markers.push(markersData);
-        };
-        _this.setData({
-          markers: _this.data.markers
-        })
-      }
-    })
+    let _this = this
+    $api
+      .merchantPoint({
+        chargeTypeKey: type
+      })
+      .then((res) => {
+        console.log(res)
+        if (res.state) {
+          for (let i = 0; i < res.value.length; i++) {
+            var markersData = {
+              id: res.value[i].id,
+              type: "merchant",
+              item: type,
+              attributes: res.value[i].attributes,
+              latitude: res.value[i].latitude,
+              longitude: res.value[i].longitude,
+              width: res.value[i].width,
+              height: res.value[i].height,
+              iconPath: res.value[i].iconPath
+            }
+            _this.data.markers.push(markersData)
+          }
+          _this.setData({
+            markers: _this.data.markers
+          })
+        }
+      })
   },
   // 点击生活缴费中
   goPay(option) {
-    const id = option.currentTarget.dataset.id;
-    getApp().globalData.id = id;
-    if (id == '1') {
-      getApp().globalData.payImg = '/state/images/shui1.png'
-      getApp().globalData.payName = '水费'
+    const id = option.currentTarget.dataset.id
+    getApp().globalData.id = id
+    if (id == "1") {
+      getApp().globalData.payImg = "/state/images/shui1.png"
+      getApp().globalData.payName = "水费"
       wx.navigateTo({
-        url: '/pages/index/payment/index?type=sf',
+        url: "/pages/index/payment/index?type=sf"
       })
-    } else if (id == '2') {
-      getApp().globalData.payImg = '/state/images/ranqi1.png'
-      getApp().globalData.payName = '燃气费'
+    } else if (id == "2") {
+      getApp().globalData.payImg = "/state/images/ranqi1.png"
+      getApp().globalData.payName = "燃气费"
       wx.navigateTo({
-        url: '/pages/index/payment/index?type=rqf',
+        url: "/pages/index/payment/index?type=rqf"
       })
-    } else if (id == '3') {
-      getApp().globalData.payImg = '/state/images/reli1.png'
-      getApp().globalData.payName = '热力费'
+    } else if (id == "3") {
+      getApp().globalData.payImg = "/state/images/reli1.png"
+      getApp().globalData.payName = "热力费"
       wx.navigateTo({
-        url: '/pages/index/payment/index?type=rlf',
+        url: "/pages/index/payment/index?type=rlf"
       })
-    } else if (id == '4') {
+    } else if (id == "4") {
       // wx.showToast({
       //   title: '暂未开放',
       // })
-    } else if (id == '5') {
-
+    } else if (id == "5") {
     }
   },
   repair() {
     wx.navigateTo({
-      url: '/pages/index/proposal/index',
+      url: "/pages/index/proposal/index"
     })
   },
   idCode() {
     wx.navigateTo({
-      url: '/pages/index/home/idCode',
+      url: "/pages/index/home/idCode"
     })
   },
   confirm() {
-    var _this = this;
+    var _this = this
     // wx.navigateTo({
     //   url: '/pages/index/home/confirm',
     // })
     wx.scanCode({
       onlyFromCamera: true, // 只允许从相机扫码
       success(res) {
-        console.log("扫码成功：" + JSON.stringify(res));
+        console.log("扫码成功：" + JSON.stringify(res))
         if (res.result.includes("oauth")) {
           const qrCode = encodeURIComponent(res.result)
           console.log(qrCode)
@@ -261,19 +332,19 @@ Page({
           })
           return
         }
-        var goList = res.result.split("/");
-        console.log(goList);
-        if (goList[4] == 'pay') {
+        var goList = res.result.split("/")
+        console.log(goList)
+        if (goList[4] == "pay") {
           wx.navigateTo({
-            url: '/pages/index/home/confirm?q=' + res.result,
+            url: "/pages/index/home/confirm?q=" + res.result
           })
-        } else if (goList[4] == 'parkpay') {
+        } else if (goList[4] == "parkpay") {
           wx.navigateTo({
-            url: '/pages/index/home/parking?q=' + res.result,
+            url: "/pages/index/home/parking?q=" + res.result
           })
-        } else if (goList[4] == 'staff') {
+        } else if (goList[4] == "staff") {
           wx.navigateTo({
-            url: '/pages/index/home/workCard?q=' + res.result,
+            url: "/pages/index/home/workCard?q=" + res.result
           })
         }
 
@@ -284,8 +355,8 @@ Page({
       },
       fail(err) {
         wx.showToast({
-          title: '扫描失败',
-          icon: 'none',
+          title: "扫描失败",
+          icon: "none",
           duration: 1000
         })
       }
@@ -296,7 +367,7 @@ Page({
     console.log(option)
     if (option.currentTarget.dataset.id == 1) {
       wx.showToast({
-        title: '暂未开放',
+        title: "暂未开放"
       })
     } else {
       // wx.navigateTo({
@@ -307,20 +378,18 @@ Page({
   // 在线预约
   goSubscribe() {
     wx.navigateTo({
-      url: '/pages/index/subscribe/index',
+      url: "/pages/index/subscribe/index"
     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
+  onReady() {},
 
-  },
-  
   noticeDetails(e) {
-    console.log(e);
+    console.log(e)
     wx.navigateTo({
-      url: '/pages/index/home/notice?id=' + e.currentTarget.dataset.id,
+      url: "/pages/index/home/notice?id=" + e.currentTarget.dataset.id
     })
   },
 
@@ -328,105 +397,94 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    if (!wx.getStorageSync('token')) {
+    if (!wx.getStorageSync("token")) {
       wx.redirectTo({
-        url: '/pages/login/login?type=0',
-      });
+        url: "/pages/login/login?type=0"
+      })
     } else {
-      this.getToken();
+      this.getToken()
     }
   },
   // 获取token
   getToken() {
-    let _this = this;
+    let _this = this
     var loginData = {
-      token: "Bearer " + wx.getStorageSync('token'),
-    };
-    $api.getToken(loginData).then(res => {
-      console.log(res);
-      wx.setStorageSync("token", res.value.token);
+      token: "Bearer " + wx.getStorageSync("token")
+    }
+    $api.getToken(loginData).then((res) => {
+      console.log(res)
+      wx.setStorageSync("token", res.value.token)
       _this.setData({
-        url: "https://tacj.openunion.cn/test2/index.html?token=" + res.value.token
-      });
-      this.notice();
-      this.userInfo();
+        url:
+          "https://tacj.openunion.cn/test2/index.html?token=" + res.value.token
+      })
+      this.notice()
+      this.userInfo()
       this.getUseChargeBill("rlf")
       this.getUseChargeBill("sf")
       this.getUseChargeBill("rqf")
     })
   },
-  getUseChargeBill(type) { 
+  getUseChargeBill(type) {
     const params = { type }
     $api.findUseChargeBill(params).then((res) => {
       console.log(111111)
       switch (type) {
         case "rlf":
-          this.setData({rlfActive:res.value})
-          break;
+          this.setData({ rlfActive: res.value })
+          break
         case "sf":
-          this.setData({sfActive:res.value})
-          break;
+          this.setData({ sfActive: res.value })
+          break
         case "rqf":
-          this.setData({rqfActive:res.value})
-          break;
+          this.setData({ rqfActive: res.value })
+          break
         default:
-          break;
+          break
       }
     })
   },
   notice() {
-    let _this = this;
+    let _this = this
     var noticeData = {
       page: 1,
       pageSize: 100
-    };
-    $api.notice(noticeData).then(res => {
+    }
+    $api.notice(noticeData).then((res) => {
       _this.setData({
         newsData: res.value.rows
       })
     })
   },
   checkSignPayProtocol() {
-    let _this = this;
+    let _this = this
     var outData = {
-      outUserId: wx.getStorageSync('custId')
-    };
-    $api.checkSignPayProtocol(outData).then(res => {
-      
-    })
+      outUserId: wx.getStorageSync("custId")
+    }
+    $api.checkSignPayProtocol(outData).then((res) => {})
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
+  onShareAppMessage() {}
 })
