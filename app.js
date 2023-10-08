@@ -61,6 +61,8 @@ App({
       totalPrice: 0,
       totalNum: 0
     },
+    IMAGE_UPLOAD_URL:
+      "https://tacj.openunion.cn/api/portal/file/onlinePreviewController/v1/getFileById_",
     priTmplId: {
       SUBSCRIBE_BILL_TMP_ID: "rEHp7goCrg-Qn3pSwCdlD77J7UhLwU8waTSeHldt8GI"
     }

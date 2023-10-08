@@ -2,6 +2,7 @@ var util = require('../../../utils/util.js');
 const $baseUrl = require('../../../utils/api.js').baseUrl;
 const $api = require('../../../utils/api.js').API;
 const App = getApp();
+const { IMAGE_UPLOAD_URL } = getApp().globalData
 Page({
   /**
    * 页面的初始数据
@@ -289,7 +290,7 @@ Page({
               const img = [
                 {
                   fileName: JSON.parse(res.data).fileName,
-                  url: `https://tacj.openunion.cn/api/portal/file/onlinePreviewController/v1/getFileById_${fileId}`
+                  url: `${IMAGE_UPLOAD_URL}${fileId}`
                 }
               ]
               console.log(img)

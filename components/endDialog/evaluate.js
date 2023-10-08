@@ -11,37 +11,42 @@ Component({
    */
   properties: {
     // 评价id
-    orderId: { // 属性名
+    orderId: {
+      // 属性名
       type: String, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
-      value: '' // 属性初始值（可选），如果未指定则会根据类型选择一个
+      value: "" // 属性初始值（可选），如果未指定则会根据类型选择一个
     },
-    merchantId: { // 属性名
+    merchantId: {
+      // 属性名
       type: String, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
-      value: '' // 属性初始值（可选），如果未指定则会根据类型选择一个
+      value: "" // 属性初始值（可选），如果未指定则会根据类型选择一个
     },
-    merchantName: { // 属性名
+    merchantName: {
+      // 属性名
       type: String, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
-      value: '' // 属性初始值（可选），如果未指定则会根据类型选择一个
+      value: "" // 属性初始值（可选），如果未指定则会根据类型选择一个
     },
-    description: { // 属性名
+    description: {
+      // 属性名
       type: String, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
-      value: '' // 属性初始值（可选），如果未指定则会根据类型选择一个
+      value: "" // 属性初始值（可选），如果未指定则会根据类型选择一个
     },
     // 弹窗标题
-    title: { // 属性名
+    title: {
+      // 属性名
       type: String, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
-      value: '标题' // 属性初始值（可选），如果未指定则会根据类型选择一个
+      value: "标题" // 属性初始值（可选），如果未指定则会根据类型选择一个
     },
     // 弹窗取消按钮文字
     cancelText: {
       type: String,
-      value: '取消'
+      value: "取消"
     },
     // 弹窗确认按钮文字
     confirmText: {
       type: String,
-      value: '确定'
-    },
+      value: "确定"
+    }
   },
 
   /**
@@ -75,8 +80,8 @@ Component({
     areaInput(e) {
       this.setData({
         amount: e.detail.value
-      });
-      console.log(e);
+      })
+      console.log(e)
     },
     //展示弹框
     showDialog() {
@@ -93,32 +98,32 @@ Component({
       this.triggerEvent("cancelEvent")
     },
     _confirmEvent() {
-      let _this = this;
-      if (_this.data.amount === '' || _this.data.amount === 0) {
+      let _this = this
+      if (_this.data.amount === "" || _this.data.amount === 0) {
         wx.showToast({
           title: "尾款金额必须大与0",
           duration: 2000,
-          icon: 'none'
-        });
-        return false;
-      };
-      _this.payOrder(_this.data.orderId);
+          icon: "none"
+        })
+        return false
+      }
+      _this.payOrder(_this.data.orderId)
     },
     payOrder(orderId) {
-      let _this = this;
+      let _this = this
       const data = {
-        sysId: 'handy',
+        sysId: "handy",
         merchantId: _this.data.merchantId,
         merchantName: _this.data.merchantName,
-        mcc: 'mcc',
-        orderId: orderId + 'w',
+        mcc: "mcc",
+        orderId: orderId + "w",
         description: _this.data.description,
         amount: _this.data.amount * 100,
-        channelId: '13',
-        transactionType: 'JSAPI',
-        serviceType: '1'
+        channelId: "13",
+        transactionType: "JSAPI",
+        serviceType: "1"
       }
-      $api.payHandyOrder(data).then(res => {
+      $api.payHandyOrder(data).then((res) => {
         if (res.state) {
           const payData = JSON.parse(res.value.url)
           wx.requestPayment({
@@ -130,13 +135,13 @@ Component({
             appId: payData.appId,
             success(res) {
               console.log(res)
-              if (res.errMsg == 'requestPayment:ok') {
+              if (res.errMsg == "requestPayment:ok") {
                 // const details = {
                 //   orderId: orderId,
                 //   orderTime: util.dateTime(payData.timeStamp),
                 //   realPrice: data.amount
                 // }
-                _this.triggerEvent("confirmEvent");
+                _this.triggerEvent("confirmEvent")
                 // wx.redirectTo({
                 //   url: '/pages/index/home/success?details=' + JSON.stringify(details) + '&dataType=1',
                 // })
@@ -144,21 +149,34 @@ Component({
             },
             fail(err) {
               // console.log(err)
-              App.showError('订单未支付', function () {
-                _this.triggerEvent("confirmEvent");
-              });
+              App.showError("订单未支付", function () {
+                _this.triggerEvent("confirmEvent")
+              })
             },
             complete(res) {
               console.log(res)
             }
-          });
+          })
         } else {
           wx.showToast({
             title: res.message,
-            icon: 'none'
-          });
+            icon: "none"
+          })
         }
       })
     },
+    setOrderExpiration() {
+      const timestamp = Date.parse(new Date())
+      const expiration = timestamp + 1800000 //缓存30分钟
+      const data_expiration = wx.getStorageSync("data_expiration")
+      if (data_expiration) {
+        if (timestamp > data_expiration) {
+          wx.clearStorageSync()
+          wx.setStorageSync("data_expiration", expiration)
+        }
+      } else {
+        wx.setStorageSync("data_expiration", expiration)
+      }
+    }
   }
 })

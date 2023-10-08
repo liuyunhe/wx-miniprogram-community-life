@@ -11,6 +11,7 @@
     <view
       class="navigator_second"
       wx:for="{{ list }}"
+      wx:key="index"
       wx:for-item="childItem"
       bindtap="getProductList"
       data-id="{{childItem.categoryId}}"
@@ -23,6 +24,7 @@
     <view
       class="navigator_second"
       wx:for="{{list}}"
+      wx:key="index"
       wx:for-item="childItem"
       data-id="{{childItem.categoryId}}"
       bindtap="getProductList"

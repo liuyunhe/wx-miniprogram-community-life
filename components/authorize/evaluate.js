@@ -2,6 +2,7 @@ var util = require('../../utils/util.js');
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0';
 const $baseUrl = require('../../utils/api.js').baseUrl;
 const $api = require('../../utils/api.js').API;
+const { IMAGE_UPLOAD_URL } = getApp().globalData
 Component({
   options: {
     multipleSlots: true // 在组件定义时的选项中启用多slot支持
@@ -99,10 +100,12 @@ Component({
       $api.onlinePreview(imgData).then((res) => {
         console.log("浏览图片结果=====", res)
         if (res.result != "error") {
-          const wechatAvatarUrl = [{
-            fileName: fileName,
-            url: `https://tacj.openunion.cn/api/portal/file/onlinePreviewController/v1/getFileById_${fileId}`
-          }]
+          const wechatAvatarUrl = [
+            {
+              fileName: fileName,
+              url: `${IMAGE_UPLOAD_URL}${fileId}`
+            }
+          ]
           const avatarUrl = wechatAvatarUrl[0].url
           _this.setData({
             // avatarUrl: res.currentUrl

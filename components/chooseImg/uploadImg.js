@@ -2,6 +2,7 @@ var util = require('../../utils/util.js');
 const $baseUrl = require('../../utils/api.js').baseUrl;
 const $api = require('../../utils/api.js').API;
 const App = getApp();
+const { IMAGE_UPLOAD_URL } = getApp().globalData
 Component({
   /**
    * 组件的属性列表
@@ -208,7 +209,7 @@ Component({
           if (res.result != 'error') {
             const img = {
               fileName: resArray[j].fileName,
-              url: `https://tacj.openunion.cn/api/portal/file/onlinePreviewController/v1/getFileById_${resArray[j].fileId}`
+              url: `${IMAGE_UPLOAD_URL}${resArray[j].fileId}`
             }
             imgList.push(img);
             var num = imgArray.length - 1;
