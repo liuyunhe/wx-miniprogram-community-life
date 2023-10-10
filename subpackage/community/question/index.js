@@ -26,7 +26,8 @@ Page({
       pageSize: 10,
       status: ""
     },
-    dataType: ""
+    dataType: "",
+    no_more: false
   },
 
   /**
@@ -143,7 +144,7 @@ Page({
   setListHeight() {
     const systemInfo = wx.getSystemInfoSync()
     const rpx = systemInfo.windowWidth / 750
-    const tapHeight = Math.floor(rpx * 150)
+    const tapHeight = Math.floor(rpx * 50)
     const scrollHeight = systemInfo.windowHeight - tapHeight
     this.setData({
       scrollHeight

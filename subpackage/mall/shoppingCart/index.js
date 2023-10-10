@@ -312,6 +312,13 @@ Page({
         }
       })
     })
+    if (goodsChecked.length === 0) { 
+      return wx.showToast({
+        title: "请选择商品结算！",
+        icon: "none",
+        duration: 2000
+      })
+    }
     shoppingCart.list = goodsChecked
     shoppingCart.totalPrice = this.data.totalPrice
     shoppingCart.totalNum = this.data.totalNum

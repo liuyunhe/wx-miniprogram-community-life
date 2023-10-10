@@ -49,11 +49,11 @@
               <text class="text-flex">{{item.createTime}}</text>
             </view> -->
             <view class="" style="padding-left:30rpx;padding-right:30rpx;height:93rpx;line-height:93rpx;position:relative;">
-              <image class="" style="width:19.78rpx;height:26rpx;margin-right:8rpx" src="/subpackage/community/images/activityPosition.png"></image>
-              <view style="display:inline-block;font-size:24rpx;color:#999999;">方恒社区</view>
-              <image class="" style="width:29.1rpx;height:18rpx;margin-left:29rpx; margin-right:8rpx" src="/subpackage/community/images/activityEye.png"></image>
-              <view style="display:inline-block;font-size:24rpx;color:#999999;">4577</view>
-              <view style="display:inline-block;font-size:24rpx;margin-left:130rpx;color:#999999;font-family:PingFang SC-Regular;">
+              <image class="" style="top: 4rpx;position: relative;width:19.78rpx;height:26rpx;margin-right:8rpx" src="/subpackage/community/images/activityPosition.png"></image>
+              <view style="display:inline-block;font-size:24rpx;color:#999999;">{{item.handleOperName}}</view>
+              <!-- <image class="" style="width:29.1rpx;height:18rpx;margin-left:29rpx; margin-right:8rpx" src="/subpackage/community/images/activityEye.png"></image> -->
+              <!-- <view style="display:inline-block;font-size:24rpx;color:#999999;">4577</view> -->
+              <view style="float:right;font-size:24rpx;color:#999999;font-family:PingFang SC-Regular;">
                 {{item.createTime}}
               </view>
             </view>

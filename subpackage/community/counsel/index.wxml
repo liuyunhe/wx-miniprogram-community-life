@@ -22,8 +22,8 @@
           <view  data-detail="{{item}}" catchtap="questionDetails">
             <view class="order-row"  >
               <view class="font-bold">{{item.content}}</view>
-              <view class="state" wx:if="{{item.state == 0}}">待分配</view>
-              <view class="state" wx:if="{{item.state == 1}}">已分配</view>
+              <view class="state" wx:if="{{item.state == 0}}">待回复</view>
+              <view class="state" wx:if="{{item.state == 1}}">已回复</view>
               <view class="state solve" wx:if="{{item.state == 2}}">已处理</view>
               <view class="state complete" wx:if="{{item.state == 3}}">已评价</view>
               <view class="state complete" wx:if="{{item.state == 4}}">已关闭</view>
@@ -49,11 +49,11 @@
               <text class="text-flex">{{item.createTime}}</text>
             </view> -->
             <view class="" style="padding-left:30rpx;padding-right:30rpx;height:93rpx;line-height:93rpx;position:relative;">
-              <image class="" style="width:19.78rpx;height:26rpx;margin-right:8rpx" src="/subpackage/community/images/activityPosition.png"></image>
-              <view style="display:inline-block;font-size:24rpx;color:#999999;">方恒社区</view>
-              <image class="" style="width:29.1rpx;height:18rpx;margin-left:29rpx; margin-right:8rpx" src="/subpackage/community/images/activityEye.png"></image>
-              <view style="display:inline-block;font-size:24rpx;color:#999999;">4577</view>
-              <view style="display:inline-block;font-size:24rpx;margin-left:140rpx;color:#999999;font-family:PingFang SC-Regular;">
+              <image class="" style="top: 4rpx;position: relative;width:19.78rpx;height:26rpx;margin-right:8rpx" src="/subpackage/community/images/activityPosition.png"></image>
+              <view style="display:inline-block;font-size:24rpx;color:#999999;">{{item.handleOperName}}</view>
+              <!-- <image class="" style="width:29.1rpx;height:18rpx;margin-left:29rpx; margin-right:8rpx" src="/subpackage/community/images/activityEye.png"></image> -->
+              <!-- <view style="display:inline-block;font-size:24rpx;color:#999999;">4577</view> -->
+              <view style="float:right;font-size:24rpx;color:#999999;font-family:PingFang SC-Regular;">
                 {{item.createTime}}
               </view>
             </view>

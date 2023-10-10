@@ -290,7 +290,8 @@ Page({
               const img = [
                 {
                   fileName: JSON.parse(res.data).fileName,
-                  url: `${IMAGE_UPLOAD_URL}${fileId}`
+                  url: `${IMAGE_UPLOAD_URL}${fileId}`,
+                  previewUrl: `${IMAGE_UPLOAD_URL}${fileId}`
                 }
               ]
               console.log(img)

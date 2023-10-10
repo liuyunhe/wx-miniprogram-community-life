@@ -184,16 +184,15 @@
 .view-column{
   display:flex;
   flex-flow:column;
-  padding: 10rpx;
+  padding: 20rpx 0;
 }
 
 .view-order{
   display:flex;
   flex-flow:column;
   background: #FFFFFF;
-  margin-top: 15rpx;
   margin-left: 30rpx;
-  margin-right: 40rpx;
+  margin-right: 30rpx;
   border-radius: 10rpx;
   box-shadow: 0 2pt 3.5pt #ECEDEE;
 }
@@ -257,7 +256,6 @@
 }
 
 .view-list{
-  margin-top:20rpx;
   margin-bottom:20rpx;
   justify-content: center;
   align-content: center;

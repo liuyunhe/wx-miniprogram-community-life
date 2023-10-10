@@ -26,19 +26,22 @@ Page({
       pageSize: 10,
       status: ""
     },
-    dataType: ""
+    dataType: "",
+    no_more: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+    this.setListHeight()
+    this.appointList(false)
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.setListHeight()
-    this.appointList()
+    
   },
 
   questionDetails(e) {
@@ -134,11 +137,25 @@ Page({
   setListHeight() {
     const systemInfo = wx.getSystemInfoSync()
     const rpx = systemInfo.windowWidth / 750
-    const tapHeight = Math.floor(rpx * 150)
+    const tapHeight = Math.floor(rpx * 50)
     const scrollHeight = systemInfo.windowHeight - tapHeight
     this.setData({
       scrollHeight
     })
+  },
+  bindDownLoad() {
+    // 已经是最后一页
+    if (
+      this.data.appointData.page >= this.data.totalPages &&
+      this.data.list.length > 0
+    ) {
+      this.setData({
+        no_more: true
+      })
+      return false
+    }
+    // 加载下一页列表
+    this.appointList(true, ++this.data.appointData.page)
   },
   //切换tab栏
   change(e) {
