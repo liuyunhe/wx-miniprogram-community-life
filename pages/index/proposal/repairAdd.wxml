@@ -22,17 +22,17 @@
 
       <view class="view-ly" style="margin-top:30rpx;" bindtap="chooseLocationAdvance">
         <text class="text-ly2">位置</text>
-        <input class="input-drug text-right" style="width:570rpx;" placeholder="请选择位置信息" name="address" value="{{address}}" disabled="true"></input>
+        <input class="input-drug text-right" style="width:500rpx;margin-left: 95rpx;" placeholder="请选择位置信息" name="address" value="{{address}}" disabled="true"></input>
       </view>
 
       <view class="view-ly" style="margin-top:30rpx;" hidden="true">
         <text class="text-ly2">位置</text>
-        <input class="input-drug text-right" style="width:570rpx;" placeholder="请选择位置信息" name="latitude" value="{{latitude}}"></input>
+        <input class="input-drug text-right" style="width:500rpx;margin-left: 95rpx;" placeholder="请选择位置信息" name="latitude" value="{{latitude}}"></input>
       </view>
 
       <view class="view-ly" style="margin-top:30rpx;" hidden="true">
         <text class="text-ly2">位置</text>
-        <input class="input-drug text-right" style="width:570rpx;" placeholder="请选择位置信息" name="longitude" value="{{longitude}}"></input>
+        <input class="input-drug text-right" style="width:500rpx;margin-left: 95rpx;" placeholder="请选择位置信息" name="longitude" value="{{longitude}}"></input>
       </view>
       <!-- <view class="view-ly1">
         <checkbox class="text-ly1 chagesize" bindtap="bindAcceptRule"></checkbox>

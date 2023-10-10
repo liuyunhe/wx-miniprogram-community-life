@@ -87,7 +87,7 @@
 
 .text-ly2{
   padding-left: 20rpx;
-  padding-top: 22rpx;
+  padding-top: 12rpx;
   /* padding-right: 30rpx; */
   font-size: 32rpx;
   color: black;

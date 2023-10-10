@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "公用设施报修列表",
   "usingComponents": {
-    "": "/components/Dialog/evaluate"
+    "dialog": "/components/Dialog/evaluate"
   }
 }
