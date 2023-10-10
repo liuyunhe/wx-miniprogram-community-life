@@ -209,7 +209,8 @@ Component({
           if (res.result != 'error') {
             const img = {
               fileName: resArray[j].fileName,
-              url: `${IMAGE_UPLOAD_URL}${resArray[j].fileId}`
+              url: `${IMAGE_UPLOAD_URL}${resArray[j].fileId}`,
+              previewUrl: `${IMAGE_UPLOAD_URL}${resArray[j].fileId}`
             }
             imgList.push(img);
             var num = imgArray.length - 1;

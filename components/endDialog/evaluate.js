@@ -1,6 +1,6 @@
-var util = require('../../utils/util.js');
-const $api = require('../../utils/api.js').API;
-const App = getApp();
+var util = require("../../utils/util.js")
+const $api = require("../../utils/api.js").API
+const App = getApp()
 Component({
   options: {
     multipleSlots: true // 在组件定义时的选项中启用多slot支持
@@ -111,72 +111,92 @@ Component({
     },
     payOrder(orderId) {
       let _this = this
-      const data = {
-        sysId: "handy",
-        merchantId: _this.data.merchantId,
-        merchantName: _this.data.merchantName,
-        mcc: "mcc",
-        orderId: orderId + "w",
-        description: _this.data.description,
-        amount: _this.data.amount * 100,
-        channelId: "13",
-        transactionType: "JSAPI",
-        serviceType: "1"
+      const _payData = this.getOrderExpiration(orderId)
+      if (_payData) {
+        this.handleRequestPayment(_payData)
+      } else {
+        const data = {
+          sysId: "handy",
+          merchantId: _this.data.merchantId,
+          merchantName: _this.data.merchantName,
+          mcc: "mcc",
+          orderId: orderId + "w",
+          description: _this.data.description,
+          amount: _this.data.amount * 100,
+          channelId: "13",
+          transactionType: "JSAPI",
+          serviceType: "1"
+        }
+        $api.payHandyOrder(data).then((res) => {
+          if (res.state) {
+            const payData = JSON.parse(res.value.url)
+            this.setOrderExpiration(orderId, payData)
+            this.handleRequestPayment(payData)
+          } else {
+            wx.showToast({
+              title: res.message,
+              icon: "none"
+            })
+          }
+        })
       }
-      $api.payHandyOrder(data).then((res) => {
-        if (res.state) {
-          const payData = JSON.parse(res.value.url)
-          wx.requestPayment({
-            timeStamp: payData.timeStamp,
-            nonceStr: payData.nonceStr,
-            package: payData.package,
-            signType: payData.signType,
-            paySign: payData.paySign,
-            appId: payData.appId,
-            success(res) {
-              console.log(res)
-              if (res.errMsg == "requestPayment:ok") {
-                // const details = {
-                //   orderId: orderId,
-                //   orderTime: util.dateTime(payData.timeStamp),
-                //   realPrice: data.amount
-                // }
-                _this.triggerEvent("confirmEvent")
-                // wx.redirectTo({
-                //   url: '/pages/index/home/success?details=' + JSON.stringify(details) + '&dataType=1',
-                // })
-              }
-            },
-            fail(err) {
-              // console.log(err)
-              App.showError("订单未支付", function () {
-                _this.triggerEvent("confirmEvent")
-              })
-            },
-            complete(res) {
-              console.log(res)
-            }
+    },
+    handleRequestPayment(payData) {
+      const _this = this
+      wx.requestPayment({
+        timeStamp: payData.timeStamp,
+        nonceStr: payData.nonceStr,
+        package: payData.package,
+        signType: payData.signType,
+        paySign: payData.paySign,
+        appId: payData.appId,
+        success(res) {
+          console.log(res)
+          if (res.errMsg == "requestPayment:ok") {
+            // const details = {
+            //   orderId: orderId,
+            //   orderTime: util.dateTime(payData.timeStamp),
+            //   realPrice: data.amount
+            // }
+            _this.triggerEvent("confirmEvent")
+            // wx.redirectTo({
+            //   url: '/pages/index/home/success?details=' + JSON.stringify(details) + '&dataType=1',
+            // })
+          }
+        },
+        fail(err) {
+          // console.log(err)
+          App.showError("订单未支付", function () {
+            _this.triggerEvent("confirmEvent")
           })
-        } else {
-          wx.showToast({
-            title: res.message,
-            icon: "none"
-          })
+        },
+        complete(res) {
+          console.log(res)
         }
       })
     },
-    setOrderExpiration() {
+    getOrderExpiration(orderId) {
+      const timestamp = Date.parse(new Date())
+      const data_expiration = wx.getStorageSync(`balance_payment_${orderId}`)
+      if (data_expiration) {
+        const { expiration: _expiration, payData: _payData } = data_expiration
+        if (timestamp > _expiration) {
+          wx.removeStorageSync(`balance_payment_${orderId}`)
+          return false
+        } else {
+          return _payData
+        }
+      } else { 
+        return false
+      }
+    },
+    setOrderExpiration(orderId, payData) {
       const timestamp = Date.parse(new Date())
       const expiration = timestamp + 1800000 //缓存30分钟
-      const data_expiration = wx.getStorageSync("data_expiration")
-      if (data_expiration) {
-        if (timestamp > data_expiration) {
-          wx.clearStorageSync()
-          wx.setStorageSync("data_expiration", expiration)
-        }
-      } else {
-        wx.setStorageSync("data_expiration", expiration)
-      }
+      wx.setStorageSync(`balance_payment_${orderId}`, {
+        expiration,
+        payData
+      })
     }
   }
 })

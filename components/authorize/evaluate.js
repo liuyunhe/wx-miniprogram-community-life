@@ -103,7 +103,8 @@ Component({
           const wechatAvatarUrl = [
             {
               fileName: fileName,
-              url: `${IMAGE_UPLOAD_URL}${fileId}`
+              url: `${IMAGE_UPLOAD_URL}${fileId}`,
+              previewUrl: `${IMAGE_UPLOAD_URL}${fileId}`
             }
           ]
           const avatarUrl = wechatAvatarUrl[0].url
