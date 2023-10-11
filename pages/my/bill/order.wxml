@@ -7,8 +7,8 @@
     </picker>
     <view class="view-shu"></view>
     <view class="view-total">
-      <text>支出：￥1587.58</text>
-      <text style="margin-top: 10rpx;">收入：￥2300</text>
+      <text>支出：￥{{ expenditure || '0.00' }}</text>
+      <text style="margin-top: 10rpx;">收入：￥{{ income || '0.00' }}</text>
     </view>
     <view class="view-row view-center font-30">
       <!-- <text style="flex:1;">支出 ￥1587.58 收入 ￥2300</text> -->
@@ -27,7 +27,7 @@
   </view> -->
   <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; width: 690rpx;">
     <view wx:if="{{list.length > 0}}">
-      <view class="view-list" wx:for="{{list}}">
+      <view class="view-list" wx:for="{{list}}" wx:key="id" wx:for-item="item">
         <view class="view-row" bindtap="details" data-item="{{item}}">
           <image class="img-titile" src="/state/images/yucun.png" mode="widthFix"></image>
           <view class="view-column view-content">

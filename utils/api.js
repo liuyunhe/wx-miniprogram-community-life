@@ -100,6 +100,8 @@ const API = {
     request("GET", prefix.common + "/v1/cust/advice/detail", data), //客户建议详情
   billList: (data) =>
     request("POST", prefix.pay + "/v1/payBillInfo/list", data), //客户账单查询
+  getSummary: (data) =>
+    request("GET", prefix.pay + "/v1/payBillInfo/ieSummary", data), //客户月账单收支汇总查询
   merchantList: (data) =>
     request("POST", prefix.accept + "/v1/merchant/list", data), //查询缴费机构列表
   chargeBill: (data) => request("POST", prefix.group + "/v1/charge/bill", data), //查询客户缴费账单信息
