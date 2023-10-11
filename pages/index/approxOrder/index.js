@@ -25,6 +25,7 @@ Page({
       tmplIds: ['sE_bmwdeCFJXOFxFQoN0TbghCj5tgMTZ1lA2KsIq5Eo'],
       success(res) {
         console.log("success=====", res);
+        approx.custName = wx.getStorageSync("wechatNickName")
         $api.appointAdd(approx).then(res => {
           if (res.state) {
             wx.showToast({
