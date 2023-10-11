@@ -36,14 +36,17 @@ Page({
       console.log("杰============", img_list);
     };
     var evaluate_list = [];
-    if (item.hasOwnProperty('evaluateImage') && item.evaluateImage.length > 0) {
-      evaluate_list = item.evaluateImage;
-      console.log("杰============", evaluate_list);
+    if (
+      item.hasOwnProperty("evaluateImage") &&
+      JSON.parse(item.evaluateImage).length > 0
+    ) {
+      evaluate_list = JSON.parse(item.evaluateImage)
+      console.log("杰============", evaluate_list)
     };
     this.setData({
       publish_item: JSON.parse(options.item),
       img_list: img_list,
-      evaluate_list: evaluate_list,
+      evaluate_list: evaluate_list
     })
   },
 

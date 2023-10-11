@@ -36,7 +36,7 @@ page{
 }
 
 .text-time{
-  margin-top:10rpx;
+  margin-top:30rpx;
   color: #999999;
 }
 

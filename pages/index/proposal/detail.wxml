@@ -1,51 +1,118 @@
 <view class="view_back">
   <view class="view_row">
     <!-- <image class="userinfo-avatar" src="{{avatarUrl}}" mode="cover"></image> -->
-    <text wx:if="{{publish_item.state=='0'}}" class="text-time" style="color: #000;">待派单</text>
-    <text wx:if="{{publish_item.state=='1'}}" class="text-time" style="color: #000;">已派单</text>
-    <text wx:if="{{publish_item.state=='2'}}" class="text-time" style="color: #000;">已处理</text>
-    <text wx:if="{{publish_item.state=='3'}}" class="text-time" style="color: #000;">已评价</text>
-    <text wx:if="{{publish_item.state=='4'}}" class="text-time" style="color: #000;">已关闭</text>
-    <view class="view_back" style="flex:1; margin-left:20rpx;">
+    <text
+      wx:if="{{publish_item.state=='0'}}"
+      class="text-time"
+      style="color: #000"
+      >待处理</text
+    >
+    <text
+      wx:if="{{publish_item.state=='1'}}"
+      class="text-time"
+      style="color: #000"
+      >已派单</text
+    >
+    <text
+      wx:if="{{publish_item.state=='2'}}"
+      class="text-time"
+      style="color: #000"
+      >已处理</text
+    >
+    <text
+      wx:if="{{publish_item.state=='3'}}"
+      class="text-time"
+      style="color: #000"
+      >已评价</text
+    >
+    <text
+      wx:if="{{publish_item.state=='4'}}"
+      class="text-time"
+      style="color: #000"
+      >已关闭</text
+    >
+    <view class="view_back" style="flex: 1; margin-left: 20rpx">
       <!-- <text>{{nickName}}</text> -->
       <text class="text-time">{{publish_item.createTime}}</text>
     </view>
     <text class="text-type">【{{publish_item.repairTypeName}}】</text>
   </view>
-  <view class="transverse_class" style="padding-top:25rpx; margin-left:30rpx; margin-right:30rpx;">
-    <text style="flex:1; margin-top:10rpx;">手机号：{{publish_item.phone}}</text>
-    <text wx:if="{{publish_item.state=='1' || publish_item.state=='2'}}" class="del-btn" catchtap='showDialog'>评价</text>
+  <view
+    class="transverse_class"
+    style="padding-top: 25rpx; margin-left: 30rpx; margin-right: 30rpx"
+  >
+    <text style="flex: 1; margin-top: 10rpx"
+      >手机号：{{publish_item.phone}}</text
+    >
+    <text
+      wx:if="{{publish_item.state=='2'}}"
+      class="del-btn"
+      catchtap="showDialog"
+      >评价</text
+    >
   </view>
 
-
-  <view class="addr_class" style="padding-bottom:20rpx; margin-left:20rpx;" bindtap="showAddrAdvance">
+  <view
+    class="addr_class"
+    style="padding-bottom: 20rpx; margin-left: 20rpx"
+    bindtap="showAddrAdvance"
+  >
     <image class="addr" mode="scaleToFill" src="/state/images/addr.png"></image>
-    <text style="flex:1; margin-top:10rpx;">{{publish_item.address}}</text>
+    <text style="flex: 1; margin-top: 10rpx">{{publish_item.address}}</text>
   </view>
 
-  <view class="text-content">
-    {{publish_item.content}}
-  </view>
+  <view class="text-content"> {{publish_item.content}} </view>
   <!-- <wxs src="../../utils/string.wxs" module="my_list"/> -->
-  <view class="view-list" wx:for="{{img_list}}" wx:key="index" data-index="{{index}}" catchtap="previewImages" wx:for-item="item">
+  <view
+    class="view-list"
+    wx:for="{{img_list}}"
+    wx:key="index"
+    data-index="{{index}}"
+    catchtap="previewImages"
+    wx:for-item="item"
+  >
     <image class="list-img" src="{{item.url}}" mode="widthFix"></image>
+  </view>
+
+  <view class="text-content" wx:if="{{publish_item.reply}}">
+    责任单位回复: {{publish_item.reply}}
   </view>
   <view class="text-content" wx:if="{{publish_item.state=='3'}}">
     <view>服务评价：{{publish_item.custEvaluate}}</view>
-    <view>{{publish_item.evaluateContent}}</view>
+    <view>评价内容：{{publish_item.evaluateContent}}</view>
     <view class="people-msg">
-      <view style="float: left; flex: 1;">
-        <view class="view-img" wx:for="{{evaluate_list}}" data-index="{{index}}" wx:for-item="item" catchtap="previewImages1">
-          <image src="{{imgUrl}}{{item}}" class="imgae_repair" mode='aspectFill' data-index="{{index}}"></image>
+      <view style="float: left; flex: 1">
+        <view
+          class="view-img"
+          wx:for="{{evaluate_list}}"
+          wx:key="index"
+          data-index="{{index}}"
+          wx:for-item="item"
+          catchtap="previewImages1"
+        >
+          <image
+            src="{{item.url}}"
+            class="imgae_repair"
+            mode="aspectFill"
+            data-index="{{index}}"
+          ></image>
         </view>
       </view>
     </view>
   </view>
 </view>
-<button open-type="share" class="view-mfn" id="{{publish_item.ship_id}}" data-title="{{publish_item.classify_name}}" plain="true">
-  <!-- <view class="mfn-content" bindtap="repair">
+<!-- <button open-type="share" class="view-mfn" id="{{publish_item.ship_id}}" data-title="{{publish_item.classify_name}}" plain="true"> -->
+<!-- <view class="mfn-content" bindtap="repair">
     <text class="text-mfn">分享</text>
   </view> -->
-</button>
-<dialog id='dialog' title='发表评价' repairId='{{publish_item.repairId}}' type='2' cancelText='取消' confirm='确认' bind:cancelEvent="_cancelEvent" bind:confirmEvent="_confirmEvent">
-</dialog>
+<!-- </button> -->
+<dialog
+  id="dialog"
+  title="发表评价"
+  repairId="{{publish_item.repairId}}"
+  type="2"
+  cancelText="取消"
+  confirm="确认"
+  bind:cancelEvent="_cancelEvent"
+  bind:confirmEvent="_confirmEvent"
+></dialog>
