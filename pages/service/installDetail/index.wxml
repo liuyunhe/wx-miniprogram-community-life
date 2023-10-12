@@ -1,9 +1,18 @@
 <wxs src="../../../utils/string.wxs" module="tools" />
 <view class="base">
   <view class="header">
-    <swiper class="swiper" indicator-dots="true" indicator-active-color="#44A9FF">
-      <swiper-item>
-        <image mode='widthFix' class="headerImg" autoplay="true" src="{{tools.my_json(dataList.images)}}"></image>
+    <swiper
+      class="swiper"
+      indicator-dots="true"
+      indicator-active-color="#44A9FF"
+    >
+      <swiper-item wx:for="{{dataList.images}}" wx:key="index">
+        <image
+          mode="aspectFill"
+          class="headerImg"
+          autoplay="true"
+          src="{{item.url}}"
+        ></image>
       </swiper-item>
     </swiper>
     <view class="rpx-20">
@@ -13,17 +22,28 @@
         <text>丨</text>
         <text>{{dataList.merchantName}}</text>
       </view>
-      <view class="intro">
-        {{dataList.serviceContent}}
-      </view>
+      <view class="intro"> {{dataList.serviceContent}} </view>
       <view class="address flex">
         <image src="/state/images/addr.png"></image>
         <view bindtap="goMap">
           <view>{{dataList.storeAddress}}</view>
-          <view style="height: 50rpx;" class="flex align-center">
-            <view style="line-height: 50rpx;">距离您{{dataList.distance}}</view>
-            <image class="addimg" mode="widthFix" src="/state/images/youjiantou.png"></image>
+          <view style="height: 50rpx" class="flex align-center">
+            <view style="line-height: 50rpx">距离您{{dataList.distance}}</view>
+            <image
+              class="addimg"
+              mode="widthFix"
+              src="/state/images/youjiantou.png"
+            ></image>
           </view>
+        </view>
+      </view>
+      <view class="comment" wx:if="{{dataList.categoryId === 'gjfw'}}">
+        <view
+          class="comment-text"
+          data-id="{{ dataList.serviceId }}"
+          bindtap="goGoodComment"
+        >
+          查看评价>
         </view>
       </view>
     </view>
@@ -33,7 +53,7 @@
       <rich-text nodes="{{dataList.supplementaryNotes}}"></rich-text>
     </view>
   </view>
-  <view class="foot flex  rpx-20">
+  <view class="foot flex rpx-20">
     <view class="footLeft">
       <text>价格：</text>
       <text class="footmoney">￥{{dataList.unitPrice}}</text>

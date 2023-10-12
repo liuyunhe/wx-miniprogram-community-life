@@ -2,7 +2,6 @@
 const $api = require('../../../utils/api.js').API;
 const payData = getApp().globalData.payData
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -14,7 +13,7 @@ Page({
       <b>&nbsp;chocolates</b>.
     </p>
   </div>`,
-    dataList: {},
+    dataList: {}
   },
 
   /**
@@ -23,7 +22,7 @@ Page({
   onLoad(options) {
     const that = this
     wx.getLocation({
-      type: 'gcj02',
+      type: "gcj02",
       success(res) {
         console.log(res)
         that.getDetail(options.serviceid, res.latitude, res.longitude)
@@ -32,7 +31,6 @@ Page({
         that.getDetail(options.serviceid)
       }
     })
-
   },
   // 立即下单
   goOrder() {
@@ -45,7 +43,7 @@ Page({
     payData.merchantName = this.data.dataList.merchantName
     payData.description = this.data.dataList.supplementaryNotes
     wx.navigateTo({
-      url: '/pages/service/order/index'
+      url: "/pages/service/order/index"
     })
   },
   // 详情接口
@@ -55,9 +53,11 @@ Page({
       latituge,
       longituge
     }
-    $api.serviceDetail(data).then(res => {
+    $api.serviceDetail(data).then((res) => {
       if (res.state) {
-        res.value.attachJson = 'https://wxmini.openunion.cn/eip-portal/file/onlinePreviewController/v1/getFileById_159722923324'
+        res.value.attachJson =
+          "https://wxmini.openunion.cn/eip-portal/file/onlinePreviewController/v1/getFileById_159722923324"
+        res.value.images = JSON.parse(res.value.images)
         this.setData({
           dataList: res.value
         })
@@ -74,52 +74,44 @@ Page({
       scale: 18
     })
   },
+  goGoodComment(e) {
+    const { id } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/pages/my/order/commentList?serviceId=${id}`
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
+  onShareAppMessage() {}
 })

@@ -27,15 +27,10 @@ Page({
    */
   onLoad(options) {
     console.log(options.mark);
-  },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
     const that = this
     console.log(this.data.page)
     wx.getLocation({
-      type: 'gcj02',
+      type: "gcj02",
       success(res) {
         console.log(res)
         that.setData({
@@ -49,6 +44,12 @@ Page({
       }
     })
     this.setListHeight()
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+    
   },
   // 动态计算高度
   setListHeight() {

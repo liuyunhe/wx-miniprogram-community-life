@@ -29,7 +29,7 @@ page{
 }
 .btn{
   font-size: 23rpx;
-  color:#fff;
+  color: #fff !important;
   /* background: #26a886; */
   background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
 }
