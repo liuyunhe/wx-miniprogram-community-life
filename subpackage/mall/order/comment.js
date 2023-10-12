@@ -130,9 +130,7 @@ Page({
     _this.setData({
       formData: e.detail.value
     })
-    e.detail.value.commentImage
-      ? _this.uploadImg.uploadImg()
-      : _this.handleItemChange()
+    _this.uploadImg.uploadImg()
   },
 
   /**

@@ -47,7 +47,7 @@
       <uploadImg
         id="uploadImg"
         imgNum="{{ 9 }}"
-        binditemResChange="handleItemChange"
+        binditemChange="handleItemChange"
       >
       </uploadImg>
     </view>
