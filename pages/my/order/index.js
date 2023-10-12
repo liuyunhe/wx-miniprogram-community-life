@@ -11,20 +11,20 @@ Page({
     tanData: [
       {
         id: "0",
-        name: "生活缴费",
+        name: "生活缴费"
       },
       {
         id: "1",
-        name: "便民服务",
+        name: "便民服务"
       },
       {
         id: "3",
-        name: "在线商城",
+        name: "在线商城"
       },
       {
         id: "2",
-        name: "其他",
-      },
+        name: "其他"
+      }
     ],
     scrollHeight: null, // 列表容器高度
     no_more: false, // 没有更多数据
@@ -40,7 +40,7 @@ Page({
     page: 1,
     pageSize: 10,
     totalPages: 1,
-    orderId: "",
+    orderId: ""
   },
 
   /**
@@ -50,22 +50,12 @@ Page({
     let _this = this
     if (options.dataType) {
       _this.setData({
-        dataType: options.dataType,
+        dataType: options.dataType
       })
-      if (options.dataType == "0") {
-        _this.transApplyList()
-      } else if (options.dataType == "1") {
-        _this.serviceOrderInfoList()
-      } else if (options.dataType == "2") {
-        _this.custOrder()
-      } else if (options.dataType == "3") {
-        _this.mallOrder()
-      }
     } else {
       _this.setData({
-        dataType: "0",
+        dataType: "0"
       })
-      _this.transApplyList()
     }
     _this.setListHeight()
   },
@@ -74,7 +64,7 @@ Page({
     page = page || 1
     const data = {
       page: page,
-      pageSize: this.data.pageSize,
+      pageSize: this.data.pageSize
     }
     $api.transApplyList(data).then((res) => {
       if (res.state) {
@@ -82,13 +72,13 @@ Page({
           this.setData({
             orderList: this.data.orderList.concat(res.value.rows),
             totalPages: res.value.totalPages,
-            isLoading: false,
+            isLoading: false
           })
         } else {
           this.setData({
             orderList: res.value.rows,
             totalPages: res.value.totalPages,
-            isLoading: false,
+            isLoading: false
           })
         }
       }
@@ -99,7 +89,7 @@ Page({
     page = page || 1
     const data = {
       page: page,
-      pageSize: this.data.pageSize,
+      pageSize: this.data.pageSize
     }
     $api.serviceOrderInfoList(data).then((res) => {
       if (res.state) {
@@ -107,16 +97,25 @@ Page({
           this.setData({
             orderList: this.data.orderList.concat(res.value.rows),
             totalPages: res.value.totalPages,
-            isLoading: false,
+            isLoading: false
           })
         } else {
           this.setData({
             orderList: res.value.rows,
             totalPages: res.value.totalPages,
-            isLoading: false,
+            isLoading: false
           })
         }
       }
+    })
+  },
+  handleClickBtnComment(e) {
+    const {
+      orderId,
+      serviceId,
+    } = e.currentTarget.dataset.value
+    wx.navigateTo({
+      url: `/pages/my/order/comment?orderId=${orderId}&serviceId=${serviceId}`
     })
   },
   // 其他
@@ -124,7 +123,7 @@ Page({
     page = page || 1
     const data = {
       page: page,
-      pageSize: this.data.pageSize,
+      pageSize: this.data.pageSize
     }
     $api.custOrder(data).then((res) => {
       if (res.state) {
@@ -132,13 +131,13 @@ Page({
           this.setData({
             orderList: this.data.orderList.concat(res.value.rows),
             totalPages: res.value.totalPages,
-            isLoading: false,
+            isLoading: false
           })
         } else {
           this.setData({
             orderList: res.value.rows,
             totalPages: res.value.totalPages,
-            isLoading: false,
+            isLoading: false
           })
         }
       }
@@ -149,7 +148,7 @@ Page({
     page = page || 1
     const data = {
       page: page,
-      pageSize: this.data.pageSize,
+      pageSize: this.data.pageSize
     }
     $api.getStoreOrder(data).then((res) => {
       if (res.state) {
@@ -157,13 +156,13 @@ Page({
           this.setData({
             orderList: this.data.orderList.concat(res.value.rows),
             totalPages: res.value.totalPages,
-            isLoading: false,
+            isLoading: false
           })
         } else {
           this.setData({
             orderList: res.value.rows,
             totalPages: res.value.totalPages,
-            isLoading: false,
+            isLoading: false
           })
         }
       }
@@ -177,18 +176,18 @@ Page({
       custId,
       goodsId: goodsid,
       quantity: 1,
-      checked: "1",
+      checked: "1"
     }
     $api.addGoodsToChart(params).then((res) => {
       if (res.state) {
         wx.navigateTo({
-          url: `/subpackage/mall/shoppingCart/index`,
+          url: `/subpackage/mall/shoppingCart/index`
         })
       } else {
         wx.showToast({
           title: res.message,
           icon: "none",
-          duration: 2000,
+          duration: 2000
         })
       }
     })
@@ -219,7 +218,7 @@ Page({
           isLoading: true,
           no_more: false,
           totalPages: 1,
-          orderList: [],
+          orderList: []
         })
         if (_this.data.dataType == "0") {
           _this.transApplyList()
@@ -244,7 +243,7 @@ Page({
       },
       complete(res) {
         console.log(res)
-      },
+      }
     })
   },
   /**
@@ -256,7 +255,7 @@ Page({
       tapHeight = Math.floor(rpx * 100), // tap高度
       scrollHeight = systemInfo.windowHeight - tapHeight // swiper高度
     this.setData({
-      scrollHeight,
+      scrollHeight
     })
   },
   // 切换Tab
@@ -268,7 +267,7 @@ Page({
       isLoading: true,
       no_more: false,
       totalPages: 1,
-      orderList: [],
+      orderList: []
     })
     if (id == "0") {
       this.transApplyList()
@@ -309,14 +308,14 @@ Page({
       payDetail.dataType = this.data.dataType
     }
     wx.navigateTo({
-      url: "/pages/my/order/details",
+      url: "/pages/my/order/details"
     })
   },
   mallOrderdetails(e) {
     const id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
-      url: `/subpackage/mall/order/detail?id=${id}`,
+      url: `/subpackage/mall/order/detail?id=${id}`
     })
   },
   // 删除订单
@@ -332,10 +331,10 @@ Page({
             if (res.state) {
               wx.showToast({
                 title: "删除成功",
-                icon: "none",
+                icon: "none"
               })
               that.setData({
-                page: 1,
+                page: 1
               })
               that.serviceOrderInfoList()
             }
@@ -343,7 +342,7 @@ Page({
         } else if (res.cancel) {
           console.log("用户点击取消")
         }
-      },
+      }
     })
   },
 
@@ -354,11 +353,11 @@ Page({
     console.log(this.data.page, this.data.totalPages)
     if (this.data.page >= this.data.totalPages) {
       this.setData({
-        no_more: true,
+        no_more: true
       })
     } else {
       this.setData({
-        page: this.data.page + 1,
+        page: this.data.page + 1
       })
       if (this.data.dataType == "0") {
         this.transApplyList(true, ++this.data.page)
@@ -383,7 +382,19 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    const _this = this
+    const dataType = this.data.dataType
+    if (dataType == "0") {
+      _this.transApplyList()
+    } else if (dataType == "1") {
+      _this.serviceOrderInfoList()
+    } else if (dataType == "2") {
+      _this.custOrder()
+    } else if (dataType == "3") {
+      _this.mallOrder()
+    }
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -406,7 +417,7 @@ Page({
       orderId: e.currentTarget.dataset.value.orderId,
       merchantId: e.currentTarget.dataset.value.merId,
       merchantName: e.currentTarget.dataset.value.merName,
-      description: e.currentTarget.dataset.value.description,
+      description: e.currentTarget.dataset.value.description
     })
     console.log(this.data.orderId)
     this.dialog.showDialog()
@@ -426,7 +437,7 @@ Page({
       isLoading: true,
       no_more: false,
       totalPages: 1,
-      orderList: [],
+      orderList: []
     })
     this.serviceOrderInfoList()
   },
@@ -439,5 +450,5 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {},
+  onShareAppMessage() {}
 })

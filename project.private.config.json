@@ -11,6 +11,13 @@
       "list": [
         {
           "name": "",
+          "pathName": "pages/my/order/comment",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
           "pathName": "pages/login/scan",
           "query": "",
           "launchMode": "default",

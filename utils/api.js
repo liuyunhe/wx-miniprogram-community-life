@@ -45,6 +45,10 @@ const API = {
     request("POST", prefix.handy + "/v1/serviceOrderInfo/update", data), //更新服务订单信息
   deleteServiceOrderInfo: (data) =>
     request("POST", prefix.handy + "/v1/serviceOrderInfo/delete", data), //删除服务订单信息
+  addServiceComment: (data) =>
+    request("POST", prefix.handy + "/v1/cjServiceComment/add", data), //新增评论
+  getServiceCommentList: (data) =>
+    request("POST", prefix.handy + "/v1/cjServiceComment/list", data), //服务评论列表
   addressList: (data) =>
     request("POST", prefix.applet + "/v1/cust/address/list", data), //查询收获地址
   addAddress: (data) =>

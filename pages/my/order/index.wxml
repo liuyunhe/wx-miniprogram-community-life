@@ -159,6 +159,14 @@
                 >付尾款</text
               >
             </view>
+            <view
+              class="btn"
+              wx:if="{{ item.paystate == '1' && item.state == '1' && item.finalPaymentStatus == '1' }}"
+            >
+              <text class="bg-26A" catchtap="handleClickBtnComment" data-value="{{ item }}"
+                >立即评价</text
+              >
+            </view>
             <view class="btn" wx:if="{{ item.paystate == '4' }}">
               <text
                 class="bg-F41"
