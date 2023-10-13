@@ -1,0 +1,12 @@
+<view class="base">
+  <view class="rpx-30 pt-20 header">
+    <rich-text class="" nodes="{{html}}"></rich-text>
+    <button
+      class="open {{ canUseBtn ? '' : 'disable' }}"
+      style="width: 92%; margin-top: 50rpx; margin-bottom: 30rpx"
+      bind:tap="handleClickOpen"
+    >
+      我同意上述协议{{timeCount === 0 ? '' : '('+timeCount+'s)'}}
+    </button>
+  </view>
+</view>

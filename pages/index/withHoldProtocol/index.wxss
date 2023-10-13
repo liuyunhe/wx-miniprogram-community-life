@@ -1,0 +1,13 @@
+.pt-20{
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.open{
+  font-size: 30rpx;
+  color: #fff;
+  padding: 20rpx 5rpx;
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
+}
+.disable{
+  filter: grayscale(100%);
+}
