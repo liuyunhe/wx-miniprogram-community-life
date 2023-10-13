@@ -162,7 +162,9 @@ Page({
     // } else {
       console.log(_this.data.orgItem);
       wx.navigateTo({
-        url: '/pages/index/lifePay/index?orgItem=' + JSON.stringify(_this.data.orgItem),
+        url: `/pages/index/lifePay/index?orgItem= ${JSON.stringify(
+          _this.data.orgItem
+        )}&from=addPay`
       })
     // }
   },

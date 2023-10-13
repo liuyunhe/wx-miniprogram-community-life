@@ -24,6 +24,11 @@
       <text bindtap="selectList" data-index="{{index}}" data-id="{{item.id}}" class="{{item.selected?'active-color':'text-btn'}}">{{item.name}}</text>
     </view>
   </view>
+  <view class="view-line"></view>
+  <view class="flex align-center mb-20" style="font-size: 26rpx;margin-top:20rpx">
+      <checkbox value="{{isflag}}"  checked="{{isflag}}" bindtap="handleCheckboxChange" style="zoom: 60%"/>
+      <view class="flex-1">是否开通代缴服务</view>
+  </view>
 </view>
 <!-- <view class="base">
   <view class="bg-FFFF">

@@ -11,6 +11,13 @@
       "list": [
         {
           "name": "",
+          "pathName": "pages/index/withHoldProtocol/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
           "pathName": "pages/my/order/comment",
           "query": "",
           "launchMode": "default",

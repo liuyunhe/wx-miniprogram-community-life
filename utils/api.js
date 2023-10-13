@@ -119,6 +119,10 @@ const API = {
     request("POST", prefix.group + "/v1/chargePay/payOrder", data), //下生活缴费订单
   transApplyList: (data) =>
     request("POST", prefix.group + "/v1/transApply/list", data), //客户缴费订单查询
+  getCustDetail: (data) =>
+    request("GET", prefix.group + "/v1/charge/cust/detail", data), //客户缴费信息查询
+  chargeCustWithHold: (data) =>
+    request("POST", prefix.group + "/v1/charge/cust/withhold", data), //客户代缴状态变更
   wechatUser: (data) =>
     request("POST", prefix.applet + "/v1/wechat/user", data), //修改微信昵称
   userInfo: (data) =>

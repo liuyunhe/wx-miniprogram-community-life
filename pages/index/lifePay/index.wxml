@@ -24,8 +24,8 @@
         <view class="flex-1">应缴金额</view>
         <view>{{details.transAmount}}元</view>
       </view>
-      <view class="flex align-center mb-20">
-        <checkbox value="{{isflag}}" checked="{{isflag}}"/>
+      <view class="flex align-center mb-20" wx:if="{{showWithHold}}">
+        <checkbox value="{{isflag}}"  checked="{{isflag}}" bindtap="handleCheckboxChange"/>
         <view class="flex-1">是否开通代缴服务</view>
       </view>
     </view>

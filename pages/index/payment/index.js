@@ -126,7 +126,9 @@ Page({
     orgItem.payUnit=e.currentTarget.dataset.item.chargeOrgName
     console.log(orgItem);
     wx.navigateTo({
-      url: '/pages/index/lifePay/index?orgItem=' + JSON.stringify(orgItem),
+      url: `/pages/index/lifePay/index?orgItem=${JSON.stringify(
+        orgItem
+      )}&from=payment`
     })
   },
   // 设置标记
