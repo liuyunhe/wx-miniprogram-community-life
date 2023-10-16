@@ -30,10 +30,11 @@
       </view>
     </view>
   </view>
-  <view class="rpx-20 mt-20" style="margin-top: 30rpx;" bindtap="chargePay">
+  <view class="rpx-20 mt-20" style="margin-top: 30rpx;" bindtap="handleClickPay">
     <view class="btn">缴 费</view>
   </view>
   <!-- <view class="rpx-20 mt-20">
     <view class="btn">查看明细</view>
   </view> -->
+  <cashier price="{{details.transAmount}}" wx:if="{{showCashier}}" bind:choosePayType="handleChoosePayType"/>
 </view>

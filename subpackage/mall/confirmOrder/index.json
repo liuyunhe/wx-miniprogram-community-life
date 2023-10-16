@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    
+    "cashier": "/components/cashier/cashier"
   },
   "navigationBarTitleText": "确认订单",
   "backgroundColor": "#fff"

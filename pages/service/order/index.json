@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "cashier": "/components/cashier/cashier"
+  },
   "navigationBarTitleText": "立即下单"
 }

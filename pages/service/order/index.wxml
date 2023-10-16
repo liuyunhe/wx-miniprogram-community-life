@@ -1,4 +1,4 @@
-<view class="base">
+<view class="container">
   <view class="header flex align-center rpx-30" bindtap="goAddress">
     <image class="img" mode="widthFix" src="/state/images/location.png"></image>
     <view class="text" wx:if="{{isAddress}}">
@@ -40,7 +40,7 @@
       </textarea>
     </view>
   </view>
-  <view class="content">
+  <!-- <view class="content">
     <view
       class="flex money align-center rpx-30"
       style="padding-left: 30rpx; padding-right: 30rpx"
@@ -64,18 +64,19 @@
             checked="{{item.checked}}"
             color="#3CDABB"
           />
-        </radio-group>
+        </radio-group> -->
         <!-- <image wx:if="{{isCheck!=item.id}}" class="check"  bindtap="changeImg" data-id="{{item.id}}" src="/state/images/oncheck.png"></image>
       <image wx:else bindtap="changeImg" data-id="{{item.id}}"  class="check"  src="/state/images/check.png"></image> -->
-      </view>
-    </view>
-  </view>
+      <!-- </view>
+    </view> -->
+  <!-- </view> -->
   <view class="tab flex align-center rpx-30">
     <view class="flex-1">
       <text>价格：</text>
       <text class="color-DC2" style="font-size: 40rpx">￥{{unitPrice}}</text>
       <!-- <text class="color-DC2 fs-24">00</text> -->
     </view>
-    <view class="btn" bindtap="goPay">立即支付</view>
+    <view class="btn" bindtap="handleClickPay">立即支付</view>
   </view>
+  <cashier price="{{unitPrice}}" wx:if="{{showCashier}}" bind:choosePayType="handleChoosePayType"/>
 </view>

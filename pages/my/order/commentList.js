@@ -112,7 +112,7 @@ Page({
       return false
     }
     // 加载下一页列表
-    this.repairList(true, ++this.data.appointData.page)
+    this.getCommentList(true, ++this.data.appointData.page)
   },
   /**
    * 下拉刷新
@@ -152,6 +152,6 @@ Page({
       isLoading: true,
       totalPages: 1
     })
-    this.repairList()
+    this.getCommentList()
   }
 })

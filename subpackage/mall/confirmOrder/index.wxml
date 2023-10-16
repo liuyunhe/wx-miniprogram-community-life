@@ -96,6 +96,7 @@
       <text class="head">{{filters.toFixHead(totalPrice)}}</text
       ><text class="tail">.{{filters.toFixTail(totalPrice)}}</text>
     </view>
-    <view class="btn-place-orde" bindtap="handleAddStoreOrder">提交订单</view>
+    <view class="btn-place-orde" bindtap="handleClickPay">提交订单</view>
   </view>
+   <cashier price="{{totalPrice}}" wx:if="{{showCashier}}" bind:choosePayType="handleChoosePayType"/>
 </view>

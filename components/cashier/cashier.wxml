@@ -1,0 +1,35 @@
+<wxs module="filters" src="../../utils/addmul.wxs"></wxs>
+<view class="cashier-container">
+  <view class="cashier-price">
+    <span class="min">￥</span>{{ filters.toFixHead(price) }}.<span class="min">{{ filters.toFixTail(price) }}</span
+    >
+  </view>
+  <view class="cashier-pay-channel-list">
+    <view
+      class="flex money align-center rpx-30"
+      style="padding-left: 30rpx; padding-right: 30rpx"
+    >
+      <view class="flex-1">支付方式：</view>
+    </view>
+    <view class="foot rpx-30">
+      <view
+        class="payOrg flex align-center"
+        style="border-top: 1rpx solid #f7f7f7"
+        wx:for="{{payType}}"
+        wx:key="index"
+      >
+        <image class="mr-20" mode="widthFix" src="{{item.url}}"></image>
+        <view class="flex-1">{{item.payChannelName}}</view>
+        <radio-group bindchange="radioChange">
+          <radio
+            value="{{item.payChannelType}}"
+            style="zoom: 0.7"
+            checked="{{item.checked}}"
+            color="#3CDABB"
+          />
+        </radio-group>
+      </view>
+    </view>
+  </view>
+  <button class="btn-pay" bind:tap="handleClickBtnPay">立即支付</button>
+</view>

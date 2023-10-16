@@ -13,7 +13,9 @@ Page({
     addressId: "",
     goodList: [], //商品列表
     totalPrice: 0,
-    totalNum: 0
+    totalNum: 0,
+    showCashier: false,
+    payChannelType: ""
   },
 
   /**
@@ -56,7 +58,18 @@ Page({
       totalNum: shoppingCart.totalNum
     })
   },
-
+  handleClickPay() {
+    this.setData({
+      showCashier: true
+    })
+  },
+  handleChoosePayType(e) {
+    const payChannelType = e.detail
+    this.setData({
+      payChannelType
+    })
+    this.handleAddStoreOrder()
+  },
   // 重新选择地址时获取地址详情接口
   getDetail(addressId) {
     $api
@@ -162,7 +175,7 @@ Page({
       phone,
       address,
       payPrice: this.data.totalPrice,
-      payType: "13"
+      payType: this.data.payChannelType
     }
     const shopMap = new Map()
     this.data.goodList.map((item) => {
@@ -199,7 +212,7 @@ Page({
           duration: 2000,
           success: () => {
             console.log(_this)
-            if (_this.data.from === '1') {
+            if (_this.data.from === "1") {
               // 购物车状态更新
               const cartIds = _this.data.goodList.map((item) => item.cartId)
               console.log(params)

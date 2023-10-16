@@ -108,6 +108,8 @@ const API = {
     request("GET", prefix.pay + "/v1/payBillInfo/ieSummary", data), //客户月账单收支汇总查询
   merchantList: (data) =>
     request("POST", prefix.accept + "/v1/merchant/list", data), //查询缴费机构列表
+  getPayChannelList: (data) =>
+    request("POST", prefix.accept + "/v1/cjPayChannel/list", data), //查询支付渠道
   chargeBill: (data) => request("POST", prefix.group + "/v1/charge/bill", data), //查询客户缴费账单信息
   custList: (data) =>
     request("POST", prefix.group + "/v1/charge/cust/list", data), //查询缴费客户

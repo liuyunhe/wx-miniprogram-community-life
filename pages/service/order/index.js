@@ -30,7 +30,8 @@ Page({
     addressId: "",
     isAddress: false,
     currentWordNumber: 0,
-    orderNoteMax: 100
+    orderNoteMax: 100,
+    payChannelType: ""
   },
 
   /**
@@ -76,10 +77,7 @@ Page({
       _this.defaultAddress()
     }
   },
-  // 去付款
-  goPay() {
-    const dataList = this.data.dataList
-    console.log(dataList)
+  handleClickPay() {
     if (!this.data.isAddress) {
       wx.showToast({
         title: "请选择地址",
@@ -99,6 +97,20 @@ Page({
       })
       return
     }
+    this.setData({
+      showCashier: true
+    })
+  },
+  handleChoosePayType(e) {
+    const payChannelType = e.detail
+    this.setData({
+      payChannelType
+    })
+    this.goPay()
+  },
+  // 去付款
+  goPay() {
+    const dataList = this.data.dataList
     const data = {
       serviceId: payData.serviceId,
       serviceName: payData.serviceName,
@@ -112,7 +124,6 @@ Page({
         dataList.city +
         dataList.district +
         dataList.address,
-      paychannel: dataList.isCheck,
       servicePrice: payData.unitPrice,
       message: this.data.message
     }
@@ -132,7 +143,7 @@ Page({
       orderId: orderId,
       description: payData.serviceName,
       amount: payData.unitPrice * 100,
-      channelId: _this.data.isCheck,
+      channelId: this.data.payChannelType,
       transactionType: "JSAPI",
       serviceType: "1"
     }

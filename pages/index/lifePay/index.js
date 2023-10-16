@@ -12,6 +12,7 @@ Page({
     orgItem: {},
     details: {},
     isflag: false,
+    showCashier: false
   },
 
   /**
@@ -48,6 +49,15 @@ Page({
         })
       }
     })
+  },
+  handleClickPay() { 
+    this.setData({
+      showCashier: true
+    })
+  },
+  handleChoosePayType(e) {
+    const payChannelType = e.detail
+    this.chargePay(payChannelType)
   },
 
   /**
@@ -101,7 +111,7 @@ Page({
                 url: "/pages/my/home/openAccount"
               })
             } else if (res.cancel) {
-             console.log('=====>取消')
+              console.log("=====>取消")
             }
           }
         })
@@ -115,7 +125,7 @@ Page({
     } else {
       // 变更代缴状态
       this.handleChangeHoldState(!this.data.isflag)
-    }    
+    }
   },
   handleChangeHoldState(withholdState) {
     this.setData({
@@ -125,10 +135,9 @@ Page({
         withholdState: withholdState ? "1" : "0"
       }
     })
-    
   },
-  chargePay() {
-    const _this = this 
+  chargePay(channelId) {
+    const _this = this
     let payData = {
       chargeOrgId: _this.data.details.chargeOrgId,
       chargeOrgName: _this.data.orgItem.payUnit,
@@ -141,7 +150,7 @@ Page({
       address: "测试地址",
       chargeNote: "测试备注",
       transAmount: _this.data.details.transAmount * 100,
-      channelId: "13",
+      channelId,
       transactionType: "JSAPI",
       serviceType: "2",
       withholdState: _this.data.orgItem.withholdState
