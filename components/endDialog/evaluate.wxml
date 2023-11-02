@@ -1,4 +1,4 @@
-<view class='wx_dialog_container' hidden="{{!isShow}}">
+<view class='wx_dialog_container' wx:if="{{isShow}}">
   <view class='wx-mask'></view>
   <view class='wx-dialog'>
     <view class='wx-dialog-title'>{{ title }}</view>
@@ -9,3 +9,4 @@
     </view>
   </view>
 </view>
+<cashier price="{{amount}}" wx:if="{{showCashier}}" bind:choosePayType="handleChoosePayType"/>

@@ -21,12 +21,14 @@
         <view class="view-order">
           <view  catchtap="questionDetails" data-detail="{{item}}">
             <view class="order-row">
-              <view class="font-bold">{{item.content}}</view>
-              <view class="state" wx:if="{{item.state == 0}}">待分配</view>
-              <view class="state" wx:if="{{item.state == 1}}">已分配</view>
-              <view class="state solve" wx:if="{{item.state == 2}}">已处理</view>
-              <view class="state complete" wx:if="{{item.state == 3}}">已评价</view>
-              <view class="state complete" wx:if="{{item.state == 4}}">已关闭</view>
+              <view class="font-bold text-overflow" style="width:500rpx;text-align:left">{{item.content}}</view>
+              <view style="width: 120rpx;">
+                <text class="state" wx:if="{{item.state == 0}}">待分配</text>
+                <text class="state" wx:if="{{item.state == 1}}">已分配</text>
+                <text class="state solve" wx:if="{{item.state == 2}}">已处理</text>
+                <text class="state complete" wx:if="{{item.state == 3}}">已评价</text>
+                <text class="state complete" wx:if="{{item.state == 4}}">已关闭</text>
+              </view>
             </view>
             <view  style="padding-left:30rpx;margin-top:14rpx;">
               <image wx:for="{{item.adviceImage}}"  wx:for-item="imageItem" wx:key="item" style="display:inline-block; width:160rpx;height:160rpx;padding-right:20rpx;" src="{{imageItem.url}}" />

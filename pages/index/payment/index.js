@@ -11,13 +11,37 @@ Page({
     type: '',
     list: [],
     isLoading: true, // 是否正在加载中
-    chargeCustFlag:''
+    chargeCustFlag:'',
+    payData: [
+      {
+        id: 1,
+        url: "/state/images/shui1.png",
+        title: "水费",
+        num: 1,
+        type:"sf"
+      },
+      {
+        id: 2,
+        url: "/state/images/ranqi1.png",
+        title: "燃气费",
+        num: 0,
+        type:"rqf"
+      },
+      {
+        id: 3,
+        url: "/state/images/reli1.png",
+        title: "热力费",
+        num: 0,
+        type:"rlf"
+      }
+    ],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log(options.type);
     this.setData({
       type: options.type,
       chargeCustFlag:options.chargeCustFlag
@@ -114,11 +138,24 @@ Page({
       }
     })
   },
+  bindPickerChange(e){
+    // this.setData({
+    //   type: this.data.payData[e.detail.value].type,
+    // });
+    getApp().globalData.payName = this.data.payData[e.detail.value].title;
+    console.log(this.data.payData[e.detail.value].type);
+    wx.navigateTo({
+      url: '/pages/index/addPay/index?type=' + this.data.payData[e.detail.value].type,
+    })
+    // console.log(e.detail.value);
+  },
   // 增加户号
   goAddAccount() {
-    wx.navigateTo({
-      url: '/pages/index/addPay/index?type=' + this.data.type,
-    })
+    if(this.data.type){
+      wx.navigateTo({
+        url: '/pages/index/addPay/index?type=' + this.data.type,
+      })
+    }
   },
   // 直接去缴费
   goDetail(e) {

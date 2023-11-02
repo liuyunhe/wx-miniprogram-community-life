@@ -10,8 +10,7 @@ Page({
   data: {
     date: "",
     time: "",
-    payType: [
-      {
+    payType: [{
         id: "1",
         url: "/state/images/yuePay.png",
         title: "余额"
@@ -106,6 +105,7 @@ Page({
     this.setData({
       payChannelType
     })
+    // console.log("handleChoosePayType======");
     this.goPay()
   },
   // 去付款
@@ -115,60 +115,46 @@ Page({
       serviceId: payData.serviceId,
       serviceName: payData.serviceName,
       // realPrice: payData.unitPrice,
-      merId: payData.storeId,
+      merId: payData.intoMerchantNo,
       visitDate: this.data.date + " " + this.data.time + ":00",
       contact: dataList.contact,
       phone: dataList.phone,
-      address:
-        dataList.province +
+      address: dataList.province +
         dataList.city +
         dataList.district +
         dataList.address,
       servicePrice: payData.unitPrice,
-      message: this.data.message
-    }
-    $api.addServiceOrderInfo(data).then((res) => {
-      if (res.state) {
-        this.payOrder(res.value)
-      }
-    })
-  },
-  payOrder(orderId) {
-    let _this = this
-    const data = {
+      message: this.data.message,
       sysId: "handy",
-      merchantId: payData.storeId,
       merchantName: payData.storeName,
-      mcc: "mcc",
-      orderId: orderId,
-      description: payData.serviceName,
       amount: payData.unitPrice * 100,
       channelId: this.data.payChannelType,
       transactionType: "JSAPI",
       serviceType: "1"
     }
-    $api.payHandyOrder(data).then((res) => {
+    $api.addNew(data).then((res) => {
+      var orderId = "";
+      var timeStamp ="";
       if (res.state) {
-        const payData = JSON.parse(res.value.url)
-        console.log(res)
+        orderId=res.value.orderId;
+        timeStamp=res.value.payInfo.timeStamp;
         wx.requestPayment({
-          timeStamp: payData.timeStamp,
-          nonceStr: payData.nonceStr,
-          package: payData.package,
-          signType: payData.signType,
-          paySign: payData.paySign,
-          appId: payData.appId,
+          timeStamp: res.value.payInfo.timeStamp,
+          nonceStr: res.value.payInfo.nonceStr,
+          package: res.value.payInfo.package,
+          signType: res.value.payInfo.signType,
+          paySign: res.value.payInfo.paySign,
+          appId: res.value.payInfo.appId,
           success(res) {
             console.log(res)
             if (res.errMsg == "requestPayment:ok") {
               const details = {
                 orderId: orderId,
-                orderTime: util.dateTime(payData.timeStamp),
+                orderTime: util.dateTime(timeStamp),
                 realPrice: data.amount
               }
               wx.redirectTo({
-                url:
-                  "/pages/index/home/success?details=" +
+                url: "/pages/index/home/success?details=" +
                   JSON.stringify(details) +
                   "&dataType=1"
               })
@@ -184,6 +170,101 @@ Page({
             console.log(res)
           }
         })
+        // this.payOrder(res.value)
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: "none"
+        })
+      }
+    })
+  },
+  // timestampToTime(value, type = 1) {
+  //   var time = new Date(value);
+  //   var year = time.getFullYear();
+  //   var month = time.getMonth() + 1;
+  //   var date = time.getDate();
+  //   var hour = time.getHours();
+  //   var minute = time.getMinutes();
+  //   var second = time.getSeconds();
+  //   month = month < 10 ? "0" + month : month;
+  //   date = date < 10 ? "0" + date : date;
+  //   hour = hour < 10 ? "0" + hour : hour;
+  //   minute = minute < 10 ? "0" + minute : minute;
+  //   second = second < 10 ? "0" + second : second;
+  //   var arr = [
+  //     year + "-" + month + "-" + date,
+  //     year + "-" + month + "-" + date + " " + hour + ":" + minute,
+  //     year + "年" + month + "月" + date,
+  //     year + "年" + month + "月" + date + " " + hour + ":" + minute + ":" + second,
+  //     hour + ":" + minute + ":" + second
+  //   ]
+  //   return arr[type];
+  // },
+  payOrder(orderId) {
+    let _this = this
+    // console.log("payOrder=====",payOrder);
+    const data = {
+      sysId: "handy",
+      merchantId: payData.intoMerchantNo,
+      merchantName: payData.storeName,
+      mcc: "mcc",
+      orderId: orderId,
+      description: payData.serviceName,
+      amount: payData.unitPrice * 100,
+      channelId: this.data.payChannelType,
+      transactionType: "JSAPI",
+      serviceType: "1"
+    }
+    $api.payHandyOrder(data).then((res) => {
+      if (res.state) {
+        const payData = JSON.parse(res.value.url)
+        if (data.amount == 0) {
+          var timestamp = util.timestampToTime(new Date().getTime());
+          const details = {
+            orderId: orderId,
+            orderTime: timestamp,
+            realPrice: data.amount
+          }
+          wx.redirectTo({
+            url: "/pages/index/home/success?details=" +
+              JSON.stringify(details) +
+              "&dataType=1"
+          })
+        } else {
+          wx.requestPayment({
+            timeStamp: payData.timeStamp,
+            nonceStr: payData.nonceStr,
+            package: payData.package,
+            signType: payData.signType,
+            paySign: payData.paySign,
+            appId: payData.appId,
+            success(res) {
+              console.log(res)
+              if (res.errMsg == "requestPayment:ok") {
+                const details = {
+                  orderId: orderId,
+                  orderTime: util.dateTime(payData.timeStamp),
+                  realPrice: data.amount
+                }
+                wx.redirectTo({
+                  url: "/pages/index/home/success?details=" +
+                    JSON.stringify(details) +
+                    "&dataType=1"
+                })
+              }
+            },
+            fail(err) {
+              // console.log(err)
+              App.showError("订单未支付", function () {
+                _this.updateServiceOrderInfo(orderId, res.value.url, "3")
+              })
+            },
+            complete(res) {
+              console.log(res)
+            }
+          })
+        }
       } else {
         wx.showToast({
           title: res.message,

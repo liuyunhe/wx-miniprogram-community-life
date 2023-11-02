@@ -92,6 +92,10 @@
               ></image>
               <text style="flex: 1; margin-top: 10rpx">{{item.address}}</text>
             </view>
+            <view class="text-content"
+              style="margin-left: 20rpx;margin-bottom: 10rpx;font-size: 28rpx;font-weight: bold;" wx:if="{{publish_item.reply}}">
+              报修反馈: {{publish_item.reply}}
+            </view>
           </view>
         </view>
       </view>

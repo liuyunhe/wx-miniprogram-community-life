@@ -110,6 +110,7 @@ Page({
     let _this = this;
     var content = '';
     var successStr = '';
+    console.log(e.currentTarget);
     if (e.currentTarget.dataset.status == '4') {
       content = '确认要取消该预约吗？';
       successStr = '取消成功';
@@ -122,7 +123,7 @@ Page({
       content: content,
       success(res) {
         if (res.confirm) {
-          _this.appointUpdate(e.currentTarget.dataset.id, e.currentTarget.dataset.status, successStr);
+          _this.appointUpdate(e.currentTarget.dataset.id, e.currentTarget.dataset.status, successStr,e.currentTarget.dataset.assetid,e.currentTarget.dataset.appointdate);
           console.log('用户点击确定')
         } else if (res.cancel) {
           console.log('用户点击取消')
@@ -131,12 +132,15 @@ Page({
     })
   },
 
-  appointUpdate(id, status, successStr) {
+  appointUpdate(id, status, successStr, assetId, appointDate) {
     let _this = this;
     var upDate = {
       id: id,
-      status: status
+      status: status,
+      assetId:assetId,
+      appointDate:appointDate
     }
+    console.log(upDate);
     $api.appointUpdate(upDate).then(res => {
       if (res.state) {
         _this.setData({

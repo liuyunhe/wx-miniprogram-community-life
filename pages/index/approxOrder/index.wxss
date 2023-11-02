@@ -59,7 +59,7 @@
 }
 .footBtn {
   width: 100%;
-  height: 150rpx;
+  height: 120rpx;
   background: #ffffff;
   position: fixed;
   bottom: 0;
@@ -71,8 +71,20 @@
   /* background: #26a886; */
   background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
   width: 700rpx;
-  height: 80rpx;
+  /* height: 80rpx; */
   border-radius: 10rpx;
   text-align: center;
+  align-items: center;
   line-height: 80rpx;
+}
+
+.text-bottom{
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
+  color: #fff;
+  font-size: 30rpx;
+  /* margin-top: 50rpx; */
+  /* padding-top: 20rpx; */
+  /* padding-bottom: 20rpx; */
+  /* margin-left: 20rpx;
+  margin-right: 20rpx; */
 }

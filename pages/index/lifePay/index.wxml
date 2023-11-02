@@ -30,7 +30,10 @@
       </view>
     </view>
   </view>
-  <view class="rpx-20 mt-20" style="margin-top: 30rpx;" bindtap="handleClickPay">
+  <view wx:if="{{!details.transAmount}}" class="rpx-20 mt-20 diable" style="margin-top: 30rpx;">
+    <view class="btn">缴 费</view>
+  </view>
+  <view wx:else class="rpx-20 mt-20" style="margin-top: 30rpx;" bindtap="handleClickPay">
     <view class="btn">缴 费</view>
   </view>
   <!-- <view class="rpx-20 mt-20">

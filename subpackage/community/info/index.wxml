@@ -23,10 +23,10 @@
               <text class="name">工作时间：</text>
               <text class="text-flex">{{item.workTime}}</text>
             </view>
-            <view class="order-row" style="margin-top:15rpx;" catchtap="details">
+            <!-- <view class="order-row" style="margin-top:15rpx;" catchtap="details">
               <text class="name">备注：</text>
               <text class="text-flex">{{item.appointOrgAddress}}</text>
-            </view>
+            </view> -->
           </view>
         </view>
       </view>

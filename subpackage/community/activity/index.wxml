@@ -44,8 +44,13 @@
                 src="{{item.activityImage}}"
               />
             </view>
-            <view class="text-title"> {{item.title}}
-               <span wx:if="{{item.enableSignup === 1 && (dataType === '' || dataType === '1')}}" class="need-signup">需报名</span>
+            <view class="text-title">
+              <span class="title-text text-overflow">{{item.title}}</span>
+              <span
+                wx:if="{{item.enableSignup === 1 && (dataType === '' || dataType === '1')}}"
+                class="need-signup"
+                >需报名</span
+              >
             </view>
             <view class="timeStyle"
               >活动时间：{{filters.toFixDate(item.beginDate)}} -

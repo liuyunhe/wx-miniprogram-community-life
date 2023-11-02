@@ -33,21 +33,24 @@
   padding-left: 30rpx;
 }
 .text-title{
+  display: flex;
+  align-items: c;
   font-size: 32rpx;
   padding-left: 30rpx;
+  padding-right: 30rpx;
   padding-top: 20rpx;
 }
 .need-signup{
   display: inline-block;
   color: #3CDABB;
   font-size: 20rpx;
-  line-height: 30rpx;
+  line-height: 40rpx;
   padding: 0 10rpx;
   border-radius: 4rpx;
   border: 1px solid #3CDABB;
   margin-left: 10rpx;
-  position: relative;
-  top: -5rpx;
+  width: 60rpx;
+  flex-shrink: 0;
 }
 .timeStyle{
   font-size: 24rpx;

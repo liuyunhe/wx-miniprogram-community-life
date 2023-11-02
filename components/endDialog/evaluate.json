@@ -1,4 +1,6 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "cashier": "/components/cashier/cashier"
+  }
 }

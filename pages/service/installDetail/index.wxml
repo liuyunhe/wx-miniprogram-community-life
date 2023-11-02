@@ -24,7 +24,7 @@
       </view>
       <view class="intro"> {{dataList.serviceContent}} </view>
       <view class="address flex">
-        <image src="/state/images/addr.png"></image>
+        <image mode="widthFix" src="/state/images/addr.png"></image>
         <view bindtap="goMap">
           <view>{{dataList.storeAddress}}</view>
           <view style="height: 50rpx" class="flex align-center">

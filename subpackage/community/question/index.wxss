@@ -327,7 +327,8 @@
   width: 85rpx;
   height: 85rpx;
   /* background-color: #fe767a; */
-  background-color: #26a886; 
+  /* background-color: #26a886;  */
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
   /* background: rgba(0, 0, 0, 0.4); */
   text-align: center;
   align-content: center;

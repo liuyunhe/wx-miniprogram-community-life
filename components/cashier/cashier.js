@@ -30,14 +30,14 @@ Component({
 
   lifetimes: {
     created() {
-      const pages = getCurrentPages()
-      const page = pages[pages.length - 1]
-      const route = page.route
-      const navigationBarTitleText =
-        __wxConfig.page[`${route}.html`].window.navigationBarTitleText
-      this.setData({
-        navigationBarTitleText
-      })
+      // const pages = getCurrentPages()
+      // const page = pages[pages.length - 1]
+      // const route = page.route
+      // const navigationBarTitleText =
+      //   __wxConfig.page[`${route}.html`].window.navigationBarTitleText
+      // this.setData({
+      //   navigationBarTitleText
+      // })
       this.getPayChannelList()
       wx.setNavigationBarTitle({
         title: "收银台"

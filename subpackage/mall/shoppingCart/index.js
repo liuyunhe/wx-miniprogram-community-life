@@ -100,6 +100,12 @@ Page({
     $api.updateChartByGood(params).then((res) => {
       if (res.state) {
         this.getMallChartList()
+      } else { 
+        wx.showToast({
+          title: "当前库存不足",
+          icon: "error",
+          duration: 2000
+        })
       }
     })
   },

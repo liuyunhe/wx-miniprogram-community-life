@@ -1,6 +1,48 @@
 <form bindsubmit="saveData">
   <view class="view-back">
-    <view class="view-input">
+    <view class="view-white">
+      <view class="view-row">
+        <image class="add-img" mode="widthFix" src="/state/images/location.png"></image>
+        <view class="view-column" style="flex: 1;">
+          <view style="font-size: 32rpx;font-weight: bold;">报修地址</view>
+          <input class="input-drug" placeholder="未选择位置信息" name="address" value="{{address}}" disabled="true"></input>
+        </view>
+        <view bindtap="chooseLocationAdvance">
+          <text style="font-size: 28rpx;color:#999;">定位</text>
+          <image class="img-right" mode="widthFix" src="/state/images/youjiantou.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="view-white1">
+      <view class="view-row">
+        <text class="text-title">报修类型</text>
+        <picker mode="selector" bindchange="bindPickerCampus" value="{{campusIndex}}" range="{{campusList}}" range-key="name">
+          <view class="text-right view-row">
+            <input class="input-drug1" style="margin-top: 10rpx;" name="repairTypeName" value="{{campusName}}" placeholder="请选择报修类型" disabled="true"></input>
+            <image class="img-right" mode="widthFix" src="/state/images/youjiantou.png"></image>
+          </view>
+        </picker>
+      </view>
+      <view class="view-line"></view>
+      <view class="view-row">
+        <textarea class="textarea-bz" maxlength="100" placeholder="请输入内容" bindinput='getRemarks' name="content">
+          </textarea>
+      </view>
+      <view class="view-line"></view>
+      <view class="view-row">
+        <text class="text-title">相关资料（选填，提供截图或照片）</text>
+      </view>
+      <uploadImg id='uploadImg' imgNum='{{9}}' binditemChange="handleItemChange">
+      </uploadImg>
+      <view class="view-line"></view>
+      <view class="view-row">
+        <text class="text-title">联系方式</text>
+        <input class="input-drug text-right" maxlength="11" placeholder="请输入手机号" type="number" name="phone"></input>
+      </view>
+    </view>
+    <input class="input-drug" placeholder="" name="repairImage" hidden="hidden" value="{{imgs}}"></input>
+    <input class="input-drug" placeholder="" name="repairType" hidden="hidden" value="{{campusValue}}"></input>
+    <!-- <view class="view-input">
       <input class="input-drug" placeholder="" name="repairImage" hidden="hidden" value="{{imgs}}"></input>
       <input class="input-drug" placeholder="" name="repairType" hidden="hidden" value="{{campusValue}}"></input>
       <view class="view-ly">
@@ -22,25 +64,19 @@
 
       <view class="view-ly" style="margin-top:30rpx;" bindtap="chooseLocationAdvance">
         <text class="text-ly2">位置</text>
-        <input class="input-drug text-right" style="width:500rpx;margin-left: 95rpx;" placeholder="请选择位置信息" name="address" value="{{address}}" disabled="true"></input>
+        <input class="input-drug text-right" style="width:570rpx;" placeholder="请选择位置信息" name="address" value="{{address}}" disabled="true"></input>
       </view>
-
-      <view class="view-ly" style="margin-top:30rpx;" hidden="true">
-        <text class="text-ly2">位置</text>
-        <input class="input-drug text-right" style="width:500rpx;margin-left: 95rpx;" placeholder="请选择位置信息" name="latitude" value="{{latitude}}"></input>
-      </view>
-
-      <view class="view-ly" style="margin-top:30rpx;" hidden="true">
-        <text class="text-ly2">位置</text>
-        <input class="input-drug text-right" style="width:500rpx;margin-left: 95rpx;" placeholder="请选择位置信息" name="longitude" value="{{longitude}}"></input>
-      </view>
-      <!-- <view class="view-ly1">
-        <checkbox class="text-ly1 chagesize" bindtap="bindAcceptRule"></checkbox>
-        <text style="color:#666666;">发布信息前请先查看</text>
-        <text bindtap="rule" style="color:#fd4a5f;">免责声明</text>
-      </view> -->
+    </view> -->
+    <view class="view-ly" style="margin-top:30rpx;" hidden="true">
+      <text class="text-ly2">位置</text>
+      <input class="input-drug text-right" style="width:570rpx;" placeholder="请选择位置信息" name="latitude" value="{{latitude}}"></input>
     </view>
-    <button class="text-bottom" style="width:92%" formType="submit">确认提交</button>
+
+    <view class="view-ly" style="margin-top:30rpx;" hidden="true">
+      <text class="text-ly2">位置</text>
+      <input class="input-drug text-right" style="width:570rpx;" placeholder="请选择位置信息" name="longitude" value="{{longitude}}"></input>
+    </view>
+    <button class="text-bottom" style="width:100%" formType="submit" disabled="{{isEnter}}">提 交</button>
     <canvas canvas-id='canvas' class='press-canvas' style="width: {{ cWidth }}px; height: {{ cHeight }}px;"></canvas>
   </view>
 </form>

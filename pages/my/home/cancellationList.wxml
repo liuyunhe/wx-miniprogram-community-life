@@ -1,0 +1,10 @@
+<!-- <image class="img-title" src="/state/images/accountno_title.png" mode="widthFix"></image> -->
+<view class="base">
+  <view class="list">
+    <view class="view-title">{{listData[0].appointOrgName}}</view>
+    <view class="listLine" wx:for="{{listData}}" wx:key="index" bindtap="getPage" data-item="{{item}}">
+      <view style="flex: 1;margin-left: 30rpx;font-size: 28rpx;color:#333;">{{item.assetName}}</view>
+      <image class="listRight" src="/state/images/youjiantou.png" mode="widthFix"></image>
+    </view>
+  </view>
+</view>

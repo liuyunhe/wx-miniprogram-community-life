@@ -1,0 +1,20 @@
+<view class="view-column">
+  <!-- <text class="view-title">反馈类别</text>
+  <view class="tab-bar">
+    <view class="view-flex" wx:for="{{itemTag}}" wx:for-item="item">
+      <text class="text-tab {{item.checked ? 'text-color' : ''}}" bindtap="swichNav" data-id="{{item.id}}">{{item.name}}</text>
+    </view>
+  </view> -->
+  <form bindsubmit="saveData">
+    <view class="view-back">
+      <text class="view-title">申请退款原因</text>
+      <textarea name="refundReasonWapExplain" style="font-size: 26rpx;margin-bottom: 30rpx;" placeholder="请填写10字以上描述，以便我们更好的帮您解决问题。"></textarea>
+      <text class="view-title">请上传图片</text>
+      <uploadImg id='uploadImg' imgNum='{{9}}' binditemChange="handleItemChange">
+      </uploadImg>
+      <input name="orderId" style="visibility: hidden;"></input>
+      <!-- <input name="goodsId" style="visibility: hidden;"></input> -->
+      <button class="btn-enter" style="width:100%" formType="submit">提交</button>
+    </view>
+  </form>
+</view>

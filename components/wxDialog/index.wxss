@@ -69,3 +69,11 @@
 .mt-20 .dialogDay:nth-child(2n){
   margin-right: 0rpx;
 }
+.item-top{
+    line-height: 50rpx;
+    padding-top: 20rpx;
+}
+.item-bt{
+    line-height: 50rpx;
+    padding-bottom: 20rpx;
+}

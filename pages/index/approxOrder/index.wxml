@@ -37,6 +37,7 @@
     </view>
   </view> -->
   <view class="footBtn flex align-center justify-center">
-    <view class="btn" bindtap="appointAdd">确认预约</view>
+    <!-- <view class="btn" bindtap="appointAdd" disabled="{{isEnter}}">确认预约</view> -->
+    <button style="width: 92%;" class="text-bottom" bindtap="appointAdd" disabled="{{isEnter}}">确认预约</button>
   </view>
 </view>

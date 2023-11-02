@@ -2,13 +2,18 @@
 <wxs module="tools" src="../../../utils/string.wxs" />
 <view class="base {{ orderDetail.payStatus === '0' ? 'pb-150' : '' }}">
   <!-- 订单状态 -->
-  <view class="view-status flex align-center rpx-30">
+  <view class="view-status flex align-center rpx-30" wx:if="{{orderDetail.payStatus == 1}}">
     <image
       class="icon-truck"
       src="/state/images/icon-truck.png"
       mode="widthFix"
     ></image>
-    <view class="text">您的订单正等待揽收。</view>
+    <view class="text" wx:if="{{ orderDetail.status == 0  }}">您的订单待商家处理。</view>
+    <view class="text" wx:if="{{ orderDetail.status == 1  }}">您的订单商家已发货。</view>
+    <view class="text" wx:if="{{ orderDetail.status == 2 || orderDetail.status == 3  }}">您的订单已收货。</view>
+    <view class="text" wx:if="{{ orderDetail.status == 4  }}">您的订单已申请退款。</view>
+    <view class="text" wx:if="{{ orderDetail.status == 5 }}">您的订单已退货。</view>
+    <view class="text" wx:if="{{ orderDetail.status == 6 }}">您的订单已退款。</view>
     <image
       class="icon-arrow"
       src="/state/images/youjiantou.png"
@@ -78,7 +83,7 @@
             <view class="info bottom">
               <view class="btn-groups">
                 <view
-                  wx:if="{{ orderDetail.status - 0 >= 3 }}"
+                  wx:if="{{ orderDetail.status - 0 >= 2 }}"
                   class="btn"
                   bindtap="handleClickBtnComment"
                   data-orderid="{{ good.orderId }}"
@@ -87,7 +92,7 @@
                   >立即评价</view
                 >
                 <view
-                  wx:if="{{ orderDetail.status - 0 >= 3 }}"
+                  wx:if="{{ orderDetail.status - 0 >= 2 }}"
                   class="btn main"
                   data-goodsid="{{ good.goodsId }}"
                   catchtap="handleClickBtnBuyAgain"

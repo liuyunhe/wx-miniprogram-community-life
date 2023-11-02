@@ -6,29 +6,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    details: {}
+    details: {},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.setData({
-      details: JSON.parse(options.details),
-    })
-    this.msgCode(this.data.details.appointUnionCode);
-  },
-  cancel(e) {
     let _this = this;
-    var content = '';
-    var successStr = '';
-    if (e.currentTarget.dataset.status == '4') {
-      content = '确认要取消该预约吗？';
-      successStr = '取消成功';
-    } else {
-      content = '确认要删除该预约吗？';
-      successStr = '删除成功'
-    }
+    _this.setData({
+      details: JSON.parse(options.item),
+    })
+  },
+  enter(e) {
+    let _this = this;
+    var content = '确认要核销该预约吗？';
+    var successStr = '核销成功';
     wx.showModal({
       title: '友情提示',
       content: content,
@@ -47,8 +40,8 @@ Page({
     var upDate = {
       id: _this.data.details.id,
       status: status,
-      assetId:_this.data.details.assetId,
-      appointDate:_this.data.details.appointDate
+      assetId: _this.data.details.assetId,
+      appointDate: _this.data.details.appointDate
     }
     $api.appointUpdate(upDate).then(res => {
       if (res.state) {
@@ -59,10 +52,13 @@ Page({
         })
         wx.showToast({
           title: successStr,
-          duration:2000,
+          duration: 2000,
         });
         setTimeout(function () {
-          wx.navigateBack();
+         wx.redirectTo({
+           url: '/pages/my/home/appointment',
+         })
+          // wx.navigateBack();
         }, 1000)
       } else {
         wx.showToast({

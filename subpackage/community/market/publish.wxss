@@ -197,17 +197,40 @@
 }
 
 .submit-class {
-  margin-bottom: 40rpx;
+  margin-top: 30rpx;
+  /* margin-bottom: 40rpx;
   margin-top: 60rpx;
   height: 50rpx;
   width: 670rpx;
   padding-top: 25rpx;
-  padding-bottom: 25rpx;
-  background: #1DD394;
+  padding-bottom: 25rpx; */
+  /* background: #1DD394; */
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
   text-align: center;
   border-radius: 6rpx;
   font-size: 36rpx;
   font-weight: 600;
   color: #FFFFFF;
 
+}
+
+.text-bottom{
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
+  color: #fff;
+  font-size: 30rpx;
+  padding-top: 25rpx;
+  padding-bottom: 25rpx;
+  align-items: center;
+  text-align: center;
+  /* margin-bottom: 60rpx; */
+   /* margin-top: 60rpx;
+  padding-top: 25rpx;
+  padding-bottom: 25rpx;
+  height: 50rpx; */
+  /* text-align: center; */
+  /* margin-top: 50rpx; */
+  /* padding-top: 20rpx; */
+  /* padding-bottom: 20rpx; */
+  /* margin-left: 20rpx;
+  margin-right: 20rpx; */
 }

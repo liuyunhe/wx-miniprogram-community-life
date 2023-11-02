@@ -47,7 +47,8 @@ Page({
     formData: {},
     navTitle: "",
     acceptOrgId: "",
-    type: ""
+    type: "",
+    isEnter:false
   },
 
   /**
@@ -135,6 +136,9 @@ Page({
       App.showError(_this.data.error)
       return false
     }
+    _this.setData({
+      isEnter:true
+    })
     if (type === "counsel" || type === "question" || type === "good") {
       if (type === "good") {
         $api.addStoreGoodsAdvice(values).then((res) => {
@@ -144,12 +148,18 @@ Page({
               duration: 2000
             })
             setTimeout(function () {
+              _this.setData({
+                isEnter:false
+              })
               wx.navigateBack()
             }, 1000)
           } else {
             wx.showToast({
               title: res.message,
               icon: "none"
+            })
+            _this.setData({
+              isEnter:false
             })
           }
         })
@@ -161,12 +171,18 @@ Page({
               duration: 2000
             })
             setTimeout(function () {
+              _this.setData({
+                isEnter:false
+              })
               wx.navigateBack()
             }, 1000)
           } else {
             wx.showToast({
               title: res.message,
               icon: "none"
+            })
+            _this.setData({
+              isEnter:false
             })
           }
         })
@@ -181,12 +197,18 @@ Page({
             duration: 2000
           })
           setTimeout(function () {
+            _this.setData({
+              isEnter:false
+            })
             wx.navigateBack()
           }, 1000)
         } else {
           wx.showToast({
             title: res.message,
             icon: "none"
+          })
+          _this.setData({
+            isEnter:false
           })
         }
       })

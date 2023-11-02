@@ -21,7 +21,7 @@
       <view class="view-line"></view>
       <view class="view-row">
         <view class="fs-26" style="color:#666666;"> 用户编号</view>
-        <input class="inp" type="text" value="{{custChargeNo}}" bindinput='getInputValue' placeholder="请输入用户编号" />
+        <input class="inp" type="number" maxlength="20" value="{{custChargeNo}}" bindinput='getInputValue' placeholder="请输入用户编号" />
       </view>
     </view>
   </view>

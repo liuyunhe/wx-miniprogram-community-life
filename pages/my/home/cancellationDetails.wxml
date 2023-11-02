@@ -1,0 +1,44 @@
+<view class="view-top">
+  <!-- <image class="img-icon" src="/state/images/lingdang.png" mode="widthFix"></image> -->
+  <text>预约编号：{{details.id}}</text>
+</view>
+<view class="view-block">
+  <view class="view-title">
+    <text class="font-bold" style="color:#26a886;margin-left: 30rpx;">{{details.assetName}}</text>
+  </view>
+  <!-- <view class="view-column view-center view-white">
+    <view class="container-code">
+      <view class="view-canvas">
+        <canvas class="userinfo-avatar" canvas-id='canvas'></canvas>
+      </view>
+    </view>
+    <text class="text-black">{{details.id}}</text>
+    <text class="text-black" style="margin-top: 10rpx;">请到门店出示二维码，由工作人员核销</text>
+  </view> -->
+  <view class="view-foot">
+    <view class="view-row" style="margin-top:15rpx;">
+      <text style="flex: 1;">预约日期：</text>
+      <text>{{details.appointDate}}</text>
+    </view>
+    <view class="view-row" style="margin-top:15rpx;">
+      <text style="flex: 1;">有效时间：</text>
+      <text>{{details.startTime}} - {{details.endTime}}</text>
+    </view>
+    <view class="view-row" style="margin-top:15rpx;">
+      <text style="flex: 1;">办理地点：</text>
+      <text>{{details.appointOrgAddress}}</text>
+    </view>
+    <view class="view-row" style="margin-top:15rpx;">
+      <text style="flex: 1;">状态：</text>
+      <text wx:if="{{details.status=='1'}}" class="text-flex">已预约</text>
+      <text wx:if="{{details.status=='3'}}" class="text-flex">已核销</text>
+      <text wx:if="{{details.status=='4'}}" class="text-flex">已取消</text>
+      <text wx:if="{{details.status=='6'}}" class="text-flex">已过期</text>
+    </view>
+  </view>
+  <view class="view-row view-center" style="margin-top: 40rpx;">
+    <text class="text-cancel" catchtap="enter" data-status="3">确认核销</text>
+    <!-- <text class="text-cancel" style="background: red;margin-left: 30rpx;" catchtap="cancel" data-status="5">删除预约</text> -->
+  </view>
+</view>
+<shortcut id='shortcut'></shortcut>

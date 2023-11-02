@@ -58,6 +58,20 @@ Page({
 
   // 加入购物车
   addToChart() {
+    if (this.data.goodsDetail.stock < 1) {
+       wx.showToast({
+         title: "当前库存不足",
+         icon: "error",
+         duration: 2000
+       })
+      return
+    }
+    this.setData({
+      goodsDetail: {
+        ...this.data.goodsDetail,
+        stock: --this.data.goodsDetail.stock
+      }
+    })
     const custId = wx.getStorageSync("custId")
     const params = {
       custId,
@@ -84,6 +98,14 @@ Page({
 
   // 下单
   goOrder() {
+    if (this.data.goodsDetail.stock < 1) {
+      wx.showToast({
+        title: "当前库存不足",
+        icon: "error",
+        duration: 2000
+      })
+      return
+    }
     const good = [
       {
         goodsId: this.data.goodsDetail.goodsId,

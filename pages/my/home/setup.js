@@ -16,11 +16,11 @@ Page({
         url: '/state/images/dizhi.png',
         title: '我的地址'
       },
-      {
-        id: 2,
-        url: '/state/images/card.png',
-        title: '银行卡'
-      },
+      // {
+      //   id: 2,
+      //   url: '/state/images/card.png',
+      //   title: '银行卡'
+      // },
       {
         id: 3,
         url: '/state/images/fkts.png',

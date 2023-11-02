@@ -42,9 +42,17 @@ Page({
     payData.merchantId = this.data.dataList.merchantId
     payData.merchantName = this.data.dataList.merchantName
     payData.description = this.data.dataList.supplementaryNotes
-    wx.navigateTo({
-      url: "/pages/service/order/index"
-    })
+    payData.intoMerchantNo = this.data.dataList.intoMerchantNo
+    if(this.data.dataList.intoMerchantNo){
+      wx.navigateTo({
+        url: "/pages/service/order/index"
+      })
+    }else{
+      wx.showToast({
+        title: "该商户暂未开通支付，无法下单",
+        icon: "none"
+      })
+    }
   },
   // 详情接口
   getDetail(id, latituge, longituge) {

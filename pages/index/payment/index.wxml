@@ -35,7 +35,12 @@
   <view class="foot">
     <view class="flexText" bindtap="goAddAccount">
       <!-- <image src="/state/images/plus.png"></image> -->
-      <view class="add">添加户号</view>
+      <view class="add" wx:if="{{type}}">添加户号</view>
+      <view wx:else>
+        <picker mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{payData}}" range-key="title">
+          <view class="add">添加户号</view>
+        </picker>
+      </view>
     </view>
   </view>
 </view>

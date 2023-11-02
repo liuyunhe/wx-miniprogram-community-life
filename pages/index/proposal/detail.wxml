@@ -54,10 +54,10 @@
 
   <view
     class="addr_class"
-    style="padding-bottom: 20rpx; margin-left: 20rpx"
+    style="margin-left: 20rpx"
     bindtap="showAddrAdvance"
   >
-    <image class="addr" mode="scaleToFill" src="/state/images/addr.png"></image>
+    <image class="addr" mode="widthFix" src="/state/images/addr.png"></image>
     <text style="flex: 1; margin-top: 10rpx">{{publish_item.address}}</text>
   </view>
 
@@ -74,8 +74,8 @@
     <image class="list-img" src="{{item.url}}" mode="widthFix"></image>
   </view>
 
-  <view class="text-content" wx:if="{{publish_item.reply}}">
-    责任单位回复: {{publish_item.reply}}
+  <view class="text-content" style="font-weight: bold;" wx:if="{{publish_item.reply}}">
+    报修反馈: {{publish_item.reply}}
   </view>
   <view class="text-content" wx:if="{{publish_item.state=='3'}}">
     <view>服务评价：{{publish_item.custEvaluate}}</view>

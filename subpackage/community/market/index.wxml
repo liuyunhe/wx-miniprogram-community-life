@@ -35,13 +35,13 @@
                   <view class="price-style">￥</view>
                   <view class="price-style">{{item.goodsPrice}}</view>
 
-                  <view class="img-view-style">
+                  <!-- <view class="img-view-style">
                     <image class="marker-view" src="/subpackage/community/images/activityEye.png">
                     </image>
                   </view>
                   <view class="view-style">
                     4577
-                  </view>
+                  </view> -->
                 </view>
               </view>
               <!-- <view class="line-column"></view> -->
@@ -113,17 +113,17 @@
                   <view class="price-style">￥</view>
                   <view class="price-style">{{item.goodsPrice}}</view>
 
-                  <view class="img-view-style">
+                  <!-- <view class="img-view-style">
                     <image class="marker-view" src="/subpackage/community/images/activityEye.png">
                     </image>
                   </view>
                   <view class="view-style">
                     4577
-                  </view>
+                  </view> -->
                 </view>
               </view>
               <!-- <view class="line-column"></view> -->
-              <view class="dowm-class" wx:if="{{item.state == 1 || item.state == 0}}" catchtap="delist" data-id="{{item.goodsId}}">
+              <view class="dowm-class" wx:if="{{item.state == 1}}" catchtap="delist" data-id="{{item.goodsId}}">
                 <image src="/subpackage/community/images/down.png" class="dowm-img"></image>
                 <view class="down-text">下架</view>
               </view>

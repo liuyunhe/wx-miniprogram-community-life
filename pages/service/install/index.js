@@ -63,6 +63,9 @@ Page({
     }
     $api.serviceList(data).then(res => {
       if (res.state) {
+        res.value.rows.map(item => { 
+          item.url = JSON.parse(item.images)[0] ? JSON.parse(item.images)[0].url : ''
+        })
         if (this.page > 1) {
           this.setData({
             dataList: this.data.dataList.concat(res.value.rows),

@@ -154,7 +154,7 @@ Page({
     console.log(e)
     let goodsId = e.currentTarget.dataset.item.goodsId
     let state = e.currentTarget.dataset.item.state
-    if (goodsId && state != "3") {
+    // if (goodsId && state != "3") {
       wx.navigateTo({
         url: "/subpackage/community/market/publish?goodsId=" + goodsId
       })
@@ -164,7 +164,7 @@ Page({
       // $api.getGoodsDetail(param).then((res)=>{
       //   console.log("666res",res)
       // })
-    }
+    // }
   },
   detailsAll(e) {
     console.log(e)

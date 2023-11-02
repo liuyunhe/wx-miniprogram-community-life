@@ -41,6 +41,8 @@ const API = {
     request("POST", prefix.handy + "/v1/serviceOrderInfo/list", data), //分页查询服务订单信息
   addServiceOrderInfo: (data) =>
     request("POST", prefix.handy + "/v1/serviceOrderInfo/add", data), //添加服务订单信息
+  addNew: (data) =>
+    request("POST", prefix.handy + "/v1/serviceOrderInfoTmp/addNew", data), //添加服务订单信息新
   updateServiceOrderInfo: (data) =>
     request("POST", prefix.handy + "/v1/serviceOrderInfo/update", data), //更新服务订单信息
   deleteServiceOrderInfo: (data) =>
@@ -49,6 +51,8 @@ const API = {
     request("POST", prefix.handy + "/v1/cjServiceComment/add", data), //新增评论
   getServiceCommentList: (data) =>
     request("POST", prefix.handy + "/v1/cjServiceComment/list", data), //服务评论列表
+  refundServiceOrder: (data) =>
+    request("POST", prefix.handy + "/v1/cjServiceRefund/add", data), //服务订单退款
   addressList: (data) =>
     request("POST", prefix.applet + "/v1/cust/address/list", data), //查询收获地址
   addAddress: (data) =>
@@ -76,6 +80,7 @@ const API = {
   appointList: (data) =>
     request("POST", prefix.group + "/v1/appoint/list", data), //预约列表
   appointAdd: (data) => request("POST", prefix.group + "/v1/appoint/add", data), //添加预约
+  queryIsAppointForCode: (data) => request("GET", prefix.group + "/v1/appoint/queryIsAppointForCode", data), //预约核销查询
   appointUpdate: (data) =>
     request("POST", prefix.group + "/v1/appoint/update", data), //更新预约状态
   repairAdd: (data) =>
@@ -130,7 +135,7 @@ const API = {
   userInfo: (data) =>
     request("GET", prefix.applet + "/v1/wechat/user/info", data), //获取微信小程序当前登录用户信息
   queryEmployeeInfo: (data) =>
-    request("GET", prefix.accept + "/v1/employeeInfo/queryEmployeeInfo", data), //员工信息
+    request("GET", prefix.group + "/v1/employeeInfo/queryEmployeeInfo", data), //员工信息
   notice: (data) => request("POST", prefix.group + "/v1/notice/list", data), //通知公告
   noticeDetail: (data) =>
     request("GET", prefix.group + "/v1/notice/detail", data), //通知公告
@@ -252,6 +257,8 @@ const API = {
     ), //批量更新选择状态
   addStoreOrder: (data) =>
     request("POST", prefix.store + "/v1/cjStoreOrder/add", data), //创建订单
+  returnOrder: (data) =>
+    request("POST", prefix.store + "/v1/cjStoreRefund/add", data), //商城申请退款
   getStoreOrder: (data) =>
     request("POST", prefix.store + "/v1/cjStoreOrder/list", data), //订单列表
   getOrderDetail: (data) =>
@@ -261,7 +268,9 @@ const API = {
   getCommentList: (data) =>
     request("POST", prefix.store + "/v1/cjGoodsComment/list", data), //商品评论列表
   getOrderPaydata: (data) =>
-    request("POST", prefix.store + "/v1/cjStoreOrder/contiuePay", data) //继续支付
+    request("POST", prefix.store + "/v1/cjStoreOrder/contiuePay", data), //继续支付
+  setOrderStatus: (data) =>
+    request("GET", prefix.store + "/v1/cjStoreOrder/setStatus", data) //修改订单状态
 }
 const baseUrl = "https://tacj.openunion.cn/api"
 

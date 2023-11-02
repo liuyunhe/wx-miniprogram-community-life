@@ -50,6 +50,11 @@ Page({
           dateList: dateList,
         })
         this.getList(dateList[0].appointDate)
+      } else { 
+        wx.showToast({
+          title: res.message,
+          icon: "none"
+        })
       }
     })
   },
@@ -73,6 +78,11 @@ Page({
           isCheck: appointDate
         })
         console.log(_this.data.isCheck);
+      } else { 
+        wx.showToast({
+          title: res.message,
+          icon: "none"
+        })
       }
     })
   },

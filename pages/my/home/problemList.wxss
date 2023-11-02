@@ -142,8 +142,10 @@ page{
 }
 
 .font-bold {
+  width: 400rpx;
   font-weight: bold;
   color: #333;
+  text-align: left;
 }
 
 .view-list {

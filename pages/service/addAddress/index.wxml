@@ -2,12 +2,12 @@
   <view class="">
     <view class="top rpx-30">请填写真实身份证信息</view>
     <view class="flex input rpx-30 align-center">
-      <view class="color-258 ">联系人：</view>
-      <input class="inp" value="{{dataList.contact}}" bindinput="getContact" type="text" placeholder="请输入姓名" />
+      <view class="color-258">联系人：</view>
+      <input class="inp" maxlength="10" value="{{dataList.contact}}" bindinput="getContact" type="text" placeholder="请输入姓名" />
     </view>
     <view class="flex input rpx-30 align-center">
-      <view class="color-258 ">联系电话：</view>
-      <input class="inp" value="{{dataList.phone}}" bindinput="getPhone"  type="text" placeholder="您的联系电话" />
+      <view class="color-258">联系电话：</view>
+      <input class="inp" maxlength="11" value="{{dataList.phone}}" bindinput="getPhone"  type="text" placeholder="您的联系电话" />
     </view>
     <view class="flex input rpx-30 align-center">
       <view class="color-258 ">所在地区：</view>
@@ -19,7 +19,7 @@
     </view>
     <view class="flex input inputaddress rpx-30 ">
       <view class="color-258 ">详细地址：</view>
-      <textarea class="inptext" bindinput="getAddress" value="{{dataList.address}}"  placeholder="小区楼栋/乡村名称" />
+      <textarea class="inptext" maxlength="100" bindinput="getAddress" value="{{dataList.address}}"  placeholder="小区楼栋/乡村名称" />
     </view>
     <view class="flex input rpx-30 align-center">
       <view class="color-258 flex-1">设为默认：</view>

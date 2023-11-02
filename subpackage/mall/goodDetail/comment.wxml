@@ -52,31 +52,20 @@
             </view>
             <view class="img-list">
               <image
+                wx:for="{{item.commentImage}}"
                 class="widthFix"
+                wx:for-item="img"
+                wx:key="index"
+                src="{{ img.url }}"
                 mode="widthFix"
-                src="/state/images/good-img.png"
               ></image>
-              <image
-                class="widthFix"
-                mode="widthFix"
-                src="/state/images/good-img.png"
-              ></image>
-              <image
-                class="widthFix"
-                mode="widthFix"
-                src="/state/images/good-img.png"
-              ></image>
-              <image
-                class="widthFix"
-                mode="widthFix"
-                src="/state/images/good-img.png"
-              ></image>
+              
             </view>
             <view
               class="transverse_class"
               style="padding-top: 10rpx; margin-left: 20rpx; color: #999999"
             >
-              <text style="flex: 1; margin-top: 10rpx; margin-bottom: 20rpx"
+              <!-- <text style="flex: 1; margin-top: 10rpx; margin-bottom: 20rpx"
                 >举报</text
               >
               <view class="v_num_class">
@@ -86,7 +75,7 @@
                   src="/state/images/icon-view.png"
                 ></image>
                 <text style="flex: 1">0</text>
-              </view>
+              </view> -->
             </view>
           </view>
         </view>

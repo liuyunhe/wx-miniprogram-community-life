@@ -6,7 +6,7 @@
   hover-stop-propagation="false"
 >
   <view class="contentArea" hover-class="none" hover-stop-propagation="false">
-    <view class="contentItem" hover-class="none" hover-stop-propagation="false">
+    <view class="contentItem text-overflow" hover-class="none" hover-stop-propagation="false">
       活动名称<span class="timeStyle">{{title}}</span>
     </view>
     <view class="divLine" hover-class="none" hover-stop-propagation="false">

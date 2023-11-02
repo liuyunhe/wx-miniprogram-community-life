@@ -20,7 +20,7 @@
       <view class="content rpx-20 ptb-20">
         <view class="flex align-center mb-20">
           <view class="flex-1" style="font-size: 34rpx;font-weight: bold;">{{assetName}}</view>
-          <view class="num" bindtap="goOrder">剩余：{{avaliableNum||0}}</view>
+          <view class="num" bindtap="goOrder">剩余:{{avaliableNum||0}}</view>
         </view>
         <view style="color:#666;">
           {{assetContent}}
@@ -28,7 +28,7 @@
       </view>
       <view class="content rpx-20 ptb-20" style="margin-top:20rpx;">
         <view class="addr_class" style="padding-bottom:20rpx; margin-left:20rpx;" bindtap="showAddr">
-          <image class="addr" mode="widthFix" src="/state/images/addr.png"></image>
+          <image class="addr" mode="widthFix" src="/state/images/location.png"></image>
           <text style="flex:1; margin-top:10rpx;color:#3CDABB;">{{storeAddress}}</text>
         </view>
         <view class="addr_class" style="padding-bottom:20rpx; margin-left:20rpx;">联系电话：{{linkPhone}}</view>

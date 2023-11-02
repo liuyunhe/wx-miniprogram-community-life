@@ -41,7 +41,7 @@ page{
 }
 
 .text-type{
-  color:#26a886;
+  color:#3CDABB;
   padding-left:16rpx;
   /* padding-right: 25rpx; */
   padding-top:25rpx;
@@ -51,7 +51,7 @@ page{
   line-height:25px;
   padding-left:25rpx;
   padding-right: 25rpx;
-  padding-top:25rpx;
+  padding-top:15rpx;
 }
 
 .list-img{
@@ -139,8 +139,8 @@ page{
   width: 100%;
 }
 .addr{
-  width: 32rpx;
-  height: 32rpx;
+  width: 22rpx;
+  /* height: 32rpx; */
   margin-top:14rpx;
   margin-left:5rpx;
   margin-right: 12rpx;

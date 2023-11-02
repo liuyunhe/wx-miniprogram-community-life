@@ -159,23 +159,48 @@ page{
 }
 
 .bg-26A {
-  background: #26a886;
-  color: #ffffff;
-  padding: 10rpx 20rpx;
-  border-radius: 30rpx;
+  /* margin-left: 30rpx; */
+  float: right;
+  width: 120rpx;
+  height: 44rpx;
+  border-radius: 4rpx;
+  border: 2rpx solid #3CDABB;
+  line-height: 44rpx;
+  text-align: center;
+  color: #3CDABB;
+  font-size: 20rpx;
+  margin-left: 10rpx;
+  margin-top: 0;
+  padding: 0;
 }
 
 .bg-F2F2 {
-  padding: 10rpx 20rpx;
-  background: #cccccc;
-  border-radius: 30rpx;
-  margin-right: 30rpx;
+  float: right;
+  width: 120rpx;
+  height: 44rpx;
+  border-radius: 4rpx;
+  border: 2rpx solid rgba(153, 153, 153, 0.5);
+  line-height: 44rpx;
+  text-align: center;
+  color: #000;
+  font-size: 20rpx;
+  margin-left: 10rpx;
+  margin-top: 0;
+  padding: 0;
 }
 .bg-F41{
-  padding: 10rpx 30rpx;
-  background: #f41a0c;
-  color: #ffffff;
-  border-radius: 30rpx;
+  float: right;
+  width: 120rpx;
+  height: 44rpx;
+  border-radius: 4rpx;
+  border: 2rpx solid #f41a0c;
+  line-height: 44rpx;
+  text-align: center;
+  color: #f41a0c;
+  font-size: 20rpx;
+  margin-left: 10rpx;
+  margin-top: 0;
+  padding: 0;
 }
 
 .goods-list {
@@ -237,7 +262,7 @@ page{
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  margin-bottom: 25rpx;
+  margin-bottom: 40rpx;
 }
 .goods-list .row .itmem_wrap .good-info .good-img {
   width: 160rpx;
@@ -339,6 +364,18 @@ page{
   font-weight: 500;
   color: #333333;
   line-height: 30rpx;
+}
+.goods-list .row .itmem_wrap .btn-bar{
+  width: 100%;
+}
+.goods-list .row .itmem_wrap .btn-bar-btn{
+  float: right;
+  width: 130rpx;
+  background: #26a886;
+  color: #ffffff;
+  padding: 10rpx 20rpx;
+  border-radius: 30rpx;
+  margin-top: 40rpx;
 }
 .info.bottom {
   width: 100%;

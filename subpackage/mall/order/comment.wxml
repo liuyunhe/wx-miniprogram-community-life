@@ -51,6 +51,10 @@
       >
       </uploadImg>
     </view>
+    <view class="flex align-center mb-20" style="margin-top:20rpx">
+      <checkbox value="{{isflag}}" checked="{{isflag}}" style="zoom: 60%;" bindtap="handleCheckboxChange"/>
+      <view class="flex-1" style="font-size:30rpx;font-weight: initial;">匿名提交</view>
+      </view>
     <button class="btn-enter" style="width: 100%" formType="submit">
       提交
     </button>

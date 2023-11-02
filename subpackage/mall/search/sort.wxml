@@ -38,7 +38,7 @@
 
     <view class="goods-list">
       <view wx:if="{{ goodList.length > 0 }}">
-        <view class="row" wx:for="{{ goodList }}" wx:key="goodsId">
+        <view class="row" wx:for="{{ goodList }}" wx:key="goodsId" wx:for-index="index">
           <view
             class="itmem_wrap"
             data-id="{{ item.goodsId }}"
@@ -71,6 +71,8 @@
                     class="add-cart"
                     catch:tap="addToChart"
                     data-id="{{ item.goodsId }}"
+                    data-stock="{{ item.stock }}"
+                    data-index="{{index}}"
                   >
                     <image
                       src="/state/images/icon-add-cart.png"

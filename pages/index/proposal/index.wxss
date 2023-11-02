@@ -302,6 +302,19 @@ swiper {
   word-wrap: break-word;
   line-height:25px;
   font-size: 30rpx;
+  overflow: hidden;/*超出文本隐藏*/
+  text-overflow:ellipsis; /*超出部分省略号显示 */
+  display: -webkit-box;/*弹性盒模型*/
+  -webkit-box-orient: vertical;/*上下垂直*/
+  -webkit-line-clamp: 3;/*自定义行数*/
+}
+.text-content{
+  line-height:12px;
+  overflow: hidden;/*超出文本隐藏*/
+  text-overflow:ellipsis; /*超出部分省略号显示 */
+  display: -webkit-box;/*弹性盒模型*/
+  -webkit-box-orient: vertical;/*上下垂直*/
+  -webkit-line-clamp: 1;/*自定义行数*/
 }
 .category-mark{
   float: right;
@@ -334,7 +347,8 @@ swiper {
   width: 85rpx;
   height: 85rpx;
   /* background-color: #fe767a; */
-  background-color: #26a886; 
+  /* background-color: #26a886;  */
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
   /* background: rgba(0, 0, 0, 0.4); */
   text-align: center;
   align-content: center;

@@ -97,10 +97,13 @@
 }
 
 .address image {
-  width: 40rpx;
-  height: 40rpx;
+  width: 24rpx;
+  margin-top: 4rpx;
+  margin-right: 10rpx;
 }
 .address .addimg {
-  width: 15rpx;
+  width: 16rpx;
+  margin-left: 10rpx;
+  margin-top: 5rpx;
   /* float: left; */
 }

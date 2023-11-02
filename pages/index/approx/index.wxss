@@ -40,7 +40,8 @@
 }
 
 .isCheck {
-  background: #3CDABB;
+  /* background: #3CDABB; */
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
   border-radius: 15rpx;
   color: #ffffff;
 }
@@ -60,9 +61,11 @@
 
 .num {
   color: #ffffff;
-  background: #3CDABB;
+  /* background: #3CDABB; */
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
   padding: 10rpx 10rpx;
   border-radius: 10rpx;
+  font-size: 28rpx;
 }
 
 .mb-20 {

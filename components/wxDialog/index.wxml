@@ -7,12 +7,12 @@
     <view class="mt-20">
       <view wx:for="{{fatherData}}" wx:key="index" class="dialogDay">
         <view wx:if="{{item.avaliableNum>0}}" class=" bg-FAF6" bindtap="goOrder" data-value="{{item}}">
-          <text>{{item.startTime}}~{{item.endTime}}</text>
-          <text>(可预约{{item.avaliableNum}}人)</text>
+          <view class="item-top">{{item.startTime}}~{{item.endTime}}</view>
+          <view class="item-bt">(可预约{{item.avaliableNum}}人)</view>
         </view>
         <view wx:else class=" bg-F7F7 color-DDDD">
-          <text>{{item.startTime}}~{{item.endTime}}</text>
-          <text>(已约满)</text>
+          <view>{{item.startTime}}~{{item.endTime}}</view>
+          <view>(已约满)</view>
         </view>
       </view>
     </view>

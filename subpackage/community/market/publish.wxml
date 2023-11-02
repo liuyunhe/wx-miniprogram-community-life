@@ -1,28 +1,12 @@
 <view class="view-root">
-  <scroll-view
-    bindscrolltolower="bindDownLoad"
-    scroll-y
-    style="height: {{scrollHeight}}px; width: 750rpx;margin-bottom: 20rpx;"
-  >
+  <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; width: 750rpx;margin-bottom: 20rpx;">
     <view class="view-column">
       <view class="publish-view">
-        <image
-          src="{{marketUrl}}"
-          class="seat-class"
-          bindtap="chooseImg"
-        ></image>
+        <image src="{{marketUrl}}" class="seat-class" bindtap="chooseImg"></image>
         <view class="title-view" wx:if="{{!readOnly}}">
           <text class="title-view-text">物品标题</text>
         </view>
-        <input
-          wx:if="{{!readOnly}}"
-          class="input-title"
-          placeholder="填写品牌型号"
-          model:value="{{marketTitle}}"
-          name="marketTitle"
-          bindchange="bindTitleChange"
-          disabled="{{readOnly}}"
-        />
+        <input wx:if="{{!readOnly}}" class="input-title" placeholder="填写品牌型号" model:value="{{marketTitle}}" name="marketTitle" bindchange="bindTitleChange" disabled="{{readOnly}}" />
         <view wx:if="{{readOnly}}" class="input-view {{readOnly ? 'bt' : ''}}">
           <text class="price-text">物品标题</text>
           <view style="display: flex; flex-direction: row">
@@ -33,24 +17,9 @@
         <view class="title-view">
           <text class="{{ readOnly ? 'price-text' : 'title-view-text' }}">物品描述</text>
         </view>
-        <textarea
-          class="input-desc {{ readOnly?'no-border':'' }}"
-          placeholder="描述下物品新旧程度、型号尺码等..."
-          model:value="{{marketDesc}}"
-          name="marketDesc"
-          bindinput="bindDescChange"
-          disabled="{{readOnly}}"
-        ></textarea>
+        <textarea class="input-desc {{ readOnly?'no-border':'' }}" placeholder="描述下物品新旧程度、型号尺码等..." model:value="{{marketDesc}}" name="marketDesc" bindinput="bindDescChange" disabled="{{readOnly}}"></textarea>
         <view class="line-class"></view>
-        <picker
-          mode="selector"
-          model:value="{{marketType}}"
-          bindchange="bindTypeChange"
-          class="type-pick"
-          range="{{marketTypeArray}}"
-          range-key="name"
-          disabled="{{readOnly}}"
-        >
+        <picker mode="selector" model:value="{{marketType}}" bindchange="bindTypeChange" class="type-pick" range="{{marketTypeArray}}" range-key="name" disabled="{{readOnly}}">
           <view style="display: flex; align-items: center; height: 100rpx">
             <view class="type-view">
               <text class="type-text">分类</text>
@@ -63,12 +32,7 @@
           <text class="price-text">价格</text>
           <view wx:if="{{!readOnly}}" style="display: flex; flex-direction: row">
             <text class="price-view-right">￥</text>
-            <input
-              class="price-text-right"
-              model:value="{{marketPrice}}"
-              bindchange="bindPriceChange"
-              disabled="{{readOnly}}"
-            />
+            <input class="price-text-right" model:value="{{marketPrice}}" bindchange="bindPriceChange" disabled="{{readOnly}}" />
           </view>
           <view wx:else style="display: flex; flex-direction: row">
             <text class="price-review-right" style="color:#FF580C">￥{{marketPrice}}</text>
@@ -79,13 +43,7 @@
         <view class="input-view {{readOnly ? 'bt' : ''}}">
           <text class="price-text">联系人</text>
           <view wx:if="{{!readOnly}}" style="display: flex; flex-direction: row; margin-left: 66rpx">
-            <input
-              class="input-text-right"
-              placeholder="请输入联系人名称"
-              disabled="{{readOnly}}"
-              model:value="{{name}}"
-              bindchange="bindNameChange"
-            />
+            <input class="input-text-right" placeholder="请输入联系人名称" disabled="{{readOnly}}" model:value="{{name}}" bindchange="bindNameChange" />
           </view>
           <view wx:else style="display: flex; flex-direction: row">
             <text class="price-review-right">{{name}}</text>
@@ -94,33 +52,21 @@
         <view class="line-class"></view>
         <view class="input-view {{readOnly ? 'bt' : ''}}">
           <text class="price-text">联系电话</text>
-          <view wx:if="{{!readOnly}}"  style="display: flex; flex-direction: row; margin-left: 66rpx">
-            <input
-              class="input-text-right"
-              disabled="{{readOnly}}"
-              placeholder="便于买家与您联系"
-              model:value="{{phone}}"
-              bindchange="bindPhoneChange"
-            />
+          <view wx:if="{{!readOnly}}" style="display: flex; flex-direction: row; margin-left: 66rpx">
+            <input class="input-text-right" disabled="{{readOnly}}" placeholder="便于买家与您联系" model:value="{{phone}}" bindchange="bindPhoneChange" />
           </view>
           <view wx:else style="display: flex; flex-direction: row">
             <text class="price-review-right">{{phone}}</text>
           </view>
         </view>
       </view>
-      <view> </view>
-      <view
-        class="submit-class"
-        wx:if="{{!edit && !readOnly}}"
-        bindtap="marketPublish"
-        >提交</view
-      >
-      <view
-        class="submit-class"
-        wx:if="{{edit && !readOnly}}"
-        bindtap="goodsInfoChange"
-        >修改</view
-      >
+      <!-- <view> </view> -->
+      <view class="submit-class" style="width: 92%;" wx:if="{{!edit && !readOnly}}" bindtap="marketPublish">
+        <button class="text-bottom" disabled="{{isEnter}}">提交</button>
+      </view>
+      <view class="submit-class" style="width: 92%;" wx:if="{{edit && !readOnly && detail.state!=='1'}}" bindtap="goodsInfoChange">
+        <button class="text-bottom" disabled="{{isEnter}}">修改</button>
+      </view>
     </view>
   </scroll-view>
 </view>

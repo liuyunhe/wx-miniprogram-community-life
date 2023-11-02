@@ -75,13 +75,20 @@
 }
 
 .price-title {
-  color: #333333;
   font-size: 30rpx;
   font-family: PingFang SC-Medium, PingFang SC;
   font-weight: 500;
   color: #333333;
   line-height: 33rpx;
   margin-top: 24rpx;
+  width: 300rpx;
+  height: 80rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  /* white-space: nowrap; */
 }
 
 .price-hint {
@@ -349,7 +356,8 @@ margin-top: 10rpx;
   width: 85rpx;
   height: 85rpx;
   /* background-color: #fe767a; */
-  background-color: #1DD394;
+  /* background-color: #1DD394; */
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
   /* background: rgba(0, 0, 0, 0.4); */
   text-align: center;
   align-content: center;

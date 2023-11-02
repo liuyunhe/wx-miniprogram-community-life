@@ -11,7 +11,8 @@ Page({
     formData: {},
     type: "",
     stars: [1, 1, 1, 1, 1],
-    starsNum: 5
+    starsNum: 5,
+    isflag: false
   },
 
   /**
@@ -31,6 +32,12 @@ Page({
    */
   onReady() {
     this.uploadImg = this.selectComponent("#uploadImg")
+  },
+  handleCheckboxChange(e) {
+    this.setData({
+      isflag: !this.data.isflag
+    })
+    console.log(this.data.isflag)
   },
   change_star(e) {
     const index = e.currentTarget.dataset.index
@@ -60,6 +67,7 @@ Page({
     values.goodsId = this.data.goodsId
     values.orderId = this.data.orderId
     values.goodsType = this.data.goodsType
+    values.isAnonymity = this.data.isflag ? "1" : "0"
 
     // 表单验证
     if (!_this.validation(values)) {
@@ -72,10 +80,10 @@ Page({
         wx.showToast({
           title: "提交成功",
           duration: 2000,
-          success: () => { 
-            setTimeout(() => { 
+          success: () => {
+            setTimeout(() => {
               wx.navigateBack(2)
-            },2000)
+            }, 2000)
           }
         })
       } else {
@@ -85,7 +93,7 @@ Page({
           icon: "none",
           success: () => {
             setTimeout(() => {
-              wx.navigateBack({ delta : 2})
+              wx.navigateBack({ delta: 2 })
             }, 2000)
           }
         })

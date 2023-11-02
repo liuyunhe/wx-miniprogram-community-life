@@ -76,7 +76,7 @@
       <text class="color-DC2" style="font-size: 40rpx">￥{{unitPrice}}</text>
       <!-- <text class="color-DC2 fs-24">00</text> -->
     </view>
-    <view class="btn" bindtap="handleClickPay">立即支付</view>
+    <view class="btn" bindtap="handleClickPay">确认订单</view>
   </view>
   <cashier price="{{unitPrice}}" wx:if="{{showCashier}}" bind:choosePayType="handleChoosePayType"/>
 </view>

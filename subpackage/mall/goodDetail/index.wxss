@@ -74,7 +74,7 @@ wx-swiper .wx-swiper-dot {
 }
 
 .headerDerr .line:last-child {
-  border-bottom: none;
+  /* border-bottom: none; */
 }
 
 .headerDerr .line .title {

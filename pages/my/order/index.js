@@ -109,11 +109,8 @@ Page({
       }
     })
   },
-  handleClickBtnComment(e) {
-    const {
-      orderId,
-      serviceId,
-    } = e.currentTarget.dataset.value
+  handleClickBtnServiceComment(e) {
+    const { orderId, serviceId } = e.currentTarget.dataset.value
     wx.navigateTo({
       url: `/pages/my/order/comment?orderId=${orderId}&serviceId=${serviceId}`
     })
@@ -182,6 +179,44 @@ Page({
       if (res.state) {
         wx.navigateTo({
           url: `/subpackage/mall/shoppingCart/index`
+        })
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: "none",
+          duration: 2000
+        })
+      }
+    })
+  },
+  handleClickBtnComment(e) {
+    const { orderid, goodsid, goodstype = "0" } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/subpackage/mall/order/comment?orderId=${orderid}&goodsId=${goodsid}&goodsType=${goodstype}`
+    })
+  },
+  handleClickReceiveGood(e) {
+    const { orderid: id, index } = e.currentTarget.dataset
+    const params = {
+      id,
+      status: "2"
+    }
+    $api.setOrderStatus(params).then((res) => {
+      const orderList = this.data.orderList
+      orderList[index].status = "2"
+      this.setData({
+        orderList
+      })
+      if (res.state) {
+        const orderList = this.data.orderList
+        orderList[index].status = "2"
+        this.setData({
+          orderList
+        })
+        wx.showToast({
+          title: "收货成功！",
+          icon: "success",
+          duration: 2000
         })
       } else {
         wx.showToast({
@@ -297,6 +332,7 @@ Page({
       payDetail.paychannel = value.paychannel
       payDetail.payDate = value.payDate
       payDetail.createDate = value.createDate
+      payDetail.finalPaymentPrice = value.finalPaymentPrice
       payDetail.dataType = this.data.dataType
     } else if (this.data.dataType == "2") {
       payDetail.serviceName = value.merchantName
@@ -345,6 +381,31 @@ Page({
       }
     })
   },
+  // 申请退款
+  handleClickReturnOrder(e) {
+    const orderType = this.data.dataType
+    const orderId = e.currentTarget.dataset.orderid
+    const goodsId = e.currentTarget.dataset.goodsid
+    switch (orderType) {
+      case "0": // 生活缴费
+        break
+      case "1": // 便民服务
+        console.log(orderId)
+        wx.navigateTo({
+          url: `/pages/my/order/refund?orderId=${orderId}&&goodsId=${goodsId}&&type=1`
+        })
+        break
+      case "3": // 在线商城
+        console.log(orderId, goodsId)
+        const totalNum = e.currentTarget.dataset.totalnum
+        wx.navigateTo({
+          url: `/pages/my/order/refund?orderId=${orderId}&&goodsId=${goodsId}&&totalNum=${totalNum}&&type=3`
+        })
+        break
+      default:
+        break
+    }
+  },
 
   /**
    * 下拉到底加载数据
@@ -360,11 +421,11 @@ Page({
         page: this.data.page + 1
       })
       if (this.data.dataType == "0") {
-        this.transApplyList(true, ++this.data.page)
+        this.transApplyList(true, this.data.page)
       } else if (this.data.dataType == "1") {
-        this.serviceOrderInfoList(true, ++this.data.page)
+        this.serviceOrderInfoList(true, this.data.page)
       } else if (this.data.dataType == "2") {
-        this.custOrder(true, ++this.data.page)
+        this.custOrder(true, this.data.page)
       } else if (this.data.dataType == "3") {
         this.mallOrder(true, this.data.page)
       }
@@ -383,6 +444,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    this.setData({
+      page: 1,
+      isLoading: true,
+      no_more: false,
+      totalPages: 1,
+      orderList: []
+    })
+    console.log(this.data.page)
     const _this = this
     const dataType = this.data.dataType
     if (dataType == "0") {
@@ -432,7 +501,7 @@ Page({
     console.log("你点击了确定")
     this.dialog.hideDialog()
     this.setData({
-      dataType: id,
+      dataType: this.data.dataType,
       page: 1,
       isLoading: true,
       no_more: false,

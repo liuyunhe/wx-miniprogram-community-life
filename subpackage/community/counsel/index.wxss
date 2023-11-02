@@ -55,6 +55,7 @@
   border-radius: 4rpx;
   line-height: 32rpx;
   font-size: 22rpx;
+  /* width: 400rpx; */
   padding: 0 10rpx;
   margin-left: 20rpx;
   color: #FF773A;
@@ -201,7 +202,7 @@
   display:flex;
   flex-flow:row;
   text-align:center;
-  align-items:center;
+  /* align-items:center; */
   font-size:30rpx;
   margin-left:40rpx;
   margin-right:40rpx;
@@ -337,7 +338,8 @@
   width: 85rpx;
   height: 85rpx;
   /* background-color: #fe767a; */
-  background-color: #26a886; 
+  /* background-color: #26a886;  */
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
   /* background: rgba(0, 0, 0, 0.4); */
   text-align: center;
   align-content: center;
@@ -345,6 +347,14 @@
   border-radius: 50%;
   align-items: center;
   margin-right: 42rpx;
+}
+.text-n{
+  text-align: left;
+  overflow: hidden;/*超出文本隐藏*/
+  text-overflow:ellipsis; /*超出部分省略号显示 */
+  display: -webkit-box;/*弹性盒模型*/
+  -webkit-box-orient: vertical;/*上下垂直*/
+  -webkit-line-clamp: 3;/*自定义行数*/
 }
 
 

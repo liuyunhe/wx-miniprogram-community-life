@@ -29,7 +29,9 @@ Page({
     state: "0",
     edit: false,
     readOnly: false,
-    goodsId: ""
+    goodsId: "",
+    isEnter:false,
+    detail:{}
   },
 
   /**
@@ -73,8 +75,10 @@ Page({
           name: res.value.contact,
           phone: res.value.phone,
           marketType: res.value.category,
-          marketTypeName: typeItem[0].name
+          marketTypeName: typeItem[0].name,
+          detail:res.value
         })
+        console.log(this.data.detail.state);
       })
     }
   },
@@ -137,7 +141,25 @@ Page({
        })
        return
     }
+    if (this.data.phone.length < 1) {
+      wx.showToast({
+        title: "手机号不能为空！",
+        icon: "none"
+      })
+      return false
+    }
+    let reg = /^((0\d{2,3}-\d{7,8})|(1[345689]\d{9}))$/
+    if (!reg.test(this.data.phone)) {
+      wx.showToast({
+        title: "手机号码格式错误！",
+        icon: "none"
+      })
+      return
+    }
     let _this = this
+    _this.setData({
+      isEnter:true
+    })
     let publishData = {}
     publishData.goodsName = _this.data.marketTitle
     publishData.description = _this.data.marketDesc
@@ -157,8 +179,20 @@ Page({
     $api.goodPublish(publishData).then((res) => {
       console.log("goodPublish ===>", res)
       if (res.state) {
-        wx.navigateBack({})
+        wx.showToast({
+          title: "提交成功",
+          duration: 2000,
+        });
+        setTimeout(function () {
+          _this.setData({
+            isEnter:false
+          })
+          wx.navigateBack();
+        }, 1000)
       } else {
+        _this.setData({
+          isEnter:false
+        })
         wx.showToast({
           title: res.message,
           icon: "none"
@@ -168,7 +202,25 @@ Page({
   },
   //商品详细信息变更
   goodsInfoChange() {
+    if (this.data.phone.length < 1) {
+      wx.showToast({
+        title: "手机号不能为空！",
+        icon: "none"
+      })
+      return false
+    }
+    let reg = /^((0\d{2,3}-\d{7,8})|(1[345689]\d{9}))$/
+    if (!reg.test(this.data.phone)) {
+      wx.showToast({
+        title: "手机号码格式错误！",
+        icon: "none"
+      })
+      return
+    }
     let _this = this
+    _this.setData({
+      isEnter:true
+    })
     if (this.data.goodsId) {
       let changeParam = {
         goodsId: _this.data.goodsId,
@@ -184,11 +236,23 @@ Page({
       }
       $api.GoodsListUpdate(changeParam).then((res) => {
         if (res.state) {
-          wx.navigateBack({})
+          wx.showToast({
+            title: "提交成功",
+            duration: 2000,
+          });
+          setTimeout(function () {
+            _this.setData({
+              isEnter:false
+            })
+            wx.navigateBack();
+          }, 1000)
         } else {
           wx.showToast({
             title: res.message,
             icon: "none"
+          })
+          _this.setData({
+            isEnter:false
           })
         }
       })

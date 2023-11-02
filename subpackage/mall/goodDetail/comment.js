@@ -61,6 +61,7 @@ Page({
           const star1 = Array(item.commentStart).fill(1)
           const star2 = Array(5 - item.commentStart).fill(0)
           item.starsGroup = [...star1, ...star2]
+          item.commentImage = item.commentImage ? JSON.parse(item.commentImage) : []
         })
         if (isPage == true) {
           _this.setData({

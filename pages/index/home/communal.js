@@ -1,12 +1,13 @@
 const $api = require('../../../utils/api.js').API;
-const { SUBSCRIBE_BILL_TMP_ID } = getApp().globalData.priTmplId
+const {
+  SUBSCRIBE_BILL_TMP_ID
+} = getApp().globalData.priTmplId
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    payData: [
-      {
+    payData: [{
         id: 1,
         url: "/state/images/shui1.png",
         title: "水费",
@@ -51,18 +52,13 @@ Page({
       // },
     ],
     newsData: [],
-    imgNewsData: [
-      {
-        url: "/state/images/table.png"
-      }
-    ],
-    imgNewsData1: [
-      {
-        url: "/state/images/table1.png"
-      }
-    ],
-    footData: [
-      {
+    imgNewsData: [{
+      url: "/state/images/table.png"
+    }],
+    imgNewsData1: [{
+      url: "/state/images/table1.png"
+    }],
+    footData: [{
         id: "1",
         url: "/state/images/shop.png",
         title: "跳蚤市场"
@@ -113,26 +109,27 @@ Page({
   },
 
   onTabItemTap(item) {
+    let _this = this
     wx.getSetting({
       withSubscriptions: true,
       success(res) {
-        console.log("success=====", res)
+        console.log("success=====", res.subscriptionsSetting)
         var itemSettings = res.subscriptionsSetting.itemSettings
         if (itemSettings && itemSettings[SUBSCRIBE_BILL_TMP_ID] === "accept") {
           return
         } else {
-          this.subscribeBill()
+          _this.subscribeBill();
         }
       },
       fail(res) {
         console.log("fail=====", res)
-       
+
       },
       complete(res) {
         console.log("complete=====", res)
       }
     })
-    
+
   },
 
   /**
@@ -174,11 +171,11 @@ Page({
           })
         }
         if (res[SUBSCRIBE_BILL_TMP_ID] === "reject") {
-          wx.showToast({
-            title: "已取消",
-            icon: "success",
-            duration: 2000
-          })
+          // wx.showToast({
+          //   title: "已取消",
+          //   icon: "success",
+          //   duration: 2000
+          // })
         }
       },
       fail(res) {
@@ -302,8 +299,7 @@ Page({
       // wx.showToast({
       //   title: '暂未开放',
       // })
-    } else if (id == "5") {
-    }
+    } else if (id == "5") {}
   },
   repair() {
     wx.navigateTo({
@@ -332,7 +328,11 @@ Page({
           })
           return
         }
-        var goList = res.result.split("/")
+        var goList = res.result.split("/");
+        // 扫码成功后  在此处理接下来的逻辑
+        _this.setData({
+          scanCode: res.result //扫描得到的结果
+        })
         console.log(goList)
         if (goList[4] == "pay") {
           wx.navigateTo({
@@ -346,12 +346,36 @@ Page({
           wx.navigateTo({
             url: "/pages/index/home/workCard?q=" + res.result
           })
+        } else if (goList[4] == "perf") {
+          var codeDate = {
+            code: _this.data.scanCode,
+          }
+          $api.queryIsAppointForCode(codeDate).then(result => {
+            if (result.state) {
+              if (result.value.isAppoint) {
+                if (result.value.appointVOS.length == 1) {
+                  wx.navigateTo({
+                    url: "/pages/my/home/cancellationDetails?item=" + JSON.stringify(result.value.appointVOS[0])
+                  })
+                }else{
+                  wx.navigateTo({
+                    url: "/pages/my/home/cancellationList?q=" + _this.data.scanCode
+                  })
+                }
+              } else {
+                wx.showToast({
+                  title: "您在该机构暂无预约",
+                  icon: 'none'
+                })
+              }
+            } else {
+              wx.showToast({
+                title: result.message,
+                icon: 'none'
+              })
+            }
+          })
         }
-
-        // 扫码成功后  在此处理接下来的逻辑
-        _this.setData({
-          scanCode: res.result //扫描得到的结果
-        })
       },
       fail(err) {
         wx.showToast({
@@ -412,32 +436,49 @@ Page({
       token: "Bearer " + wx.getStorageSync("token")
     }
     $api.getToken(loginData).then((res) => {
-      console.log(res)
-      wx.setStorageSync("token", res.value.token)
-      _this.setData({
-        url:
-          "https://tacj.openunion.cn/test2/index.html?token=" + res.value.token
-      })
-      this.notice()
-      this.userInfo()
-      this.getUseChargeBill("rlf")
-      this.getUseChargeBill("sf")
-      this.getUseChargeBill("rqf")
+      console.log(res);
+      if (!res.state && res.errorCode == "2541") {
+        wx.showToast({
+          title: res.message,
+          icon: 'none'
+        })
+        wx.redirectTo({
+          url: "/pages/login/login?type=0"
+        })
+      } else {
+        wx.setStorageSync("token", res.value.token)
+        _this.setData({
+          url: "https://tacj.openunion.cn/test2/index.html?token=" + res.value.token
+        })
+        this.notice()
+        this.userInfo()
+        this.getUseChargeBill("rlf")
+        this.getUseChargeBill("sf")
+        this.getUseChargeBill("rqf")
+      }
     })
   },
   getUseChargeBill(type) {
-    const params = { type }
+    const params = {
+      type
+    }
     $api.findUseChargeBill(params).then((res) => {
       console.log(111111)
       switch (type) {
         case "rlf":
-          this.setData({ rlfActive: res.value })
+          this.setData({
+            rlfActive: res.value
+          })
           break
         case "sf":
-          this.setData({ sfActive: res.value })
+          this.setData({
+            sfActive: res.value
+          })
           break
         case "rqf":
-          this.setData({ rqfActive: res.value })
+          this.setData({
+            rqfActive: res.value
+          })
           break
         default:
           break

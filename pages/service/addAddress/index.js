@@ -130,6 +130,11 @@ Page({
         setTimeout(function () {
           wx.navigateBack()
         }, 500)
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon: 'success'
+        })
       }
     })
   },
@@ -144,6 +149,11 @@ Page({
         setTimeout(function () {
           wx.navigateBack()
         }, 500)
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon: 'success'
+        })
       }
     })
   },

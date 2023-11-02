@@ -20,8 +20,7 @@ Page({
       //   iconPath:"/state/images/current_location.png",
       //  }
     ],
-    payData: [
-      {
+    payData: [{
         id: 1,
         url: "/state/images/shui1.png",
         title: "水费",
@@ -66,18 +65,13 @@ Page({
       // },
     ],
     newsData: [],
-    imgNewsData: [
-      {
-        url: "/state/images/table.png"
-      }
-    ],
-    imgNewsData1: [
-      {
-        url: "/state/images/table.png"
-      }
-    ],
-    footData: [
-      {
+    imgNewsData: [{
+      url: "/state/images/table.png"
+    }],
+    imgNewsData1: [{
+      url: "/state/images/table.png"
+    }],
+    footData: [{
         id: "1",
         url: "/state/images/shop.png",
         title: "跳蚤市场"
@@ -286,8 +280,7 @@ Page({
       // wx.showToast({
       //   title: '暂未开放',
       // })
-    } else if (id == "5") {
-    }
+    } else if (id == "5") {}
   },
   repair() {
     wx.navigateTo({
@@ -491,19 +484,28 @@ Page({
       token: "Bearer " + wx.getStorageSync("token")
     }
     $api.getToken(loginData).then((res) => {
-      console.log(res)
-      wx.setStorageSync("token", res.value.token)
-      _this.setData({
-        url:
-          "https://tacj.openunion.cn/test2/index.html?token=" + res.value.token
-      })
-      this.chargePoint()
-      this.merchantPoint("sf")
-      this.merchantPoint("rqf")
-      this.merchantPoint("rlf")
-      this.merchantStoreInfo()
-      this.notice()
-      this.userInfo()
+      console.log(res);
+      if (!res.state && res.errorCode == "2541") {
+        wx.showToast({
+          title: res.message,
+          icon: 'none'
+        })
+        wx.redirectTo({
+          url: "/pages/login/login?type=0"
+        })
+      } else {
+        wx.setStorageSync("token", res.value.token)
+        _this.setData({
+          url: "https://tacj.openunion.cn/test2/index.html?token=" + res.value.token
+        })
+        this.chargePoint()
+        this.merchantPoint("sf")
+        this.merchantPoint("rqf")
+        this.merchantPoint("rlf")
+        this.merchantStoreInfo()
+        this.notice()
+        this.userInfo()
+      }
     })
   },
   notice() {

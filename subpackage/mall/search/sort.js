@@ -113,6 +113,22 @@ Page({
 
   // 加入购物车
   addToChart(e) {
+    const stock = e.currentTarget.dataset.stock
+    const index = e.currentTarget.dataset.index
+    console.log(stock,index)
+    if (stock < 1) {
+      wx.showToast({
+        title: "当前库存不足",
+        icon: "error",
+        duration: 2000
+      })
+      return
+    }
+    const goodList = this.data.goodList
+    goodList[index].stock -= 1
+    this.setData({
+      goodList
+    })
     const goodsId = e.currentTarget.dataset.id
     const custId = wx.getStorageSync("custId")
     const params = {

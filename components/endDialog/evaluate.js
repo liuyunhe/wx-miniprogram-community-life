@@ -56,7 +56,8 @@ Component({
   data: {
     // 弹窗显示控制
     isShow: false,
-    amount: 0
+    amount: 0,
+    showCashier: false
   },
 
   /**
@@ -74,7 +75,7 @@ Component({
     //隐藏弹框
     hideDialog() {
       this.setData({
-        isShow: !this.data.isShow
+        isShow: false
       })
     },
     areaInput(e) {
@@ -86,7 +87,7 @@ Component({
     //展示弹框
     showDialog() {
       this.setData({
-        isShow: !this.data.isShow
+        isShow: true
       })
     },
     /*
@@ -98,6 +99,13 @@ Component({
       this.triggerEvent("cancelEvent")
     },
     _confirmEvent() {
+      this.setData({
+        isShow: false,
+        showCashier: true,
+      })
+    },
+    handleChoosePayType(e) {
+      const payChannelType = e.detail
       let _this = this
       if (_this.data.amount === "" || _this.data.amount === 0) {
         wx.showToast({
@@ -107,14 +115,16 @@ Component({
         })
         return false
       }
-      _this.payOrder(_this.data.orderId)
+      _this.payOrder(_this.data.orderId, payChannelType)
     },
-    payOrder(orderId) {
+    payOrder(orderId, payChannelType) {
       let _this = this
       const _payData = this.getOrderExpiration(orderId)
       if (_payData) {
+        // console.log("_payData");
         this.handleRequestPayment(_payData)
       } else {
+        // console.log("非");
         const data = {
           sysId: "handy",
           merchantId: _this.data.merchantId,
@@ -123,15 +133,22 @@ Component({
           orderId: orderId + "w",
           description: _this.data.description,
           amount: _this.data.amount * 100,
-          channelId: "13",
+          channelId: payChannelType,
           transactionType: "JSAPI",
           serviceType: "1"
         }
         $api.payHandyOrder(data).then((res) => {
           if (res.state) {
-            const payData = JSON.parse(res.value.url)
-            this.setOrderExpiration(orderId, payData)
-            this.handleRequestPayment(payData)
+            if (res.value.url) { 
+              const payData = JSON.parse(res.value.url)
+              this.setOrderExpiration(orderId, payData)
+              this.handleRequestPayment(payData)
+            } else {
+              _this.triggerEvent("confirmEvent")
+              _this.setData({
+                showCashier: false
+              })
+            }
           } else {
             wx.showToast({
               title: res.message,
@@ -172,6 +189,9 @@ Component({
         },
         complete(res) {
           console.log(res)
+          _this.setData({
+            showCashier: false
+          })
         }
       })
     },
@@ -186,7 +206,7 @@ Component({
         } else {
           return _payData
         }
-      } else { 
+      } else {
         return false
       }
     },

@@ -14,8 +14,7 @@
 }
 
 .btn-enter {
-  /* background: #26a886; */
-  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
+  background: #26a886;
   color: #fff;
   font-size: 30rpx;
   margin-top: 50rpx;

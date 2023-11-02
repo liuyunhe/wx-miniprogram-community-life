@@ -17,11 +17,15 @@
     <text>{{payDetail.dataType=='0'?'生活缴费':payDetail.dataType=='1'?'便民服务':'其它'}}</text>
   </view>
   <view class="view-row text-margin">
-    <text class="text-flex">创建时间</text>
+    <text class="text-flex">下单时间</text>
     <text>{{payDetail.createDate}}</text>
   </view>
   <view class="view-row text-margin" wx:if="{{payDetail.payDate}}">
     <text class="text-flex">支付时间</text>
     <text>{{payDetail.payDate}}</text>
+  </view>
+  <view class="view-row text-margin" wx:if="{{payDetail.finalPaymentPrice}}">
+    <text class="text-flex">尾款金额</text>
+    <text>{{payDetail.finalPaymentPrice}}</text>
   </view>
 </view>

@@ -47,7 +47,7 @@
           </view>
           <view class="order-row" style="margin-top:20rpx;">
             <text class="text-flex"></text>
-            <text wx:if="{{item.status=='1'}}" class="text-cacel" catchtap="cancel" data-status="4" data-id="{{item.id}}">取消预约</text>
+            <text wx:if="{{item.status=='1'}}" class="text-cacel" catchtap="cancel" data-status="4" data-id="{{item.id}}" data-assetId="{{item.assetId}}" data-appointDate="{{item.appointDate}}">取消预约</text>
             <text wx:if="{{item.status=='3' || item.status=='4' || item.status=='6'}}" class="text-del" catchtap="cancel" data-status="5" data-id="{{item.id}}">删除</text>
           </view>
         </view>

@@ -221,37 +221,46 @@ Page({
                 }
               })
             }
-            const { data_package, orderId } = res.value
-            const payData = JSON.parse(data_package)
-            console.log(payData, orderId)
-            wx.requestPayment({
-              timeStamp: payData.timeStamp,
-              nonceStr: payData.nonceStr,
-              package: payData.package,
-              signType: payData.signType,
-              paySign: payData.paySign,
-              appId: payData.appId,
-              success(res) {
-                console.log(res)
-                if (res.errMsg == "requestPayment:ok") {
-                  // 返回商城列表
-                  wx.redirectTo({
-                    url: "/pages/my/order/index?dataType=3"
-                  })
-                }
-              },
-              fail(err) {
-                // console.log(err)
-                App.showError("订单未支付", function () {
-                  wx.redirectTo({
-                    url: "/pages/my/order/index?dataType=3"
-                  })
+            const { data_package, orderId, state } = res.value
+            if (state === "100") {
+              setTimeout(() => { 
+                wx.redirectTo({
+                  url: "/pages/my/order/index?dataType=3"
                 })
-              },
-              complete(res) {
-                console.log(res)
-              }
-            })
+              },2000)
+            } else { 
+              const payData = JSON.parse(data_package)
+              console.log(payData, orderId)
+              wx.requestPayment({
+                timeStamp: payData.timeStamp,
+                nonceStr: payData.nonceStr,
+                package: payData.package,
+                signType: payData.signType,
+                paySign: payData.paySign,
+                appId: payData.appId,
+                success(res) {
+                  console.log(res)
+                  if (res.errMsg == "requestPayment:ok") {
+                    // 返回商城列表
+                    wx.redirectTo({
+                      url: "/pages/my/order/index?dataType=3"
+                    })
+                  }
+                },
+                fail(err) {
+                  // console.log(err)
+                  App.showError("订单未支付", function () {
+                    wx.redirectTo({
+                      url: "/pages/my/order/index?dataType=3"
+                    })
+                  })
+                },
+                complete(res) {
+                  console.log(res)
+                }
+              })
+            }
+            
           }
         })
       } else {

@@ -34,14 +34,12 @@
               <text class="text-flex">{{item.startTime}} - {{item.endTime}}</text> -->
             </view>
             <view class="order-row" style="margin-top:15rpx;">
-              <text class="labelName">办理地点：</text>
-              <text style="color: black;">{{item.storeName}}</text>
+              <text class="labelName">办理地点：{{item.storeName}}</text>
               <!-- <text class="text-flex">{{item.storeName}}</text> -->
             </view>
             <view class="order-row" style="margin-top:15rpx;padding-bottom: 16rpx;">
-              <text class="labelName">联系电话：</text>
+              <text class="labelName">联系电话：{{item.linkPhone}}</text>
               <!-- <text style="color: #3CDABB;">已预约</text> -->
-              <text class="text-flex">{{item.linkPhone}}</text>
               <!-- <view class="tagStyle" >取消预约</view> -->
             </view>
           </view>

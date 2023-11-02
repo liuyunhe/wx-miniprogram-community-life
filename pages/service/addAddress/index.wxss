@@ -38,7 +38,8 @@
 }
 .btn {
   color: #ffffff;
-  background: #26a886;
+  /* background: #26a886; */
+  background: -webkit-linear-gradient(left, #1DD394, #46DCCA);
   font-size: 30rpx;
   height: 80rpx;
   text-align: center;

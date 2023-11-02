@@ -10,7 +10,8 @@ Page({
   data: {
     dataList: {},
     assetName: '',
-    userName: ''
+    userName: '',
+    isEnter:false
   },
 
   /**
@@ -21,8 +22,13 @@ Page({
   },
   // 预约服务
   appointAdd() {
+    let _this = this;
+    console.log("appointAdd");
+    _this.setData({
+      isEnter:true
+    });
     wx.requestSubscribeMessage({
-      tmplIds: ['sE_bmwdeCFJXOFxFQoN0TbghCj5tgMTZ1lA2KsIq5Eo'],
+      tmplIds: ['sE_bmwdeCFJXOFxFQoN0TfJow1eOkonIU8ofDVOPFCI'],
       success(res) {
         console.log("success=====", res);
         approx.custName = wx.getStorageSync("wechatNickName")
@@ -33,6 +39,9 @@ Page({
               icon: 'success'
             });
             setTimeout(function () {
+              _this.setData({
+                isEnter:false
+              })
               wx.switchTab({
                 url: '/pages/index/home/index',
               })
@@ -41,6 +50,9 @@ Page({
             wx.showToast({
               title: res.message,
               icon: 'none',
+            })
+            _this.setData({
+              isEnter:false
             })
           }
         })
@@ -53,6 +65,9 @@ Page({
               icon: 'success'
             });
             setTimeout(function () {
+              _this.setData({
+                isEnter:false
+              })
               wx.switchTab({
                 url: '/pages/index/home/index',
               })
@@ -61,6 +76,9 @@ Page({
             wx.showToast({
               title: res.message,
               icon: 'none',
+            })
+            _this.setData({
+              isEnter:false
             })
           }
         })

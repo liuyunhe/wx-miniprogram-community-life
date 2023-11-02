@@ -19,7 +19,7 @@
         <view class="xl">销量{{ goodsDetail.sales }}</view>
       </view>
       <view class="headerDerr">
-        <view class="line">
+        <!-- <view class="line">
           <view class="title">选择</view>
           <view class="info">颜色/尺码</view>
           <image
@@ -31,16 +31,16 @@
             bindload=""
           ></image>
           <view class="jump">推荐XXL码</view>
-        </view>
+        </view> -->
         <view class="line">
           <view class="title">发货</view>
           <view class="info text-overflow" style="width: 570rpx">{{
             goodsDetail.merchantName
           }}</view>
         </view>
-        <view class="line">
+        <view class="line" data-id="{{ goodsDetail.goodsId }}" bindtap="goGoodComment">
           <view class="title">评价</view>
-          <view class="info">200+</view>
+          <view class="info">{{goodsDetail.commentNum}}</view>
           <image
             class="arrow"
             src="../../../state/images/arrow-right.png"
@@ -49,12 +49,12 @@
             binderror=""
             bindload=""
           ></image>
-          <view
+          <!-- <view
             class="jump"
             bindtap="goGoodComment"
             data-id="{{ goodsDetail.goodsId }}"
             >好评度98%</view
-          >
+          > -->
         </view>
       </view>
     </view>
