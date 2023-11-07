@@ -130,25 +130,33 @@ Component({
           merchantId: _this.data.merchantId,
           merchantName: _this.data.merchantName,
           mcc: "mcc",
-          orderId: orderId + "w",
+          orderId: orderId,
           description: _this.data.description,
           amount: _this.data.amount * 100,
           channelId: payChannelType,
           transactionType: "JSAPI",
           serviceType: "1"
         }
-        $api.payHandyOrder(data).then((res) => {
+        $api.balancePayServiceOrder(data).then((res) => {
           if (res.state) {
-            if (res.value.url) { 
-              const payData = JSON.parse(res.value.url)
-              this.setOrderExpiration(orderId, payData)
-              this.handleRequestPayment(payData)
+            // if (res.value.url) {
+            // const payData = JSON.parse(res.value.url)
+            const payData = res.value.payInfo;
+            if (res.value.payInfo) {
+              _this.setOrderExpiration(orderId, payData)
+              _this.handleRequestPayment(payData)
             } else {
               _this.triggerEvent("confirmEvent")
               _this.setData({
                 showCashier: false
               })
             }
+            // } else {
+            //   _this.triggerEvent("confirmEvent")
+            //   _this.setData({
+            //     showCashier: false
+            //   })
+            // }
           } else {
             wx.showToast({
               title: res.message,
@@ -199,7 +207,10 @@ Component({
       const timestamp = Date.parse(new Date())
       const data_expiration = wx.getStorageSync(`balance_payment_${orderId}`)
       if (data_expiration) {
-        const { expiration: _expiration, payData: _payData } = data_expiration
+        const {
+          expiration: _expiration,
+          payData: _payData
+        } = data_expiration
         if (timestamp > _expiration) {
           wx.removeStorageSync(`balance_payment_${orderId}`)
           return false

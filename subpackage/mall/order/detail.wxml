@@ -114,7 +114,7 @@
         </view>
         <view class="order-line">
           <view class="title">订单编号</view>
-          <view class="info">{{ orderDetail.orderId }}</view>
+          <view class="info">{{ orderDetail.orderCode }}</view>
         </view>
         <view class="order-line">
           <view class="title">配送方式</view>

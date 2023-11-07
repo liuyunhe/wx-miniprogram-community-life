@@ -43,6 +43,16 @@ const API = {
     request("POST", prefix.handy + "/v1/serviceOrderInfo/add", data), //添加服务订单信息
   addNew: (data) =>
     request("POST", prefix.handy + "/v1/serviceOrderInfoTmp/addNew", data), //添加服务订单信息新
+  balancePayServiceOrder: (data) =>
+    request(
+      "POST",
+      prefix.handy + "/v1/serviceOrderInfo/balancePayServiceOrder",
+      data
+    ), //付尾款新
+  continuePayServiceOrder: (data) =>
+    request("GET", prefix.handy + "/v1/serviceOrderInfoTmp/continuePayServiceOrder", data), //服务订单继续支付功能
+  continuePayBalance: (data) =>
+    request("GET", prefix.handy + "/v1/serviceOrderInfo/continuePayBalance", data), //尾款服务订单继续支付功能    
   updateServiceOrderInfo: (data) =>
     request("POST", prefix.handy + "/v1/serviceOrderInfo/update", data), //更新服务订单信息
   deleteServiceOrderInfo: (data) =>
@@ -80,7 +90,8 @@ const API = {
   appointList: (data) =>
     request("POST", prefix.group + "/v1/appoint/list", data), //预约列表
   appointAdd: (data) => request("POST", prefix.group + "/v1/appoint/add", data), //添加预约
-  queryIsAppointForCode: (data) => request("GET", prefix.group + "/v1/appoint/queryIsAppointForCode", data), //预约核销查询
+  queryIsAppointForCode: (data) =>
+    request("GET", prefix.group + "/v1/appoint/queryIsAppointForCode", data), //预约核销查询
   appointUpdate: (data) =>
     request("POST", prefix.group + "/v1/appoint/update", data), //更新预约状态
   repairAdd: (data) =>
@@ -256,7 +267,7 @@ const API = {
       data
     ), //批量更新选择状态
   addStoreOrder: (data) =>
-    request("POST", prefix.store + "/v1/cjStoreOrder/add", data), //创建订单
+    request("POST", prefix.store + "/v1/cjStoreOrderTmp/add", data), //创建订单
   returnOrder: (data) =>
     request("POST", prefix.store + "/v1/cjStoreRefund/add", data), //商城申请退款
   getStoreOrder: (data) =>

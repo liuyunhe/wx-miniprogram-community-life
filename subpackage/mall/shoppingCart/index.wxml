@@ -102,10 +102,10 @@
                       >{{ item.cjStoreGoodsVO.goodsName }}</view
                     >
                     <view class="info mb-42">
-                      <view class="type">
+                      <!-- <view class="type">
                         <view class="label">黑/白/灰</view>
                         <view class="label">M</view>
-                      </view>
+                      </view> -->
                       <view class="price">
                         价格：￥{{ filters.toFixHead(item.cjStoreGoodsVO.price)
                         }}.{{ filters.toFixTail(item.cjStoreGoodsVO.price) }}×{{
@@ -210,10 +210,10 @@
                       >{{ item.cjStoreGoodsVO.goodsName }}</view
                     >
                     <view class="info mb-42">
-                      <view class="type">
+                      <!-- <view class="type">
                         <view class="label">黑/白/灰</view>
                         <view class="label">M</view>
-                      </view>
+                      </view> -->
                       <view class="price">
                         价格：￥{{ filters.toFixHead(item.cjStoreGoodsVO.price)
                         }}.{{ filters.toFixTail(item.cjStoreGoodsVO.price) }}×{{

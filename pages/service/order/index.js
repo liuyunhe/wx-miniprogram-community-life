@@ -110,6 +110,7 @@ Page({
   },
   // 去付款
   goPay() {
+    let _this = this;
     const dataList = this.data.dataList
     const data = {
       serviceId: payData.serviceId,
@@ -134,42 +135,56 @@ Page({
     }
     $api.addNew(data).then((res) => {
       var orderId = "";
-      var timeStamp ="";
+      var timeStamp = "";
       if (res.state) {
-        orderId=res.value.orderId;
-        timeStamp=res.value.payInfo.timeStamp;
-        wx.requestPayment({
-          timeStamp: res.value.payInfo.timeStamp,
-          nonceStr: res.value.payInfo.nonceStr,
-          package: res.value.payInfo.package,
-          signType: res.value.payInfo.signType,
-          paySign: res.value.payInfo.paySign,
-          appId: res.value.payInfo.appId,
-          success(res) {
-            console.log(res)
-            if (res.errMsg == "requestPayment:ok") {
-              const details = {
-                orderId: orderId,
-                orderTime: util.dateTime(timeStamp),
-                realPrice: data.amount
+        orderId = res.value.orderId;
+        if (res.value.payInfo) {
+          timeStamp = res.value.payInfo.timeStamp;
+          wx.requestPayment({
+            timeStamp: res.value.payInfo.timeStamp,
+            nonceStr: res.value.payInfo.nonceStr,
+            package: res.value.payInfo.package,
+            signType: res.value.payInfo.signType,
+            paySign: res.value.payInfo.paySign,
+            appId: res.value.payInfo.appId,
+            success(res) {
+              console.log(res)
+              if (res.errMsg == "requestPayment:ok") {
+                const details = {
+                  orderId: orderId,
+                  orderTime: util.dateTime(timeStamp),
+                  realPrice: data.amount
+                }
+                wx.redirectTo({
+                  url: "/pages/index/home/success?details=" +
+                    JSON.stringify(details) +
+                    "&dataType=1"
+                })
               }
-              wx.redirectTo({
-                url: "/pages/index/home/success?details=" +
-                  JSON.stringify(details) +
-                  "&dataType=1"
+            },
+            fail(err) {
+              // console.log(err)
+              App.showError("订单未支付", function () {
+                _this.updateServiceOrderInfo(orderId, res.value.url, "3")
               })
+            },
+            complete(res) {
+              console.log(res)
             }
-          },
-          fail(err) {
-            // console.log(err)
-            App.showError("订单未支付", function () {
-              _this.updateServiceOrderInfo(orderId, res.value.url, "3")
-            })
-          },
-          complete(res) {
-            console.log(res)
+          })
+        } else {
+          timeStamp = res.value.timeStamp;
+          const details = {
+            orderId: orderId,
+            orderTime: util.dateTime(timeStamp),
+            realPrice: data.amount
           }
-        })
+          wx.redirectTo({
+            url: "/pages/index/home/success?details=" +
+              JSON.stringify(details) +
+              "&dataType=1"
+          })
+        }
         // this.payOrder(res.value)
       } else {
         wx.showToast({

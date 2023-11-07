@@ -40,7 +40,7 @@ Page({
     $api.getOrderDetail(data).then((res) => {
       if (res.state) {
         this.setData({
-          orderDetail: res.value
+          orderDetail: res.value,
         })
       }
     })
@@ -80,8 +80,8 @@ Page({
   },
 
   handleCLickBtnPay() {
-    const { orderId } = this.data
-    $api.getOrderPaydata(orderId).then((res) => {
+    const { orderCode } = this.data.orderDetail
+    $api.getOrderPaydata(orderCode).then((res) => {
       if (res.state) {
         const { data_package, orderId } = JSON.parse(res.value)
         const payData = JSON.parse(data_package)

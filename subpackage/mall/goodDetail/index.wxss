@@ -144,7 +144,7 @@ wx-swiper .wx-swiper-dot {
 }
 
 .foot {
-  width: calc(100% - 70rpx);
+  width: calc(100% - 40rpx);
   height: 150rpx;
   position: fixed;
   left: 0;
@@ -245,6 +245,6 @@ wx-swiper .wx-swiper-dot {
 }
 
 .rpx-40 {
-  padding-left: 30rpx;
-  padding-right: 30rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
 }
