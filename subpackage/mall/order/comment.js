@@ -12,7 +12,7 @@ Page({
     type: "",
     stars: [1, 1, 1, 1, 1],
     starsNum: 5,
-    isflag: false
+    isflag: true
   },
 
   /**
@@ -67,7 +67,7 @@ Page({
     values.goodsId = this.data.goodsId
     values.orderId = this.data.orderId
     values.goodsType = this.data.goodsType
-    values.isAnonymity = this.data.isflag ? "1" : "0"
+    values.isAnonyMity = this.data.isflag ? "1" : "0"
 
     // 表单验证
     if (!_this.validation(values)) {

@@ -230,6 +230,10 @@ wx-swiper .wx-swiper-dot {
   align-self: center;
 }
 
+.btn-place-orde.disable{
+  filter: grayscale(1);
+}
+
 .address {
   font-size: 30rpx;
   margin-top: 20rpx;

@@ -9,7 +9,7 @@ Page({
     dataType: "",
     dataTypeAll: "1",
     scrollHeight: null, // 列表容器高度
-    listType:"all",
+    listType: "all",
     listAll: [],
     list: [],
     page: 1,
@@ -48,25 +48,30 @@ Page({
    */
   onShow() {
     this.setListHeight()
+    console.log("dataType=====",this.data.dataType);
     if (this.data.no_more_all) return
-    this.appointListAll(false, null,this.data.dataTypeAll)
+    this.appointListAll(false, null, this.data.dataTypeAll)
     if (this.data.no_more) return
-    this.appointList(false, null)
+    this.appointList(false, null, this.data.dataType)
   },
   handleClickSwitch(e) {
-    const { type: listType } = e.currentTarget.dataset
+    const {
+      type: listType
+    } = e.currentTarget.dataset
     this.setData({
       listType
     })
   },
-  handleConnect(e) { 
-    const { phone: phoneNumber } = e.currentTarget.dataset
+  handleConnect(e) {
+    const {
+      phone: phoneNumber
+    } = e.currentTarget.dataset
     console.log(String(phoneNumber))
-    if (!phoneNumber) { 
-       wx.showToast({
-         title: "暂无联系方式",
-         icon: "none"
-       })
+    if (!phoneNumber) {
+      wx.showToast({
+        title: "暂无联系方式",
+        icon: "none"
+      })
       return
     }
     wx.makePhoneCall({
@@ -117,7 +122,10 @@ Page({
     _this.data.appointData.page = page
     _this.data.appointData.state = state
     _this.setData({
-      appointData: { ..._this.data.appointData, custId }
+      appointData: {
+        ..._this.data.appointData,
+        custId
+      }
     })
     console.log("_this.data.appointData=>", _this.data.appointData)
     $api.getGoodsList(_this.data.appointData).then((res) => {
@@ -155,15 +163,15 @@ Page({
     let goodsId = e.currentTarget.dataset.item.goodsId
     let state = e.currentTarget.dataset.item.state
     // if (goodsId && state != "3") {
-      wx.navigateTo({
-        url: "/subpackage/community/market/publish?goodsId=" + goodsId
-      })
-      // let param = {
-      //   id:goodsId
-      // }
-      // $api.getGoodsDetail(param).then((res)=>{
-      //   console.log("666res",res)
-      // })
+    wx.navigateTo({
+      url: "/subpackage/community/market/publish?goodsId=" + goodsId
+    })
+    // let param = {
+    //   id:goodsId
+    // }
+    // $api.getGoodsDetail(param).then((res)=>{
+    //   console.log("666res",res)
+    // })
     // }
   },
   detailsAll(e) {

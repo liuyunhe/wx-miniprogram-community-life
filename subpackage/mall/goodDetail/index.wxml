@@ -84,7 +84,8 @@
       <text class="head">{{ filters.toFixHead(goodsDetail.price) }}</text
       ><text class="tail">.{{ filters.toFixTail(goodsDetail.price) }}</text>
     </view>
-    <view class="btn-add-cart" bindtap="addToChart">加入购物车</view>
-    <view class="btn-place-orde" bindtap="goOrder">立即下单</view>
+    <view class="btn-add-cart" bindtap="addToChart" wx:if="{{goodsDetail.status == 1}}">加入购物车</view>
+    <view class="btn-place-orde" bindtap="goOrder" wx:if="{{goodsDetail.status == 1}}">立即下单</view>
+    <view class="btn-place-orde disable" wx:if="{{goodsDetail.status == 2}}">已下架</view>
   </view>
 </view>

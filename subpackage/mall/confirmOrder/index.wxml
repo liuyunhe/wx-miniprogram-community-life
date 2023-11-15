@@ -36,10 +36,10 @@
           <view class="content">
             <view class="title">{{ item.goodsName }}</view>
             <view class="info mb-42">
-              <view class="type">
-                <view class="label">黑/白/灰</view>
-                <view class="label">M</view>
-              </view>
+              <!-- <view class="type"> -->
+                <!-- <view class="label">黑/白/灰</view> -->
+                <!-- <view class="label">M</view> -->
+              <!-- </view> -->
               <view class="price">
                 价格：￥{{ filters.toFixHead(item.price) }}.{{
                 filters.toFixTail(item.price) }}×{{ item.quantity }}
