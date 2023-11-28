@@ -6,9 +6,12 @@
         class="good-img-swiper"
         indicator-dots="true"
         indicator-active-color="#FFFFFF"
+        autoplay="true"
+        circular="true"
+        interval="2000"
       >
         <swiper-item wx:for="{{ imgNewsData }}" wx:key="index">
-          <image class="good-img" src="{{ item.url }}" mode="aspectFill"></image>
+          <image class="good-img" src="{{ item.url }}" data-index="{{index}}" bind:tap="handleClickPreview" mode="aspectFill"></image>
         </swiper-item>
       </swiper>
     </view>

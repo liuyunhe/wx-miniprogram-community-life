@@ -32,6 +32,15 @@ Page({
    */
   onShow() {},
 
+  handleClickPreview(event) {
+    const { index } = event.currentTarget.dataset
+    const imageUrls = this.data.imgNewsData.map((item)=>item.url)
+    wx.previewImage({
+      current: imageUrls[index],
+      urls: imageUrls
+    })
+  },
+
   // 查询商品详情
   getStoreGoodsDetal(id) {
     $api.getStoreGoodsDetal({ id }).then((res) => {

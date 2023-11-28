@@ -4,6 +4,11 @@
     <!-- <view class="title">{{noticeTitle}}</view>
     <view class="divLine"></view> -->
     <rich-text nodes="{{noticeDetail}}" class="detailStyle"></rich-text>
+    <view class="noticeImage" hover-class="none" hover-stop-propagation="false">
+      <image wx:for="{{noticeImage}}" src="{{item.url}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
+        
+      </image>
+    </view>
     <view class="timeView" hover-class="none" hover-stop-propagation="false">
       {{createTime}}
     </view>

@@ -14,7 +14,7 @@
   position: relative;
   background-color: #FFFFFF;
   margin: 10pt 10pt 20pt 10pt;
-  padding: 20rpx 30rpx 150rpx;
+  padding: 20rpx 30rpx 100rpx;
   box-shadow: 0rpx 4rpx 7rpx 0rpx rgba(0,0,0,0.09);
   border-radius: 10rpx;
 }
@@ -26,7 +26,7 @@
   position: absolute;
   font-size: 32rpx;
   color: #999999;
-  bottom: 60rpx;
+  bottom: 30rpx;
   right: 33rpx;
 }
 .root{
@@ -38,4 +38,7 @@
 .root::before{
   content: "";
   display: table;
+}
+.noticeImage{
+  margin-top: 20rpx;
 }

@@ -352,7 +352,7 @@ page {
   width: 188rpx;
   height: 70rpx;
   /* background: #26a886; */
-  background: -webkit-linear-gradient(left, #1dd394, #46dcca);
+  background: red;
   text-align: center;
   color: #ffffff;
   font-size: 28rpx;
