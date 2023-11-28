@@ -78,10 +78,15 @@ Page({
         adviceType = "40"
         type = "good"
         acceptOrgId = options.orgId //orgId为商品orgId
+      } else if (options.type == "service") {
+        navTitle = "服务咨询"
+        adviceType = "50"
+        type = "good"
+        acceptOrgId = options.orgId //orgId为商品orgId
       }
     } else {
       console.log("adviceType====")
-      navTitle = "意见反馈"
+      navTitle = "反馈投诉"
       adviceType = "10"
       type = "adviceType"
     }
@@ -139,7 +144,7 @@ Page({
     _this.setData({
       isEnter:true
     })
-    if (type === "counsel" || type === "question" || type === "good") {
+    if (type === "counsel" || type === "question" || type === "good"|| type === "service") {
       if (type === "good") {
         $api.addStoreGoodsAdvice(values).then((res) => {
           if (res.state) {
@@ -163,8 +168,8 @@ Page({
             })
           }
         })
-      } else { 
-        $api.addCommunityAdvice(values).then((res) => {
+      } else if (type === "service") {
+        $api.addServiceAdvice(values).then((res) => {
           if (res.state) {
             wx.showToast({
               title: "提交成功",
@@ -172,7 +177,7 @@ Page({
             })
             setTimeout(function () {
               _this.setData({
-                isEnter:false
+                isEnter: false
               })
               wx.navigateBack()
             }, 1000)
@@ -182,12 +187,34 @@ Page({
               icon: "none"
             })
             _this.setData({
-              isEnter:false
+              isEnter: false
+            })
+          }
+        })
+      } else {
+        $api.addCommunityAdvice(values).then((res) => {
+          if (res.state) {
+            wx.showToast({
+              title: "提交成功",
+              duration: 2000
+            })
+            setTimeout(function () {
+              _this.setData({
+                isEnter: false
+              })
+              wx.navigateBack()
+            }, 1000)
+          } else {
+            wx.showToast({
+              title: res.message,
+              icon: "none"
+            })
+            _this.setData({
+              isEnter: false
             })
           }
         })
       }
-      
     } else if (type === "adviceType") {
       delete values.acceptOrgId
       $api.adviceAdd(values).then((res) => {

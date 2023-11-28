@@ -87,6 +87,9 @@ Page({
           case "40":
             title = "咨询详情"
             break
+          case "50":
+            title = "咨询详情"
+            break
           default:
             title = "详情"
         }

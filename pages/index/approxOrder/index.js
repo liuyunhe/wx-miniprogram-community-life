@@ -2,6 +2,7 @@
 const $api = require('../../../utils/api.js').API;
 const $getMyDay = require('../../../utils/util.js').getMyDay
 const approx = getApp().globalData.approx
+const { APPOINT_ADD_TMP_ID } = getApp().globalData.priTmplId
 Page({
 
   /**
@@ -28,64 +29,64 @@ Page({
       isEnter:true
     });
     wx.requestSubscribeMessage({
-      tmplIds: ['sE_bmwdeCFJXOFxFQoN0TfJow1eOkonIU8ofDVOPFCI'],
+      tmplIds: [APPOINT_ADD_TMP_ID],
       success(res) {
-        console.log("success=====", res);
+        console.log("success=====", res)
         approx.custName = wx.getStorageSync("wechatNickName")
-        $api.appointAdd(approx).then(res => {
+        $api.appointAdd(approx).then((res) => {
           if (res.state) {
             wx.showToast({
-              title: '预约成功',
-              icon: 'success'
-            });
+              title: "预约成功",
+              icon: "success"
+            })
             setTimeout(function () {
               _this.setData({
-                isEnter:false
+                isEnter: false
               })
               wx.switchTab({
-                url: '/pages/index/home/index',
+                url: "/pages/index/home/index"
               })
             }, 500)
           } else {
             wx.showToast({
               title: res.message,
-              icon: 'none',
+              icon: "none"
             })
             _this.setData({
-              isEnter:false
+              isEnter: false
             })
           }
         })
       },
       fail(res) {
-        $api.appointAdd(approx).then(res => {
+        $api.appointAdd(approx).then((res) => {
           if (res.state) {
             wx.showToast({
-              title: '预约成功',
-              icon: 'success'
-            });
+              title: "预约成功",
+              icon: "success"
+            })
             setTimeout(function () {
               _this.setData({
-                isEnter:false
+                isEnter: false
               })
               wx.switchTab({
-                url: '/pages/index/home/index',
+                url: "/pages/index/home/index"
               })
             }, 500)
           } else {
             wx.showToast({
               title: res.message,
-              icon: 'none',
+              icon: "none"
             })
             _this.setData({
-              isEnter:false
+              isEnter: false
             })
           }
         })
-        console.log("fail=====", res);
+        console.log("fail=====", res)
       },
       complete(res) {
-        console.log("complete=====", res);
+        console.log("complete=====", res)
       }
     })
   },

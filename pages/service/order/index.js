@@ -9,8 +9,11 @@ Page({
    */
   data: {
     date: "",
+    startDate: "",
     time: "",
-    payType: [{
+    startTime: "",
+    payType: [
+      {
         id: "1",
         url: "/state/images/yuePay.png",
         title: "余额"
@@ -75,6 +78,13 @@ Page({
     } else {
       _this.defaultAddress()
     }
+    const startDate = util.timestampToTime(new Date(), 0)
+    // const startTime = util.timestampToTime(new Date(),5)
+    // console.log(startTime)
+    this.setData({
+      startDate
+      // startTime
+    })
   },
   handleClickPay() {
     if (!this.data.isAddress) {
@@ -110,7 +120,7 @@ Page({
   },
   // 去付款
   goPay() {
-    let _this = this;
+    let _this = this
     const dataList = this.data.dataList
     const data = {
       serviceId: payData.serviceId,
@@ -120,7 +130,8 @@ Page({
       visitDate: this.data.date + " " + this.data.time + ":00",
       contact: dataList.contact,
       phone: dataList.phone,
-      address: dataList.province +
+      address:
+        dataList.province +
         dataList.city +
         dataList.district +
         dataList.address,
@@ -134,12 +145,12 @@ Page({
       serviceType: "1"
     }
     $api.addNew(data).then((res) => {
-      var orderId = "";
-      var timeStamp = "";
+      var orderId = ""
+      var timeStamp = ""
       if (res.state) {
-        orderId = res.value.orderId;
+        orderId = res.value.orderId
         if (res.value.payInfo) {
-          timeStamp = res.value.payInfo.timeStamp;
+          timeStamp = res.value.payInfo.timeStamp
           wx.requestPayment({
             timeStamp: res.value.payInfo.timeStamp,
             nonceStr: res.value.payInfo.nonceStr,
@@ -156,7 +167,8 @@ Page({
                   realPrice: data.amount
                 }
                 wx.redirectTo({
-                  url: "/pages/index/home/success?details=" +
+                  url:
+                    "/pages/index/home/success?details=" +
                     JSON.stringify(details) +
                     "&dataType=1"
                 })
@@ -173,14 +185,15 @@ Page({
             }
           })
         } else {
-          timeStamp = res.value.timeStamp;
+          timeStamp = res.value.timeStamp
           const details = {
             orderId: orderId,
             orderTime: util.dateTime(timeStamp),
             realPrice: data.amount
           }
           wx.redirectTo({
-            url: "/pages/index/home/success?details=" +
+            url:
+              "/pages/index/home/success?details=" +
               JSON.stringify(details) +
               "&dataType=1"
           })
@@ -235,14 +248,15 @@ Page({
       if (res.state) {
         const payData = JSON.parse(res.value.url)
         if (data.amount == 0) {
-          var timestamp = util.timestampToTime(new Date().getTime());
+          var timestamp = util.timestampToTime(new Date().getTime())
           const details = {
             orderId: orderId,
             orderTime: timestamp,
             realPrice: data.amount
           }
           wx.redirectTo({
-            url: "/pages/index/home/success?details=" +
+            url:
+              "/pages/index/home/success?details=" +
               JSON.stringify(details) +
               "&dataType=1"
           })
@@ -263,7 +277,8 @@ Page({
                   realPrice: data.amount
                 }
                 wx.redirectTo({
-                  url: "/pages/index/home/success?details=" +
+                  url:
+                    "/pages/index/home/success?details=" +
                     JSON.stringify(details) +
                     "&dataType=1"
                 })
@@ -342,8 +357,27 @@ Page({
   },
   // 上门日期
   bindDateChange(e) {
+    console.log(e)
+    console.log(e.detail.value,this.data.date)
+    
+    if (e.detail.value === this.data.startDate) {
+      const startTime = util.timestampToTime(new Date(), 5)
+      this.setData({
+        startTime
+      })
+    } else {
+      this.setData({
+        startTime: ""
+      })
+    }
+    if (e.detail.value !== this.data.date) { 
+      this.setData({
+        time: ""
+      })
+    }
     this.setData({
-      date: e.detail.value
+      date: e.detail.value,
+      
     })
   },
   // 选择收货人

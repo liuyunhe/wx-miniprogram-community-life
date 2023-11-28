@@ -1,105 +1,138 @@
 <view class="view_back">
-  <view class="view_row">
-    <!-- <image class="userinfo-avatar" src="{{avatarUrl}}" mode="cover"></image> -->
-    <text
-      wx:if="{{publish_item.state=='0'}}"
-      class="text-time"
-      style="color: #000"
-      >待处理</text
-    >
-    <text
-      wx:if="{{publish_item.state=='1'}}"
-      class="text-time"
-      style="color: #000"
-      >已派单</text
-    >
-    <text
-      wx:if="{{publish_item.state=='2'}}"
-      class="text-time"
-      style="color: #000"
-      >已处理</text
-    >
-    <text
-      wx:if="{{publish_item.state=='3'}}"
-      class="text-time"
-      style="color: #000"
-      >已评价</text
-    >
-    <text
-      wx:if="{{publish_item.state=='4'}}"
-      class="text-time"
-      style="color: #000"
-      >已关闭</text
-    >
-    <view class="view_back" style="flex: 1; margin-left: 20rpx">
-      <!-- <text>{{nickName}}</text> -->
-      <text class="text-time">{{publish_item.createTime}}</text>
+   <view class="view-card">
+      <view class="title">
+        <view class="matter-sign"></view>
+        <view class="title-name"> {{publish_item.repairTypeName}} </view>
+        <view
+          wx:if="{{publish_item.state=='2'}}"
+          class="del-btn"
+          catchtap="showDialog"
+          >评价</view
+        >
+      </view>
+      <view class="content">
+        <view class="view_row">
+          <!-- <image class="userinfo-avatar" src="{{avatarUrl}}" mode="cover"></image> -->
+          <text
+            wx:if="{{publish_item.state=='0'}}"
+            class="text-time"
+            style="color: #666"
+            >订单状态：待处理</text
+          >
+          <text
+            wx:if="{{publish_item.state=='1'}}"
+            class="text-time"
+            style="color: #666"
+            >订单状态：已派单</text
+          >
+          <text
+            wx:if="{{publish_item.state=='2'}}"
+            class="text-time"
+            style="color: #666"
+            >订单状态：已处理</text
+          >
+          <text
+            wx:if="{{publish_item.state=='3'}}"
+            class="text-time"
+            style="color: #666"
+            >订单状态：已评价</text
+          >
+          <text
+            wx:if="{{publish_item.state=='4'}}"
+            class="text-time"
+            style="color: #666"
+            >订单状态：已关闭</text
+          >
+        </view>
+        <view
+          class="transverse_class"
+          style="padding-top: 25rpx; margin-left: 20rpx; margin-right: 30rpx"
+        >
+          <text style="flex: 1; margin-top: 10rpx"
+            >下单时间：{{publish_item.createTime}}</text
+          >
+        </view>
+        <view
+          class="transverse_class"
+          style="padding-top: 25rpx; margin-left: 20rpx; margin-right: 30rpx"
+        >
+          <text style="flex: 1; margin-top: 10rpx"
+            >手机号：{{publish_item.phone}}</text
+          >
+        </view>
+        <view
+          class="addr_class"
+          style="margin-left: 20rpx"
+          bindtap="showAddrAdvance"
+        > 
+          <text class="" style=" margin-top: 6rpx">
+            地址：
+
+          </text>
+          <image class="addr" mode="widthFix" src="/state/images/addr.png"></image>
+          <text style="flex: 1; margin-top: 6rpx">{{publish_item.address}}</text>
+        </view>
+
+        <view class="text-content"> 报修留言：{{publish_item.content}} </view>
+        <!-- <wxs src="../../utils/string.wxs" module="my_list"/> -->
+        <view
+          class="view-list"
+        >
+          <image
+            class="list-img"
+            wx:for="{{img_list}}"
+            wx:key="index"
+            data-index="{{index}}"
+            data-list="img_list"
+            catchtap="previewImages"
+            wx:for-item="item"
+            src="{{item.url}}"
+            mode="aspectFill">
+          </image>
+        </view>
+      </view>
     </view>
-    <text class="text-type">【{{publish_item.repairTypeName}}】</text>
+  <view class="view-card" style="margin-bottom:30rpx">
+    <view class="title">
+      <view class="matter-sign"></view>
+      <view class="title-name"> 报修反馈 </view>
+    </view>
+    <view class="content">{{publish_item.reply}}</view>
   </view>
-  <view
-    class="transverse_class"
-    style="padding-top: 25rpx; margin-left: 30rpx; margin-right: 30rpx"
-  >
-    <text style="flex: 1; margin-top: 10rpx"
-      >手机号：{{publish_item.phone}}</text
-    >
-    <text
-      wx:if="{{publish_item.state=='2'}}"
-      class="del-btn"
-      catchtap="showDialog"
-      >评价</text
-    >
+  <view class="view-card" wx:if="{{publish_item.state=='3'}}" style="margin-bottom:30rpx">
+    <view class="title">
+      <view class="matter-sign"></view>
+      <view class="title-name"> 我的评价 </view>
+    </view>
+    <view class="content">
+      <view class="text-content"> 服务评价：{{publish_item.custEvaluate}} </view>
+      <view class="text-content"> 评价内容：{{publish_item.evaluateContent}} </view>
+      <view
+          class="view-list"
+        >
+          <image
+            src="{{item.url}}"
+            wx:for="{{evaluate_list}}"
+            wx:for-item="item"
+            wx:key="index"
+            data-index="{{index}}"
+            data-list="evaluate_list"
+            catchtap="previewImages"
+            class="list-img"
+            mode="aspectFill"
+          ></image>
+        </view>
+      </view>
   </view>
-
-  <view
-    class="addr_class"
-    style="margin-left: 20rpx"
-    bindtap="showAddrAdvance"
-  >
-    <image class="addr" mode="widthFix" src="/state/images/addr.png"></image>
-    <text style="flex: 1; margin-top: 10rpx">{{publish_item.address}}</text>
-  </view>
-
-  <view class="text-content"> {{publish_item.content}} </view>
-  <!-- <wxs src="../../utils/string.wxs" module="my_list"/> -->
-  <view
-    class="view-list"
-    wx:for="{{img_list}}"
-    wx:key="index"
-    data-index="{{index}}"
-    catchtap="previewImages"
-    wx:for-item="item"
-  >
-    <image class="list-img" src="{{item.url}}" mode="widthFix"></image>
-  </view>
-
-  <view class="text-content" style="font-weight: bold;" wx:if="{{publish_item.reply}}">
-    报修反馈: {{publish_item.reply}}
-  </view>
-  <view class="text-content" wx:if="{{publish_item.state=='3'}}">
+  <!-- <view class="text-content" wx:if="{{publish_item.state=='3'}}">
     <view>服务评价：{{publish_item.custEvaluate}}</view>
     <view>评价内容：{{publish_item.evaluateContent}}</view>
     <view class="people-msg">
       <view style="float: left; flex: 1">
-        <view
-          class="view-img"
-          wx:for="{{evaluate_list}}"
-          wx:key="index"
-          data-index="{{index}}"
-          wx:for-item="item"
-          catchtap="previewImages1"
-        >
-          <image
-            src="{{item.url}}"
-            class="imgae_repair"
-            mode="aspectFill"
-            data-index="{{index}}"
-          ></image>
-        </view>
+        
       </view>
     </view>
-  </view>
+  </view> -->
 </view>
 <!-- <button open-type="share" class="view-mfn" id="{{publish_item.ship_id}}" data-title="{{publish_item.classify_name}}" plain="true"> -->
 <!-- <view class="mfn-content" bindtap="repair">

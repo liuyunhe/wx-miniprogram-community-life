@@ -26,9 +26,24 @@
   color:#333;
 }
 
+.btn-text{
+  font-size: 20rpx;
+  border: 1rpx solid #3CDABB;
+  border-radius: 4rpx;
+  padding: 5rpx 15rpx;
+  color:#3CDABB;
+}
+
+.btn-text.del{
+  border: 1rpx solid red;
+  color:red;
+}
+
 .view-row{
   display: flex;
   flex-direction: row;
+  position: relative;
+  top: 8rpx;
 }
 
 .view-line{

@@ -10,6 +10,7 @@ const guid = num => {
   return num ? arr : snowflake.generate();
 };
 const App = getApp();
+const { PAY_ORDER__TMP_ID } = getApp().globalData.priTmplId
 Page({
 
   /**
@@ -114,16 +115,16 @@ Page({
   collection() {
     let _this = this;
     wx.requestSubscribeMessage({
-      tmplIds: ['EjXdGwzdadrZghAFdhXsGhDpzyLtG19GGbdlDoZJXWI'],
+      tmplIds: [PAY_ORDER__TMP_ID],
       success(res) {
-        _this.payOrder();
+        _this.payOrder()
       },
-      fail(res) {        
-        _this.payOrder();
-        console.log("fail=====", res);
+      fail(res) {
+        _this.payOrder()
+        console.log("fail=====", res)
       },
       complete(res) {
-        console.log("complete=====", res);
+        console.log("complete=====", res)
       }
     })
   },

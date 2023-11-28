@@ -8,6 +8,7 @@
     <view class="text-tab {{dataType==='20'?'view-green':'view-white'}}"></view>
     <view class="text-tab {{dataType==='30'?'view-green':'view-white'}}"></view>
     <view class="text-tab {{dataType==='40'?'view-green':'view-white'}}"></view>
+    <view class="text-tab {{dataType==='50'?'view-green':'view-white'}}"></view>
   </view>
 </view>
 <view class="view-column">

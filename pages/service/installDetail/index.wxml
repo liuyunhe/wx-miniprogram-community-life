@@ -37,7 +37,7 @@
           </view>
         </view>
       </view>
-      <view class="comment" wx:if="{{dataList.categoryId === 'gjfw'}}">
+      <view class="comment">
         <view
           class="comment-text"
           data-id="{{ dataList.serviceId }}"
@@ -54,6 +54,12 @@
     </view>
   </view>
   <view class="foot flex rpx-20">
+    <view class="footLeft" style="width:100rpx;flex:none">
+      <view class="btn kf" style="margin-right:10rpx;margin-top: 15rpx;" bindtap="handleClickBtnService">
+        <image class="icon" src="/state/images/icon-kf.png" mode="widthFix"></image>
+        <view class="btn-name" >客服</view>
+      </view>
+    </view>
     <view class="footLeft">
       <text>价格：</text>
       <text class="footmoney">￥{{dataList.unitPrice}}</text>

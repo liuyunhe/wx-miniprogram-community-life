@@ -8,6 +8,7 @@
           {{ adviceType === '20' ? '咨询详情' : '' }} 
           {{ adviceType === '30' ? '投诉详情' : '' }}
           {{ adviceType === '40' ? '咨询详情' : '' }}
+          {{ adviceType === '50' ? '咨询详情' : '' }}
         </view>
       </view>
       <view class="adviceContent"> {{ content }} </view>

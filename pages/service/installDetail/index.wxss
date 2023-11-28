@@ -71,6 +71,26 @@
   font-size: 28rpx;
 }
 
+.footLeft .btn {
+  width: 70rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footLeft .btn .icon {
+  width: 36rpx;
+  margin: 0 17rpx;
+}
+.footLeft .btn .btn-name {
+  width: 100%;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 34rpx;
+  color: #333333;
+}
+
 .footmoney {
   font-size: 36rpx;
   color: #FF580C;

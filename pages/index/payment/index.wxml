@@ -22,8 +22,8 @@
       <view class="view-line"></view>
       <view class="view-row">
         <view class="view-gs" style="flex:1;">{{item.chargeOrgName}}</view>
-        <text class="view-gs" style="color:#666;" catchtap="setUp" data-item="{{item}}" data-id="{{item.chargeCustId}}">编辑</text>
-        <text class="view-gs" catchtap="goDelete" data-id="{{item.chargeCustId}}" style="color:#666;margin-left:30rpx;">删除</text>
+        <text class="btn-text" catchtap="setUp" data-item="{{item}}" data-id="{{item.chargeCustId}}">编辑</text>
+        <text class="btn-text del" catchtap="goDelete" data-id="{{item.chargeCustId}}" style="margin-left:30rpx;">删除</text>
       </view>
     </view>
   </view>

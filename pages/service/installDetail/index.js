@@ -88,6 +88,11 @@ Page({
       url: `/pages/my/order/commentList?serviceId=${id}`
     })
   },
+  handleClickBtnService() { 
+     wx.navigateTo({
+       url: `/pages/my/home/feedback?type=service&orgId=${this.data.dataList.orgId}`
+     })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    current:0,
     dataList: [],
     page: "1",
     pageSize: "10",
@@ -113,9 +114,17 @@ Page({
       url: "/subpackage/community/info/index"
     })
   },
+  handleCurrentChange(event) { 
+    const { current } = event.detail
+    this.setData({
+      current
+    })
+  },
   //点击滚动的某一条公告数据后，跳转至该公告的详情页
-  showtNotice(notice) {
-    let noticeId = notice.currentTarget.dataset.noticeid
+  showtNotice() {
+    const current = this.data.current
+    const currentTarget = this.data.noticeList[current]
+    let noticeId = currentTarget.noticeId
     if (noticeId && noticeId != "") {
       wx.navigateTo({
         url: "/subpackage/community/notice/details?noticeId=" + noticeId

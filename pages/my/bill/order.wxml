@@ -1,9 +1,10 @@
 <view class="view-column padding-30">
   <view class="view-row view-center" style="margin-top: 10rpx;">
-    <text class="text-month">{{month}}</text>
-    <text class="text-yue">月</text>
+    
     <picker mode="date" value="{{date}}" fields="month" bindchange="bindDateChange">
-      <image class="xia-img" src="/state/images/jt-xia.png" mode="widthFix"></image>
+      <text class="text-month" style="position:relative;top:-4rpx">{{month}}</text>
+      <text class="text-yue" style="position:relative;top:-14rpx">月</text>
+      <image class="xia-img" src="/state/images/jt-xia.png" style="position:relative;top:-14rpx" mode="widthFix"></image>
     </picker>
     <view class="view-shu"></view>
     <view class="view-total">
@@ -12,8 +13,9 @@
     </view>
     <view class="view-row view-center font-30">
       <!-- <text style="flex:1;">支出 ￥1587.58 收入 ￥2300</text> -->
-      <text>{{typeStr}}</text>
+      
       <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" range-key="name">
+        <text>{{typeStr}}</text>
         <image class="xia-img" src="/state/images/jt-xia.png" mode="widthFix"></image>
       </picker>
     </view>

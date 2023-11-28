@@ -17,7 +17,7 @@
       </view>
     </view>
     <view class="" style="height: {{scrollHeight}}px;">
-      <scroll-view scroll-y="true" style="height: {{scrollHeight}}px;" bindscrolltolower=" ">
+      <scroll-view scroll-y="true" style="height: {{scrollHeight}}px;">
         <view class="view-column" wx:if="{{isBindSuccess}}">
           <!-- <view wx:for="{{payData}}" wx:key="index" bindtap="goCommunityServiece" data-id="{{item.id}}">
               <view class="view-column">
@@ -32,12 +32,12 @@
             </view>
             </view>
           </view> -->
-          <view class="community-top">
+          <view class="community-top" catch:tap="showtNotice">
             <image src="/state/images/communityServiceImages/community_note.png" style="height: 200rpx;width: 670rpx;"></image>
             <view class="top-text">
               <view wx:if="{{ noticeList.length }}" style="width: 380rpx;height: 50rpx;overflow: hidden;white-space: nowrap;">
-                <swiper class="news-swiper" indicator-active-color="#FFFFFF"  vertical="true" autoplay="true" circular="true" interval="2000">
-                  <swiper-item wx:for="{{noticeList}}" wx:key="index" bindtap="showtNotice" data-noticeId="{{noticeList[index].noticeId}}">
+                <swiper class="news-swiper" indicator-active-color="#FFFFFF" current="{{ current }}"  vertical="true" autoplay="true" circular="true" interval="2000" bindchange="handleCurrentChange">
+                  <swiper-item wx:for="{{noticeList}}" wx:key="index" data-noticeId="{{noticeList[index].noticeId}}">
                     <text style="font-size: 32rpx;color: white;">{{noticeList[index].title}}</text>
                   </swiper-item>
                 </swiper>
