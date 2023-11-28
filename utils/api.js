@@ -50,9 +50,17 @@ const API = {
       data
     ), //付尾款新
   continuePayServiceOrder: (data) =>
-    request("GET", prefix.handy + "/v1/serviceOrderInfoTmp/continuePayServiceOrder", data), //服务订单继续支付功能
+    request(
+      "GET",
+      prefix.handy + "/v1/serviceOrderInfoTmp/continuePayServiceOrder",
+      data
+    ), //服务订单继续支付功能
   continuePayBalance: (data) =>
-    request("GET", prefix.handy + "/v1/serviceOrderInfo/continuePayBalance", data), //尾款服务订单继续支付功能    
+    request(
+      "GET",
+      prefix.handy + "/v1/serviceOrderInfo/continuePayBalance",
+      data
+    ), //尾款服务订单继续支付功能
   updateServiceOrderInfo: (data) =>
     request("POST", prefix.handy + "/v1/serviceOrderInfo/update", data), //更新服务订单信息
   deleteServiceOrderInfo: (data) =>
@@ -118,6 +126,8 @@ const API = {
     request("POST", prefix.common + "/v1/cust/advice/list", data), //客户建议列表
   adviceDetail: (data) =>
     request("GET", prefix.common + "/v1/cust/advice/detail", data), //客户建议详情
+  addServiceAdvice: (data) =>
+    request("GET", prefix.common + "/v1/cust/advice/addService", data), //便民服务咨询
   billList: (data) =>
     request("POST", prefix.pay + "/v1/payBillInfo/list", data), //客户账单查询
   getSummary: (data) =>

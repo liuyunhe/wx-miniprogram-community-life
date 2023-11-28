@@ -132,7 +132,8 @@ function timestampToTime(value, type = 1) {
     year + "-" + month + "-" + date + " " + hour + ":" + minute,
     year + "年" + month + "月" + date,
     year + "年" + month + "月" + date + " " + hour + ":" + minute + ":" + second,
-    hour + ":" + minute + ":" + second
+    hour + ":" + minute + ":" + second,
+    hour + ":" + minute,
   ]
   return arr[type];
 }

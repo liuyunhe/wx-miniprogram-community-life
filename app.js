@@ -1,4 +1,10 @@
 const $api = require("./utils/api.js").API
+const appid =  wx.getAccountInfoSync().miniProgram.appId
+const {
+  PRI_TMPL_ID_DEV,
+  PRI_TMPL_ID_MASTER,
+  APPID_DEV,
+} = require("./utils/app-config.js")
 App({
   /**
    * 全局变量
@@ -6,7 +12,7 @@ App({
   globalData: {
     custId: 0,
     radioType: false,
-    appid: "wx62e2eeeabc764739",
+    appid,
     isIPhoneX: false,
     payImg: "", //缴费的图片
     payName: "", //缴费的名字，水费、燃气费还是热力
@@ -63,9 +69,7 @@ App({
     },
     IMAGE_UPLOAD_URL:
       "https://tacj.openunion.cn/api/portal/file/onlinePreviewController/v1/getFileById_",
-    priTmplId: {
-      SUBSCRIBE_BILL_TMP_ID: "rEHp7goCrg-Qn3pSwCdlD77J7UhLwU8waTSeHldt8GI"
-    }
+    priTmplId: appid == APPID_DEV ? PRI_TMPL_ID_DEV : PRI_TMPL_ID_MASTER
   },
   /**
    * 生命周期函数--监听小程序初始化
