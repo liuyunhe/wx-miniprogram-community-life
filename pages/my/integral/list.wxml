@@ -1,0 +1,48 @@
+<view class="base">
+  <view class="top" hover-class="none" hover-stop-propagation="false">
+    <view class="text" hover-class="none" hover-stop-propagation="false">
+      我的积分:<text class="num">{{points}}</text>
+    </view>
+    <image
+      class="jf-icon"
+      src="../../../state/images/jf-icon.png"
+      mode="widthFix"
+      lazy-load="false"
+      binderror=""
+      bindload=""
+    >
+    </image>
+  </view>
+  <view class="rpx-30 pt-20 header">
+    <view class="jf-title">
+      <view class="icon"></view>
+      <view class="name"> 积分明细 </view>
+    </view>
+    <scroll-view
+      bindscrolltolower="bindDownLoad"
+      scroll-y
+      class="scroll-view"
+      style="height: {{scrollHeight}}px;width:100%"
+    >
+      <view class="list" wx:if="{{list.length}}">
+        <view class="item" wx:for="{{list}}" wx:key="index">
+          <view class="left">
+            <view class="title text-overflow">{{ item.abstractInfo }}</view>
+            <view class="time">{{ item.createTime }}</view>
+          </view>
+          <view class="right"
+            ><span class="{{ item.points > 0 ? 'add':'dec'}}"
+              >{{ item.points>0?"+":"" }}{{item.points}}</span
+            ></view
+          >
+        </view>
+      </view>
+      <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
+      <view wx:if="{{ !isLoading && !list.length }}">
+        <view class="yoshop-notcont">
+          <text class="cont">亲，您还没有积分信息哦！</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

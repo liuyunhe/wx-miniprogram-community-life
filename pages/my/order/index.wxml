@@ -26,6 +26,9 @@
       class="text-tab {{ dataType === '3' ? 'view-green' : 'view-white' }}"
     ></view>
     <view
+      class="text-tab {{ dataType === '4' ? 'view-green' : 'view-white' }}"
+    ></view>
+    <view
       class="text-tab {{ dataType === '2' ? 'view-green' : 'view-white' }}"
     ></view>
     <!-- <view class="text-tab {{dataType==='1'?'text-active':''}}" data-type="1" catchtap="bindHeaderTap">便民服务</view> -->
@@ -40,7 +43,7 @@
     scroll-y
     style="height: {{ scrollHeight }}px; width: 750rpx;"
   >
-    <view wx:if="{{ orderList.length > 0 && dataType !== '3' }}">
+    <view wx:if="{{ orderList.length > 0 && dataType < 3 }}">
       <view class="view-list" wx:for="{{ orderList }}" wx:key="index">
         <view class="view-order" catchtap="details" data-value="{{ item }}">
           <view class="order-row">
@@ -314,6 +317,7 @@
                       data-orderid="{{ good.orderId }}"
                       data-goodsid="{{ good.goodsId }}"
                       data-goodstype="{{ good.goodsType }}"
+                      data-ordertype="0"
                       >立即评价</view
                     >
                     <view
@@ -325,6 +329,133 @@
                     >
                     <view
                       wx:if="{{ item.status == 0 && item.payStatus == 1 }}"
+                      class="btn main"
+                      data-goodsid="{{ good.goodsId }}"
+                      data-orderid="{{ good.orderId }}"
+                      data-totalnum="{{ good.totalNum }}"
+                      catchtap="handleClickReturnOrder"
+                      >申请退款</view
+                    >
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 积分兑换 -->
+    <view wx:if="{{ orderList.length > 0 && dataType == '4' }}">
+      <view class="goods-list">
+        <view class="row">
+          <view
+            wx:for="{{ orderList }}"
+            wx:key="orderId"
+            class="itmem_wrap"
+            catchtap="mallOrderdetails"
+            data-id="{{ item.orderId }}"
+          >
+            <view class="shop-name">
+              <span class="">积分兑换</span>
+              <!-- '订单状态（0：待发货；1：待收货；2：已收货；3：已完成；4：申请退款；5：已退货；6：已退款）', -->
+              <!-- '支付状态（0：待支付；1：支付成功；2：支付失败）', -->
+
+              
+
+              <span
+                class="status"
+                wx:if="{{ item.status == 0 }}"
+                >待发货</span
+              >
+              <span
+                class="status"
+                wx:if="{{ item.status == 1 }}"
+                >待收货</span
+              >
+              <span
+                class="status"
+                wx:if="{{ item.status == 2 }}"
+                >已收货</span
+              >
+              <span
+                class="status"
+                wx:if="{{ item.status == 3 }}"
+                >已完成</span
+              >
+              <span
+                class="status"
+                wx:if="{{ item.status == 4 }}"
+                >申请退款</span
+              >
+              <span
+                class="status"
+                wx:if="{{ item.status == 5 }}"
+                >已退货</span
+              >
+              <span
+                class="status"
+                wx:if="{{ item.status == 6 }}"
+                >已退款</span
+              >
+              <!-- <image mode="widthFix" src="/state/images/youjiantou.png"></image> -->
+            </view>
+            <view
+              class="good-info"
+              wx:for="{{ item.orderGoodsList }}"
+              wx:for-item="good"
+              wx:key="goodsId"
+            >
+              <image
+                class="good-img"
+                src="{{ tools.my_json(good.image) }}"
+                mode="aspectFill"
+                lazy-load="false"
+                binderror=""
+                bindload=""
+              ></image>
+              <view class="content">
+                <view class="title">{{ good.goodsName }}</view>
+                <view class="info mb-20">
+                  <view class="total-price">
+                    <text class="head"
+                      >{{ good.totalPrice }}</text
+                    >
+                    <text class="tail"
+                     >积分</text
+                    >
+                  </view>
+                  <view class="price"> 共{{ good.totalNum }}件 </view>
+                </view>
+                <view class="info bottom">
+                  <view class="btn-groups">
+                    <!-- <view class="btn">删除订单</view> -->
+                    <view
+                      wx:if="{{ item.status == 1 }}"
+                      class="btn main"
+                      data-orderid="{{ item.orderId }}"
+                      data-index="{{index}}"
+                      catchtap="handleClickReceiveJFGood"
+                      >确认收货</view
+                    >
+                    <view
+                      wx:if="{{ item.status == 2 }}"
+                      class="btn"
+                      catchtap="handleClickBtnComment"
+                      data-orderid="{{ good.orderId }}"
+                      data-goodsid="{{ good.goodsId }}"
+                      data-goodstype="{{ good.goodsType }}"
+                      data-ordertype="1"
+                      >立即评价</view
+                    >
+                    <!-- <view
+                      wx:if="{{ item.payStatus == 2 || ((item.status == 3 || item.status == 5 || item.status == 6) && item.payStatus == 1) }}"
+                      class="btn main"
+                      data-goodsid="{{ good.goodsId }}"
+                      catchtap="handleClickBtnBuyAgain"
+                      >再次购买</view
+                    > -->
+                    <view
+                      wx:if="{{ item.status >= 2 }}"
                       class="btn main"
                       data-goodsid="{{ good.goodsId }}"
                       data-orderid="{{ good.orderId }}"

@@ -42,15 +42,15 @@ page{
 .view-green{
   height: 5rpx;
   background: #3CDABB;
-  margin-left: 45rpx;
-  margin-right: 45rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
 }
 
 .view-white{
   height: 5rpx;
   background: #FFFFFF;
-  margin-left: 45rpx;
-  margin-right: 45rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
 }
 
 .view-row1{

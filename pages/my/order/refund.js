@@ -19,7 +19,7 @@ Page({
     console.log(options)
     let totalNum = ""
     const { orderId, goodsId, type: orderType } = options
-    if(orderType == 3) totalNum = options.totalNum
+    if (orderType == 3 || orderType == 4) totalNum = options.totalNum
     this.setData({
       orderId,
       goodsId,
@@ -62,7 +62,7 @@ Page({
         }
       })
     }
-    if (this.data.orderType == 3) {
+    if (this.data.orderType == 3 || this.data.orderType == 4) {
       values.goodsId = _this.data.goodsId
       values.refundReasonWap = ""
       values.custId = wx.getStorageSync("custId")

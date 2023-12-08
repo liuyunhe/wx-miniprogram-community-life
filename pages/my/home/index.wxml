@@ -93,7 +93,11 @@
         data-id="{{item.id}}"
       >
         <image class="listImg mr-23" src="{{item.url}}" mode="widthFix"></image>
-        <view style="flex: 0.9; color: #333">{{item.title}}</view>
+        <view style="flex: 0.9; color: #333"
+          >{{item.title}}<span class="jf" wx:if="{{item.id == 10}}"
+            >{{ points }}</span
+          ></view
+        >
         <image
           class="listRight"
           src="/state/images/youjiantou.png"

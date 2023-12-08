@@ -1,0 +1,21 @@
+.myOne {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.my-div {
+  margin: 20rpx auto 100rpx;
+  text-align: justify;
+}
+.yhxy {
+  margin: 20rpx auto;
+  justify-content: center;
+  color: black;
+  font-size: 40rpx;
+  font-weight: 600;
+  text-align: center;
+}
+.text-indent{
+  text-indent: 2em;
+  margin: 10rpx 0;
+}

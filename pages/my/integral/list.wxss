@@ -1,0 +1,113 @@
+.pt-20 {
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.top {
+  background: linear-gradient(180deg, #3CDABB 0%, rgba(60, 218, 187, 0) 100%);
+  width: 750rpx;
+  height: 320rpx;
+}
+.top .text {
+  position: relative;
+  top: 80rpx;
+  height: 43rpx;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  line-height: 43rpx;
+  margin-left: 72rpx;
+}
+.top .text .num {
+  font-size: 60rpx;
+  font-weight: bold;
+  position: relative;
+  top: 10rpx;
+  left: 12rpx;
+}
+.top .jf-icon {
+  position: relative;
+  width: 255rpx;
+  height: 214rpx;
+  left: 415rpx;
+  top: -43rpx;
+}
+.jf-title {
+  height: 60px;
+  background-color: #fff;
+  margin-top: -160rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+}
+.jf-title .icon {
+  width: 8rpx;
+  height: 36rpx;
+  background: #3CDABB;
+  border-radius: 47rpx 47rpx 47rpx 47rpx;
+}
+.jf-title .name {
+  width: 136rpx;
+  height: 48rpx;
+  font-size: 34rpx;
+  font-weight: 800;
+  color: #333333;
+  line-height: 40rpx;
+  margin-left: 20rpx;
+}
+.scroll-view {
+  height: calc(100vh - 220rpx);
+}
+.scroll-view .list {
+  background-color: #fff;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.scroll-view .list .item {
+  display: flex;
+  height: 200rpx;
+  border-bottom: 1px solid #F2F2F2;
+}
+.scroll-view .list .item:first-child {
+  border-top: 1px solid #F2F2F2;
+}
+.scroll-view .list .item .left {
+  width: calc(100% - 120rpx);
+}
+.scroll-view .list .item .left .title {
+  line-height: 120rpx;
+  font-size: 30rpx;
+}
+.scroll-view .list .item .left .time {
+  line-height: 60rpx;
+  font-size: 24rpx;
+  color: #999999;
+}
+.scroll-view .list .item .right {
+  width: 120rpx;
+  line-height: 200rpx;
+  font-size: 40rpx;
+  text-align: right;
+}
+.scroll-view .list .item .right .add {
+  color: #3CDABB;
+}
+.scroll-view .list .item .right .dec {
+  color: #FF580C;
+}
+.no-more {
+  text-align: center;
+  color: #737373;
+  padding: 10px 0;
+  font-size: 30rpx;
+}
+.yoshop-notcont {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 130rpx 100rpx;
+  box-sizing: border-box;
+}
+.cont {
+  font-size: 30rpx;
+  color: #666;
+  margin-top: 100rpx;
+}

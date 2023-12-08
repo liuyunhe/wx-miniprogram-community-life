@@ -1,0 +1,24 @@
+<view class="base">
+  <view class="rpx-30 pt-20 header">
+    <scroll-view class="list" scroll-y>
+      <view class="item" hover-class="none" hover-stop-propagation="false">
+        <view class="left" hover-class="none" hover-stop-propagation="false">
+        </view>
+        <view class="right" hover-class="none" hover-stop-propagation="false">
+        </view>
+      </view>
+      <view class="item" hover-class="none" hover-stop-propagation="false">
+        <view class="left" hover-class="none" hover-stop-propagation="false">
+        </view>
+        <view class="right" hover-class="none" hover-stop-propagation="false">
+        </view>
+      </view>
+      <view class="item" hover-class="none" hover-stop-propagation="false">
+        <view class="left" hover-class="none" hover-stop-propagation="false">
+        </view>
+        <view class="right" hover-class="none" hover-stop-propagation="false">
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

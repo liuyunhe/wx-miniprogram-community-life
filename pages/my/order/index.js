@@ -8,7 +8,8 @@ Page({
    */
   data: {
     dataType: "0",
-    tanData: [{
+    tanData: [
+      {
         id: "0",
         name: "生活缴费"
       },
@@ -19,6 +20,10 @@ Page({
       {
         id: "3",
         name: "在线商城"
+      },
+      {
+        id: "4",
+        name: "积分兑换"
       },
       {
         id: "2",
@@ -109,10 +114,7 @@ Page({
     })
   },
   handleClickBtnServiceComment(e) {
-    const {
-      orderId,
-      serviceId
-    } = e.currentTarget.dataset.value
+    const { orderId, serviceId } = e.currentTarget.dataset.value
     wx.navigateTo({
       url: `/pages/my/order/comment?orderId=${orderId}&serviceId=${serviceId}`
     })
@@ -170,9 +172,7 @@ Page({
   // 点击再次购买
   handleClickBtnBuyAgain(e) {
     const custId = wx.getStorageSync("custId")
-    const {
-      goodsid
-    } = e.currentTarget.dataset
+    const { goodsid } = e.currentTarget.dataset
     const params = {
       custId,
       goodsId: goodsid,
@@ -194,20 +194,13 @@ Page({
     })
   },
   handleClickBtnComment(e) {
-    const {
-      orderid,
-      goodsid,
-      goodstype = "0"
-    } = e.currentTarget.dataset
+    const { orderid, goodsid, goodstype = "0", ordertype } = e.currentTarget.dataset
     wx.navigateTo({
-      url: `/subpackage/mall/order/comment?orderId=${orderid}&goodsId=${goodsid}&goodsType=${goodstype}`
+      url: `/subpackage/mall/order/comment?orderId=${orderid}&goodsId=${goodsid}&goodsType=${goodstype}&orderType=${ordertype}`
     })
   },
   handleClickReceiveGood(e) {
-    const {
-      orderid: id,
-      index
-    } = e.currentTarget.dataset
+    const { orderid: id, index } = e.currentTarget.dataset
     const params = {
       id,
       status: "2"
@@ -241,54 +234,58 @@ Page({
   // 立即支付
   goPay(e) {
     // console.log(e);
-    let _this = this;
+    let _this = this
     const value = e.currentTarget.dataset.value
     let payData = {}
     if (_this.data.dataType == "0") {
       payData = JSON.parse(value.payUrl)
-      _this.payment(payData);
+      _this.payment(payData)
     } else if (_this.data.dataType == "1") {
       // console.log(value);
       //便民服务立即支付
-      if (value.paystate == '0') {
-        $api.continuePayServiceOrder({
-          orderId: value.onlyId
-        }).then((res) => {
-          if (res.state) {
-            if (res.value.payInfo) {
-              _this.payment(res.value.payInfo);
+      if (value.paystate == "0") {
+        $api
+          .continuePayServiceOrder({
+            orderId: value.onlyId
+          })
+          .then((res) => {
+            if (res.state) {
+              if (res.value.payInfo) {
+                _this.payment(res.value.payInfo)
+              } else {
+                _this.serviceOrderInfoList()
+              }
             } else {
-              _this.serviceOrderInfoList();
+              wx.showToast({
+                title: res.message,
+                icon: "none"
+              })
             }
-          } else {
-            wx.showToast({
-              title: res.message,
-              icon: "none"
-            })
-          }
-        })
+          })
       } else {
-        $api.continuePayBalance({
-          orderId: value.balancePayOrderId
-        }).then((res) => {
-          if (res.state) {
-            if (res.value.payInfo) {
-              _this.payment(res.value.payInfo);
+        $api
+          .continuePayBalance({
+            orderId: value.balancePayOrderId
+          })
+          .then((res) => {
+            if (res.state) {
+              if (res.value.payInfo) {
+                _this.payment(res.value.payInfo)
+              } else {
+                _this.serviceOrderInfoList()
+              }
             } else {
-              _this.serviceOrderInfoList();
+              wx.showToast({
+                title: res.message,
+                icon: "none"
+              })
             }
-          } else {
-            wx.showToast({
-              title: res.message,
-              icon: "none"
-            })
-          }
-        })
+          })
       }
       // payData = JSON.parse(value.paymentCode)
     } else if (_this.data.dataType == "2") {
       payData = JSON.parse(value.payUrl)
-      _this.payment(payData);
+      _this.payment(payData)
     }
     // wx.requestPayment({
     //   timeStamp: payData.timeStamp,
@@ -332,7 +329,7 @@ Page({
     // })
   },
   payment(payData) {
-    let _this = this;
+    let _this = this
     wx.requestPayment({
       timeStamp: payData.timeStamp,
       nonceStr: payData.nonceStr,
@@ -361,6 +358,57 @@ Page({
       },
       complete(res) {
         console.log(res)
+      }
+    })
+  },
+  // 积分兑换
+  getJFOrder(isPage, page) {
+    page = page || 1
+    const data = {
+      page: page,
+      pageSize: this.data.pageSize
+    }
+    $api.getJFOrder(data).then((res) => {
+      if (res.state) {
+        if (isPage == true) {
+          this.setData({
+            orderList: this.data.orderList.concat(res.value.rows),
+            totalPages: res.value.totalPages,
+            isLoading: false
+          })
+        } else {
+          this.setData({
+            orderList: res.value.rows,
+            totalPages: res.value.totalPages,
+            isLoading: false
+          })
+        }
+      }
+    })
+  },
+  handleClickReceiveJFGood(e) {
+    const { orderid: id, index } = e.currentTarget.dataset
+    const params = {
+      id,
+    }
+    $api.receiveJFGood(params).then((res) => {
+      if (res.state) {
+        const orderList = this.data.orderList
+        orderList[index].status = "2"
+        this.setData({
+          orderList
+        })
+        wx.showToast({
+          title: "收货成功！",
+          icon: "success",
+          duration: 2000
+        })
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: "none",
+          duration: 2000
+        })
       }
     })
   },
@@ -395,6 +443,8 @@ Page({
       this.custOrder()
     } else if (id == "3") {
       this.mallOrder()
+    } else if (id == "4") {
+      this.getJFOrder()
     }
   },
 
@@ -404,9 +454,9 @@ Page({
       payDetail.serviceName = value.chargeItemName
       payDetail.realPrice = value.transAmount / 100
       payDetail.paystate = value.status
-      payDetail.paychannel = value.channelId;
-      (payDetail.payDate = value.successTime),
-      (payDetail.createDate = value.createTime)
+      payDetail.paychannel = value.channelId
+      payDetail.payDate = value.successTime
+      payDetail.createDate = value.createTime
       payDetail.dataType = this.data.dataType
     } else if (this.data.dataType == "1") {
       payDetail.serviceName = value.serviceName
@@ -421,9 +471,9 @@ Page({
       payDetail.serviceName = value.merchantName
       payDetail.realPrice = value.amount / 100
       payDetail.paystate = value.status
-      payDetail.paychannel = value.channelId;
-      (payDetail.payDate = value.successTime),
-      (payDetail.createDate = value.createTime)
+      payDetail.paychannel = value.channelId
+      payDetail.payDate = value.successTime
+      payDetail.createDate = value.createTime
       payDetail.dataType = this.data.dataType
     }
     wx.navigateTo({
@@ -431,10 +481,11 @@ Page({
     })
   },
   mallOrderdetails(e) {
+    const orderType = this.data.dataType == 3 ? "0" : "1"
     const id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
-      url: `/subpackage/mall/order/detail?id=${id}`
+      url: `/subpackage/mall/order/detail?id=${id}&&orderType=${orderType}`
     })
   },
   // 删除订单
@@ -485,6 +536,13 @@ Page({
           url: `/pages/my/order/refund?orderId=${orderId}&&goodsId=${goodsId}&&totalNum=${totalNum}&&type=3`
         })
         break
+      case "4": // 积分兑换
+        console.log(orderId, goodsId)
+        const totalNumJF = e.currentTarget.dataset.totalnum
+        wx.navigateTo({
+          url: `/pages/my/order/refund?orderId=${orderId}&&goodsId=${goodsId}&&totalNum=${totalNumJF}&&type=4`
+        })
+        break
       default:
         break
     }
@@ -511,6 +569,8 @@ Page({
         this.custOrder(true, this.data.page)
       } else if (this.data.dataType == "3") {
         this.mallOrder(true, this.data.page)
+      } else if (this.data.dataType == "4") {
+        this.getJFOrder(true, this.data.page)
       }
     }
   },
@@ -545,6 +605,8 @@ Page({
       _this.custOrder()
     } else if (dataType == "3") {
       _this.mallOrder()
+    } else if (dataType == "4") {
+      _this.getJFOrder()
     }
   },
 
