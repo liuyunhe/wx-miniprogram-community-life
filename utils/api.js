@@ -7,7 +7,8 @@ const prefix = {
   file: "/file",
   pay: "/pay",
   community: "/community",
-  store: "/store"
+  store: "/store",
+  incentive: "/incentive"
 }
 const API = {
   register: (data) =>
@@ -291,7 +292,29 @@ const API = {
   getOrderPaydata: (data) =>
     request("POST", prefix.store + "/v1/cjStoreOrder/contiuePay", data), //继续支付
   setOrderStatus: (data) =>
-    request("GET", prefix.store + "/v1/cjStoreOrder/setStatus", data) //修改订单状态
+    request("GET", prefix.store + "/v1/cjStoreOrder/setStatus", data), //修改订单状态
+
+  // *****************积分**********************
+  getPointsDetail: (data) =>
+    request("GET", prefix.incentive + "/v1/cjCustPoints/detail", data), // 个人积分数值
+  getPointsDetailList: (data) =>
+    request("POST", prefix.incentive + "/v1/cjCustPointsDetail/list", data), // 个人积分列表
+  getStoreJFGoodsList: (data) =>
+    request("POST", prefix.incentive + "/v1/cjPointsGoods/list", data), // 商城积分商品
+  getStoreJFGoodsDetal: (data) =>
+    request("GET", prefix.incentive + "/v1/cjPointsGoods/detail", data), // 商城积分商品详情
+  getJFCommentList: (data) =>
+    request("POST", prefix.incentive + "/v1/cjGoodsComment/list", data), // 商城积分商品评价列表
+  getJFOrder: (data) =>
+    request("POST", prefix.incentive + "/v1/cjPointsOrder/list", data), // 商城积分商品订单列表
+  addJFOrder: (data) =>
+    request("POST", prefix.incentive + "/v1/cjPointsOrderTmp/add", data), // 商城积分商品下单
+  getJFOrderDetail: (data) =>
+    request("GET", prefix.incentive + "/v1/cjPointsOrder/detail", data), // 商城积分商品订单详情
+  receiveJFGood: (data) =>
+    request("GET", prefix.incentive + "/v1/cjPointsOrder/reciveOrder", data), // 商城积分商品订单收货
+  addJFGoodComment: (data) =>
+    request("POST", prefix.incentive + "/v1/cjGoodsComment/add", data) // 商城积分商品订单新增评价
 }
 const baseUrl = "https://tacj.openunion.cn/api"
 
