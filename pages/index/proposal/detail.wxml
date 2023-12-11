@@ -89,6 +89,39 @@
             src="{{item.url}}"
             mode="aspectFill">
           </image>
+          <image
+            class="list-img"
+            wx:for="{{img_list}}"
+            wx:key="index"
+            data-index="{{index}}"
+            data-list="img_list"
+            catchtap="previewImages"
+            wx:for-item="item"
+            src="{{item.url}}"
+            mode="aspectFill">
+          </image>
+          <image
+            class="list-img"
+            wx:for="{{img_list}}"
+            wx:key="index"
+            data-index="{{index}}"
+            data-list="img_list"
+            catchtap="previewImages"
+            wx:for-item="item"
+            src="{{item.url}}"
+            mode="aspectFill">
+          </image>
+          <image
+            class="list-img"
+            wx:for="{{img_list}}"
+            wx:key="index"
+            data-index="{{index}}"
+            data-list="img_list"
+            catchtap="previewImages"
+            wx:for-item="item"
+            src="{{item.url}}"
+            mode="aspectFill">
+          </image>
         </view>
       </view>
     </view>

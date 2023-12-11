@@ -54,11 +54,11 @@ page{
 }
 
 .list-img{
-  width: 200rpx;
-  height: 200rpx;
+  width: 187rpx;
+  height: 180rpx;
   border-radius: 20rpx;
   margin-bottom: 10rpx;
-  margin-left: 3rpx;
+  margin-left: 10rpx;
 }
 
 .view-list{
@@ -70,6 +70,7 @@ page{
   padding-right: 25rpx; */
   padding-top:25rpx;
   padding-bottom: 25rpx;
+  padding-left: 10rpx;
 }
 
 .del-btn{

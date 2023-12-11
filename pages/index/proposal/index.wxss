@@ -246,7 +246,7 @@ swiper {
 .goodsImg{
   height: 180rpx;
   width: 180rpx;
-  border-radius: 8rpx;
+  border-radius: 20rpx;
   margin-right: 10rpx;
   margin-left: 20rpx;
 }
