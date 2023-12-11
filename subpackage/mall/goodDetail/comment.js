@@ -26,9 +26,10 @@ Page({
    */
   onLoad: function (option) {
     let _this = this
-    const { goodsId } = option
+    const { goodsId,goodType } = option
     this.setData({
       goodsId,
+      goodType
     })
     // 设置商品列表高度
     _this.setListHeight()
@@ -55,7 +56,13 @@ Page({
       goodsId: this.data.goodsId,
       ..._this.data.appointData,
     }
-    $api.getCommentList(params).then((res) => {
+    let url = ""
+    if (this.data.goodType == 0) {
+      url = "getCommentList"
+    } else {
+      url = "getJFCommentList"
+    }
+    $api[url](params).then((res) => {
       if (res.state) {
         res.value.rows.map((item) => {
           const star1 = Array(item.commentStart).fill(1)

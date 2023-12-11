@@ -57,7 +57,7 @@
                 wx:for-item="img"
                 wx:key="index"
                 src="{{ img.url }}"
-                mode="widthFix"
+                mode="aspectFit"
               ></image>
               
             </view>

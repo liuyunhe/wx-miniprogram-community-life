@@ -78,17 +78,22 @@
         <image class="icon" src="/state/images/icon-gwc.png" mode="widthFix"></image>
         <view class="btn-name" >购物车</view>
       </view> -->
-      <view class="btn kf" style="margin-right:10rpx" bindtap="handleClickBtnService">
+      <view wx:if="{{goodType == 0}}" class="btn kf" style="margin-right:10rpx" bindtap="handleClickBtnService">
         <image class="icon" src="/state/images/icon-kf.png" mode="widthFix"></image>
         <view class="btn-name" >客服</view>
       </view>
-      <text style="font-size:24rpx">价格：</text>
-      <text class="footmoney">￥</text>
-      <text class="head">{{ filters.toFixHead(goodsDetail.price) }}</text
-      ><text class="tail">.{{ filters.toFixTail(goodsDetail.price) }}</text>
+
+      <text style="font-size:24rpx" wx:if="{{goodType == 0}}">价格：</text>
+      <text class="footmoney" wx:if="{{goodType == 0}}">￥</text>
+      <text class="head" wx:if="{{goodType == 0}}">{{ filters.toFixHead(goodsDetail.price) }}</text>
+      <text class="tail" wx:if="{{goodType == 0}}">.{{ filters.toFixTail(goodsDetail.price) }}</text>
+
+      <text style="font-size:24rpx" wx:if="{{goodType == 1}}">积分：</text>
+      <text class="head" wx:if="{{goodType == 1}}">{{ filters.toFixHead(goodsDetail.pointsPrice) }}</text>
     </view>
-    <view class="btn-add-cart" bindtap="addToChart" wx:if="{{goodsDetail.status == 1}}">加入购物车</view>
-    <view class="btn-place-orde" bindtap="goOrder" wx:if="{{goodsDetail.status == 1}}">立即下单</view>
+    <view class="btn-add-cart" bindtap="addToChart" wx:if="{{goodsDetail.status == 1 && goodType == 0}}">加入购物车</view>
+    <view class="btn-place-orde" bindtap="goOrder" wx:if="{{goodsDetail.status == 1 && goodType == 0}}">立即下单</view>
+    <view class="btn-place-orde" bindtap="goOrder" wx:if="{{goodsDetail.status == 1 && goodType == 1}}">立即兑换</view>
     <view class="btn-place-orde disable" wx:if="{{goodsDetail.status == 2}}">已下架</view>
   </view>
 </view>
