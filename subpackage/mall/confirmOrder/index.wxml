@@ -40,20 +40,33 @@
                 <!-- <view class="label">黑/白/灰</view> -->
                 <!-- <view class="label">M</view> -->
               <!-- </view> -->
-              <view class="price">
+              <view class="price" wx:if="{{goodType == 0}}">
                 价格：￥{{ filters.toFixHead(item.price) }}.{{
                 filters.toFixTail(item.price) }}×{{ item.quantity }}
+              </view>
+              <view wx:if="{{goodType == 0}}" class="price" catchtap="handleShowYHQ">
+                已选优惠券：<span style="color: #ff580c">- 0.5</span> >
+              </view>
+              <view class="price" wx:if="{{goodType == 1}}">
+                积分：{{ item.price}}
               </view>
             </view>
             <view class="info">
               <view class="total-price">
                 <text>合计：</text>
-                <text class="footmoney">￥</text>
-                <text class="head"
+                <text wx:if="{{goodType == 0}}" class="footmoney">￥</text>
+                <text wx:if="{{goodType == 0}}" class="head"
                   >{{ filters.toFixHead(item.price*item.quantity) }}</text
                 >
-                <text class="tail"
+                <text wx:if="{{goodType == 0}}" class="tail"
                   >.{{ filters.toFixTail(item.price*item.quantity) }}</text
+                >
+
+                <text wx:if="{{goodType == 1}}" class="head"
+                  >{{ item.price*item.quantity }} </text
+                >
+                <text wx:if="{{goodType == 1}}" class="tail"
+                  > 积分</text
                 >
               </view>
               <view class="btn-groups">
@@ -91,12 +104,61 @@
   </view>
   <view class="foot flex rpx-40">
     <view class="footLeft">
-      <text class="view-text" style="color: #343434">实付：</text>
-      <text class="footmoney">￥</text>
-      <text class="head">{{filters.toFixHead(totalPrice)}}</text
-      ><text class="tail">.{{filters.toFixTail(totalPrice)}}</text>
+      <text  wx:if="{{goodType == 0}}" class="view-text" style="color: #343434">实付：</text>
+      <text  wx:if="{{goodType == 0}}" class="footmoney" >￥</text>
+      <text  wx:if="{{goodType == 0}}" class="head">{{filters.toFixHead(totalPrice)}}</text>
+      <text  wx:if="{{goodType == 0}}" class="tail">.{{filters.toFixTail(totalPrice)}}</text>
+
+      <text  wx:if="{{goodType == 1}}" class="view-text" style="color: #343434">总计：</text>
+      <text  wx:if="{{goodType == 1}}" class="head">{{totalPrice}}</text>
+      <text  wx:if="{{goodType == 1}}" class="tail">积分</text>
     </view>
-    <view class="btn-place-orde" bindtap="handleClickPay">提交订单</view>
+    <view wx:if="{{goodType == 0}}" class="btn-place-orde" bindtap="handleClickPay">提交订单</view>
+    <view wx:if="{{goodType == 1}}" class="btn-place-orde" bindtap="handleClickPayJF">提交订单</view>
   </view>
+    <page-container show="{{showYHQ}}" round="{{true}}">
+      <view class="yhq-container">
+        <view class="title" hover-class="none" hover-stop-propagation="false">
+          优惠券
+        </view>
+        <view class="text" hover-class="none" hover-stop-propagation="false">
+          已选中推荐优惠，使用优惠券2张，共抵扣￥<span style="color: #ff580c">208.20</span>
+        </view>
+        <view class="content">
+          <scroll-view
+            class="list"
+            scroll-y         
+          >
+            <view class="item" hover-class="none" hover-stop-propagation="false">
+              <view class="left" hover-class="none" hover-stop-propagation="false">
+                
+              </view>
+              <view class="right" hover-class="none" hover-stop-propagation="false">
+                
+              </view>
+            </view>
+            <view class="item" hover-class="none" hover-stop-propagation="false">
+              <view class="left" hover-class="none" hover-stop-propagation="false">
+                
+              </view>
+              <view class="right" hover-class="none" hover-stop-propagation="false">
+                
+              </view>
+            </view>
+            <view class="item" hover-class="none" hover-stop-propagation="false">
+              <view class="left" hover-class="none" hover-stop-propagation="false">
+                
+              </view>
+              <view class="right" hover-class="none" hover-stop-propagation="false">
+                
+              </view>
+            </view>
+          </scroll-view>
+          <view class="btn-submit" hover-class="none" hover-stop-propagation="false">
+            确定
+          </view>
+        </view>
+      </view>
+    </page-container>
    <cashier price="{{totalPrice}}" wx:if="{{showCashier}}" bind:choosePayType="handleChoosePayType"/>
 </view>

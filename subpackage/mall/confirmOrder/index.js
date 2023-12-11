@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    goodType: "0",
     dataList: {}, //地址
     isAddress: false,
     addressId: "",
@@ -15,7 +16,8 @@ Page({
     totalPrice: 0,
     totalNum: 0,
     showCashier: false,
-    payChannelType: ""
+    payChannelType: "",
+    showYHQ:false
   },
 
   /**
@@ -25,6 +27,11 @@ Page({
     if (options.addressId) {
       this.setData({
         addressId: options.addressId
+      })
+    }
+    if (options.goodType) { 
+      this.setData({
+        goodType: options.goodType
       })
     }
     this.setData({
@@ -102,6 +109,53 @@ Page({
           })
         }
         console.log("地址====", _this.data.dataList.length)
+      }
+    })
+  },
+
+  handleClickPayJF() { 
+    const custId = wx.getStorageSync("custId")
+    const { contact, phone, address } = this.data.dataList
+    const info = {
+      custId,
+      totalNum: this.data.totalNum,
+      totalPointsPrice: this.data.totalPrice,
+      payPointsPrice: this.data.totalPrice,
+      contact,
+      phone,
+      address,
+    }
+    const orderGoodsTmpDTOList =  this.data.goodList.map((item) => {
+      const { goodsId, quantity, price } = item
+      return {
+        goodsId,
+        totalNum: quantity,
+        totalPrice: price * quantity
+      }
+    })
+    const params = { ...info, orderGoodsTmpDTOList }
+    console.log(params)
+    const _this = this
+    $api.addJFOrder(params).then((res) => {
+      if (res.state) {
+        wx.showToast({
+          title: "下单成功！",
+          icon: "success",
+          duration: 2000,
+          success: () => {
+            setTimeout(() => {
+              wx.redirectTo({
+                url: "/pages/my/order/index?dataType=4"
+              })
+            }, 2000)
+          }
+        })
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: "none",
+          duration: 2000
+        })
       }
     })
   },
@@ -223,12 +277,12 @@ Page({
             }
             const { data_package, orderId, state } = res.value
             if (state === "100") {
-              setTimeout(() => { 
+              setTimeout(() => {
                 wx.redirectTo({
                   url: "/pages/my/order/index?dataType=3"
                 })
-              },2000)
-            } else { 
+              }, 2000)
+            } else {
               const payData = JSON.parse(data_package)
               console.log(payData, orderId)
               wx.requestPayment({
@@ -260,7 +314,6 @@ Page({
                 }
               })
             }
-            
           }
         })
       } else {
@@ -281,6 +334,13 @@ Page({
       }
     })
   },
+
+  handleShowYHQ() { 
+    this.setData({
+      showYHQ: true
+    })
+  },
+  
 
   /**
    * 生命周期函数--监听页面隐藏
