@@ -1,0 +1,73 @@
+<wxs module="filters" src="../../utils/addmul.wxs"></wxs>
+<page-container show="{{show}}" round="{{true}}" bind:leave="handleClickComfirm">
+  <view class="yhq-container">
+    <view class="title" hover-class="none" hover-stop-propagation="false">
+      优惠券
+    </view>
+    <view wx:if="{{canUseCoupon}}" class="text" hover-class="none" hover-stop-propagation="false">
+     <span wx:if="{{showTips}}"> 已选中推荐优惠，</span>使用优惠券{{ checkedNum }} 张，共抵扣￥<span style="color: #ff580c"
+        >{{filters.toFixHead(descount)}}.{{filters.toFixTail(descount)}}</span
+      >
+    </view>
+    <view wx:else class="text" hover-class="none" hover-stop-propagation="false">
+     <span>暂无可用优惠券</span
+      >
+    </view>
+    <view class="content">
+      <scroll-view class="list" scroll-y>
+        <view class="item {{item.active?'':'disable'}}"  wx:for="{{list}}" wx:key="couponId" wx:for-index="index">
+          <view class="left">
+            <view class="discount-num">
+              <text class="icon">￥</text>
+              <text class="discount">{{ item.couponPrice }}</text>
+            </view>
+            <view class="discount-info"> {{ item.couponTitle }} </view>
+          </view>
+          <view class="right">
+            <view class="discount-name"> {{ item.merchantName }} </view>
+            <view class="exp-time"> 有效期至：{{ item.endTime }} </view>
+            <view class="discount-price">
+              满<text class="discount"
+                >￥{{filters.toFixHead(item.couponPrice)}}.{{filters.toFixTail(item.couponPrice)}}元可用</text
+              >
+            </view>
+            <image
+              wx:if="{{item.checked}}"
+              class="check"
+              src="/state/images/check.png"
+              mode="widthFix"
+              lazy-load="false"
+              binderror=""
+              bindload=""
+              data-index="{{index}}"
+              data-active="{{item.active}}"
+              bind:tap="handClickChecked"
+            >
+            </image>
+            <image
+              wx:else
+              class="check"
+              src="/state/images/oncheck.png"
+              mode="widthFix"
+              lazy-load="false"
+              binderror=""
+              bindload=""
+              data-index="{{index}}"
+              data-active="{{item.active}}"
+              bind:tap="handClickChecked"
+            >
+            </image>
+          </view>
+        </view>
+      </scroll-view>
+      <view
+        class="btn-submit"
+        hover-class="none"
+        hover-stop-propagation="false"
+        bind:tap="handleClickComfirm"
+      >
+        确定
+      </view>
+    </view>
+  </view>
+</page-container>
