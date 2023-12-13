@@ -314,7 +314,13 @@ const API = {
   receiveJFGood: (data) =>
     request("GET", prefix.incentive + "/v1/cjPointsOrder/reciveOrder", data), // 商城积分商品订单收货
   addJFGoodComment: (data) =>
-    request("POST", prefix.incentive + "/v1/cjGoodsComment/add", data) // 商城积分商品订单新增评价
+    request("POST", prefix.incentive + "/v1/cjGoodsComment/add", data), // 商城积分商品订单新增评价
+  returnJFOrder: (data) =>
+    request("POST", prefix.incentive + "/v1/cjPointsRefund/add", data), // 商城积分商品订单新增评价
+  getCouponList: (data) =>
+    request("POST", prefix.incentive + "/v1/cjCustCoupon/list", data), // 优惠券列表
+  getShopCouponList: (data) =>
+    request("POST", prefix.incentive + "/v1/cjCouponIssue/list", data) // 获取商家优惠券列表
 }
 const baseUrl = "https://tacj.openunion.cn/api"
 

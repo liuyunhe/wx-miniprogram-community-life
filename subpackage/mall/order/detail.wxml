@@ -2,18 +2,35 @@
 <wxs module="tools" src="../../../utils/string.wxs" />
 <view class="base {{ orderDetail.payStatus === '0' ? 'pb-150' : '' }}">
   <!-- 订单状态 -->
-  <view class="view-status flex align-center rpx-30" wx:if="{{orderDetail.payStatus == 1}}">
+  <view
+    class="view-status flex align-center rpx-30"
+    wx:if="{{orderDetail.payStatus == 1}}"
+  >
     <image
       class="icon-truck"
       src="/state/images/icon-truck.png"
       mode="widthFix"
     ></image>
-    <view class="text" wx:if="{{ orderDetail.status == 0  }}">您的订单待商家处理。</view>
-    <view class="text" wx:if="{{ orderDetail.status == 1  }}">您的订单商家已发货。</view>
-    <view class="text" wx:if="{{ orderDetail.status == 2 || orderDetail.status == 3  }}">您的订单已收货。</view>
-    <view class="text" wx:if="{{ orderDetail.status == 4  }}">您的订单已申请退款。</view>
-    <view class="text" wx:if="{{ orderDetail.status == 5 }}">您的订单已退货。</view>
-    <view class="text" wx:if="{{ orderDetail.status == 6 }}">您的订单已退款。</view>
+    <view class="text" wx:if="{{ orderDetail.status == 0  }}"
+      >您的订单待商家处理。</view
+    >
+    <view class="text" wx:if="{{ orderDetail.status == 1  }}"
+      >您的订单商家已发货。</view
+    >
+    <view
+      class="text"
+      wx:if="{{ orderDetail.status == 2 || orderDetail.status == 3  }}"
+      >您的订单已收货。</view
+    >
+    <view class="text" wx:if="{{ orderDetail.status == 4  }}"
+      >您的订单已申请退款。</view
+    >
+    <view class="text" wx:if="{{ orderDetail.status == 5 }}"
+      >您的订单已退货。</view
+    >
+    <view class="text" wx:if="{{ orderDetail.status == 6 }}"
+      >您的订单已退款。</view
+    >
     <image
       class="icon-arrow"
       src="/state/images/youjiantou.png"
@@ -46,7 +63,7 @@
   <view class="goods-list">
     <view class="row">
       <view class="itmem_wrap" data-id="{{ orderDetail.orderId }}">
-        <view class="shop-name">
+        <view class="shop-name" wx:if="{{orderType == 0}}">
           {{ orderDetail.merchantName }}
           <image mode="widthFix" src="/state/images/youjiantou.png"></image>
         </view>
@@ -55,7 +72,7 @@
           wx:for="{{ orderDetail.orderGoodsList }}"
           wx:key="goodsId"
           wx:for-item="good"
-          url="/subpackage/mall/goodDetail/index?id={{good.goodsId}}"
+          url="/subpackage/mall/goodDetail/index?id={{good.goodsId}}&goodType={{orderType}}"
           open-type="navigate"
         >
           <image
@@ -70,7 +87,7 @@
             <view class="title">{{ good.goodsName }}</view>
             <view class="info mb-10">
               <view class="price"> 数量：×{{ good.totalNum }} </view>
-              <view class="total-price">
+              <view class="total-price" wx:if="{{orderType == 0}}">
                 <text class="footmoney">￥</text>
                 <text class="head"
                   >{{ filters.toFixHead(good.totalPrice) }}</text
@@ -79,11 +96,15 @@
                   >.{{ filters.toFixTail(good.totalPrice) }}</text
                 >
               </view>
+              <view class="total-price" wx:if="{{orderType == 1}}">
+                <text class="head">{{ good.totalPrice }}</text>
+                <text class="tail">积分</text>
+              </view>
             </view>
             <view class="info bottom">
               <view class="btn-groups">
                 <view
-                  wx:if="{{ orderDetail.status - 0 >= 2 }}"
+                  wx:if="{{ orderDetail.status - 0 == 2 }}"
                   class="btn"
                   bindtap="handleClickBtnComment"
                   data-orderid="{{ good.orderId }}"
@@ -92,7 +113,7 @@
                   >立即评价</view
                 >
                 <view
-                  wx:if="{{ orderDetail.status - 0 >= 2 }}"
+                  wx:if="{{ orderDetail.status - 0 >= 2 && orderType == 0 }}"
                   class="btn main"
                   data-goodsid="{{ good.goodsId }}"
                   catchtap="handleClickBtnBuyAgain"
@@ -103,10 +124,18 @@
           </view>
         </navigator>
         <view class="order-line" style="margin-top: 30rpx">
+          <view class="title">实付金额</view>
+          <view class="info" style="color:#ff580c">￥{{filters.toFixHead(orderDetail.payPrice)}}.{{filters.toFixTail(orderDetail.payPrice)}}</view>
+        </view>
+        <view wx:if="{{orderDetail.couponPrice}}" class="order-line" >
+          <view class="title">优惠金额</view>
+          <view class="info" style="color:#ff580c">-￥{{filters.toFixHead(orderDetail.couponPrice)}}.{{filters.toFixTail(orderDetail.couponPrice)}}</view>
+        </view>
+        <view class="order-line">
           <view class="title">下单时间</view>
           <view class="info">{{ orderDetail.createTime }}</view>
         </view>
-        <view class="order-line">
+        <view class="order-line" wx:if="{{orderType == 0}}">
           <view class="title">支付渠道</view>
           <view class="info"
             >{{ orderDetail.payType === "13" ? "微信支付" : "支付宝" }}</view
@@ -123,13 +152,16 @@
       </view>
     </view>
   </view>
-  <view wx:if="{{ orderDetail.payStatus === '0' }}" class="foot flex rpx-40">
+  <view
+    wx:if="{{ orderDetail.payStatus === '0'&& orderType == 0 }}"
+    class="foot flex rpx-40"
+  >
     <view class="footLeft">
       <text class="view-text" style="color: #343434">合计：</text>
       <text class="footmoney">￥</text>
-      <text class="head">{{ filters.toFixHead(orderDetail.totalPrice) }}</text
+      <text class="head">{{ orderDetail.couponPrice ? filters.toFixHead(orderDetail.totalPrice - orderDetail.couponPrice) : filters.toFixHead(orderDetail.totalPrice) }}</text
       ><text class="tail"
-        >.{{ filters.toFixTail(orderDetail.totalPrice) }}</text
+        >.{{ orderDetail.couponPrice ?  filters.toFixTail(orderDetail.totalPrice - orderDetail.couponPrice): filters.toFixTail(orderDetail.totalPrice)}}</text
       >
     </view>
     <view class="btn-place-orde" bindtap="handleCLickBtnPay">继续支付</view>

@@ -17,7 +17,10 @@ Page({
     totalNum: 0,
     showCashier: false,
     payChannelType: "",
-    showYHQ:false
+    showYHQ: false,
+    totalPriceMap: null,
+    couponList: [],
+    descountNum: 0
   },
 
   /**
@@ -29,7 +32,7 @@ Page({
         addressId: options.addressId
       })
     }
-    if (options.goodType) { 
+    if (options.goodType) {
       this.setData({
         goodType: options.goodType
       })
@@ -64,7 +67,78 @@ Page({
       totalPrice: shoppingCart.totalPrice,
       totalNum: shoppingCart.totalNum
     })
+    
+    this.buildTotalPriceMap()
+    this.getShopCouponList()
   },
+  // 建立店铺ID-店铺商品总价Map
+  buildTotalPriceMap() { 
+    const totalPriceMap = new Map()
+    this.data.goodList.map((item) => {
+      if (totalPriceMap.has(item.merchantId)) {
+        const totalPrice = totalPriceMap.get(item.merchantId)
+        totalPrice += item.price * item.quantity
+      } else {
+        totalPriceMap.set(item.merchantId, item.price * item.quantity)
+      }
+    })
+    this.setData({ totalPriceMap })
+    console.log(this.data.totalPriceMap)
+  },
+  getShopCouponList() {
+    const _this = this
+    const totalPriceMap = this.data.totalPriceMap
+    const ids = [...totalPriceMap.keys()]
+    $api.getShopCouponList({ ids }).then((res) => {
+      if (res.state) {
+        this.formatCoupon(res.value)
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: "none"
+        })
+      }
+    })
+  },
+  // 优惠券列表处理
+  formatCoupon(couponList) { 
+    const totalPriceMap = this.data.totalPriceMap
+    this.setData({
+      couponList: couponList.map((item) => {
+        let upwardsMinPrice = true
+        if (item.useMinPrice) { 
+          upwardsMinPrice =
+            totalPriceMap.get(item.merchantId) > item.useMinPrice
+        }
+        const active =
+          totalPriceMap.get(item.merchantId) > item.couponPrice &&
+          upwardsMinPrice
+        return {
+          ...item,
+          checked: active,
+          active
+        }
+      })
+    })
+    let descountNum = 0
+    this.data.couponList.map((item) => {
+      if (item.checked) {
+        descountNum += item.couponPrice
+      }
+    })
+    this.setData({
+      descountNum
+    })
+  },
+  // 优惠券组件提交触发
+  handleChooseCoupon({ detail: { list, descount } }) {
+    this.setData({
+      showYHQ: false,
+      couponList: list,
+      descountNum: descount
+    })
+  },
+  // 点击下单调出收银台
   handleClickPay() {
     this.setData({
       showCashier: true
@@ -89,7 +163,6 @@ Page({
           this.setData({
             dataList: res.value
           })
-          console.log(res.value)
         }
       })
   },
@@ -113,7 +186,7 @@ Page({
     })
   },
 
-  handleClickPayJF() { 
+  handleClickPayJF() {
     const custId = wx.getStorageSync("custId")
     const { contact, phone, address } = this.data.dataList
     const info = {
@@ -123,9 +196,9 @@ Page({
       payPointsPrice: this.data.totalPrice,
       contact,
       phone,
-      address,
+      address
     }
-    const orderGoodsTmpDTOList =  this.data.goodList.map((item) => {
+    const orderGoodsTmpDTOList = this.data.goodList.map((item) => {
       const { goodsId, quantity, price } = item
       return {
         goodsId,
@@ -134,7 +207,6 @@ Page({
       }
     })
     const params = { ...info, orderGoodsTmpDTOList }
-    console.log(params)
     const _this = this
     $api.addJFOrder(params).then((res) => {
       if (res.state) {
@@ -179,9 +251,9 @@ Page({
 
   checkQuantity(e, type) {
     const goodsId = e.currentTarget.dataset.id
-    console.log(goodsId)
     const goodList = this.data.goodList.map((item) => {
       if (item.goodsId === goodsId) {
+        const totalPriceMap = this.data.totalPriceMap
         if (type === "add") {
           item.quantity++
         } else {
@@ -196,6 +268,10 @@ Page({
             item.quantity--
           }
         }
+        totalPriceMap.set(item.merchantId, item.quantity * item.price)
+        console.log(totalPriceMap)
+        this.setData({ totalPriceMap })
+        this.formatCoupon(this.data.couponList)
       }
       return item
     })
@@ -228,7 +304,6 @@ Page({
       contact,
       phone,
       address,
-      payPrice: this.data.totalPrice,
       payType: this.data.payChannelType
     }
     const shopMap = new Map()
@@ -239,24 +314,42 @@ Page({
         goods.push({
           goodsId,
           totalNum: quantity,
-          totalPrice: price * quantity
+          totalPrice: price * quantity,
+          merchantId
         })
       } else {
         shopMap.set(merchantId, [
           {
             goodsId,
             totalNum: quantity,
-            totalPrice: price * quantity
+            totalPrice: price * quantity,
+            merchantId
           }
         ])
       }
     })
     const params = [...shopMap.values()].map((item) => {
+      // 找到选中的优惠券（一个店铺仅有一张的情况）
+      const coupon = this.data.couponList.find((coupon) => {
+        console.log(coupon.merchantId, item)
+        return coupon.merchantId === item[0].merchantId
+      })
+      console.log(coupon)
+      const couponIssueId = coupon? (coupon.checked ? coupon.couponIssueId : ""):""
+      const couponPrice =  coupon? (coupon.checked ? coupon.couponPrice : 0):""
+      let payPrice = 0
+      item.forEach((i) => {
+        payPrice += i.totalPrice
+      })
+      payPrice -= couponPrice
       return {
         ...info,
+        payPrice,
+        couponIssueId,
         orderGoodsDTOList: item
       }
     })
+    console.log(params)
     const _this = this
     $api.addStoreOrder(params).then((res) => {
       if (res.state) {
@@ -335,12 +428,11 @@ Page({
     })
   },
 
-  handleShowYHQ() { 
+  handleShowYHQ() {
     this.setData({
       showYHQ: true
     })
   },
-  
 
   /**
    * 生命周期函数--监听页面隐藏

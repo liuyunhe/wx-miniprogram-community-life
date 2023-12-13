@@ -2,7 +2,28 @@
 <wxs module="tools" src="../../../utils/string.wxs" />
 <view class="base">
   <view class="content">
-    <view class="header flex align-center justify-center rpx-30">
+    <view class="tap">
+      <view class="tap-container">
+        <view
+          class="tap-item {{ mallType == 0 ? 'active':'' }}"
+          data-type="0"
+          catch:tap="handleSwithMallType"
+        >
+          线上商城
+        </view>
+        <view
+          class="tap-item {{ mallType == 1 ? 'active':'' }}"
+          data-type="1"
+          catch:tap="handleSwithMallType"
+        >
+          积分兑换
+        </view>
+      </view>
+    </view>
+    <view
+      class="header flex align-center justify-center rpx-30"
+      wx:if="{{mallType == 0}}"
+    >
       <view class="view-row align-center view-search">
         <input
           class="input"
@@ -21,6 +42,7 @@
     </view>
 
     <scroll-view
+      wx:if="{{mallType == 0}}"
       scroll-x
       class="rpx-20 pt-30 view-sort"
       style="display: flex; white-space: nowrap"
@@ -52,7 +74,8 @@
       </view>
     </view> -->
 
-    <view class="view-jx">
+    <!-- 普通商品 -->
+    <view class="view-jx" wx:if="{{mallType == 0}}">
       <view class="herder">
         <view class="in-block">精选热销榜</view>
       </view>
@@ -69,6 +92,7 @@
             <image
               class="good-img"
               mode="aspectFill"
+              lazy-load="true"
               src="{{ item.image ? tools.my_json(item.image) : '' }}"
             ></image>
             <view class="good-name">{{ item.goodsName }}</view>
@@ -90,8 +114,47 @@
         </view>
       </view>
     </view>
+
+    <!-- 积分商品 -->
+    <view class="view-jx" wx:if="{{mallType == 1}}">
+      <view class="herder">
+        <view class="in-block">积分商品</view>
+      </view>
+      <view class="view-goods">
+        <view wx:if="{{ JFdataList.length > 0 }}">
+          <view
+            class="good"
+            wx:for="{{ JFdataList }}"
+            wx:key="index"
+            bindtap="goGoodDetal"
+            data-value="{{ item }}"
+            data-id="{{ item.goodsId }}"
+          >
+            <image
+              class="good-img"
+              mode="aspectFill"
+              lazy-load="true"
+              src="{{ item.image ? tools.my_json(item.image) : '' }}"
+            ></image>
+            <view class="good-name">{{ item.goodsName }}</view>
+            <!-- <view class="good-desc text-overflow">{{ item.goodsDesc }}</view> -->
+            <view class="good-desc text-overflow"></view>
+            <view class="good-bottom">
+              <view class="price">
+                <span class="head">{{ item.pointsPrice }}</span><span> 积分</span>
+              </view>
+              <view class="sales">销量{{ item.sales }}</view>
+            </view>
+          </view>
+        </view>
+        <view class="noData" wx:else>
+          <image mode="widthFix" src="/state/images/noData.png"></image>
+          <view>暂无数据</view>
+        </view>
+      </view>
+    </view>
   </view>
-  <view class="btn-cart" bindtap="goMallCart">
+  <view class="btn-cart" bindtap="goMallCart" wx:if="{{mallType == 0}}">
     <image
       class="icon-cart"
       src="/state/images/icon-cart.png"

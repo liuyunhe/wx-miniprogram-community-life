@@ -130,7 +130,7 @@ Page({
         merchantId: this.data.goodsDetail.merchantId,
         goodsName: this.data.goodsDetail.goodsName,
         price:
-          this.goodType == 0
+          this.data.goodType == 0
             ? this.data.goodsDetail.price
             : this.data.goodsDetail.pointsPrice,
         image: this.data.goodsDetail.image,
@@ -138,11 +138,11 @@ Page({
       }
     ]
     shoppingCart.list = good
-    ;(shoppingCart.totalPrice =
-      this.goodType == 0
+    shoppingCart.totalPrice =
+      this.data.goodType == 0
         ? this.data.goodsDetail.price
-        : this.data.goodsDetail.pointsPrice),
-      (shoppingCart.totalNum = 1)
+        : this.data.goodsDetail.pointsPrice
+    shoppingCart.totalNum = 1
     console.log(getApp().globalData.shoppingCart)
     wx.navigateTo({
       url: `/subpackage/mall/confirmOrder/index?from=2&&goodType=${this.data.goodType}`

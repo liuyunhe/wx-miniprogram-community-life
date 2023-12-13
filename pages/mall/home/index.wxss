@@ -239,3 +239,26 @@
   text-align: center;
   border-radius: 50%;
 }
+.tap{
+ background-color: #3cdabb;
+}
+.tap .tap-container{
+  width: 200rpx;
+  display: flex;
+  border-radius: 40rpx;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 5rpx;
+}
+.tap .tap-item{
+  width: 100rpx;
+  font-size: 20rpx;
+  line-height: 40rpx;
+  border-radius: 50rpx;
+  color: #3cdabb;
+  text-align: center;
+}
+.tap .tap-item.active{
+  color: #fff;
+  background: -webkit-linear-gradient(left, #1dd394, #46dcca);
+}

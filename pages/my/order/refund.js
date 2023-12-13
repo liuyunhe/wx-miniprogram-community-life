@@ -67,7 +67,8 @@ Page({
       values.refundReasonWap = ""
       values.custId = wx.getStorageSync("custId")
       values.totalNum = this.data.totalNum
-      $api.returnOrder(values).then((res) => {
+      const url = this.data.orderType == 3 ? "returnOrder" : "returnJFOrder"
+      $api[url](values).then((res) => {
         if (res.state) {
           wx.showToast({
             title: "提交成功",

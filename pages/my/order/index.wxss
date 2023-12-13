@@ -402,3 +402,25 @@ page{
   border: 2rpx solid #3CDABB;
   color: #3CDABB;
 }
+.order-bottom{
+  width: 100%;
+  text-align: right;
+}
+.order-bottom .footmoney {
+  font-size: 24rpx;
+  color: #ff580c;
+}
+.order-bottom .head {
+  font-size: 36rpx;
+  color: #ff580c;
+  font-weight: bold;
+  line-height: 40rpx;
+}
+.order-bottom .tail {
+  font-size: 20rpx;
+  color: #ff580c;
+  font-weight: bold;
+  line-height: 50rpx;
+  position: relative;
+  top: 3rpx;
+}

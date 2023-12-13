@@ -1,5 +1,5 @@
 // pages/mall/home/index.js
-const $api = require('../../../utils/api.js').API;
+const $api = require("../../../utils/api.js").API
 //获取应用实例
 var app = getApp()
 Page({
@@ -7,47 +7,24 @@ Page({
    * 页面的初始数据
    */
   data: {
+    mallType: "0",
     mallBannerImg: "/state/images/mall_banner_img1.png",
     mallInputValue: "", //输入框的值
     sortData: [],
-    sortIconData: [
-      {
-        id: 1,
-        url: "/state/images/sort-icon-1.png",
-        title: "服饰鞋包",
-        num: 1
-      },
-      {
-        id: 2,
-        url: "/state/images/sort-icon-2.png",
-        title: "居家日用",
-        num: 0
-      },
-      {
-        id: 3,
-        url: "/state/images/sort-icon-3.png",
-        title: "休闲零食",
-        num: 0
-      },
-      {
-        id: 4,
-        url: "/state/images/sort-icon-4.png",
-        title: "水果生鲜",
-        num: 0
-      },
-      {
-        id: 5,
-        url: "/state/images/sort-icon-5.png",
-        title: "美妆个护",
-        num: 0
-      }
-    ],
+    sortIconData: [],
+
     dataList: [],
     cartCount: 0,
     totalPages: 1,
     page: 1,
     pageSize: 10,
     noMoreGoods: false, //是否已经加载完所有商品
+
+    JFdataList: [],
+    JFtotalPages: 1,
+    JFpage: 1,
+    JFpageSize: 10,
+    JFnoMoreGoods: false, //是否已经加载完所有商品
 
     navigate_type: "", //分类类型，是否包含二级分类
     slideWidth: "", //滑块宽
@@ -63,6 +40,7 @@ Page({
   onLoad(options) {
     this.getCategoryListById()
     this.getStoreGoodsList()
+    this.getStoreJFGoodsList()
   },
 
   /**
@@ -70,6 +48,14 @@ Page({
    */
   onShow() {
     this.getMallChartCount()
+  },
+
+  handleSwithMallType(e) {
+    console.log(e)
+    const { type: mallType } = e.currentTarget.dataset
+    this.setData({
+      mallType
+    })
   },
 
   // 查询商品类目
@@ -176,17 +162,34 @@ Page({
   },
 
   goGoodDetal(option) {
+    const goodType = this.data.mallType 
     const id = option.currentTarget.dataset.id
     // getApp().globalData.sortId = id;
     console.log(id)
     wx.navigateTo({
-      url: `/subpackage/mall/goodDetail/index?id=${id}`
+      url: `/subpackage/mall/goodDetail/index?id=${id}&goodType=${goodType}`
     })
   },
 
   goMallCart() {
     wx.navigateTo({
       url: `/subpackage/mall/shoppingCart/index`
+    })
+  },
+
+  getStoreJFGoodsList() {
+    const params = {
+      page: this.data.JFpagepage,
+      pageSize: this.data.JFpageSize
+    }
+    $api.getStoreJFGoodsList(params).then((res) => {
+      if (res.state) {
+        this.setData({
+          JFdataList: [...this.data.JFdataList, ...res.value.rows],
+          JFpage: res.value.page,
+          JFtotalPages: res.value.totalPages
+        })
+      }
     })
   },
 
@@ -214,16 +217,30 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-    if (this.data.dataList.length === 0) return
-    if (this.data.totalPages === this.data.page) {
-      console.log("商品列表====已到最后一页")
-      return
-    } else {
-      console.log("商品列表====加载下一页")
-      this.setData({
-        page: this.data.page + 1
-      })
-      this.getStoreGoodsList()
+    if (this.data.mallType == 0) {
+      if (this.data.dataList.length === 0) return
+      if (this.data.totalPages === this.data.page) {
+        console.log("商品列表====已到最后一页")
+        return
+      } else {
+        console.log("商品列表====加载下一页")
+        this.setData({
+          page: this.data.page + 1
+        })
+        this.getStoreGoodsList()
+      }
+    } else { 
+      if (this.data.JFdataList.length === 0) return
+      if (this.data.JFtotalPages === this.data.JFpage) {
+        console.log("积分商品列表====已到最后一页")
+        return
+      } else {
+        console.log("积分商品列表====加载下一页")
+        this.setData({
+          JFpage: this.data.JFpage + 1
+        })
+        this.getStoreJFGoodsList()
+      }
     }
   },
 

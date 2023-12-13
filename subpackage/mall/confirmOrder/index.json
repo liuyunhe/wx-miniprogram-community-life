@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "cashier": "/components/cashier/cashier"
+    "cashier": "/components/cashier/cashier",
+    "coupon": "/components/coupon/coupon"
   },
   "navigationBarTitleText": "确认订单",
   "backgroundColor": "#fff"

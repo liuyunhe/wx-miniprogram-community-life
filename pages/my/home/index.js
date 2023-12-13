@@ -7,19 +7,19 @@ Page({
    */
   data: {
     userInfo: {},
-    points:"",
+    points: "",
     titleImg: "",
     titleName: "",
     listData: [
       {
-        id: 9,
-        url: "/state/images/youhuiquan.png",
-        title: "我的优惠券"
-      },
-      {
         id: 10,
         url: "/state/images/jifen.png",
         title: "我的积分"
+      },
+      {
+        id: 9,
+        url: "/state/images/youhuiquan.png",
+        title: "我的优惠券"
       },
       {
         id: 4,
@@ -196,18 +196,17 @@ Page({
     })
   },
 
-  getPointsDetail() { 
-     $api.getPointsDetail().then((res) => {
-       console.log(res)
-       if (res.state) {
-         this.setData({
-           points:res.value.points
-         })
-         wx.setStorageSync("points", res.value.points)
-       } else { 
-         
-       }
-     })
+  getPointsDetail() {
+    $api.getPointsDetail().then((res) => {
+      console.log(res)
+      if (res.state) {
+        this.setData({
+          points: res.value.points
+        })
+        wx.setStorageSync("points", res.value.points)
+      } else {
+      }
+    })
   },
   //签订e支付小额免密协议查询接口
   isSignProtocol() {

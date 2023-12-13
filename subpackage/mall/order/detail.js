@@ -7,6 +7,7 @@ Page({
    */
   data: {
     orderId: null,
+    orderType: "",
     orderDetail: {}
   },
 
@@ -16,11 +17,12 @@ Page({
   onLoad(options) {
     console.log(options.id)
     // 订单id
-    const id = options.id
+    const { id: orderId, orderType } = options
     this.setData({
-      orderId: id
+      orderId,
+      orderType
     })
-    this.getOrderDetail(id)
+    this.getOrderDetail(orderId, orderType)
   },
 
   /**
@@ -33,14 +35,20 @@ Page({
    */
   onShow() {},
 
-  getOrderDetail(id) {
+  getOrderDetail(id, orderType) {
+    let url = ""
+    if (orderType == 0) {
+      url = "getOrderDetail"
+    } else { 
+      url = "getJFOrderDetail"
+    }
     const data = {
       id
     }
-    $api.getOrderDetail(data).then((res) => {
+    $api[url](data).then((res) => {
       if (res.state) {
         this.setData({
-          orderDetail: res.value,
+          orderDetail: res.value
         })
       }
     })
@@ -49,8 +57,9 @@ Page({
   // 点击评论
   handleClickBtnComment(e) {
     const { orderid, goodsid, goodstype = "0" } = e.currentTarget.dataset
+    const { orderType } = this.data
     wx.navigateTo({
-      url: `/subpackage/mall/order/comment?orderId=${orderid}&goodsId=${goodsid}&goodsType=${goodstype}`
+      url: `/subpackage/mall/order/comment?orderId=${orderid}&goodsId=${goodsid}&goodsType=${goodstype}&&orderType=${orderType}`
     })
   },
 

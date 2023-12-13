@@ -103,11 +103,11 @@
                 item.state == "2" ? "已完成" : item.paystate == "1" &&
                 item.state == "3" ? "申请退款" : item.paystate == "1" &&
                 item.state == "4" ? "已退款" : item.paystate == "1" &&
-                item.state == "5" ? "拒绝退款" : item.paystate == "2" ? "支付失败"
-                : item.paystate == "3" ? "未支付" : item.paystate == "4" ?
-                "订单关闭" : item.paystate == "5" ? "退款异常" : item.paystate
-                == "6" ? "已撤销" : item.paystate == "7" ? "已退款" :
-                "已接收，等待扣款" }}</text
+                item.state == "5" ? "拒绝退款" : item.paystate == "2" ?
+                "支付失败" : item.paystate == "3" ? "未支付" : item.paystate ==
+                "4" ? "订单关闭" : item.paystate == "5" ? "退款异常" :
+                item.paystate == "6" ? "已撤销" : item.paystate == "7" ?
+                "已退款" : "已接收，等待扣款" }}</text
               >
             </view>
             <view class="order-row" style="margin-top: 15rpx">
@@ -340,6 +340,21 @@
                 </view>
               </view>
             </view>
+            <view class="order-bottom">
+              <view class="total-price">
+                <text class="footmoney">实付：￥</text>
+                <text class="head"
+                  >{{
+                  filters.toFixHead(item.couponPrice?item.payPrice:item.totalPrice)
+                  }}</text
+                >
+                <text class="tail"
+                  >.{{
+                  filters.toFixTail(item.couponPrice?item.payPrice:item.totalPrice)
+                  }}</text
+                >
+              </view>
+            </view>
           </view>
         </view>
       </view>
@@ -360,43 +375,15 @@
               <!-- '订单状态（0：待发货；1：待收货；2：已收货；3：已完成；4：申请退款；5：已退货；6：已退款）', -->
               <!-- '支付状态（0：待支付；1：支付成功；2：支付失败）', -->
 
-              
-
-              <span
-                class="status"
-                wx:if="{{ item.status == 0 }}"
-                >待发货</span
-              >
-              <span
-                class="status"
-                wx:if="{{ item.status == 1 }}"
-                >待收货</span
-              >
-              <span
-                class="status"
-                wx:if="{{ item.status == 2 }}"
-                >已收货</span
-              >
-              <span
-                class="status"
-                wx:if="{{ item.status == 3 }}"
-                >已完成</span
-              >
-              <span
-                class="status"
-                wx:if="{{ item.status == 4 }}"
+              <span class="status" wx:if="{{ item.status == 0 }}">待发货</span>
+              <span class="status" wx:if="{{ item.status == 1 }}">待收货</span>
+              <span class="status" wx:if="{{ item.status == 2 }}">已收货</span>
+              <span class="status" wx:if="{{ item.status == 3 }}">已完成</span>
+              <span class="status" wx:if="{{ item.status == 4 }}"
                 >申请退款</span
               >
-              <span
-                class="status"
-                wx:if="{{ item.status == 5 }}"
-                >已退货</span
-              >
-              <span
-                class="status"
-                wx:if="{{ item.status == 6 }}"
-                >已退款</span
-              >
+              <span class="status" wx:if="{{ item.status == 5 }}">已退货</span>
+              <span class="status" wx:if="{{ item.status == 6 }}">已退款</span>
               <!-- <image mode="widthFix" src="/state/images/youjiantou.png"></image> -->
             </view>
             <view
@@ -417,12 +404,8 @@
                 <view class="title">{{ good.goodsName }}</view>
                 <view class="info mb-20">
                   <view class="total-price">
-                    <text class="head"
-                      >{{ good.totalPrice }}</text
-                    >
-                    <text class="tail"
-                     >积分</text
-                    >
+                    <text class="head">{{ good.totalPrice }}</text>
+                    <text class="tail">积分</text>
                   </view>
                   <view class="price"> 共{{ good.totalNum }}件 </view>
                 </view>
@@ -455,7 +438,7 @@
                       >再次购买</view
                     > -->
                     <view
-                      wx:if="{{ item.status >= 2 }}"
+                      wx:if="{{ item.status == 3 }}"
                       class="btn main"
                       data-goodsid="{{ good.goodsId }}"
                       data-orderid="{{ good.orderId }}"

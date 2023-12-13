@@ -301,6 +301,7 @@ Page({
 
   goOrder() {
     const goodsChecked = []
+    const GoodsCheckedSortByStore = new Map()
     this.data.list.map((item) => {
       item.list.map((good) => {
         console.log(good)
@@ -308,6 +309,7 @@ Page({
           const goodItem = {
             cartId: good.cartId,
             merchantId: item.merchantId,
+            merchantName: item.merchantName,
             goodsId: good.cjStoreGoodsVO.goodsId,
             goodsName: good.cjStoreGoodsVO.goodsName,
             price: good.cjStoreGoodsVO.price,

@@ -1,24 +1,57 @@
+<wxs module="filters" src="../../../utils/addmul.wxs"></wxs>
 <view class="base">
-  <view class="rpx-30 pt-20 header">
-    <scroll-view class="list" scroll-y>
-      <view class="item" hover-class="none" hover-stop-propagation="false">
-        <view class="left" hover-class="none" hover-stop-propagation="false">
+  <view class="view-title">
+    <view class="view-row">
+      <view
+        class="text-tab {{ dataType == item.id ? 'text-active' : '' }}"
+        wx:for="{{ tapData }}"
+        wx:key="index"
+        data-id="{{ item.id }}"
+        catchtap="bindHeaderTap"
+        >{{ item.name }}</view
+      >
+    </view>
+    <view class="view-row1">
+      <view
+        class="text-tab {{ dataType === '0' ? 'view-green' : 'view-white' }}"
+      ></view>
+      <view
+        class="text-tab {{ dataType === '1' ? 'view-green' : 'view-white' }}"
+      ></view>
+      <view
+        class="text-tab {{ dataType === '2' ? 'view-green' : 'view-white' }}"
+      ></view>
+    </view>
+  </view>
+  <view class="pt-20 header">
+    <view class="view-column">
+      <scroll-view
+        class="list"
+        bindscrolltolower="bindDownLoad"
+        scroll-y
+        style="height: {{ scrollHeight }}px;"
+      >
+        <view class="item" wx:for="{{list}}" wx:key="couponId">
+          <view class="left">
+            <view class="discount-num">
+              <text class="icon">￥</text>
+              <text class="discount">{{ item.couponPrice }}</text>
+            </view>
+            <view class="discount-info">{{ item.couponTitle }} </view>
+          </view>
+          <view class="right">
+            <view class="discount-name"> {{ item.cjCouponIssueCustVO.merchantName }} </view>
+            <view class="exp-time"> 领取时间：{{ item.createTime }}</view>
+            <view class="exp-time"> 有效期至：{{ item.endTime }} </view>
+          </view>
         </view>
-        <view class="right" hover-class="none" hover-stop-propagation="false">
+        <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
+        <view wx:if="{{ !isLoading && !list.length }}">
+          <view class="coupon-notcont">
+            <text class="cont">亲，您还没有优惠券哦！</text>
+          </view>
         </view>
-      </view>
-      <view class="item" hover-class="none" hover-stop-propagation="false">
-        <view class="left" hover-class="none" hover-stop-propagation="false">
-        </view>
-        <view class="right" hover-class="none" hover-stop-propagation="false">
-        </view>
-      </view>
-      <view class="item" hover-class="none" hover-stop-propagation="false">
-        <view class="left" hover-class="none" hover-stop-propagation="false">
-        </view>
-        <view class="right" hover-class="none" hover-stop-propagation="false">
-        </view>
-      </view>
-    </scroll-view>
+      </scroll-view>
+    </view>
   </view>
 </view>

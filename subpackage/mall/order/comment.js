@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    orderType:"",
     orderId: null, // 订单id
     goodsId: null, // 商品id
     goodsType: null, // 商品类型
@@ -19,11 +20,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    const { orderId, goodsId, goodsType } = options
+    const { orderId, goodsId, goodsType, orderType = "0" } = options
     this.setData({
       orderId,
       goodsId,
-      goodsType
+      goodsType,
+      orderType
     })
   },
 
@@ -75,7 +77,8 @@ Page({
       return false
     }
     console.log(values)
-    $api.addGoodComment(values).then((res) => {
+    const url = this.data.orderType == 0 ? "addGoodComment" : "addJFGoodComment"
+    $api[url](values).then((res) => {
       if (res.state) {
         wx.showToast({
           title: "提交成功",
