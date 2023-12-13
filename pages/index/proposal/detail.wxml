@@ -89,39 +89,6 @@
             src="{{item.url}}"
             mode="aspectFill">
           </image>
-          <image
-            class="list-img"
-            wx:for="{{img_list}}"
-            wx:key="index"
-            data-index="{{index}}"
-            data-list="img_list"
-            catchtap="previewImages"
-            wx:for-item="item"
-            src="{{item.url}}"
-            mode="aspectFill">
-          </image>
-          <image
-            class="list-img"
-            wx:for="{{img_list}}"
-            wx:key="index"
-            data-index="{{index}}"
-            data-list="img_list"
-            catchtap="previewImages"
-            wx:for-item="item"
-            src="{{item.url}}"
-            mode="aspectFill">
-          </image>
-          <image
-            class="list-img"
-            wx:for="{{img_list}}"
-            wx:key="index"
-            data-index="{{index}}"
-            data-list="img_list"
-            catchtap="previewImages"
-            wx:for-item="item"
-            src="{{item.url}}"
-            mode="aspectFill">
-          </image>
         </view>
       </view>
     </view>
@@ -130,7 +97,11 @@
       <view class="matter-sign"></view>
       <view class="title-name"> 报修反馈 </view>
     </view>
-    <view class="content">{{publish_item.reply}}</view>
+    <view class="content">
+      <view class="text-content">
+        {{publish_item.reply}}
+      </view>
+    </view>
   </view>
   <view class="view-card" wx:if="{{publish_item.state=='3'}}" style="margin-bottom:30rpx">
     <view class="title">
