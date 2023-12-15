@@ -107,7 +107,7 @@ Page({
   goGoodDetal(e) { 
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: `/subpackage/mall/goodDetail/index?id=${id}`
+      url: `/subpackage/mall/goodDetail/index?id=${id}&goodType=0`
     })
   },
 
