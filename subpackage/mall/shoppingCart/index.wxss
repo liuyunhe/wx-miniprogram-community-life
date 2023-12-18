@@ -172,7 +172,7 @@ page {
 }
 
 .btn-groups {
-  width: 133rpx;
+  width: 150rpx;
   height: 38rpx;
   border: 1rpx solid #f1f1f1;
   display: flex;
@@ -180,7 +180,7 @@ page {
 
 .btn-groups .goods-btn {
   display: block;
-  width: 34rpx;
+  width: 50rpx;
   height: 38rpx;
   line-height: 38rpx;
   text-align: center;

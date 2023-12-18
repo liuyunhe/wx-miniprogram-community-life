@@ -20,7 +20,8 @@ Page({
     showYHQ: false,
     totalPriceMap: null,
     couponList: [],
-    descountNum: 0
+    descountNum: 0,
+    PAY_ORDER_SUCCESS: false //是否支付成功
   },
 
   /**
@@ -51,6 +52,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    if (this.data.PAY_ORDER_SUCCESS) {
+      this.setData({
+        PAY_ORDER_SUCCESS:false
+      })
+      // 返回商城列表
+      wx.redirectTo({
+        url: "/pages/my/order/index?dataType=3"
+      })
+    }
     let _this = this
     _this.setData({
       dataList: {},
@@ -67,12 +77,13 @@ Page({
       totalPrice: shoppingCart.totalPrice,
       totalNum: shoppingCart.totalNum
     })
-    
+
     this.buildTotalPriceMap()
     this.getShopCouponList()
+    console.log(getCurrentPages())
   },
   // 建立店铺ID-店铺商品总价Map
-  buildTotalPriceMap() { 
+  buildTotalPriceMap() {
     const totalPriceMap = new Map()
     this.data.goodList.map((item) => {
       if (totalPriceMap.has(item.merchantId)) {
@@ -101,12 +112,12 @@ Page({
     })
   },
   // 优惠券列表处理
-  formatCoupon(couponList) { 
+  formatCoupon(couponList) {
     const totalPriceMap = this.data.totalPriceMap
     this.setData({
       couponList: couponList.map((item) => {
         let upwardsMinPrice = true
-        if (item.useMinPrice) { 
+        if (item.useMinPrice) {
           upwardsMinPrice =
             totalPriceMap.get(item.merchantId) > item.useMinPrice
         }
@@ -299,8 +310,6 @@ Page({
     const { contact, phone, address } = this.data.dataList
     const info = {
       custId,
-      totalNum: this.data.totalNum,
-      totalPrice: this.data.totalPrice,
       contact,
       phone,
       address,
@@ -335,15 +344,29 @@ Page({
         return coupon.merchantId === item[0].merchantId
       })
       console.log(coupon)
-      const couponIssueId = coupon? (coupon.checked ? coupon.couponIssueId : ""):""
-      const couponPrice =  coupon? (coupon.checked ? coupon.couponPrice : 0):""
+      const couponIssueId = coupon
+        ? coupon.checked
+          ? coupon.couponIssueId
+          : ""
+        : ""
+      const couponPrice = coupon
+        ? coupon.checked
+          ? coupon.couponPrice
+          : 0
+        : ""
       let payPrice = 0
+      let totalPrice = 0
       item.forEach((i) => {
         payPrice += i.totalPrice
       })
+      // 商品总价
+      totalPrice = payPrice
+      // 扣减优惠券金额
       payPrice -= couponPrice
       return {
         ...info,
+        totalNum: item.length,
+        totalPrice,
         payPrice,
         couponIssueId,
         orderGoodsDTOList: item
@@ -356,7 +379,7 @@ Page({
         wx.showToast({
           title: "下单成功！",
           icon: "success",
-          duration: 2000,
+          duration: 1000,
           success: () => {
             console.log(_this)
             if (_this.data.from === "1") {
@@ -389,9 +412,12 @@ Page({
                   console.log(res)
                   if (res.errMsg == "requestPayment:ok") {
                     // 返回商城列表
-                    wx.redirectTo({
-                      url: "/pages/my/order/index?dataType=3"
+                    _this.setData({
+                      PAY_ORDER_SUCCESS: true
                     })
+                    // wx.redirectTo({
+                    //   url: "/pages/my/order/index?dataType=3"
+                    // })
                   }
                 },
                 fail(err) {

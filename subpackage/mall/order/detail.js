@@ -39,7 +39,7 @@ Page({
     let url = ""
     if (orderType == 0) {
       url = "getOrderDetail"
-    } else { 
+    } else {
       url = "getJFOrderDetail"
     }
     const data = {
@@ -90,7 +90,13 @@ Page({
 
   handleCLickBtnPay() {
     const { orderCode } = this.data.orderDetail
-    $api.getOrderPaydata(orderCode).then((res) => {
+    let url = ""
+    if (this.data.orderDetail.payStatus == 0) {
+      url = "getOrderPaydata"
+    } else if (this.data.orderDetail.payStatus == 5) {
+      url = "contiuePayOrder"
+    }
+    $api[url](orderCode).then((res) => {
       if (res.state) {
         const { data_package, orderId } = JSON.parse(res.value)
         const payData = JSON.parse(data_package)
