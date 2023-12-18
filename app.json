@@ -165,6 +165,7 @@
     }
   },
   "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
   "requiredPrivateInfos": [
     "getLocation",
     "chooseLocation"

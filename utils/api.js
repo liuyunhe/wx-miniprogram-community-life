@@ -290,7 +290,9 @@ const API = {
   getCommentList: (data) =>
     request("POST", prefix.store + "/v1/cjGoodsComment/list", data), //商品评论列表
   getOrderPaydata: (data) =>
-    request("POST", prefix.store + "/v1/cjStoreOrder/contiuePay", data), //继续支付
+    request("POST", prefix.store + "/v1/cjStoreOrder/contiuePay", data), //支付中继续支付
+  contiuePayOrder: (data) =>
+    request("POST", prefix.store + "/v1/cjStoreOrder/contiuePayOrder", data), //下单后继续支付
   setOrderStatus: (data) =>
     request("GET", prefix.store + "/v1/cjStoreOrder/setStatus", data), //修改订单状态
 
