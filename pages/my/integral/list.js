@@ -19,7 +19,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
+    const { points } = options
+    this.setData({
+      points
+    })
   },
 
   /**
@@ -32,10 +35,10 @@ Page({
    */
   onShow() {
     this.setListHeight()
-    const points = wx.getStorageSync("points")
-    this.setData({
-      points
-    })
+    // const points = wx.getStorageSync("points")
+    // this.setData({
+    //   points
+    // })
     this.getPointsDetailList()
   },
   setListHeight() {
