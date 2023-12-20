@@ -206,6 +206,17 @@ App({
     //   dataTemplateQueryVo
     // )
   },
+  // 获取购物车商品数量
+  getMallChartCount() {
+    return $api.getMallChartCount().then((res) => {
+      if (res.state) {
+        // this.setData({
+        //   cartCount: res.value
+        // })
+        return res.value
+      }
+    })
+  },
 
   /**
    * 小程序主动更新
