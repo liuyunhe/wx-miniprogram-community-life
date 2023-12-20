@@ -151,7 +151,7 @@ Page({
       })
     } else if (e.currentTarget.dataset.id == 10) {
       wx.navigateTo({
-        url: `/pages/my/integral/list`
+        url: `/pages/my/integral/list?points=${this.data.points?this.data.points:0}`
       })
     }
   },
@@ -201,9 +201,8 @@ Page({
       console.log(res)
       if (res.state) {
         this.setData({
-          points: res.value.points
+          points: res.value.points < 0 ? 0 : res.value.points
         })
-        wx.setStorageSync("points", res.value.points)
       } else {
       }
     })

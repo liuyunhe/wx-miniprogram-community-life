@@ -35,6 +35,12 @@ Page({
   },
 
   /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
@@ -46,8 +52,11 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-    this.getMallChartCount()
+  async onShow() {
+    const cartCount = await app.getMallChartCount()
+    this.setData({
+      cartCount
+    })
   },
 
   handleSwithMallType(e) {
@@ -121,15 +130,15 @@ Page({
     })
   },
 
-  getMallChartCount() {
-    $api.getMallChartCount().then((res) => {
-      if (res.state) {
-        this.setData({
-          cartCount: res.value
-        })
-      }
-    })
-  },
+  // getMallChartCount() {
+  //   $api.getMallChartCount().then((res) => {
+  //     if (res.state) {
+  //       this.setData({
+  //         cartCount: res.value
+  //       })
+  //     }
+  //   })
+  // },
 
   // 搜索商品
   goInstall() {
@@ -162,7 +171,7 @@ Page({
   },
 
   goGoodDetal(option) {
-    const goodType = this.data.mallType 
+    const goodType = this.data.mallType
     const id = option.currentTarget.dataset.id
     // getApp().globalData.sortId = id;
     console.log(id)
@@ -192,11 +201,6 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -229,7 +233,7 @@ Page({
         })
         this.getStoreGoodsList()
       }
-    } else { 
+    } else {
       if (this.data.JFdataList.length === 0) return
       if (this.data.JFtotalPages === this.data.JFpage) {
         console.log("积分商品列表====已到最后一页")

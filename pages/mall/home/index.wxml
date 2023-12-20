@@ -154,15 +154,5 @@
       </view>
     </view>
   </view>
-  <view class="btn-cart" bindtap="goMallCart" wx:if="{{mallType == 0}}">
-    <image
-      class="icon-cart"
-      src="/state/images/icon-cart.png"
-      mode="widthFix"
-      lazy-load="false"
-      binderror=""
-      bindload=""
-    ></image>
-    <view class="num"> {{ cartCount }} </view>
-  </view>
+  <shoppingCartEntrance id="shoppingCartEntrance" cartCount="{{cartCount}}" mallType="{{ mallType }}" /> 
 </view>
