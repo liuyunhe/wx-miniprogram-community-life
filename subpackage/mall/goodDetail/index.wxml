@@ -11,7 +11,13 @@
         interval="2000"
       >
         <swiper-item wx:for="{{ imgNewsData }}" wx:key="index">
-          <image class="good-img" src="{{ item.url }}" data-index="{{index}}" bind:tap="handleClickPreview" mode="aspectFill"></image>
+          <image
+            class="good-img"
+            src="{{ item.url }}"
+            data-index="{{index}}"
+            bind:tap="handleClickPreview"
+            mode="aspectFill"
+          ></image>
         </swiper-item>
       </swiper>
     </view>
@@ -37,11 +43,15 @@
         </view> -->
         <view class="line">
           <view class="title">发货</view>
-          <view class="info text-overflow" style="width: 570rpx">{{
-            goodsDetail.merchantName
-          }}</view>
+          <view class="info text-overflow" style="width: 570rpx"
+            >{{ goodsDetail.merchantName }}</view
+          >
         </view>
-        <view class="line" data-id="{{ goodsDetail.goodsId }}" bindtap="goGoodComment">
+        <view
+          class="line"
+          data-id="{{ goodsDetail.goodsId }}"
+          bindtap="goGoodComment"
+        >
           <view class="title">评价</view>
           <view class="info">{{goodsDetail.commentNum}}</view>
           <image
@@ -78,22 +88,59 @@
         <image class="icon" src="/state/images/icon-gwc.png" mode="widthFix"></image>
         <view class="btn-name" >购物车</view>
       </view> -->
-      <view wx:if="{{goodType == 0}}" class="btn kf" style="margin-right:10rpx" bindtap="handleClickBtnService">
-        <image class="icon" src="/state/images/icon-kf.png" mode="widthFix"></image>
-        <view class="btn-name" >客服</view>
+      <view
+        wx:if="{{goodType == 0}}"
+        class="btn kf"
+        style="margin-right: 10rpx"
+        bindtap="handleClickBtnService"
+      >
+        <image
+          class="icon"
+          src="/state/images/icon-kf.png"
+          mode="widthFix"
+        ></image>
+        <view class="btn-name">客服</view>
       </view>
 
-      <text style="font-size:24rpx" wx:if="{{goodType == 0}}">价格：</text>
+      <text style="font-size: 24rpx" wx:if="{{goodType == 0}}">价格：</text>
       <text class="footmoney" wx:if="{{goodType == 0}}">￥</text>
-      <text class="head" wx:if="{{goodType == 0}}">{{ filters.toFixHead(goodsDetail.price) }}</text>
-      <text class="tail" wx:if="{{goodType == 0}}">.{{ filters.toFixTail(goodsDetail.price) }}</text>
+      <text class="head" wx:if="{{goodType == 0}}"
+        >{{ filters.toFixHead(goodsDetail.price) }}</text
+      >
+      <text class="tail" wx:if="{{goodType == 0}}"
+        >.{{ filters.toFixTail(goodsDetail.price) }}</text
+      >
 
-      <text style="font-size:24rpx" wx:if="{{goodType == 1}}">积分：</text>
-      <text class="head" wx:if="{{goodType == 1}}">{{ filters.toFixHead(goodsDetail.pointsPrice) }}</text>
+      <text style="font-size: 24rpx" wx:if="{{goodType == 1}}">积分：</text>
+      <text class="head" wx:if="{{goodType == 1}}"
+        >{{ filters.toFixHead(goodsDetail.pointsPrice) }}</text
+      >
     </view>
-    <view class="btn-add-cart" bindtap="addToChart" wx:if="{{goodsDetail.status == 1 && goodType == 0}}">加入购物车</view>
-    <view class="btn-place-orde" bindtap="goOrder" wx:if="{{goodsDetail.status == 1 && goodType == 0}}">立即下单</view>
-    <view class="btn-place-orde" bindtap="goOrder" wx:if="{{goodsDetail.status == 1 && goodType == 1}}">立即兑换</view>
-    <view class="btn-place-orde disable" wx:if="{{goodsDetail.status == 2}}">已下架</view>
+    <view
+      class="btn-add-cart"
+      bindtap="addToChart"
+      wx:if="{{goodsDetail.status == 1 && goodType == 0}}"
+      >加入购物车</view
+    >
+    <view
+      class="btn-place-orde"
+      bindtap="goOrder"
+      wx:if="{{goodsDetail.status == 1 && goodType == 0}}"
+      >立即下单</view
+    >
+    <view
+      class="btn-place-orde"
+      bindtap="goOrder"
+      wx:if="{{goodsDetail.status == 1 && goodType == 1}}"
+      >立即兑换</view
+    >
+    <view class="btn-place-orde disable" wx:if="{{goodsDetail.status == 2}}"
+      >已下架</view
+    >
   </view>
+  <shoppingCartEntrance
+    id="shoppingCartEntrance"
+    cartCount="{{cartCount}}"
+    mallType="{{ goodType }}"
+  />
 </view>

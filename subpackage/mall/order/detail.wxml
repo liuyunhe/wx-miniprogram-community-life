@@ -123,9 +123,13 @@
             </view>
           </view>
         </navigator>
-        <view class="order-line" style="margin-top: 30rpx">
+        <view wx:if="{{orderType == 0}}" class="order-line" style="margin-top: 30rpx">
           <view class="title">实付金额</view>
           <view class="info" style="color:#ff580c">￥{{filters.toFixHead(orderDetail.payPrice)}}.{{filters.toFixTail(orderDetail.payPrice)}}</view>
+        </view>
+        <view wx:if="{{orderType == 1}}" class="order-line" style="margin-top: 30rpx">
+          <view class="title">消耗积分</view>
+          <view class="info" style="color:#ff580c">{{orderDetail.payPointsPrice}}</view>
         </view>
         <view wx:if="{{orderDetail.couponPrice}}" class="order-line" >
           <view class="title">优惠金额</view>

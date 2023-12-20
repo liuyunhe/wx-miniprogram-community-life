@@ -267,6 +267,7 @@ Page({
         const totalPriceMap = this.data.totalPriceMap
         if (type === "add") {
           item.quantity++
+
         } else {
           if (item.quantity === 1) {
             // 删除商品
@@ -303,6 +304,10 @@ Page({
       totalPrice,
       totalNum
     })
+    shoppingCart.list = this.data.goodList
+    shoppingCart.totalPrice = totalPrice
+    shoppingCart.totalNum = totalNum
+    console.log(getApp().globalData.shoppingCart)
   },
 
   handleAddStoreOrder() {

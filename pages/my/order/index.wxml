@@ -439,7 +439,7 @@
                       >再次购买</view
                     > -->
                     <view
-                      wx:if="{{ item.status == 3 }}"
+                      wx:if="{{ item.status == 0 }}"
                       class="btn main"
                       data-goodsid="{{ good.goodsId }}"
                       data-orderid="{{ good.orderId }}"

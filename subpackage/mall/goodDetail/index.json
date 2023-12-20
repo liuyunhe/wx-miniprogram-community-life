@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    
+    "shoppingCartEntrance": "/components/shoppingCartEntrance/shoppingCartEntrance"
   },
   "navigationBarTitleText": "详情",
   "backgroundColor": "#fff"

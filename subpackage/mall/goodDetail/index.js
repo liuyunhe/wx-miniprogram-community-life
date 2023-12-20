@@ -1,6 +1,7 @@
 // pages/my/newMarket/index.js
 const $api = require("../../../utils/api.js").API
 const shoppingCart = getApp().globalData.shoppingCart
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -8,7 +9,8 @@ Page({
   data: {
     id: null,
     imgNewsData: [],
-    goodsDetail: null
+    goodsDetail: null,
+    cartCount: ""
   },
 
   /**
@@ -31,7 +33,15 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    this.getMallChartCount()
+  },
+  async getMallChartCount() {
+    const cartCount = await app.getMallChartCount()
+    this.setData({
+      cartCount
+    })
+  },
 
   handleClickPreview(event) {
     const { index } = event.currentTarget.dataset
@@ -46,9 +56,9 @@ Page({
   getStoreGoodsDetal(id, goodType) {
     let url = ""
     if (goodType == 0) {
-       url = "getStoreGoodsDetal"
-    } else { 
-       url = "getStoreJFGoodsDetal"
+      url = "getStoreGoodsDetal"
+    } else {
+      url = "getStoreJFGoodsDetal"
     }
     $api[url]({ id }).then((res) => {
       if (res.state) {
@@ -99,6 +109,7 @@ Page({
     }
     $api.addGoodsToChart(params).then((res) => {
       if (res.state) {
+        this.getMallChartCount()
         wx.showToast({
           title: "加入购物车成功",
           icon: "success",
