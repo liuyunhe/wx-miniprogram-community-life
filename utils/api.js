@@ -10,6 +10,9 @@ const prefix = {
   store: "/store",
   incentive: "/incentive"
 }
+const DEV_BASE_URL = "https://tacj.openunion.cn/api"
+const MASTER_BASE_URL = "https://pubserv.tsfztz.cn/api"
+const baseUrl = DEV_BASE_URL
 const API = {
   register: (data) =>
     request("POST", prefix.applet + "/v1/wechat/register", data), //根据微信小程序code获取手机号并完成注册；
@@ -324,7 +327,6 @@ const API = {
   getShopCouponList: (data) =>
     request("POST", prefix.incentive + "/v1/cjCouponIssue/list", data) // 获取商家优惠券列表
 }
-const baseUrl = "https://tacj.openunion.cn/api"
 
 function request(method, url, data) {
   return new Promise((resolve, reject) => {

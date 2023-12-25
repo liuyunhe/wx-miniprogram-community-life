@@ -1,21 +1,40 @@
 <wxs module="filters" src="../../utils/addmul.wxs"></wxs>
-<page-container show="{{show}}" round="{{true}}" bind:leave="handleClickComfirm">
+<page-container
+  show="{{show}}"
+  round="{{true}}"
+  bind:leave="handleClickComfirm"
+>
   <view class="yhq-container">
     <view class="title" hover-class="none" hover-stop-propagation="false">
       优惠券
     </view>
-    <view wx:if="{{canUseCoupon}}" class="text" hover-class="none" hover-stop-propagation="false">
-     <span wx:if="{{showTips}}"> 已选中推荐优惠，</span>使用优惠券{{ checkedNum }} 张，共抵扣￥<span style="color: #ff580c"
+    <view
+      wx:if="{{canUseCoupon}}"
+      class="text"
+      hover-class="none"
+      hover-stop-propagation="false"
+    >
+      <span wx:if="{{showTips}}"> 已选中推荐优惠，</span>使用优惠券{{ checkedNum
+      }} 张，共抵扣￥<span style="color: #ff580c"
         >{{filters.toFixHead(descount)}}.{{filters.toFixTail(descount)}}</span
       >
     </view>
-    <view wx:else class="text" hover-class="none" hover-stop-propagation="false">
-     <span>暂无可用优惠券</span
-      >
+    <view
+      wx:else
+      class="text"
+      hover-class="none"
+      hover-stop-propagation="false"
+    >
+      <span>暂无可用优惠券</span>
     </view>
     <view class="content">
       <scroll-view class="list" scroll-y>
-        <view class="item {{item.active?'':'disable'}}"  wx:for="{{list}}" wx:key="couponId" wx:for-index="index">
+        <view
+          class="item {{item.active?'':'disable'}}"
+          wx:for="{{list}}"
+          wx:key="couponId"
+          wx:for-index="index"
+        >
           <view class="left">
             <view class="discount-num">
               <text class="icon">￥</text>

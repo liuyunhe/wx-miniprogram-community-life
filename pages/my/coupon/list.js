@@ -27,7 +27,7 @@ Page({
     pageData: {
       page: 1,
       pageSize: 10,
-      status: ""
+      status: "0"
     },
     totalPages: 1
   },

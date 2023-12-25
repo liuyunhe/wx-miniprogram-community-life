@@ -369,11 +369,12 @@ Page({
                   })
                 }
               } else {
-                wx.showToast({
-                  title: "您在该机构暂无预约",
-                  icon: "none"
-                })
-              }
+                setTimeout(() => { 
+                  wx.showToast({
+                    title: "您在该机构暂无预约",
+                    icon: "none"
+                  })
+                },1000)}
             } else {
               wx.showToast({
                 title: result.message,
