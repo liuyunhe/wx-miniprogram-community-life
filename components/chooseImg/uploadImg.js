@@ -142,6 +142,10 @@ Component({
     },
 
     uploadImg: function () {
+      wx.showLoading({
+        mask: true,
+        title: "加载中"
+      })
       var _this = this;
       if (_this.data.compressImgs.length == 0) {
         _this.triggerEvent("itemChange", '');
@@ -162,34 +166,38 @@ Component({
       for (var i = 0; i < _this.data.compressImgs.length; i++) {
         console.log("uploadFile======", _this.data.compressImgs);
         wx.uploadFile({
-          url: $baseUrl + '/file/v1/fileUpload',
+          url: $baseUrl + "/file/v1/fileUpload",
           filePath: _this.data.compressImgs[i],
-          name: 'files',
-          method: 'POST',
+          name: "files",
+          method: "POST",
           header: {
-            'content-type': 'application/json', // 默认值
-            "authorization": "Bearer " + wx.getStorageSync('token')
+            "content-type": "application/json", // 默认值
+            authorization: "Bearer " + wx.getStorageSync("token")
           },
           success: function (res) {
-            console.log("杰=======", res);
+            console.log("杰=======", res)
             if (res.statusCode == "200") {
               if (res.data) {
-                imgArray[j] = JSON.parse(res.data).fileId;
+                imgArray[j] = JSON.parse(res.data).fileId
                 resArray[j] = JSON.parse(res.data)
-                j = j + 1;
+                j = j + 1
                 if (imgArray.length == _this.data.compressImgs.length) {
-                  console.log("imgArray=========", imgArray,resArray);
-                  _this.onlinePreview(imgArray,resArray);
+                  console.log("imgArray=========", imgArray, resArray)
+                  _this.onlinePreview(imgArray, resArray)
                   // _this.triggerEvent("itemChange", imgArray);
                   // values.image_id = imgArray;
                   // 提交到后端
                 }
               } else {
-
               }
             } else {
               App.showError("上传失败")
             }
+          },
+          fail(err) {
+          },
+          complete() {
+            
           }
         })
         console.log("i=======" + i);
@@ -205,6 +213,7 @@ Component({
         }
         const j = i
         $api.onlinePreview(imgData).then(res => {
+          wx.hideLoading()
           console.log("浏览图片结果=====", res);
           if (res.result != 'error') {
             const img = {

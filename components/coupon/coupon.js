@@ -51,12 +51,19 @@ Component({
 
   lifetimes: {
     created() {
-      console.log("=====>coupon detached")
+      console.log("=====>coupon created")
+    },
+    attached() { 
+      console.log("=====>coupon attached")
     },
     detached() {
-      console.log("=====>detached")
+      console.log("=====>coupon detached")
+    },
+    moved() { 
+      console.log("=====>moved")
     }
   },
+  
 
   /**
    * 组件的方法列表
