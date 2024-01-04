@@ -213,7 +213,6 @@ Component({
         }
         const j = i
         $api.onlinePreview(imgData).then(res => {
-          wx.hideLoading()
           console.log("浏览图片结果=====", res);
           if (res.result != 'error') {
             const img = {

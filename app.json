@@ -65,48 +65,59 @@
     "pages/community/home/index",
     "pages/mall/home/index"
   ],
-  "subpackages": [{
-    "root": "subpackage/community",
-    "name": "community",
-    "pages": [
-      "activity/index",
-      "appoint/index",
-      "guide/index",
-      "info/index",
-      "market/index",
-      "notice/index",
-      "question/index",
-      "other/index",
-      "info/detail",
-      "notice/details",
-      "guide/particulars",
-      "activity/details",
-      "activity/signUp",
-      "question/feedback",
-      "question/details",
-      "counsel/index",
-      "counsel/details",
-      "appoint/appointList",
-      "appoint/signUp",
-      "activity/signUpResult",
-      "market/publish"
-    ],
-    "independent": false
-  },{
-    "root": "subpackage/mall",
-    "name": "mall",
-    "pages": [
-      "goodDetail/index",
-      "goodDetail/comment",
-      "shoppingCart/index",
-      "confirmOrder/index",
-      "order/detail",
-      "order/comment",
-      "order/list",
-      "search/sort"
-    ],
-    "independent": false
-  }],
+  "subpackages": [
+    {
+      "root": "subpackage/community",
+      "name": "community",
+      "pages": [
+        "activity/index",
+        "appoint/index",
+        "guide/index",
+        "info/index",
+        "market/index",
+        "notice/index",
+        "question/index",
+        "other/index",
+        "info/detail",
+        "notice/details",
+        "guide/particulars",
+        "activity/details",
+        "activity/signUp",
+        "question/feedback",
+        "question/details",
+        "counsel/index",
+        "counsel/details",
+        "appoint/appointList",
+        "appoint/signUp",
+        "activity/signUpResult",
+        "market/publish"
+      ],
+      "independent": false
+    },
+    {
+      "root": "subpackage/mall",
+      "name": "mall",
+      "pages": [
+        "goodDetail/index",
+        "goodDetail/comment",
+        "shoppingCart/index",
+        "confirmOrder/index",
+        "order/detail",
+        "order/comment",
+        "order/list",
+        "search/sort"
+      ],
+      "independent": false
+    },
+    {
+      "root": "subpackage/my",
+      "name": "my",
+      "pages": [
+        "openAccount/openAccount"
+      ],
+      "independent": false
+    }
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#3CDABB",

@@ -87,6 +87,20 @@
     <view class="view-column view-padding1">
       <view
         class="listLine"
+        catch:tap="handleClickOpenAccount"
+      >
+        <image class="listImg mr-23" src="/state/images/jifen.png" mode="widthFix"></image>
+        <view style="flex: 0.9; color: #333"
+          >开通小钱包</view
+        >
+        <image
+          class="listRight"
+          src="/state/images/youjiantou.png"
+          mode="widthFix"
+        ></image>
+      </view>
+      <view
+        class="listLine"
         wx:for="{{listData}}"
         wx:key="index"
         bindtap="getPage"
@@ -110,6 +124,7 @@
     <text class="pay-list" bindtap="refundDetails">退出登录</text>
   </view> -->
 </view>
+
 <dialog
   id="dialog"
   title="发表评价"

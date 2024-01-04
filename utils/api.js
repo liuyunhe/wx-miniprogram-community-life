@@ -242,6 +242,10 @@ const API = {
     request("GET", prefix.pay + "/applet/v1/wallet/queryProtocolId", data), //根据userid查询协议编号
   merchantStoreInfo: (data) =>
     request("POST", prefix.handy + "/v1/merchantStoreInfo/point", data), //查询便民服务商家基本信息图层
+  openAccountH5: (data) =>
+    request("POST", prefix.applet + "/v1/wallet/openAccountH5", data), //工行小钱包开通账户
+  accountFunctionH5: (data) =>
+    request("POST", prefix.applet + "/v1/wallet/accountFunctionH5", data), //工行小钱包使用功能
 
   // *****************商城**********************
   getCategoryListById: (data) =>

@@ -108,6 +108,12 @@ Page({
     })
   },
 
+  handleClickOpenAccount() {
+    wx.navigateTo({
+      url:"/subpackage/my/openAccount/openAccount"
+    })
+  },
+
   getPage(e) {
     if (e.currentTarget.dataset.id == 0) {
       wx.navigateTo({
@@ -151,7 +157,9 @@ Page({
       })
     } else if (e.currentTarget.dataset.id == 10) {
       wx.navigateTo({
-        url: `/pages/my/integral/list?points=${this.data.points?this.data.points:0}`
+        url: `/pages/my/integral/list?points=${
+          this.data.points ? this.data.points : 0
+        }`
       })
     }
   },

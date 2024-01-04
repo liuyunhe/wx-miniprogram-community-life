@@ -99,13 +99,28 @@
   </view>
 </view> -->
 
-
 <!-- 这是地图部分 -->
 <view class="map_container">
-  <map id="Map" class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' markers='{{markers}}' controls="{{controls}}" bindcontroltap="bindcontroltap" polyline='{{polyline}}' circles="{{circles}}" bindmarkertap='bindmarkertap' bindcontroltap='bindcontroltap'>
+  <map
+    id="Map"
+    class="map"
+    longitude="{{longitude}}"
+    latitude="{{latitude}}"
+    scale="{{scale}}"
+    markers="{{markers}}"
+    controls="{{controls}}"
+    bindcontroltap="bindcontroltap"
+    polyline="{{polyline}}"
+    circles="{{circles}}"
+    bindmarkertap="bindmarkertap"
+    bindcontroltap="bindcontroltap"
+  >
   </map>
 </view>
-<dialog id='dialog' bind:cancelEvent="_cancelEvent" bind:confirmEvent="_confirmEvent">
-</dialog>
+<dialog
+  id="dialog"
+  bind:cancelEvent="_cancelEvent"
+  bind:confirmEvent="_confirmEvent"
+></dialog>
 <shortcut id=""></shortcut>
 <position id="" bind:currentLocation="currentLocation"></position>
