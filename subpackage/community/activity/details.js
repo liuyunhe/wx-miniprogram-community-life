@@ -16,7 +16,9 @@ Page({
     act_info_loaded: false,
     sigle_page: false,
     activityImage: "",
-    dataType: ""
+    dataType: "",
+    signupBeginDateStr:"",
+    signupDeadlineStr:""
   },
 
   /**
@@ -53,7 +55,8 @@ Page({
       if (res.value) {
         const signupDeadline = new Date(res.value.signupDeadline).getTime()
         const signupBeginDate = new Date(res.value.signupBeginDate).getTime()
-        const showBtn = res.value.enableSignup == 1 && this.data.dataType !== '2'
+        const showBtn =
+          res.value.enableSignup == 1 && this.data.dataType !== "2"
         this.setData({
           activityId: res.value.activityId,
           title: res.value.title,
@@ -61,6 +64,8 @@ Page({
           // time: res.value.time,
           beginDate: res.value.beginDate,
           endDate: res.value.endDate,
+          signupDeadlineStr: res.value.signupDeadline,
+          signupBeginDateStr: res.value.signupBeginDate,
           createTime: res.value.createTime,
           activityImage: res.value.activityImage
             ? JSON.parse(res.value.activityImage)[0].url

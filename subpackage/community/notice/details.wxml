@@ -5,7 +5,7 @@
     <view class="divLine"></view> -->
     <rich-text nodes="{{noticeDetail}}" class="detailStyle"></rich-text>
     <view class="noticeImage" hover-class="none" hover-stop-propagation="false">
-      <image wx:for="{{noticeImage}}" src="{{item.url}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
+      <image wx:for="{{noticeImage}}" wx:key="index" src="{{item.url}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
         
       </image>
     </view>

@@ -13,6 +13,9 @@
   <view wx:if="{{!sigle_page}}" class="contentArea" hover-class="none" hover-stop-propagation="false">
     <view class="title-style">{{title}}</view>
     <view class="timeStyle" hover-class="none" hover-stop-propagation="false">
+      报名时间：{{filters.toFixDate(signupBeginDateStr)}} - {{filters.toFixDate(signupDeadlineStr)}}
+    </view>
+    <view class="timeStyle" hover-class="none" hover-stop-propagation="false">
       活动时间：{{filters.toFixDate(beginDate)}} - {{filters.toFixDate(endDate)}}
     </view>
     <rich-text class="contentStyle" nodes="{{content}}"></rich-text>
