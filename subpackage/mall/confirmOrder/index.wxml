@@ -149,9 +149,9 @@
   <!-- 优惠券 -->
   <coupon show="{{showYHQ}}" couponList="{{couponList}}" descountNum="{{ descountNum }}" bind:comfirm="handleChooseCoupon"></coupon>
   <!-- 收银台 -->
-  <cashier
+  <!-- <cashier
     price="{{totalPrice - descountNum}}"
     wx:if="{{showCashier}}"
     bind:choosePayType="handleChoosePayType"
-  />
+  /> -->
 </view>

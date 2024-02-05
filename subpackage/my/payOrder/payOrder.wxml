@@ -1,0 +1,5 @@
+<view class="base">
+  <view class="rpx-30 pt-20 header">
+    <web-view src="{{url}}" bindmessage="handleBindMessage"/>
+  </view>
+</view>

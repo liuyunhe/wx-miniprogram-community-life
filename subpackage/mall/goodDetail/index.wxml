@@ -137,6 +137,9 @@
     <view class="btn-place-orde disable" wx:if="{{goodsDetail.status == 2}}"
       >已下架</view
     >
+    <view class="btn-place-orde disable" wx:if="{{goodsDetail.status == 5}}"
+      >已失效</view
+    >
   </view>
   <shoppingCartEntrance
     id="shoppingCartEntrance"

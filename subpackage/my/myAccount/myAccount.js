@@ -1,8 +1,7 @@
 // subpackage/my/openAccount/openAccount.js
-const { baseUrl } = require('../../../utils/api')
+const { baseUrl } = require("../../../utils/api")
 const openAccountApi = `${baseUrl}/applet/v1/wallet/getInfoByR?id=`
 // const url = `${openAccountApi}&token=Bearer ${token}`
-
 Page({
   /**
    * 页面的初始数据
@@ -29,9 +28,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-    
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏

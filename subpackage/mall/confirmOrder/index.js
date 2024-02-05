@@ -16,12 +16,14 @@ Page({
     totalPrice: 0,
     totalNum: 0,
     showCashier: false,
-    payChannelType: "",
+    payChannelType: "10",
     showYHQ: false,
     totalPriceMap: null,
     couponList: [],
     descountNum: 0,
-    PAY_ORDER_SUCCESS: false //是否支付成功
+    PAY_ORDER_SUCCESS: false, //是否支付成功
+    NEED_WX_PAY: false, //是否需要微信支付
+    payData: null //微信支付报文
   },
 
   /**
@@ -54,12 +56,15 @@ Page({
   onShow() {
     if (this.data.PAY_ORDER_SUCCESS) {
       this.setData({
-        PAY_ORDER_SUCCESS:false
+        PAY_ORDER_SUCCESS: false
       })
       // 返回商城列表
       wx.redirectTo({
         url: "/pages/my/order/index?dataType=3"
       })
+    }
+    if (this.data.NEED_WX_PAY) {
+      this.handleWXPay(this.data.payData)
     }
     let _this = this
     _this.setData({
@@ -87,9 +92,11 @@ Page({
     const totalPriceMap = new Map()
     this.data.goodList.map((item) => {
       if (totalPriceMap.has(item.merchantId)) {
-        const totalPrice = totalPriceMap.get(item.merchantId)
+        let totalPrice = totalPriceMap.get(item.merchantId)
         totalPrice += item.price * item.quantity
+        totalPriceMap.set(item.merchantId, totalPrice)
       } else {
+        // 没有先添加商户-价格对应关系
         totalPriceMap.set(item.merchantId, item.price * item.quantity)
       }
     })
@@ -151,9 +158,10 @@ Page({
   },
   // 点击下单调出收银台
   handleClickPay() {
-    this.setData({
-      showCashier: true
-    })
+    // this.setData({
+    //   showCashier: true
+    // })
+    this.handleAddStoreOrder()
   },
   handleChoosePayType(e) {
     const payChannelType = e.detail
@@ -267,7 +275,6 @@ Page({
         const totalPriceMap = this.data.totalPriceMap
         if (type === "add") {
           item.quantity++
-
         } else {
           if (item.quantity === 1) {
             // 删除商品
@@ -387,7 +394,8 @@ Page({
           duration: 1000,
           success: () => {
             console.log(_this)
-            if (_this.data.from === "1") {
+            if (_this.data.from == "1") {
+              console.log("333333333333333", _this.data.from)
               // 购物车状态更新
               const cartIds = _this.data.goodList.map((item) => item.cartId)
               console.log(params)
@@ -396,47 +404,23 @@ Page({
                 }
               })
             }
-            const { data_package, orderId, state } = res.value
-            if (state === "100") {
-              setTimeout(() => {
-                wx.redirectTo({
-                  url: "/pages/my/order/index?dataType=3"
-                })
-              }, 2000)
-            } else {
-              const payData = JSON.parse(data_package)
-              console.log(payData, orderId)
-              wx.requestPayment({
-                timeStamp: payData.timeStamp,
-                nonceStr: payData.nonceStr,
-                package: payData.package,
-                signType: payData.signType,
-                paySign: payData.paySign,
-                appId: payData.appId,
-                success(res) {
-                  console.log(res)
-                  if (res.errMsg == "requestPayment:ok") {
-                    // 返回商城列表
-                    _this.setData({
-                      PAY_ORDER_SUCCESS: true
-                    })
-                    // wx.redirectTo({
-                    //   url: "/pages/my/order/index?dataType=3"
-                    // })
-                  }
-                },
-                fail(err) {
-                  // console.log(err)
-                  App.showError("订单未支付", function () {
-                    wx.redirectTo({
-                      url: "/pages/my/order/index?dataType=3"
-                    })
-                  })
-                },
-                complete(res) {
-                  console.log(res)
-                }
+            // 小钱包支付
+            if (this.data.payChannelType === "10") {
+              // $api.getInfoByR({ id: res.value }).then((r) => {
+              //   console.log(r)
+              // })
+              // return
+              wx.navigateTo({
+                url: `/subpackage/my/payOrder/payOrder?id=${res.value.data_package}`
               })
+            } else {
+              if (state === "100") {
+                setTimeout(() => {
+                  wx.redirectTo({
+                    url: "/pages/my/order/index?dataType=3"
+                  })
+                }, 2000)
+              }
             }
           }
         })
@@ -446,6 +430,47 @@ Page({
           icon: "none",
           duration: 2000
         })
+      }
+    })
+  },
+  handleWXPay(payData) {
+    // 微信支付
+    // const payData = JSON.parse(pay_data)
+    // console.log(payData, orderId)
+    const _this = this
+    _this.setData({
+      NEED_WX_PAY: false,
+      payData: null
+    })
+    wx.requestPayment({
+      timeStamp: payData.timeStamp,
+      nonceStr: payData.nonceStr,
+      package: payData.package,
+      signType: payData.signType,
+      paySign: payData.paySign,
+      appId: payData.appId,
+      success(res) {
+        console.log(res)
+        if (res.errMsg == "requestPayment:ok") {
+          // 返回商城列表
+          _this.setData({
+            PAY_ORDER_SUCCESS: true,
+          })
+          // wx.redirectTo({
+          //   url: "/pages/my/order/index?dataType=3"
+          // })
+        }
+      },
+      fail(err) {
+        // console.log(err)
+        App.showError("订单未支付", function () {
+          wx.redirectTo({
+            url: "/pages/my/order/index?dataType=3"
+          })
+        })
+      },
+      complete(res) {
+        console.log(res)
       }
     })
   },

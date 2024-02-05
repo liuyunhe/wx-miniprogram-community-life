@@ -1,6 +1,7 @@
 // subpackage/my/openAccount/openAccount.js
 const { baseUrl } = require('../../../utils/api')
-const openAccountApi = `${baseUrl}/applet/v1/wallet/getInfoByR?id=`
+const payOrderApi = `${baseUrl}/applet/v1/wallet/getInfoByR?id=`
+const $api = require("../../../utils/api.js").API
 // const url = `${openAccountApi}&token=Bearer ${token}`
 
 Page({
@@ -17,8 +18,12 @@ Page({
   onLoad(options) {
     const { id } = options
     this.setData({
-      url: openAccountApi + id
+      url: payOrderApi + id
     })
+    // $api.getInfoByR({ id }).then((res) => {
+    //   console.log(res)
+    // })
+
   },
 
   /**
@@ -31,6 +36,20 @@ Page({
    */
   onShow() {
     
+  },
+
+  handleBindMessage(e) { 
+    const { data } = e.detail
+    console.log(data)
+    const payData = JSON.parse(decodeURIComponent(data[0]))
+    console.log(payData)
+    const pages = getCurrentPages() // 当前页面栈
+    const currPage = pages[pages.length - 1] // 当前页面
+    const prevPage = pages[pages.length - 2] // 上一个页面
+    prevPage.setData({
+      NEED_WX_PAY:true,
+      payData
+    })
   },
 
   /**
