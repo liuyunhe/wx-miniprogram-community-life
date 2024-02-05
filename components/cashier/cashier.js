@@ -90,8 +90,7 @@ Component({
       }
       $api.getPayChannelList(params).then((res) => {
         res.value.rows.forEach((e) => {
-          console.log()
-          e.url = JSON.parse(e.logo)[0].url
+          e.url = e.logo?JSON.parse(e.logo)[0].url:e.logo
         })
         if (res.state) {
           if (isPage == true) {
