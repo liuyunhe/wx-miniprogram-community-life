@@ -63,7 +63,8 @@
     "pages/my/home/myActivities",
     "pages/my/home/about",
     "pages/community/home/index",
-    "pages/mall/home/index"
+    "pages/mall/home/index",
+    "pages/test/test"
   ],
   "subpackages": [
     {
@@ -113,7 +114,9 @@
       "root": "subpackage/my",
       "name": "my",
       "pages": [
-        "openAccount/openAccount"
+        "openAccount/openAccount",
+        "myAccount/myAccount",
+        "payOrder/payOrder"
       ],
       "independent": false
     }
